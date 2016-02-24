@@ -1,0 +1,66 @@
+#beige
+
+#beige0
+<div class="beigealert_wrap">
+	<div class="beigealert"><img src="{art}alert_icon.png" alt="{alert_icon_alt_text}" width="15" height="15"> {beige_alert_text} <a href="{tongue_root}feedback.html" class="beige" target="_blank">{beige_alert_here_text}</a>.</div>
+</div>
+
+#view_head
+<div class="portal">
+	<div class="main_wrap">
+		<div id="background_image"></div>
+		<div class="overlay">
+	
+#view_tail
+		</div>
+	</div>
+	<div class="footer_wrap">
+	<div class="footer">
+		<div class="footer_link"><a href="{tongue_root}">
+			{footer_pick_text}</a>
+		</div><div class="footer_link top"><a onclick="$('html,body').animate({scrollTop:0},'slow');return false;">
+			{footer_top_text}</a>
+		</div><div class="footer_link about"><a href="{tongue_root}about.html">
+			{footer_about_text}</a>
+		</div>
+	</div>
+	</div>
+</div>
+
+
+#main_head
+<div class="default head">
+	<table class="head">
+		<tr>
+			<td rowspan="2">
+				<a href="{tongue_root}" title="{mainback_tip_text}"><img src="{root}art/original/dp_logo.60.png" alt="{dportal_logo_alt_text}" width="150" height="60"/></a>
+			</td>
+			<td class="options">{tongue_select}</td>
+		</tr>
+	</table>
+</div>
+
+<script>
+	$(function(){
+		$('#flava_select').children().each(function(i,it){
+			if("{flava_name}"==$(it).val())
+			{
+				$(it).attr("selected",1)
+			}
+		});
+		$('#flava_select').bind('change', function ()
+		{
+			var url = "{mark_no_flava}&flava="+$(this).val()+"{hash}";
+			window.location = url; // redirect
+			return false;
+		});
+	});
+</script>
+
+
+#main_title
+<div class="default">
+	<table class="country"><tr><td class="name">{blog_title}</td></tr></table>
+</div>
+
+

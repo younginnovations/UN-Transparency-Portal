@@ -1,0 +1,11 @@
+
+Re jiggled the names in the database slightly and attempted to 
+optimize for a full data import.
+
+Added orderby result column numbers to Q.
+
+Switched from using "xml2js" module to a cooked version of "htmlparse".
+refry.js does the cooking of raw xml into json.
+iati_xml.js handles parsing of iati values.
+
+

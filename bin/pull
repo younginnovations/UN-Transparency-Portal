@@ -1,0 +1,9 @@
+
+# Pull from iati
+
+cd `dirname $0`
+cd ..
+git pull origin master
+#git pull di master
+
+

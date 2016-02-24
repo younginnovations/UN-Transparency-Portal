@@ -1,0 +1,10 @@
+
+# Add everything that has changed and commit it, use args as comment
+
+m="$*"
+
+cd `dirname $0`
+cd ..
+
+git add . --all
+git commit -a -m "$m"

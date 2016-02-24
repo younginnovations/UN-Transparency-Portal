@@ -1,0 +1,7 @@
+
+# Local status of file.
+
+cd `dirname $0`
+cd ..
+git status
+

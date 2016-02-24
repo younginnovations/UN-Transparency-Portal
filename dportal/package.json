@@ -1,0 +1,21 @@
+{
+  "name": "dportal",
+  "description": "d-portal.org static website builder",
+  "version": "0.0.1",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/IATI/IATI-Country-Tracker.git"
+  },
+  "dependencies": {
+    "express": "*",
+    "morgan": "*",
+    "yargs": "*",
+    "marked": "*"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "build": "node js/cmd.js build",
+    "serv": "node js/serv.js"
+  }
+}
+

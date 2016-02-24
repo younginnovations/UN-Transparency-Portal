@@ -1,0 +1,229 @@
+Static site (2016-01-28 shi)
+==============================
+Fixed links to email address in FAQ
+Changed active question hover state in FAQ
+
+
+Static site (2015-11-05 shi)
+==============================
+Added news post adding country budgets
+
+
+Static site (2015-09-11 shi)
+==============================
+Added jQuery fix for scroll link on FAQ
+
+
+Static site (2015-09-03 shi)
+==============================
+FAQ page layout styles
+Added General and Technical questions to FAQ
+Added Generator questions to FAQ
+Added more click states to FAQ
+Added shortcut to FAQ list
+Better links from static pages
+
+
+Static site (2015-09-02 shi)
+==============================
+Changed BETA to badge status on About, index and news page
+New FAQ page
+
+
+Static site (2015-06-15 shi)
+==============================
+Fixed example code in about page
+
+
+Static site (2015-06-05 shi)
+==============================
+Changed email to support@iatistandard.org
+Translations email change
+About page edits
+
+
+Static site (2015-04-25 shi)
+==============================
+Fixed link to publisher portal
+
+
+Static site (2015-03-04 shi)
+==============================
+Minor css changes to index
+
+
+Static site (2015-03-03 shi)
+==============================
+Changed css styles for attribution section
+
+
+Static site (2015-02-24 shi)
+==============================
+Changed layout for columns of Publishers / IDs
+Rearranged dropdown search menu
+Updated translations
+Moved explore tab link
+Generator css fix
+
+
+Static site (2015-02-02 shi)
+==============================
+Added shortcut to Q
+
+
+Static site (2015-01-05 shi)
+==============================
+Edited feedback css and info
+
+
+Static site (2014-11-30 shi)
+==============================
+New post - Generator examples
+Edit front page description
+
+
+Static site (2014-11-28 shi)
+==============================
+New post - Generator
+Fixed max-width for images in news posts
+
+
+Static site (2014-11-14 shi)
+==============================
+Added Beta alert and temp style changes
+
+
+Static site (2014-11-12 shi)
+==============================
+Edit text on index page
+Added footer notes for attribution and explanation
+Translations for new text
+
+
+Static site (2014-10-30 shi)
+==============================
+Main links are now more prominent
+Flag alt text fixed
+Hover colours for about links
+Fixed links for about page
+
+
+Static site (2014-10-29 shi)
+==============================
+Added link to view all publishers
+Added link to view all countries
+
+
+Static site (2014-10-08 shi)
+==============================
+Redesign index page to include both countries and publishers
+Fixed new content for all translations
+Replaced Development Portal with d-portal
+Added selector dropdown menu for both countries and publishers
+Translations for selector text
+
+
+Static site (2014-09-19 shi)
+==============================
+Fixed new URL for Nepal portal
+Added Generator link to replace Install link
+Edited reminder style
+
+
+Static site (2014-09-09 shi)
+==============================
+Fixed url for widget in About page
+
+
+Static site (2014-08-28 shi)
+==============================
+Edited About page to include new generator section
+Added translations
+Added Pixabay attribution
+Fixed Generator link
+
+
+Static site (2014-08-11 shi)
+==============================
+Added attribution and links to data sources in about page
+Added translations
+
+
+Static site (2014-07-29 shi)
+==============================
+Fixed CSS for index
+Added publishers portal index page
+Added translations for new page
+Added link to Google Group in about page
+
+
+Static site (2014-07-23 shi)
+==============================
+Added new column in Dash quality for datasets
+
+
+Static site (2014-06-25 shi)
+==============================
+Added Dash to About page
+Translations for new Dash section
+
+
+Static site (2014-06-10 shi)
+==============================
+Add "coming soon" to Install section + translations
+
+
+Static site (2014-05-30 shi)
+==============================
+Front page layout changes
+Include country flags and country codes
+News page background lightened
+
+
+Static site (2014-05-29 shi)
+==============================
+Changed all links to News page to direct link (bug fix)
+Translations for navigation links on Index, About, News page
+
+
+Static site (2014-05-28 shi)
+==============================
+News header
+Added news post
+No themes
+CSS Styles for path buttons
+Changed about page text / css styles
+Translations for new about page
+Added "quick install" section
+Changed footer links to mailto:queries@d-portal.org
+Changed all links to relative for translations
+Added News link to about page
+Added new navigation to News page
+
+
+Static site (2014-05-08 shi)
+==============================
+News styles
+Added news translations (not entries)
+Added Git-flavoured Markdown for news entries
+linebreaks for Markdown
+Title links to main page
+
+
+Static site (2014-05-01 shi)
+==============================
+Added 2 pages for news (single / list)
+
+
+Static site (2014-04-30 shi)
+==============================
+Added Spanish, Hindi, Japanese, Chinese (Simplified) translations
+Added news page
+
+
+Static site (2014-04-29 shi)
+==============================
+Rewrite html for static site
+Contents are now up for translations
+Added French translation
+No more inline css

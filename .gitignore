@@ -1,0 +1,14 @@
+*/out/*
+*/node_modules/*
+*/tmp/*
+*/cache/*
+
+dstore/db/*
+
+dportal/static/*
+dportal/production/*
+
+ctrack/jslib/ctrack.*
+ctrack/json/*.json
+
+*/.vagrant

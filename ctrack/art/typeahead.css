@@ -1,0 +1,31 @@
+/* CSS for Search page */
+
+.typeahead, .tt-query, .tt-hint {width:396px; height:30px; padding:8px 12px; font-size:24px; line-height:30px; -webkit-border-radius:8px; -moz-border-radius:8px; border-radius:8px; outline:none;}
+.typeahead {background-color:#fff;}
+.typeahead:focus {border:2px solid #0097cf;}
+.tt-hint {color:#999;}
+.tt-menu {width:100%; margin:12px 0; padding:8px 0; background-color:#fff;max-height:320px; overflow-y:auto;}
+.tt-suggestion {padding:3px 20px; font-size:18px;}
+.tt-suggestion:hover {cursor:pointer; color:#fff; background-color:#0097cf;}
+.tt-suggestion:hover img {-webkit-filter:invert(1) brightness(200%); filter:invert(1) brightness(200%);}
+.tt-suggestion.tt-cursor {color:#fff; background-color:#0097cf;}
+.tt-suggestion p {margin:0;}
+
+#view_search_test		{margin:0 auto; width:960px; padding:30px 0 400px 0;}
+input#view_search_string, input.typeahead.tt-hint		{font-size:32px; width:936px; height:48px; border:0; margin-top:10px;}
+.search_wrap			{display:inline-block; width:320px; margin-bottom:15px;}
+.search_label			{font-size:1.2em;padding-bottom:5px;margin-right:23px;margin-bottom:10px;}
+.search_label img		{padding-right:7px;width:17px;height:17px;}
+
+.search_wrap .chosen-container{width:300px;min-width:300px;max-width:300px;}
+
+.search_wrap.mini div#view_search_select_year_min_chosen,
+.search_wrap.mini div#view_search_select_year_max_chosen	{width:150px;min-width:150px;max-width:150px;}
+
+.tt-menu img			{width:16px; height:16px;}
+
+#search_div				{margin-top:20px;}
+#search_div span#search_span span	{display:block; padding-top:5px;}
+
+a#search_link			{display:block; padding:25px 20px; border-radius:8px; text-align:center; margin:0 auto; font-size:1.6em; margin-top:40px;}
+a#search_link span		{display:block; font-style:italic; font-size:0.6em; padding-top:5px;}
