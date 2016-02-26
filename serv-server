@@ -1,0 +1,4 @@
+cd ctrack &&
+npm run build &&
+cd ../dportal &&
+npm run build

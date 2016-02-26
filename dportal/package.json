@@ -10,9 +10,12 @@
     "express": "*",
     "morgan": "*",
     "yargs": "*",
-    "marked": "*"
+    "marked": "*",
+    "pm2":"*"
   },
-  "devDependencies": {},
+  "devDependencies": {
+    "pm2":"*"
+  },
   "scripts": {
     "build": "node js/cmd.js build",
     "serv": "node js/serv.js"
