@@ -60,7 +60,7 @@ deleteFolderRecursive = function(path) {
 	var chunks={};
 	var blogs={};
 	var chunkopts={};
-	
+
 	chunkopts.root="/";  //
 
 	if( argv.root ) { chunkopts.root=argv.root; }
@@ -96,7 +96,7 @@ deleteFolderRecursive = function(path) {
 		}
 		return pages[fname];
 	}
-	
+
 	var find_pages=function(dir,blog)
 	{
 		var dirs=dir.split("/"); while( dirs[dirs.length-1]=="" ) { dirs.pop(); }
@@ -105,7 +105,7 @@ deleteFolderRecursive = function(path) {
 		plate.reset_namespace();
 		plate.push_namespace(chunkopts);
 		plate.push_namespace(chunks);
-		
+
 //		console.log("namespace /");
 		plate.push_namespace( get_page_chunk("index.html") );
 		for(var i=0;i<dirs.length;i++)
@@ -136,7 +136,7 @@ deleteFolderRecursive = function(path) {
 
 			chunkopts.tongue=tongue;
 			chunkopts.tongue_root=chunkopts.root+tonguedir;
-			
+
 			try { fs.mkdirSync("static/"+tonguedir+dir); } catch(e){}
 			for(var i=0;i<ff.length;i++) //parse
 			{
@@ -176,7 +176,7 @@ deleteFolderRecursive = function(path) {
 		if(tongues.eng) { plate.push_namespace(tongues.eng); }
 		dodir("eng");
 		if(tongues.eng) { plate.pop_namespace(); }
-		
+
 		if(!blog) // not on blog scan
 		{
 			for(var n in tongues)
@@ -190,11 +190,11 @@ deleteFolderRecursive = function(path) {
 				}
 			}
 		}
-		
+
 		for(var i=0;i<ff.length;i++) // recurse
 		{
 			var name=ff[i];
-			
+
 			if( fs.lstatSync("html/"+dir+name).isDirectory() )
 			{
 //				console.log("scan  "+dir+name);
@@ -204,15 +204,15 @@ deleteFolderRecursive = function(path) {
 
 	}
 
-	find_pages("",true); // find blogs first, blogs begin with a 2000-12-31-title.html style 
-	
+	find_pages("",true); // find blogs first, blogs begin with a 2000-12-31-title.html style
+
 	var bloglist=[];
 	for(var n in blogs)
 	{
 		bloglist.push(blogs[n]);
 	}
 	bloglist.sort(function(a,b){return a._fullfilename<b._fullfilename?1:-1;});
-	
+
 	var b5=[];
 //	for(var i=bloglist.length-1; (i>=0) && (i>=(bloglist.length-5)) ;i--)
 	for(var i=0;i<5;i++)
@@ -228,9 +228,14 @@ deleteFolderRecursive = function(path) {
 
 // auto update the publisher chunk
 	var pubs=[];
-	for(var id in json_iati_codes["publisher_names"])
+	for(var id in json_iati_codes["sector_names"]){
+		var name = json_iati_codes["sector_names"][id];
+		var d = {name:name}
+		pubs.push(d);
+	}
+	for(var id in json_iati_codes["un_publisher_names"])
 	{
-		var name=json_iati_codes["publisher_names"][id];
+		var name=json_iati_codes["un_publisher_names"][id];
 		var d={name:name,id:id};
 		pubs.push(d);
 	}
@@ -258,12 +263,11 @@ deleteFolderRecursive = function(path) {
 		return (ta < tb) ? -1 : (ta > tb) ? 1 : 0 ;
 	});
 	chunkopts["countries"]=ccs;
-	
-	
-	chunkopts["publisher_names_json"]=JSON.stringify( json_iati_codes["publisher_names"] );
+
+	chunkopts["sector_names"]=JSON.stringify( json_iati_codes["sector_names"]);
+	chunkopts["publisher_names_json"]=JSON.stringify( json_iati_codes["un_publisher_names"] );
 	chunkopts["country_names_json"]=JSON.stringify( json_iati_codes["country"] );
 	chunkopts["crs_countries_json"]=JSON.stringify( json_iati_codes["crs_countries"] );
-
 
 	find_pages("")
 
@@ -277,7 +281,7 @@ deleteFolderRecursive = function(path) {
 		for(var i=0;i<ff.length;i++) // recurse
 		{
 			var name=ff[i];
-			
+
 			if( fs.lstatSync(root+dir+name).isDirectory() )
 			{
 				copyraw(root,dir+name+"/");
@@ -289,7 +293,6 @@ deleteFolderRecursive = function(path) {
 			}
 		}
 	}
-
 	copyraw("../ctrack/","art/");
 	copyraw("../ctrack/","jslib/");
 	copyraw("./raw/","");
@@ -303,4 +306,3 @@ if(!global.argv)
 	var argv = require('yargs').argv; global.argv=argv;
 	cmd.run(argv);
 }
-
