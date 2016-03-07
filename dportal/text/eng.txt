@@ -98,7 +98,7 @@ Pick a country or publisher below to explore their data.
 Only countries and publishers with data published to IATI are available for exploration. 
 
 #footer1_text
-A 2014 project by the d-portal team
+A 2016 project by United Nations Development Group
 
 #footer1_tip_text
 International Aid Transparency Initiative (IATI)
@@ -107,7 +107,7 @@ International Aid Transparency Initiative (IATI)
 Top of page
 
 #footer3_text
-About d-portal.org
+About UN d-portal
 
 #footer4_text
 Back to d-portal.org
