@@ -59,7 +59,7 @@ plate.fill_chunks=function(str,chunks)
 				else
 				{
 					if(name)
-					{					
+					{
 						chunks[name]=chunk.join("\n");
 					}
 					var words=l.substring(1).replace(/\s+/g, " ").split(" "); // allow any type of whitespace
@@ -75,7 +75,7 @@ plate.fill_chunks=function(str,chunks)
 								chunks.__flags__[name]=flags;
 								for(var i=1;i<words.length;i++)
 								{
-									var aa=words[i].split("="); // flags must be -> flag=value 
+									var aa=words[i].split("="); // flags must be -> flag=value
 									if(aa[0]&&aa[1])
 									{
 										flags[aa[0]]=aa[1]; // add flags
@@ -107,7 +107,7 @@ plate.fill_chunks=function(str,chunks)
 			}
 		});
 	if(name && chunk)
-	{					
+	{
 		chunks[name]=chunk.join("\n");
 	}
 
@@ -115,12 +115,12 @@ plate.fill_chunks=function(str,chunks)
 	for( n in chunks.__flags__ )
 	{
 		var f=chunks.__flags__[n];
-		
+
 		if(f.trim) // trim=ends
 		{
 			chunks[n]=chunks[n].trim(); // remove whitespace from start/end
 		}
-		
+
 		if(f.form) // special format
 		{
 			if(f.form=="json")
@@ -135,7 +135,7 @@ plate.fill_chunks=function(str,chunks)
 			else
 			if(f.form=="markdown")
 			{
-				
+
 				chunks[n]=marked(nl_to_br(chunks[n]));
 			}
 		}
@@ -149,7 +149,7 @@ plate.fill_chunks=function(str,chunks)
 plate.out_chunks=function(chunks)
 {
 	var r=[];
-	
+
 	for(var n in chunks)
 	{
 		if(n=="__flags__") // special flags chunk name
@@ -193,7 +193,7 @@ plate.prepare=function(str)
 
 	var aa=str.split("{");
 	var ar=[];
-	
+
 	ar.push(aa[0]);
 	for(var i=1;i<aa.length;i++)
 	{
@@ -247,7 +247,7 @@ plate.lookup=function(str,dat)
 	var r;
 	if(dat) { r=plate.lookup_single(str,dat); if(r!==undefined) { return r; } } // check dat first
 	for(var i=plate.namespaces.length-1;i>=0;i--) // last added has priority
-	{ 
+	{
 		r=plate.lookup_single(str,plate.namespaces[i]); if(r!==undefined) { return r; } // then look in all namespaces
 	}
 }
@@ -263,7 +263,7 @@ plate.lookup_single=function(str,dat)
 	if(i>=0)
 	{
 		var a1=str.substring(0,i);
-		if("object" == typeof dat[a1] ) // try a sub lookup 
+		if("object" == typeof dat[a1] ) // try a sub lookup
 		{
 			var a2=str.substring(i+1);
 			return plate.lookup_single(a2,dat[a1])
@@ -275,11 +275,11 @@ plate.lookup_single=function(str,dat)
 plate.replace_once=function(str,dat)
 {
 	var aa=plate.prepare(str);
-	
+
 	if(!aa) { return str; }
-	
+
 	var r=[];
-	
+
 	for(var i=0;i<aa.length;i++)
 	{
 		var v=aa[i];
@@ -346,7 +346,7 @@ plate.replace=function(str,arr)
 		str=plate.replace_once(str,arr);
 		if(--sanity<0) { break; }
 	}
-	
+
 	return str;
 }
 

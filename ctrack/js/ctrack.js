@@ -72,13 +72,13 @@ ctrack.setup=function(args)
 		var aa=n.split("=");
 		ctrack.q[aa[0]]=decodeURIComponent(aa[1]||"");
 	});
-	
+
 	args=args || {};
 	args.jslib	=args.jslib 	|| "http://d-portal.org/jslib/"; // load stuff from here
 	args.tongue	=args.tongue 	|| 	"eng"; 		// english
 	args.art	=args.art 		|| 	"/art/"; 	// local art
 	args.q		=args.q 		|| 	"/q"; 		// local q api
-	
+
 	args.flavas=args.flavas || ["original","high"];
 	args.flava=args.flava || ctrack.q.flava || "original";
 	args.rgba=args.rgba || ctrack.q.rgba ;
@@ -99,7 +99,7 @@ ctrack.setup=function(args)
 	}
 
 	if(args.css) { head.load(args.css); }
-	
+
 	ctrack.year=parseInt(args.year || ctrack.q.year || 2014); // default base year for graphs tables etc
 
 	ctrack.year_chunks=function(y){					// function to build visible range of years for display
@@ -113,7 +113,7 @@ ctrack.setup=function(args)
 	ctrack.args=args;
 
 
-	ctrack.display_usd="USD"; 
+	ctrack.display_usd="USD";
 	ctrack.convert_usd=1;
 //	ctrack.convert_have={}; // test old style
 	ctrack.convert_have={"CAD":true,"EUR":true,"GBP":true};
@@ -164,7 +164,7 @@ ctrack.setup=function(args)
 	}
 	args.chunks["USD"]=ctrack.display_usd;
 //console.log("convert USD "+ctrack.convert_usd);
-	
+
 // temporary country force hack
 	if( ctrack.q.country )
 	{
@@ -272,7 +272,7 @@ ctrack.setup=function(args)
 		args.chunks["main_country"]="";
 		args.chunks["main_country_head"]="";
 		args.chunks["back_country"]="";
-		
+
 		args.chunks["main_pubmin"]="";
 		args.chunks["main_publisher"]="";
 		args.chunks["main_publisher_head"]="";
@@ -356,12 +356,12 @@ ctrack.setup=function(args)
 	{
 		ctrack.crumbs=[{hash:"#view=main",view:"main"}];
 	}
-	
+
 	ctrack.setcrumb=function(idx)
 	{
 // try not to leave holes in the crumbs list, so align to left
 		if(idx > ctrack.crumbs.length ) { idx=ctrack.crumbs.length; }
-		
+
 		var it={};
 		ctrack.crumbs=ctrack.crumbs.slice(0,idx);
 		ctrack.crumbs[idx]=it;
@@ -435,11 +435,11 @@ ctrack.setup=function(args)
 	ctrack.div.master=$(ctrack.args.master);
 	ctrack.div.master.empty();
 	ctrack.div.master.html( plate.replace("{loading}")  );
-	
-	
+
+
 	ctrack.chunk("today",fetch.get_today());
 	ctrack.chunk("hash","");
-	
+
 // build ? strings for url changes
 
 	var aa={}
@@ -465,7 +465,7 @@ ctrack.setup=function(args)
 
 	var bb=[]; for(var n in aa) { if(n!="usd") { bb.push(n+"="+aa[n]); } }
 	ctrack.chunk("mark_no_usd","?"+bb.join("&"));
-	
+
 	var bb=[]; for(var n in aa) { if(n!="publisher") { bb.push(n+"="+aa[n]); } }
 	ctrack.chunk("mark_no_publisher","?"+bb.join("&"));
 
@@ -474,7 +474,7 @@ ctrack.setup=function(args)
 		ss.push('<option value="'+it.id+'">'+it.name+'</option>');
 	}
 	ctrack.chunk("all_usd_options",ss.join());
-	
+
 	var ss=[];
 	for (var d=1;d<365;d++)
 	{
@@ -486,7 +486,7 @@ ctrack.setup=function(args)
 	}
 	ctrack.chunk("all_date_options",ss.join());
 
- 
+
 	ctrack.hash={};
 	ctrack.hash_split=function(q,v)
 	{
@@ -573,7 +573,7 @@ ctrack.setup=function(args)
 			ctrack.last_hash=h;
 			var l={};
 			ctrack.hash=ctrack.hash_split(h,l);
-			
+
 			var change_of_view=false;
 			if(ctrack.last_view!=l.view) // scroll up when changing views
 			{
@@ -585,7 +585,7 @@ ctrack.setup=function(args)
 				$('html, body').animate({ scrollTop:0 }, 'slow', function(){
 					$("html, body").unbind("scroll mousedown DOMMouseScroll mousewheel keyup");
 				})
-				
+
 				ctrack.show_view(l.view);
 //console.log("new view");
    			}

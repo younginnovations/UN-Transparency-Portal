@@ -69,7 +69,7 @@
 					<div id="country_dropmenu"></div><div id="publisher_dropmenu"></div>
 					<div class="country_menu_list_wrap">
 						<div class="menu_list_wrap left">
-							<ul id="country_menu_list" class="country_menu_list">{countries:country_select}</ul>
+							<ul id="country_menu_list" class="country_menu_list"></ul>
 						</div><div class="menu_list_wrap">
 							<ul id="sector_list" class="country_menu_list"></ul>
 						</div>
@@ -124,7 +124,7 @@
 <li class="publishercol">
 	<a class="country_code" href="{root}ctrack.html?publisher={it.id}&tongue={tongue}">
 		<span class="select_wrap publishername">{it.name}</span>
-		<span class="select_wrap publisherid">{it.id}<span>
+		<span class="select_wrap publisherid">{it.id}</span>
 	</a>
 </li>
 
@@ -146,6 +146,7 @@
 // default data in page so can display without any ajax
 
 		countries={rows:[]};
+
 		var rows=countries.rows;
 		for(idx in crs_countries)
 		{
@@ -159,6 +160,7 @@
 		});
 
 		reportings={rows:[]};
+
 		var rows=reportings.rows;
 		for(idx in publisher_names)
 		{
@@ -283,6 +285,7 @@
 			}
 			if(countries)
 			{
+				var cl = $('#country_menu_list');
 				var aa=[];
 				aa.push("<select>");
 				aa.push("<option value=''></option>");
@@ -295,6 +298,20 @@
 						if(v.count) { t=t+" ("+v.count+") "; }
 						var s="<option value='"+v.country_code+"'>"+t+"</option>";
 						aa.push(s);
+						cl.append('<li>'+
+								'<a class="country_code" href="{root}ctrack.html?country='+v.country_code+'&tongue={tongue}">'+
+								'<span class="select_wrap">'+
+									'<img src="{root}art/flag/'+v.country_code.toLowerCase()+'.png" alt="'+v.name+'"/>'+
+								'</span>' +
+									'<span class="select_wrap countryid">'+
+										v.country_code +
+									'</span>' +
+									'<span class="select_wrap countryname">'+
+										v.name +
+									'</span>'+
+								'</a>'+
+							'</li>'
+						);
 					}
 				}
 				aa.push("</select>");
@@ -302,6 +319,7 @@
 
 				$("#country_dropmenu select").change(change);
 				$("#country_dropmenu select").chosen({search_contains:true,"placeholder_text_single":"{country_dropmenu_text}"});
+
 			}
 		};
 
