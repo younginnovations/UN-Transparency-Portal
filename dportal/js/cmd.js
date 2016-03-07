@@ -7,7 +7,8 @@ var fs = require('fs');
 var util = require('util');
 var path = require('path');
 
-var json_iati_codes = require("../../dstore/json/iati_codes.json");
+
+var json_iati_codes=require("../../dstore/json/iati_codes.json");
 var un_agencies_data = require("../../dstore/json/un_agencies_data.json");
 
 var plate = require("../../ctrack/js/plate.js");
@@ -242,48 +243,50 @@ cmd.build = function () {
     chunkopts["bloglist_last5"] = b5;
 
 // auto update the publisher chunk
-    var pubs = [];
-    for (var id in json_iati_codes["sector_names"]) {
-        var name = json_iati_codes["sector_names"][id];
-        var d = {name: name}
-        pubs.push(d);
-    }
-    for (var id in json_iati_codes["un_publisher_names"]) {
-        var name = json_iati_codes["un_publisher_names"][id];
-        var d = {name: name, id: id};
-
-        pubs.push(d);
-    }
-    pubs.sort(function (a, b) {
-        var ta = a.name.toUpperCase();
-        var tb = b.name.toUpperCase();
-        return (ta < tb) ? -1 : (ta > tb) ? 1 : 0;
-    });
-    chunkopts["publishers"] = pubs;
+	var pubs=[];
+	for(var id in un_agencies_data["sectors"])
+	{
+		var name = un_agencies_data["sectors"][id];
+		var d = {name:name}
+		pubs.push(d);
+	}
+	for(var id in json_iati_codes["un_publisher_names"])
+	{
+		var name=json_iati_codes["un_publisher_names"][id];
+		var d={name:name,id:id};
+		pubs.push(d);
+	}
+	pubs.sort(function(a, b) {
+		var ta = a.name.toUpperCase();
+		var tb = b.name.toUpperCase();
+		return (ta < tb) ? -1 : (ta > tb) ? 1 : 0 ;
+	});
+	chunkopts["publishers"]=pubs;
 
 // auto update the countries chunk
-    var ccs = [];
-    for (var id in un_agencies_data["countries"]) {
-        var name = un_agencies_data["countries"][id];
-        if (name) {
-            var d = {name: name, id: id};
-            ccs.push(d);
-        }
-    }
-    ccs.sort(function (a, b) {
-        var ta = a.name.toUpperCase();
-        var tb = b.name.toUpperCase();
-        return (ta < tb) ? -1 : (ta > tb) ? 1 : 0;
-    });
-    chunkopts["countries"] = ccs;
+	var ccs=[];
+	for(var id in un_agencies_data["countries"])
+	{
+		var name=un_agencies_data["countries"][id];
+		if(name)
+		{
+			var d={name:name,id:id};
+			ccs.push(d);
+		}
+	}
+	ccs.sort(function(a, b) {
+		var ta = a.name.toUpperCase();
+		var tb = b.name.toUpperCase();
+		return (ta < tb) ? -1 : (ta > tb) ? 1 : 0 ;
+	});
+	chunkopts["countries"]=ccs;
 
-    chunkopts["sector_names"]           = JSON.stringify(json_iati_codes["sector_names"]);
-    chunkopts["publisher_names_json"]   = JSON.stringify(json_iati_codes["un_publisher_names"]);
+	chunkopts["sector"]=JSON.stringify( un_agencies_data["sectors"]);
+	chunkopts["publisher_names_json"]=JSON.stringify( json_iati_codes["un_publisher_names"] );
     chunkopts["country_names_json"]     = JSON.stringify(un_agencies_data["countries"]);
     chunkopts["crs_countries_json"]     = JSON.stringify(un_agencies_data["countries"]);
 
-    find_pages("")
-
+	find_pages("")
 
 // copy raw files into static
 

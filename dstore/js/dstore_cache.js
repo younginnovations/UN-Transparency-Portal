@@ -138,7 +138,7 @@ dstore_cache.import_from_un_data = function (xmlfile) {
 
 
     codes['countries'] = extend(codes['countries'], countries);
-    codes['sectors'] = extend(codes['sectors'], sectors);;
+    codes['sectors'] = extend(codes['sectors'], sectors);
     fs.writeFileSync(__dirname + "/../json/un_agencies_data.json", JSON.stringify(codes,null,'\t'));
 
 }

@@ -95,7 +95,7 @@ Explore countries and publishers
 Pick a country or publisher below to explore their data.
 
 #explore_paragraph2_text
-Only countries and publishers with data published to IATI are available for exploration. 
+Only countries and publishers with data published to IATI are available for exploration.
 
 #footer1_text
 A 2016 project by United Nations Development Group
@@ -140,13 +140,13 @@ d-portal.org is a country-based information platform that tracks resource flows.
 It is aimed at providing line ministries, parliamentarians and civil society in developing countries with information that can assist with the planning and monitoring of development activities.
 
 #about_paragraph3_text
-In its first iteration it contains current data published through the International Aid Transparency Initiative (IATI) as well as the most recent (2012) data published by the <a href="http://www.oecd.org/dac/stats/crsguide.htm" target="_blank" class="co">OECD DAC Creditor Reporting System</a>. 
+In its first iteration it contains current data published through the International Aid Transparency Initiative (IATI) as well as the most recent (2012) data published by the <a href="http://www.oecd.org/dac/stats/crsguide.htm" target="_blank" class="co">OECD DAC Creditor Reporting System</a>.
 
 #about_paragraph4_text
-The current platform poses two questions: where do resources come from, and where do they go (by sector and location)? Recent, current and future data is presented and compared across data sources. 
+The current platform poses two questions: where do resources come from, and where do they go (by sector and location)? Recent, current and future data is presented and compared across data sources.
 
 #about_paragraph5_text
-In order to answer these questions from a country perspective it is insufficient merely to display available data: it is equally important to show the gaps in the information. Coping with poor quality or missing data is an essential part of the information interface. 
+In order to answer these questions from a country perspective it is insufficient merely to display available data: it is equally important to show the gaps in the information. Coping with poor quality or missing data is an essential part of the information interface.
 
 #about_paragraph6_text
 is an open source platform.
@@ -236,7 +236,7 @@ How to install d-portal
 At the heart of the d-portal project is the aim that anyone anywhere could take the open source code behind d-portal, deploy it for themselves and create a customised d-portal for any country that interests them.  This could include adding any other data from Aid Information Management Systems, national budgets and a range of comparable socio-economic indicators.
 
 #install_paragraph2_text
-There are already examples of customised country-specific d-portals like 
+There are already examples of customised country-specific d-portals like
 
 #install_paragraph3_text
 d-portal is made up of the dstore backend and ctrack interface. To install d-portal, you need to set up a server.
@@ -362,16 +362,18 @@ Public Google Spreadsheet
 Pixabay Public Domain only images
 
 #publisher_dropmenu_text trim=ends
-Type to search for a Publisher
+Type or select to search for a sector
 
 #country_dropmenu_text trim=ends
-Type to search for a Recipient Country
+Type or select to search for a recipient country
 
 #all_countries_text
-Compare all Countries
+Compare all countries
 
-#all_publishers_text
-Compare all Publishers
+#all_agencies_text
+Compare all agencies
 
+#all_sector_text
+Compare all sectors
 #flag_alt_text
 flag

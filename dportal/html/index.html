@@ -107,12 +107,12 @@
                     </div>
                     <div class="compare">
                         <a class="path" href="{root}ctrack.html?tongue={tongue}#view=publishers">
-                            <span class="select_wrap full">{all_publishers_text}</span>
+                            <span class="select_wrap full">{all_agencies_text}</span>
                         </a>
                     </div>
                     <div class="compare">
                         <a class="path" href="{root}ctrack.html?tongue={tongue}#view=publishers">
-                            <span class="select_wrap full">{all_publishers_text}</span>
+                            <span class="select_wrap full">{all_sector_text}</span>
                         </a>
                     </div>
                 </div>
@@ -120,7 +120,7 @@
                     <div id="country_dropmenu"></div>
                     <div id="publisher_dropmenu"></div>
                     <div class="menu_list_wrap left">
-                        <ul id="country_menu_list" class="country_menu_list">{countries:country_select}</ul>
+                        <ul id="country_menu_list" class="country_menu_list"></ul>
                     </div>
                     <div class="menu_list_wrap">
                         <ul id="sector_list" class="country_menu_list"></ul>
@@ -192,13 +192,13 @@
     </a>
 </li>
 
-#publisher_select
+<!-- #publisher_select
 <li class="publishercol">
 	<a class="country_code" href="{root}ctrack.html?publisher={it.id}&tongue={tongue}">
 		<span class="select_wrap publishername">{it.name}</span>
 		<span class="select_wrap publisherid">{it.id}</span>
 	</a>
-</li>
+</li> -->
 
 #js_country_lookup
 "{it.cc}":"{it.name}",
@@ -207,10 +207,10 @@
 
     $(function () {
 
-        var publisher_names = {publisher_names_json};
-        var country_names = {country_names_json};
-        var crs_countries = {crs_countries_json};
-        var sector_names = {sector_names};
+		var publisher_names = {publisher_names_json};
+		var country_names = {country_names_json};
+		var crs_countries = {crs_countries_json};
+		var sector = {sector};
 
         var reportings;
         var countries;
@@ -247,9 +247,9 @@
 
 		sectors = {rows:[]};
 		var rows = sectors.rows;
-		for(idx in sector_names)
+		for(idx in sector)
 		{
-			var name = sector_names[idx];
+			var name = sector[idx];
 			rows.push({name:name, sector_ref: idx});
 		}
 		rows.sort(function(a, b) {
@@ -280,6 +280,26 @@
 				var sectorList = $("#sector_list");
 				sectorList.empty();
 
+				var aa=[];
+				aa.push("<select>");
+				aa.push("<option value=''></option>");
+				for(var i=0;i<sectors.rows.length;i++)
+				{
+					var v=sectors.rows[i];
+					if(v.sector_ref && v.name) // must be real publisher
+					{
+						var t=v.name
+						if(v.count) { t=t+" ("+v.count+") "; }
+						var s="<option value='"+v.sector_ref+"'>"+t+"</option>";
+						aa.push(s);
+					}
+				}
+				aa.push("</select>");
+				$("#publisher_dropmenu").html(aa.join(""));
+
+				$("#publisher_dropmenu select").change(change);
+				$("#publisher_dropmenu select").chosen({search_contains:true,"placeholder_text_single":"{publisher_dropmenu_text}"});
+
 				for(var i=0; i<sectors.rows.length; i++){
 					var v = sectors.rows[i];
 					if(v.sector_ref && v.name)
@@ -298,46 +318,25 @@
 			}
 			if(reportings)
 			{
-				var ll=$("#publisher_menu_list");
+				// var ll=$("#publisher_menu_list");
 				var un_publisher_list = $("#un_publisher_list");
 				un_publisher_list.empty();
-				ll.empty();
+				// ll.empty();
 
-
-				var aa=[];
-				aa.push("<select>");
-				aa.push("<option value=''></option>");
-				for(var i=0;i<reportings.rows.length;i++)
-				{
-					var v=reportings.rows[i];
-					if(v.reporting_ref && v.name) // must be real publisher
-					{
-						var t=v.name
-						if(v.count) { t=t+" ("+v.count+") "; }
-						var s="<option value='"+v.reporting_ref+"'>"+t+"</option>";
-						aa.push(s);
-					}
-				}
-				aa.push("</select>");
-				$("#publisher_dropmenu").html(aa.join(""));
-
-				$("#publisher_dropmenu select").change(change);
-				$("#publisher_dropmenu select").chosen({search_contains:true,"placeholder_text_single":"{publisher_dropmenu_text}"});
-
-				for(var i=0;i<reportings.rows.length;i++)
-				{
-					var v=reportings.rows[i];
-					if(v.name && v.reporting_ref)
-					{
-					ll.append(
-"	<li class=\"publishercol\">	"+
-"		<a class=\"country_code\" href=\"{root}ctrack.html?publisher="+v.reporting_ref+"&tongue={tongue}\">	"+
-"			<span class=\"select_wrap publishername\">"+v.name+"</span>	"+
-"			<span class=\"select_wrap publisherid\">"+v.reporting_ref+"</span>	"+
-"		</a>	"+
-"	</li>		");
-					}
-				}
+// 				for(var i=0;i<reportings.rows.length;i++)
+// 				{
+// 					var v=reportings.rows[i];
+// 					if(v.name && v.reporting_ref)
+// 					{
+// 					ll.append(
+// "	<li class=\"publishercol\">	"+
+// "		<a class=\"country_code\" href=\"{root}ctrack.html?publisher="+v.reporting_ref+"&tongue={tongue}\">	"+
+// "			<span class=\"select_wrap publishername\">"+v.name+"</span>	"+
+// "			<span class=\"select_wrap publisherid\">"+v.reporting_ref+"</span>	"+
+// "		</a>	"+
+// "	</li>		");
+// 					}
+// 				}
 
 				for(var i=0;i<reportings.rows.length;i++)
 				{
