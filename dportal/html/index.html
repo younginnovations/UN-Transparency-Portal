@@ -1,148 +1,187 @@
 #html
 <!DOCTYPE html>
 <html>
-	<head>
-<meta charset="UTF-8">
-<title>{welcome_text}</title>
-<script src="{root}jslib/jquery.js"></script>
-<script src="{root}jslib/chosen.jquery.min.js"></script>
-<link  href="{root}art/chosen.min.css" rel="stylesheet" type="text/css" >
-<link  href="{root}art/index.css" rel="stylesheet" type="text/css" >
-{ganal}
-	</head>
+<head>
+    <meta charset="UTF-8">
+    <title>{welcome_text}</title>
+    <script src="{root}jslib/jquery.js"></script>
+    <script src="{root}jslib/chosen.jquery.min.js"></script>
+    <script src="{root}jslib/jquery.flexslider-min.js"></script>
+    <link href="{root}art/chosen.min.css" rel="stylesheet" type="text/css">
+    <link href="{root}art/flexslider.css" rel="stylesheet" type="text/css">
+    <link href="{root}art/index.css" rel="stylesheet" type="text/css">
+    {ganal}
+</head>
 <body>
 {jsmenu}
 <div class="portal">
-	<div class="main_wrap">
-		<div class="overlay">
-
-			<div class="default index">
-				<nav>
-					<div class="menu-wrap">
-						<div class="img-wrap">
-							<img class="logo-img" src="{root}art/ic_unicef_logo.png" alt="D-Portal logo"/>
-						</div>
-						<div class="menu-link-wrap">
-							<div class="menu">
-								<a href="#">
-									<span>About</span>
-									<!--<span class="path_txt">{install_info_text}</span>-->
-								</a>
-							</div>
-							<div class="menu">
-								<a href="/ctrack.html#view=generator">
-									<span>{install_button_text}</span>
-									<!--<span class="path_txt">{install_info_text}</span>-->
-								</a>
-							</div>
-							<div class="menu">
-								<a href="#explore">
-									<span>{explore_button_text}</span>
-									<!--<span class="path_txt">{explore_info_text}</span>-->
-								</a>
-							</div>
-							<div class="menu">
-								<a href="https://github.com/devinit/D-Portal/issues" target="_blank">
-									<span>{develop_button_text}</span>
-									<!--<span class="path_txt">{develop_info_text}</span>-->
-								</a>
-							</div>
-						</div>
-					</div>
-				</nav>
-				<div class="tongue_wrap">{tongue_select}</div>
-				<div class="tag">{tagline_text}</div>
-				<div class="chart-wrap">
-					<div class="chart-item">
-						<span class="title">Total Projects</span>
-					</div>
-					<div class="chart-item">
-						<span class="title">Total Projects</span>
-					</div>
-					<div class="chart-item">
-						<span class="title">Total Projects</span>
-					</div>
-					<div class="chart-item">
-						<span class="title">Total Projects</span>
-					</div>
-					<div class="chart-item">
-						<span class="title">Total Projects</span>
-					</div>
-					<div class="chart-item">
-						<span class="title">Total Projects</span>
-					</div>
-				</div>
-				<div class="description_wrap">
-					<div class="description">
-						<span class="title">{index_title_text}</span>
-						<p><span class="bold">d-portal.org</span> {index_paragraph1_text}</p>
-						<p>{index_paragraph2_text}</p>
-					</div><div class="description">
-						<span class="title">{links_title_text}</span>
-						<a href="{tongue_root}news/posts.html" class="read">&gt; {news_page_text}</a>
-						<a href="{tongue_root}about.html" class="read">&gt; {read_more_text}</a>
-						<span class="title">{explore_title_text}</span>
-						<p><b>{explore_paragraph1_text}</b></p><p>{explore_paragraph2_text}</p>
-					</div>
-				</div>
-				<span id="explore"></span>
-				<div class="agencies_wrap">
-					<ul id="un_publisher_list" class="country_menu_list"></ul>
-
-				</div>
-				<div class="country_menu_wrap">
-					<div class="compare_wrap">
-						<a class="path" href="{root}ctrack.html?tongue={tongue}#view=publisher_countries">
-							<span class="select_wrap full">{all_countries_text}</span>
-						</a></div><div class="compare_wrap r">
-						<a class="path" href="{root}ctrack.html?tongue={tongue}#view=publishers">
-							<span class="select_wrap full">{all_publishers_text}</span>
-						</a>
-					</div>
-					<div id="country_dropmenu"></div><div id="publisher_dropmenu"></div>
-					<div class="country_menu_list_wrap">
-						<div class="menu_list_wrap left">
-							<ul id="country_menu_list" class="country_menu_list"></ul>
-						</div><div class="menu_list_wrap">
-							<ul id="sector_list" class="country_menu_list"></ul>
-						</div>
-					</div>
-				</div>
-				<div class="description_wrap">
-					<div class="description full">
-						<span class="title">{index_title2_text}</span>
-						<p>{index_paragraph3_text}</p>
-						<p>{index_paragraph4_text}</p>
-						<p>{index_paragraph5_text}</p>
-						<p>{index_paragraph6_text}</p>
-					</div>
-				</div>
-			</div>
-		</div>
-	</div>
-	<div class="footer_wrap">
-	<div class="footer">
-		<div class="footer_link"><a href="mailto:support@iatistandard.org" title="{footer1_tip_text}">
-			{footer1_text}</a>
-		</div><div class="footer_link top"><a onclick="$('html,body').animate({scrollTop:0},'slow');return false;">
-			{footer2_text}</a>
-		</div><div class="footer_link about"><a href="{tongue_root}about.html">
-			{footer3_text}</a>
-		</div>
-	</div>
-	</div>
+    <div class="main_wrap">
+        <div class="overlay">
+            <div class="default index">
+                <nav>
+                    <div class="menu-wrap">
+                        <div class="img-wrap">
+                            <img class="logo-img" src="{root}art/ic_unicef_logo.png" alt="D-Portal logo"/>
+                        </div>
+                        <div class="menu-link-wrap">
+                            <div class="menu">
+                                <a href="#">
+                                    <span>About</span>
+                                    <!--<span class="path_txt">{install_info_text}</span>-->
+                                </a>
+                            </div>
+                            <div class="menu">
+                                <a href="/ctrack.html#view=generator">
+                                    <span>{install_button_text}</span>
+                                    <!--<span class="path_txt">{install_info_text}</span>-->
+                                </a>
+                            </div>
+                            <div class="menu">
+                                <a href="#explore">
+                                    <span>{explore_button_text}</span>
+                                    <!--<span class="path_txt">{explore_info_text}</span>-->
+                                </a>
+                            </div>
+                            <div class="menu">
+                                <a href="https://github.com/devinit/D-Portal/issues" target="_blank">
+                                    <span>{develop_button_text}</span>
+                                    <!--<span class="path_txt">{develop_info_text}</span>-->
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </nav>
+                <div class="tongue_wrap">{tongue_select}</div>
+                <div class="tag">{tagline_text}</div>
+                <div class="chart-wrap">
+                    <div class="chart-item">
+                        <span class="title">Total Projects</span>
+                    </div>
+                    <div class="chart-item">
+                        <span class="title">Total Projects</span>
+                    </div>
+                    <div class="chart-item">
+                        <span class="title">Total Projects</span>
+                    </div>
+                    <div class="chart-item">
+                        <span class="title">Total Projects</span>
+                    </div>
+                    <div class="chart-item">
+                        <span class="title">Total Projects</span>
+                    </div>
+                    <div class="chart-item">
+                        <span class="title">Total Projects</span>
+                    </div>
+                </div>
+                <div class="description_wrap">
+                    <div class="description">
+                        <span class="title">{index_title_text}</span>
+                        <p><span class="bold">d-portal.org</span> {index_paragraph1_text}</p>
+                        <p>{index_paragraph2_text}</p>
+                    </div>
+                    <div class="description">
+                        <span class="title">{links_title_text}</span>
+                        <a href="{tongue_root}news/posts.html" class="read">&gt; {news_page_text}</a>
+                        <a href="{tongue_root}about.html" class="read">&gt; {read_more_text}</a>
+                        <span class="title">{explore_title_text}</span>
+                        <p><b>{explore_paragraph1_text}</b></p>
+                        <p>{explore_paragraph2_text}</p>
+                    </div>
+                </div>
+                <span id="explore"></span>
+            </div>
+            <div class="agencies_wrap">
+                <div class="agencies">
+                    <h2>Participating Agencies</h2>
+                    <div class="flexslider">
+                        <ul id="un_publisher_list" class="country_menu_list slides"></ul>
+                    </div>
+                </div>
+            </div>
+            <div class="compare_detail_wrap">
+                <div class="compare_list">
+                    <div class="compare">
+                        <a class="path" href="{root}ctrack.html?tongue={tongue}#view=publisher_countries">
+                            <span class="select_wrap full">{all_countries_text}</span>
+                        </a>
+                    </div>
+                    <div class="compare">
+                        <a class="path" href="{root}ctrack.html?tongue={tongue}#view=publishers">
+                            <span class="select_wrap full">{all_publishers_text}</span>
+                        </a>
+                    </div>
+                    <div class="compare">
+                        <a class="path" href="{root}ctrack.html?tongue={tongue}#view=publishers">
+                            <span class="select_wrap full">{all_publishers_text}</span>
+                        </a>
+                    </div>
+                </div>
+                <div class="country_menu_list_wrap">
+                    <div id="country_dropmenu"></div>
+                    <div id="publisher_dropmenu"></div>
+                    <div class="menu_list_wrap left">
+                        <ul id="country_menu_list" class="country_menu_list">{countries:country_select}</ul>
+                    </div>
+                    <div class="menu_list_wrap">
+                        <ul id="sector_list" class="country_menu_list"></ul>
+                    </div>
+                </div>
+                <div class="data_description_wrap">
+                    <h2>
+                        Where is the  data from?
+                    </h2>
+                    <p>
+                        Data in the dropdown menu is built from the database which updates everyday at GMT +0 with new data fetched from the IATI Registry.
+                    </p>
+                    <p>
+                        We list countries that are reported by publishers using ISO3166 Alpha-2. For attribution and links to data sources, go here.
+                    </p>
+                    <p>
+                        The list of publishers with their IATI publisher ID comes straight from the IATI Registry database.
+                        The dropdown list of publishers comes from published XML activities reported by these publishers.
+                    </p>
+                </div>
+            </div>
+            <div class="description_wrap">
+                <div class="description full">
+                    <span class="title">{index_title2_text}</span>
+                    <p>{index_paragraph3_text}</p>
+                    <p>{index_paragraph4_text}</p>
+                    <p>{index_paragraph5_text}</p>
+                    <p>{index_paragraph6_text}</p>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="footer_wrap">
+        <div class="footer">
+            <div class="footer_link">
+                <a href="mailto:support@iatistandard.org" title="{footer1_tip_text}">{footer1_text}</a>
+            </div>
+            <div class="footer_link top_about_wrap">
+                <!--<div class="top"><a onclick="$('html,body').animate({scrollTop:0},'slow');return false;">-->
+                    <!--{footer2_text}</a>-->
+                <!--</div>-->
+                <div class="about">
+                    <a href="{tongue_root}about.html">{footer3_text}</a>
+                </div>
+            </div>
+        </div>
+    </div>
 </div>
 </body>
 </html>
 
 #beige
 <div class="beigealert_wrap">
-	<div class="beigealert"><img src="{root}art/alert_icon.png" alt="Alert icon" width="15" height="15"> d-portal.org is currently in BETA. </div>
+    <div class="beigealert"><img src="{root}art/alert_icon.png" alt="Alert icon" width="15" height="15"> d-portal.org is
+        currently in BETA.
+    </div>
 </div>
 
 #country_select
 <li>
-	<a class="country_code" href="{root}ctrack.html?country={it.id}&tongue={tongue}">
+    <a class="country_code" href="{root}ctrack.html?country={it.id}&tongue={tongue}">
 		<span class="select_wrap">
 			<img src="{root}art/flag/{it.cc}.png" alt="{it.name} {flag_alt_text}"/>
 		</span><span class="select_wrap countryid">
@@ -150,7 +189,7 @@
 		</span><span class="select_wrap countryname">
 			{it.name}
 		</span>
-	</a>
+    </a>
 </li>
 
 #publisher_select
@@ -165,19 +204,19 @@
 "{it.cc}":"{it.name}",
 #jsmenu
 <script>
-	$(function(){
 
-		var publisher_names = {publisher_names_json};
-		var country_names = {country_names_json};
-		var crs_countries = {crs_countries_json};
-		var sector_names = {sector_names};
+    $(function () {
 
-		var reportings;
-		var countries;
-		var sectors;
+        var publisher_names = {publisher_names_json};
+        var country_names = {country_names_json};
+        var crs_countries = {crs_countries_json};
+        var sector_names = {sector_names};
+
+        var reportings;
+        var countries;
+        var sectors;
 
 // default data in page so can display without any ajax
-
 		countries={rows:[]};
 
 		var rows=countries.rows;
@@ -220,21 +259,19 @@
 		});
 
 // goto new url
-		var change=function(){
+        var change = function () {
 
-			var name=""+$("#publisher_dropmenu select").val();
-			if(name && (name!=""))
-			{
-				window.location.href="{root}ctrack.html?publisher="+name+"&tongue={tongue}"
-			}
+            var name = "" + $("#publisher_dropmenu select").val();
+            if (name && (name != "")) {
+                window.location.href = "{root}ctrack.html?publisher=" + name + "&tongue={tongue}"
+            }
 
-			var name=""+$("#country_dropmenu select").val();
-			if(name && (name!=""))
-			{
-				window.location.href="{root}ctrack.html?country="+name+"&tongue={tongue}"
-			}
+            var name = "" + $("#country_dropmenu select").val();
+            if (name && (name != "")) {
+                window.location.href = "{root}ctrack.html?country=" + name + "&tongue={tongue}"
+            }
 
-		};
+        };
 
 // fill in lists
 		var refresh=function(){
@@ -307,11 +344,11 @@
 					var v=reportings.rows[i];
 					if(v.name && v.reporting_ref)
 					{
-					un_publisher_list.append(
-"		<a class=\"country_code\" href=\"{root}ctrack.html?publisher="+v.reporting_ref+"&tongue={tongue}\">	"+
-"<span class=\"select_wrap\"><img src=\"{root}art/un_logos/"+v.reporting_ref+".png\" /></span>"+
-"			<span class=\"select_wrap publishername\">"+v.name+"</span>	"+
-"		</a>	");
+                        un_publisher_list.append(
+                                "  <li><a class=\"country_code\" href=\"{root}ctrack.html?publisher=" + v.reporting_ref + "&tongue={tongue}\">  " +
+                                "<span class=\"publisher-logo\"><img src=\"{root}art/un_logos/41304.png\" /></span>" +
+                                "      <span class=\"publisher-name\">" + v.name + "</span>  " +
+                                "    </a></li>  ");
 					}
 				}
 
@@ -356,115 +393,154 @@
 			}
 		};
 
+
 // initialise page
-		refresh();
+        refresh();
 
-/*
-		var lookup={ {countries:js_country_lookup} };
+        /*
+         var lookup={ {countries:js_country_lookup} };
 
 
-		(function(){
-			var callback=function(dd)
-			{
-//				console.log("reporting");
-//				console.log(dd);
-				reportings=dd;
+         (function(){
+         var callback=function(dd)
+         {
+         //				console.log("reporting");
+         //				console.log(dd);
+         reportings=dd;
 
-				for(var i=0;i<reportings.rows.length;i++)
-				{
-					var v=reportings.rows[i];
-					v.name=publisher_names[v.reporting_ref];
-					if(v.name)
-					{
-						v.name=v.name.replace("(","");
-						v.name=v.name.replace(")","");
-						v.namelow=v.name.toLowerCase();
-					}
-				}
-				for(var i=reportings.rows.length-1;i>=0;i--)
-				{
-					if(!reportings.rows[i].name)
-					{
-						reportings.rows.splice(i,1);
-					}
-				}
-				reportings.rows.sort(
-					function(a,b){
-						if(a.namelow && b.namelow)
-						{
-							if(a.namelow<b.namelow){return -1;}
-							if(a.namelow>b.namelow){return 1;}
-						}
-						return 0;
-					}
-				);
+         for(var i=0;i<reportings.rows.length;i++)
+         {
+         var v=reportings.rows[i];
+         v.name=publisher_names[v.reporting_ref];
+         if(v.name)
+         {
+         v.name=v.name.replace("(","");
+         v.name=v.name.replace(")","");
+         v.namelow=v.name.toLowerCase();
+         }
+         }
+         for(var i=reportings.rows.length-1;i>=0;i--)
+         {
+         if(!reportings.rows[i].name)
+         {
+         reportings.rows.splice(i,1);
+         }
+         }
+         reportings.rows.sort(
+         function(a,b){
+         if(a.namelow && b.namelow)
+         {
+         if(a.namelow<b.namelow){return -1;}
+         if(a.namelow>b.namelow){return 1;}
+         }
+         return 0;
+         }
+         );
 
-				refresh();
-			};
-			var dd={};
-			dd.groupby="reporting_ref";
-			dd.orderby="1-";
-			dd.select="count,reporting_ref,reporting";
-			dd.limit=-1;
-			$.ajax({
-			  dataType: "json",
-			  url: "/q?callback=?",
-			  data: dd,
-			  success: callback
-			});
-		})();
+         refresh();
+         };
+         var dd={};
+         dd.groupby="reporting_ref";
+         dd.orderby="1-";
+         dd.select="count,reporting_ref,reporting";
+         dd.limit=-1;
+         $.ajax({
+         dataType: "json",
+         url: "/q?callback=?",
+         data: dd,
+         success: callback
+         });
+         })();
 
-		(function(){
-			var callback=function(dd)
-			{
-//				console.log("country");
-//				console.log(dd);
-				countries=dd;
+         (function(){
+         var callback=function(dd)
+         {
+         //				console.log("country");
+         //				console.log(dd);
+         countries=dd;
 
-				for(var i=0;i<countries.rows.length;i++)
-				{
-					var v=countries.rows[i];
-					v.name=lookup[v.country_code.toLowerCase()];
-					if(v.name)
-					{
-						v.namelow=v.name.toLowerCase();
-					}
-				}
-				for(var i=countries.rows.length-1;i>=0;i--)
-				{
-					if(!countries.rows[i].name)
-					{
-						countries.rows.splice(i,1);
-					}
-				}
-				countries.rows.sort(
-					function(a,b){
-						if(a.namelow && b.namelow)
-						{
-							if(a.namelow<b.namelow){return -1;}
-							if(a.namelow>b.namelow){return 1;}
-						}
-						return 0;
-					}
-				);
+         for(var i=0;i<countries.rows.length;i++)
+         {
+         var v=countries.rows[i];
+         v.name=lookup[v.country_code.toLowerCase()];
+         if(v.name)
+         {
+         v.namelow=v.name.toLowerCase();
+         }
+         }
+         for(var i=countries.rows.length-1;i>=0;i--)
+         {
+         if(!countries.rows[i].name)
+         {
+         countries.rows.splice(i,1);
+         }
+         }
+         countries.rows.sort(
+         function(a,b){
+         if(a.namelow && b.namelow)
+         {
+         if(a.namelow<b.namelow){return -1;}
+         if(a.namelow>b.namelow){return 1;}
+         }
+         return 0;
+         }
+         );
 
-				refresh();
-			};
-			var dd={};
-			dd.groupby="country_code";
-			dd.orderby="1-";
-			dd.select="count,country_code";
-			dd.from="act,country";
-			dd.limit=-1;
-			$.ajax({
-			  dataType: "json",
-			  url: "/q?callback=?",
-			  data: dd,
-			  success: callback
-			});
-		})();
-*/
+         refresh();
+         };
+         var dd={};
+         dd.groupby="country_code";
+         dd.orderby="1-";
+         dd.select="count,country_code";
+         dd.from="act,country";
+         dd.limit=-1;
+         $.ajax({
+         dataType: "json",
+         url: "/q?callback=?",
+         data: dd,
+         success: callback
+         });
+         })();
+         */
 
-	});
+    });
+
+    //Flexslider
+    (function () {
+
+        // store the slider in a local variable
+        var $window = $(window),
+                flexslider;
+
+        // tiny helper function to add breakpoints
+        function getGridSize() {
+            return (window.innerWidth < 600) ? 2 :
+                    (window.innerWidth < 900) ? 3 : 4;
+        }
+
+        $(function () {
+            SyntaxHighlighter.all();
+        });
+
+        $window.load(function () {
+            $('.flexslider').flexslider({
+                animation: "slide",
+                animationLoop: false,
+                itemWidth: 210,
+                itemHeight:145,
+                itemMargin: 5,
+                minItems: getGridSize(), // use function to pull in initial value
+                maxItems: getGridSize() // use function to pull in initial value
+            });
+        });
+
+        // check grid size on resize event
+        $window.resize(function () {
+            var gridSize = getGridSize();
+
+            flexslider.vars.minItems = gridSize;
+            flexslider.vars.maxItems = gridSize;
+        });
+    }());
 
 </script>
