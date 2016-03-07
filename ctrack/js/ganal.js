@@ -27,7 +27,7 @@ ganal.setup=function()
 ganal.view=function()
 {
 	if(!ctrack.args.ga) { return; } // no google analytics code
-	
+
 	if(!window.ga) // auto setup
 	{
 		ganal.setup();
