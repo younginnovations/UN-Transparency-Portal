@@ -292,7 +292,18 @@ cmd.build = function () {
     chunkopts["total_expenditure"] = JSON.stringify(un_agencies_data["total_expenditure"]);
     chunkopts["total_un_agencies"] = JSON.stringify(un_agencies_data["total_un_agencies"]);
     chunkopts["un_agencies_in_iati"] = JSON.stringify(un_agencies_data["un_agencies_in_iati"]);
-    chunkopts["un_trends"] = JSON.stringify(un_agencies_data["un_trends"]);
+
+
+    var arr = Object.keys(un_agencies_data["un_trends"]).map(function(k) { return k });
+    arr=arr.slice(Math.max(arr.length - 7, 1));
+
+    var un_trending = {};
+     arr.forEach(function(year){
+         un_trending[year]=un_agencies_data["un_trends"][year];
+     });
+
+
+    chunkopts["un_trends"] = JSON.stringify(un_trending);
 
     chunkopts["geojson"] = JSON.stringify(geojson);
 

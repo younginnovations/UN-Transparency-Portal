@@ -3,7 +3,6 @@
 
 var dstore_cache = exports;
 
-
 var wait = require("wait.for");
 //added by biju
 var refry = require('./refry');
@@ -33,7 +32,6 @@ var http_getbody = function (url, cb) {
         }
     })
 };
-
 // handle a cache download/import cmd line request
 // cache is just a directory containing downloaded xml files
 // so we can two step the download - import process
@@ -94,52 +92,106 @@ dstore_cache.import_from_un_data = function (xmlfile) {
         var v = v.split(/<\/iati-activity>/gi)[0]; // trim the end
         acts.push("<iati-activity dstore:slug=\"" + xmlfilename + "\" dstore:idx=\"" + i + "\" " + v + "</iati-activity>"); // rebuild and add import filename
     }
-    var org = [];
-    acts.forEach(function (act, key) {
-        org[key] = refry.xml(act, xmlfilename);
-    });
 
-    var countries = {};
-    var sectors = {};
+    if (codes['xmlfiles'].indexOf(xmlfilename) == -1) {
 
-    org.forEach(function (organizations) {
+        codes['xmlfiles'].push(xmlfilename);
+        codes['total_projects'] = parseInt(codes['total_projects']) + acts.length;
 
-        if (typeof(organizations) == 'object') {
-            organizations.forEach(function (orgData) {
+        var org = [];
+        acts.forEach(function (act, key) {
+            org[key] = refry.xml(act, xmlfilename);
+        });
 
-                orgData[1].forEach(function (od) {
-                    if (od[0] == 'recipient-country' && od.code != '') {
-                        countries[od.code] = (typeof od[1] != 'undefined') ? od[1][0] : getMissingValues('country',od.code);
-                    }
-                    if (od[0] == 'sector') {
-                        sectors[od.code] = (typeof od[1] != 'undefined') ? od[1][0] :getMissingValues('sector',od.code) ;
-                    }
+        var countries = {};
+        var sectors = {};
+        var activeProjects = 0;
+        var total_budget = 0;
+        var total_expenditure = 0;
+        var year={};
+
+        org.forEach(function (organizations) {
+
+            if (typeof(organizations) == 'object') {
+                organizations.forEach(function (orgData) {
+
+                    orgData[1].forEach(function (od) {
+
+                        if (od[0] == 'recipient-country' && od.code != '') {
+                            countries[od.code] = (typeof od[1] != 'undefined') ? od[1][0] : getMissingValues('country', od.code);
+                        }
+                        if (od[0] == 'sector') {
+                            sectors[od.code] = (typeof od[1] != 'undefined') ? od[1][0] : getMissingValues('sector', od.code);
+                        }
+
+                        if (od[0] === 'activity-date') {
+                            if (typeof od.type != 'undefined' && od.type === 'end-actual') {
+                                activeProjects = activeProjects + parseInt(active_project(od[1][0]));
+                            } else if (typeof od.type != 'undefined' && od.type === 'end-planned') {
+                                activeProjects = activeProjects + parseInt(active_project(od[1][0]));
+                            }
+                        }
+                        if (od[0] === 'budget') {
+                            total_budget = total_budget + getProjectBudget(od[1]);
+                        }
+
+                        if (od[0] === 'transaction' && checkTransaction(od[1]))
+                        {
+                            total_expenditure = total_expenditure + getProjectBudget(od[1]);
+                        }
+
+                        if((od[0]=='activity-date' && od.type == 'start-actual')){
+                            abc(year,od[1][0]);
+                        }
+                        //else if (od[0]=='activity-date' && od.type == 'start-planned'){
+                          //  abc(year,od[1][0]);
+                      // }
+
+                    });
                 });
-            });
-        }
+            }
 
-    });
+        });
 
-    for (var cc in codes['countries']) {
-        for (var ck in countries) {
-            if (cc === ck) {
-                delete countries[ck];
+        for (var cc in codes['countries']) {
+            for (var ck in countries) {
+                if (cc === ck) {
+                    delete countries[ck];
+                }
             }
         }
-    }
 
-    for (var cs in codes['sectors']) {
-        for (var sk in sectors) {
-            if (cs === sk) {
-                delete countries[sk];
+        for (var cs in codes['sectors']) {
+            for (var sk in sectors) {
+                if (cs === sk) {
+                    delete countries[sk];
+                }
             }
         }
+
+        codes['active_projects'] = codes['active_projects'] + activeProjects;
+        codes['countries'] = extend(codes['countries'], countries);
+        codes['sectors'] = extend(codes['sectors'], sectors);
+        codes['total_budget'] = codes['total_budget'] + total_budget;
+        codes['total_expenditure'] = codes['total_expenditure'] + total_expenditure;
+
+
+        fs.writeFileSync(__dirname + "/../json/un_agencies_data.json", JSON.stringify(codes, null, '\t'));
+        console.log("Data of " + xmlfile + " has been successfully imported.");
     }
 
+}
 
-    codes['countries'] = extend(codes['countries'], countries);
-    codes['sectors'] = extend(codes['sectors'], sectors);
-    fs.writeFileSync(__dirname + "/../json/un_agencies_data.json", JSON.stringify(codes,null,'\t'));
+function abc(yearArray,startDate){
+var yy=startDate.split('-');
+    console.log(yearArray);
+
+    if ( yy[0] in yearArray ) {
+            yearArray[yy[0]] =yearArray[yy[0]]+1;
+
+        } else {
+        yearArray[yy[0]]=1;
+     }
 
 }
 
@@ -152,12 +204,42 @@ function extend(obj, src) {
 }
 
 //Added by Biju for filling missing sector/country from xml
-function getMissingValues(element,key){
+function getMissingValues(element, key) {
     var codes = require('../json/iati_codes');
 
     return codes[element][key];
 }
+//var count=0;
+function active_project(end_date) {
+    var cur_date = new Date();
 
+    end_date = new Date(end_date);
+    if (cur_date <= end_date) {
+        return 1;
+    }
+
+    return 0;
+}
+
+//to get the budget value
+function getProjectBudget(budget) {
+    for (var i = 0; i <= budget.length; i++) {
+        if (budget[i][0] === 'value') {
+            return parseInt(budget[i][1][0]);
+        }
+    }
+}
+
+// to check if transaction type is expenditure
+function checkTransaction(transaction) {
+
+    for (var i = 0; i <= transaction.length; i++) {
+        if (typeof transaction[i] !== 'undefined' && typeof transaction[i][1] !== 'undefined' && transaction[i][1][0] === 'Expenditure') {
+            return true;
+        }
+    }
+    return false;
+}
 
 dstore_cache.import_xmlfile = function (xmlfile) {
 
