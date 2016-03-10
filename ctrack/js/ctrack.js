@@ -636,4 +636,3 @@ ctrack.setup=function(args)
 	ctrack.display_hash(); // this will display view=main or whatever page is requsted
 
 }
-

@@ -770,3 +770,48 @@ span.publisher-name {
     line-height: 26px;
     margin: 30px 0;
 }
+/*for progress bar in the summary stats*/
+#progressBox, #progressBox2{
+	height: 30px;
+	width: 170px;
+	background: #3385C0;
+	border-radius: 5px;
+    overflow: hidden;
+}
+#progressBar, #progressBar2{
+	height: 30px;
+	background: #76C6FF;
+	border-radius: 5px 0 0 5px;
+    overflow: hidden;
+}
+
+/*css for trends line chart*/
+#trendLineChart{
+			background: #0067B1;
+		}
+			.axis path {
+		    fill: none;
+		    stroke: #777;
+		    shape-rendering: crispEdges;
+			stroke-width: 0;
+		}
+		.axis text {
+		    font-family: arial;
+		    font-size: 13px;
+			fill: #fff;
+		}
+		.line {
+			stroke: #993300;
+			fill: none;
+			stroke-width: 0.75px;
+		}
+		.line.line5 {
+			stroke:red;
+		}
+		.grid .tick {
+    stroke: lightgrey;
+    opacity: 0.7;
+}
+.grid path {
+      stroke-width: 0;
+}
