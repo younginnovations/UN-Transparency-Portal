@@ -1,5 +1,5 @@
 $(function(){
-    var w =200;
+    var w =180;
 	var h = 150;
 			var canvas = d3.select("#worldMap")
 							.attr("preserveAspectRatio","xMinYMin meet")

@@ -12,3 +12,4 @@ ctrack/jslib/ctrack.*
 ctrack/json/*.json
 
 */.vagrant
+dstore/un-json
