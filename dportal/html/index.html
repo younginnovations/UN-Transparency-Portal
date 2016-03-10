@@ -7,6 +7,7 @@
     <script src="{root}jslib/jquery.js"></script>
     <script src="{root}jslib/chosen.jquery.min.js"></script>
     <script src="{root}jslib/jquery.flexslider-min.js"></script>
+    <script src="{root}jslib/d3.min.js"></script>
     <link href="{root}art/chosen.min.css" rel="stylesheet" type="text/css">
     <link href="{root}art/flexslider.css" rel="stylesheet" type="text/css">
     <link href="{root}art/index.css" rel="stylesheet" type="text/css">
@@ -56,21 +57,37 @@
                 <div class="chart-wrap">
                     <div class="chart-item">
                         <span class="title">Total Projects</span>
+                        <div id="total_projects_shown"></div>
+                        <div id="">Active Projects</div>
+                        <div id="progressBox">
+	                        <div id="progressBar"></div>
+                        </div>
                     </div>
                     <div class="chart-item">
-                        <span class="title">Total Projects</span>
+                        <span class="title">Total Budget</span>
+                        <div id="totalBudget"></div>
+                        <div id="totalExpense"></div>
+                        <div id="pie1"></div>
                     </div>
                     <div class="chart-item">
-                        <span class="title">Total Projects</span>
+                        <span class="title">UN agencies in IATI</span>
+                        <div id="un_agencies_in_iati"></div>
+                        <div id="progressBox2">
+	                        <div id="progressBar2"></div>
+                        </div>
                     </div>
                     <div class="chart-item">
-                        <span class="title">Total Projects</span>
+                        <span class="title">Countries UN operates in</span>
+                        <div id="no_of_countries"></div>
+                        <div id="worldMap"></div>
                     </div>
                     <div class="chart-item">
-                        <span class="title">Total Projects</span>
+                        <span class="title">Un vs. other organizations in IATI</span>
+                        <div id="pie2"></div>
                     </div>
                     <div class="chart-item">
-                        <span class="title">Total Projects</span>
+                        <span class="title">Trend of activities published in IATI</span>
+                        <div id="linegraph"></div>
                     </div>
                 </div>
                 <div class="description_wrap">
@@ -169,6 +186,12 @@
         </div>
     </div>
 </div>
+<script src="{root}jslib/progressBar1.js"></script>
+<script src="{root}jslib/progressBar2.js"></script>
+<script src="{root}jslib/budgetPie.js"></script>
+<script src="{root}jslib/orgCompPie.js"></script>
+<script src="{root}jslib/unMap.js"></script>
+<script src="{root}jslib/trendChart.js"></script>
 </body>
 </html>
 
@@ -199,26 +222,29 @@
 		<span class="select_wrap publisherid">{it.id}</span>
 	</a>
 </li> -->
-
 #js_country_lookup
 "{it.cc}":"{it.name}",
 #jsmenu
 <script>
 
+var publisher_names = {publisher_names_json};
+var country_names = {country_names_json};
+var crs_countries = {crs_countries_json};
+var sector = {sector};
+var total_projects = {total_projects};
+var active_projects = {active_projects};
+var total_budget = {total_budget};
+var total_expenditure = {total_expenditure};
+var total_un_agencies = {total_un_agencies};
+var un_agencies_in_iati = {un_agencies_in_iati};
+var un_trends = {un_trends};
+var geojson = {geojson};
     $(function () {
-
-		var publisher_names = {publisher_names_json};
-		var country_names = {country_names_json};
-		var crs_countries = {crs_countries_json};
-		var sector = {sector};
-
         var reportings;
         var countries;
         var sectors;
-
 // default data in page so can display without any ajax
 		countries={rows:[]};
-
 		var rows=countries.rows;
 		for(idx in crs_countries)
 		{
@@ -230,6 +256,12 @@
 			var tb = b.name.toUpperCase();
 			return (ta < tb) ? -1 : (ta > tb) ? 1 : 0 ;
 		});
+
+        $("#total_projects_shown").html(total_projects.toLocaleString());
+        $("#no_of_countries").html(countries.rows.length);
+        $("#totalBudget").html("$" + total_budget.toLocaleString());
+        $("#totalExpense").html("$" + total_expenditure.toLocaleString());
+        $("#un_agencies_in_iati").html(un_agencies_in_iati);
 
 		reportings={rows:[]};
 
@@ -318,25 +350,8 @@
 			}
 			if(reportings)
 			{
-				// var ll=$("#publisher_menu_list");
 				var un_publisher_list = $("#un_publisher_list");
 				un_publisher_list.empty();
-				// ll.empty();
-
-// 				for(var i=0;i<reportings.rows.length;i++)
-// 				{
-// 					var v=reportings.rows[i];
-// 					if(v.name && v.reporting_ref)
-// 					{
-// 					ll.append(
-// "	<li class=\"publishercol\">	"+
-// "		<a class=\"country_code\" href=\"{root}ctrack.html?publisher="+v.reporting_ref+"&tongue={tongue}\">	"+
-// "			<span class=\"select_wrap publishername\">"+v.name+"</span>	"+
-// "			<span class=\"select_wrap publisherid\">"+v.reporting_ref+"</span>	"+
-// "		</a>	"+
-// "	</li>		");
-// 					}
-// 				}
 
 				for(var i=0;i<reportings.rows.length;i++)
 				{
@@ -396,111 +411,6 @@
 // initialise page
         refresh();
 
-        /*
-         var lookup={ {countries:js_country_lookup} };
-
-
-         (function(){
-         var callback=function(dd)
-         {
-         //				console.log("reporting");
-         //				console.log(dd);
-         reportings=dd;
-
-         for(var i=0;i<reportings.rows.length;i++)
-         {
-         var v=reportings.rows[i];
-         v.name=publisher_names[v.reporting_ref];
-         if(v.name)
-         {
-         v.name=v.name.replace("(","");
-         v.name=v.name.replace(")","");
-         v.namelow=v.name.toLowerCase();
-         }
-         }
-         for(var i=reportings.rows.length-1;i>=0;i--)
-         {
-         if(!reportings.rows[i].name)
-         {
-         reportings.rows.splice(i,1);
-         }
-         }
-         reportings.rows.sort(
-         function(a,b){
-         if(a.namelow && b.namelow)
-         {
-         if(a.namelow<b.namelow){return -1;}
-         if(a.namelow>b.namelow){return 1;}
-         }
-         return 0;
-         }
-         );
-
-         refresh();
-         };
-         var dd={};
-         dd.groupby="reporting_ref";
-         dd.orderby="1-";
-         dd.select="count,reporting_ref,reporting";
-         dd.limit=-1;
-         $.ajax({
-         dataType: "json",
-         url: "/q?callback=?",
-         data: dd,
-         success: callback
-         });
-         })();
-
-         (function(){
-         var callback=function(dd)
-         {
-         //				console.log("country");
-         //				console.log(dd);
-         countries=dd;
-
-         for(var i=0;i<countries.rows.length;i++)
-         {
-         var v=countries.rows[i];
-         v.name=lookup[v.country_code.toLowerCase()];
-         if(v.name)
-         {
-         v.namelow=v.name.toLowerCase();
-         }
-         }
-         for(var i=countries.rows.length-1;i>=0;i--)
-         {
-         if(!countries.rows[i].name)
-         {
-         countries.rows.splice(i,1);
-         }
-         }
-         countries.rows.sort(
-         function(a,b){
-         if(a.namelow && b.namelow)
-         {
-         if(a.namelow<b.namelow){return -1;}
-         if(a.namelow>b.namelow){return 1;}
-         }
-         return 0;
-         }
-         );
-
-         refresh();
-         };
-         var dd={};
-         dd.groupby="country_code";
-         dd.orderby="1-";
-         dd.select="count,country_code";
-         dd.from="act,country";
-         dd.limit=-1;
-         $.ajax({
-         dataType: "json",
-         url: "/q?callback=?",
-         data: dd,
-         success: callback
-         });
-         })();
-         */
 
     });
 
@@ -517,9 +427,9 @@
                     (window.innerWidth < 900) ? 3 : 4;
         }
 
-        $(function () {
-            SyntaxHighlighter.all();
-        });
+        // $(function () {
+        //     SyntaxHighlighter.all();
+        // });
 
         $window.load(function () {
             $('.flexslider').flexslider({

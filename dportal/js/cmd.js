@@ -10,6 +10,7 @@ var path = require('path');
 
 var json_iati_codes=require("../../dstore/json/iati_codes.json");
 var un_agencies_data = require("../../dstore/json/un_agencies_data.json");
+var geojson = require("../../dstore/json/countries.geo.json");
 
 var plate = require("../../ctrack/js/plate.js");
 
@@ -285,6 +286,15 @@ cmd.build = function () {
 	chunkopts["publisher_names_json"]=JSON.stringify( json_iati_codes["un_publisher_names"] );
     chunkopts["country_names_json"]     = JSON.stringify(un_agencies_data["countries"]);
     chunkopts["crs_countries_json"]     = JSON.stringify(un_agencies_data["countries"]);
+    chunkopts["total_projects"] = JSON.stringify(un_agencies_data["total_projects"]);
+    chunkopts["active_projects"] = JSON.stringify(un_agencies_data["active_projects"]);
+    chunkopts["total_budget"] = JSON.stringify(un_agencies_data["total_budget"]);
+    chunkopts["total_expenditure"] = JSON.stringify(un_agencies_data["total_expenditure"]);
+    chunkopts["total_un_agencies"] = JSON.stringify(un_agencies_data["total_un_agencies"]);
+    chunkopts["un_agencies_in_iati"] = JSON.stringify(un_agencies_data["un_agencies_in_iati"]);
+    chunkopts["un_trends"] = JSON.stringify(un_agencies_data["un_trends"]);
+
+    chunkopts["geojson"] = JSON.stringify(geojson);
 
 	find_pages("")
 

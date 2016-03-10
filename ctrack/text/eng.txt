@@ -86,7 +86,7 @@ Back to D-Portal
 Back to D-Portal: Publisher Edition
 
 #back_text
-Back to {portal_name} 
+Back to {portal_name}
 
 #crumbname_main_text
 {portal_name} Home
@@ -96,7 +96,7 @@ Donor Table
 
 #crumbname_donor_budgets_text
 Donor Budget
-	
+
 #crumbname_donor_transactions_text
 Donor Spend
 
@@ -108,7 +108,7 @@ Sector Table
 
 #crumbname_sector_budgets_text
 Sector Budget
-	
+
 #crumbname_sector_transactions_text
 Sector Spend
 
@@ -137,7 +137,7 @@ Other Projects
 About data quality
 
 #crumbname_map_text
-Activity map 
+Activity map
 
 #crumbname_publisher_text
 {publisher_name} Home
@@ -419,7 +419,7 @@ English (UK)
 Français
 
 #tongue_spa_text
-Español 
+Español
 
 #tongue_jpn_text
 日本の
@@ -428,7 +428,7 @@ Español
 中国的
 
 #tongue_hin_text
-हिंदी 
+हिंदी
 
 #flava_high_visibility_text
 Print-Friendly
@@ -547,13 +547,13 @@ The sectors listed here are groupings of OECD CRS purpose codes. There are curre
 IATI SPEND
 
 #sectors_data_info3_text
-Three columns containing total disbursements and expenditure reported to IATI for the current and previous two years. The first column will always be the same year as the most recent CRS data, enabling comparisons between the two. 
+Three columns containing total disbursements and expenditure reported to IATI for the current and previous two years. The first column will always be the same year as the most recent CRS data, enabling comparisons between the two.
 
 #sectors_data_title4_text
 IATI BUDGET
 
 #sectors_data_info4_text
-Total activity-level budgets for this and next year reported to IATI. Clicking on any cell will take you to a list of projects that make up the value in the cell (listed in order of their contribution to that value). 
+Total activity-level budgets for this and next year reported to IATI. Clicking on any cell will take you to a list of projects that make up the value in the cell (listed in order of their contribution to that value).
 
 #sector_activities_data_description_title_text
 How is the data calculated?
@@ -763,13 +763,13 @@ The sectors listed here are groupings of OECD CRS purpose codes. There are curre
 IATI SPEND
 
 #publisher_sectors_data_info2_text
-Three columns containing total disbursements and expenditure reported to IATI for the current and previous two years. The first column will always be the same year as the most recent CRS data, enabling comparisons between the two. 
+Three columns containing total disbursements and expenditure reported to IATI for the current and previous two years. The first column will always be the same year as the most recent CRS data, enabling comparisons between the two.
 
 #publisher_sectors_data_title3_text
 IATI BUDGET
 
 #publisher_sectors_data_info3_text
-Total activity-level budgets for this and next year reported to IATI. Clicking on any cell will take you to a list of projects that make up the value in that cell (listed in order of their contribution to that value). 
+Total activity-level budgets for this and next year reported to IATI. Clicking on any cell will take you to a list of projects that make up the value in that cell (listed in order of their contribution to that value).
 
 #publisher_countries_data_description_title_text
 How is the data calculated?
@@ -787,7 +787,7 @@ The Countries listed here are recipient countries reported by {publisher_name}.
 IATI SPEND
 
 #publisher_countries_data_info2_text
-Three columns contain total disbursements and expenditure reported to IATI for the current and previous two years. The first column will always be for the same year as the most recent CRS data, enabling comparisons between the two systems. 
+Three columns contain total disbursements and expenditure reported to IATI for the current and previous two years. The first column will always be for the same year as the most recent CRS data, enabling comparisons between the two systems.
 
 #publisher_countries_data_title3_text
 IATI BUDGET (allocated)
@@ -799,7 +799,7 @@ Total activity-level budgets for this year reported to IATI in {publisher_name}�
 IATI BUDGET (total)
 
 #publisher_countries_data_info4_text
-Total organisational budgets for this year reported to IATI in {publisher_name}’s organisation file. These are flat figures for annual budgets by country so there is no breakdown within the data. Please note you can click through future years using the arrows. 
+Total organisational budgets for this year reported to IATI in {publisher_name}’s organisation file. These are flat figures for annual budgets by country so there is no breakdown within the data. Please note you can click through future years using the arrows.
 
 #missing_data_text
 This activity is missing or cannot be found.
@@ -820,13 +820,13 @@ The publishers listed here are those that have reported their data to IATI.
 IATI SPEND
 
 #publishers_data_info2_text
-Three columns containing total disbursements and expenditure reported to IATI for the current and previous two years. The first column will always be the same year as the most recent CRS data, enabling comparisons between the two. 
+Three columns containing total disbursements and expenditure reported to IATI for the current and previous two years. The first column will always be the same year as the most recent CRS data, enabling comparisons between the two.
 
 #publishers_data_title3_text
 IATI BUDGET
 
 #publishers_data_info3_text
-Total activity-level budgets for this and next year reported to IATI. Clicking on any cell will take you to a list of projects that make up the value in the cell (listed in order of their contribution to that value). 
+Total activity-level budgets for this and next year reported to IATI. Clicking on any cell will take you to a list of projects that make up the value in the cell (listed in order of their contribution to that value).
 
 #title_publisher_text
 The money comes from {table_publishers_count} IATI publishers.
