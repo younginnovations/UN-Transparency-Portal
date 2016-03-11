@@ -26,7 +26,7 @@
                         </div>
                         <div class="menu-link-wrap">
                             <div class="menu">
-                                <a href="#">
+                                <a href="{tongue_root}about.html">
                                     <span>About</span>
                                     <!--<span class="path_txt">{install_info_text}</span>-->
                                 </a>
@@ -60,21 +60,29 @@
                         <div id="total_projects_shown"></div>
                         <div id="">Active Projects</div>
                         <div id="progressBox">
-	                        <div id="progressBar"></div>
+	                        <div id="progressBar"><span id="display-active-projects"></span></div>
+
                         </div>
+
                     </div>
                     <div class="chart-item">
                         <span class="title">Total Budget</span>
                         <div id="totalBudget"></div>
+                        <span class="title">Total Expenses</span>
                         <div id="totalExpense"></div>
-                        <div id="pie1"></div>
+                        <div id="pie1">
+                            <span>top</span>
+                            <span>bottom</span>
+                        </div>
                     </div>
                     <div class="chart-item">
                         <span class="title">UN agencies in IATI</span>
                         <div id="un_agencies_in_iati"></div>
                         <div id="progressBox2">
-	                        <div id="progressBar2"></div>
+	                        <div id="progressBar2"> <span id="display-un-agencies"></span></div>
+
                         </div>
+
                     </div>
                     <div class="chart-item">
                         <span class="title">Countries UN operates in</span>
@@ -141,6 +149,12 @@
                     </div>
                     <div class="menu_list_wrap">
                         <ul id="sector_list" class="country_menu_list"></ul>
+                    </div>
+                </div>
+                <div class="sustainable_wrap">
+                    <h2>Sustainable Development</h2>
+                    <div class="sustable_img">
+                        <img src="{root}art/sustanable_img.png" alt="">
                     </div>
                 </div>
                 <div class="data_description_wrap">
@@ -240,6 +254,8 @@ var un_agencies_in_iati = {un_agencies_in_iati};
 var un_trends = {un_trends};
 var geojson = {geojson};
     $(function () {
+        $("#display-active-projects").text(active_projects);
+        $("#display-un-agencies").text(un_agencies_in_iati);
         var reportings;
         var countries;
         var sectors;
