@@ -1,5 +1,6 @@
+
 #welcome_text
-Welcome to d-portal.org
+UNDG Transparency Portal
 
 #publishers_welcome_text
 Welcome to d-portal.org : Publisher Edition
@@ -12,6 +13,30 @@ here
 
 #top_text
 Top
+
+#about_text
+About
+
+#total_projects_text
+Total Projects
+
+#active_projects_text
+Active Projects
+
+#total_budget_text
+Total Budget
+
+#un_agencies_in_iati_text
+UN agencies in IATI
+
+#countries_un_operates
+Countries UN operates in
+
+#un_vs_other_org
+Un vs. other organizations in IATI
+
+#trend_of_activities
+Trend of activities published in IATI
 
 #tagline_text
 Helping you understand development data.
@@ -96,6 +121,9 @@ Pick a country or publisher below to explore their data.
 
 #explore_paragraph2_text
 Only countries and publishers with data published to IATI are available for exploration.
+
+#members_and_observers_text
+UNDG Members and Observers
 
 #footer1_text
 A 2016 project by United Nations Development Group
@@ -377,3 +405,6 @@ Compare all agencies
 Compare all sectors
 #flag_alt_text
 flag
+
+#learn_more_about_members
+Learn more about UNDG members and observers

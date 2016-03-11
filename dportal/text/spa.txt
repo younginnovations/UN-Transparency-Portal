@@ -1,371 +1,409 @@
 #welcome_text
-Bienvenido a d-portal.org
+Welcome to d-portal.org
 
 #publishers_welcome_text
-Bienvenido a d-portal.org : Editorial edición
+Welcome to d-portal.org : Publisher Edition
 
 #alert1_text
-d-portal.org está todavía en desarrollo muy temprano, programado para su estreno a mediados de abril Alfa. Gracias por su paciente usted! Lamentablemente Cualquier comentario
+d-portal.org is still in beta. Thank you for your patience! Please provide any feedback
 
 #alert2_text
-aquí
+here
 
 #top_text
-Superior
+Top
+
+#about_text
+About spain
+
+#total_projects_text
+Total Projects spain
+
+#active_projects_text
+Active Projects spain
+
+#total_budget_text
+Total Budget spain
+
+#un_agencies_in_iati_text
+UN agencies in IATI spain
+
+#countries_un_operates
+Countries UN operates in spain
+
+#un_vs_other_org
+Un vs. other organizations in IATI spain
+
+#trend_of_activities
+Trend of activities published in IATI spain
 
 #tagline_text
-Ayudar a comprender los datos de desarrollo.
+Helping you understand development data. spain
 
 #publishers_tagline_text
-Editorial edición
+Publisher Edition
 
 #install_button_text
-Generador
+Generator spain
 
 #install_info_text
-Crear widgets para tu sitio web.
+Create content for your website.
 
 #soon_text
-(¡Muy pronto!)
+(soon!)
 
 #explore_button_text
-Explorar
+Explore spain
 
 #explore_info_text
-Explora los datos IATI.
+Explore IATI data.
 
 #develop_button_text
-Realimentación
+Feedback spain
 
 #develop_info_text
-Envíanos tus pensamientos.
+Send us your thoughts.
 
 #index_title_text
-¿Qué es?
+What is it?
 
 #index_paragraph1_text
-es una plataforma de información basada en los países que registra los flujos de recursos. Está dirigido a proporcionar los ministerios competentes, los parlamentarios y la sociedad civil una información que puede ayudar con la programación y seguimiento de las actividades de desarrollo.
+is a country-based information platform that tracks resource flows. It is aimed at providing line ministries, parliamentarians and civil society in developing countries with information that can assist with the planning and monitoring of development activities.
 
 #index_paragraph2_text
-Las TIC en la primera iteración que contiene los datos actuales publicados a través de la Iniciativa Internacional de Transparencia de la Ayuda (IATI), así como los datos más recientes (2012) agregada publicados por el Sistema de Notificación de los Países Acreedores del CAD. ¿Será el desarrollo futuro incluyen, entre otros, los datos de emergencia información, Sistemas de Gestión de los presupuestos nacionales y una serie de indicadores socioeconómicos comparables.
+In its first iteration d-portal contains current data published through the International Aid Transparency Initiative (IATI) as well as the most recent (2012) aggregated data published to the OECD DAC Creditor Reporting System.
 
 #index_title2_text
-¿Dónde están los datos de?
+Where is the data from?
 
 #index_paragraph3_text
-Los datos en el menú desplegable se construyen a partir de la <a href="https://github.com/devinit/D-Portal/tree/master/dstore">base de datos</a> que se actualiza todos los días GMT 0 con nuevos datos captados del Registro de la IATI.
+Data in the dropdown menu is built from the <a href="https://github.com/devinit/D-Portal/tree/master/dstore">database</a> which updates everyday at GMT +0 with new data fetched from the IATI Registry.
 
 #index_paragraph4_text
-Tenemos una lista de países que se reportan por los editores que utilizan <a href="http://en.wikipedia.org/wiki/ISO_3166-2">ISO3166 alfa-2</a>. Para la atribución y un enlace a las fuentes de datos, <a href="about.html#sources">ir aquí</a>.
+We list countries that are reported by publishers using <a href="http://en.wikipedia.org/wiki/ISO_3166-2">ISO3166 Alpha-2</a>. For attribution and links to data sources, <a href="about.html#sources">go here</a>.
 
 #index_paragraph5_text
-La lista de los editores con su ID de editor de IATI viene directamente de la base de datos del Registro de la IATI.
+The list of publishers with their IATI publisher ID comes straight from the IATI Registry database.
 
 #index_paragraph6_text
-La lista desplegable de Editores proviene de actividades XML publicados reportados por estos editores.
+The dropdown list of publishers comes from published XML activities reported by these publishers.
 
-#news_page_text 
-La información sobre el desarrollo actual (Noticias) 
+#news_page_text
+Information on current development (News)
 
-#install_link_text 
-Instalar 
+#install_link_text
+Install
 
-#news_link_text 
-Noticias
+#news_link_text
+News
 
 #about_link_text
-Acerca
+About
 
 #home_link_text
-Casa
+Home
 
-#read_more_text 
-Lea más acerca de d-portal
+#read_more_text
+Read more about d-portal
 
-#publisher_portal_text 
-Editorial Edición
+#publisher_portal_text
+Publisher Edition
 
-#links_title_text 
-Enlaces de interés
+#links_title_text
+Relevant links
 
-#explore_title_text 
-Explore países y editores 
+#explore_title_text
+Explore countries and publishers
 
-#explore_paragraph1_text 
-Escoge un país o editor de abajo para explorar sus datos. 
+#explore_paragraph1_text
+Pick a country or publisher below to explore their data.
 
-#explore_paragraph2_text 
-Sólo los países y editores con los datos publicados a IATI están disponibles para la exploración.
+#explore_paragraph2_text
+Only countries and publishers with data published to IATI are available for exploration.
+
+#members_and_observers_text
+UNDG Members and Observers spain
 
 #footer1_text
-Un proyecto de 2014 por el equipo de d-portal
+A 2016 project by United Nations Development Group spain
 
 #footer1_tip_text
-Iniciativa Internacional para la Transparencia de la Ayuda (IATI)
+International Aid Transparency Initiative (IATI) spain
 
 #footer2_text
-Principio de la página
+Top of page
 
 #footer3_text
-Acerca de d-portal.org
+About UN d-portal spain
 
 #footer4_text
-Volver a la d-portal.org
+Back to d-portal.org
 
 #footer5_text
-Licencia : La licencia MIT (MIT) en 2014
+License: The MIT License (MIT) 2014
 
 #feedback_title_text
 d-portal.org Feedback
 
 #feedback_paragraph1_text
-Hola, y gracias a todos por tomarse beta testers para la mano como d-portal.org. Damos la bienvenida a cualquier y todos los comentarios, sugerencias e inquietudes que pueda tener sobre el sitio web así que por favor no dude en enviar 'em como comentarios a continuación. En general, queremos centrarnos en la legibilidad y la experiencia de los usuarios, especialmente en cuanto a la comprensión de los datos que se está presentando.
+Hello, all and thank you for taking part as beta testers for d-portal.org. We welcome any and all feedback, suggestions and concerns you may have about the website so please feel free to post them as comments below. Overall, we want to focus on legibility and user experience, especially in terms of understanding the data that is being presented.
 
 #feedback_paragraph2_text
-Muchas gracias por tomarse el tiempo para hacer esto ! Esperamos crear algo útil y de fácil despliegue, un tema de conversación interesante apuntar que es más importante, promover mejores datos de calidad de las organizaciones informantes.
+Thank you very much for taking the time to do this! We hope to create something useful and easily deployable, an interesting talking point but most importantly, promote use by those who need the information, and better data quality from reporting organisations.
 
 #feedback_paragraph3_text
 - shi
 
 #about_title_text
-Acerca de d- portal.org
+About d-portal.org
 
 #about_paragraph_title_text
-¿Qué es?
+What is it?
 
 #about_paragraph1_text
-d-portal.org es una plataforma de información basada en los países que registra los flujos de recursos .
+d-portal.org is a country-based information platform that tracks resource flows.
 
 #about_paragraph2_text
-Está dirigido a ofrecer a los ministerios de línea , los parlamentarios y la sociedad civil una información que le puede ayudar con la planificación y el seguimiento de las actividades de desarrollo .
+It is aimed at providing line ministries, parliamentarians and civil society in developing countries with information that can assist with the planning and monitoring of development activities.
 
 #about_paragraph3_text
-En su primera versión que contiene los datos actuales publicados a través de la Iniciativa Internacional de Transparencia de la Ayuda ( IATI ), así como los datos más recientes (2012) publicados por el <a href="http://www.oecd.org/dac/stats/crsguide.htm" target="_blank" class="co">OECD DAC Creditor Reporting System</a>.
+In its first iteration it contains current data published through the International Aid Transparency Initiative (IATI) as well as the most recent (2012) data published by the <a href="http://www.oecd.org/dac/stats/crsguide.htm" target="_blank" class="co">OECD DAC Creditor Reporting System</a>.
 
 #about_paragraph4_text
-La plataforma actual plantea dos preguntas: ¿de dónde vienen los recursos de , y ¿a dónde van (por sector y lugar) ? Datos recientes , actuales y futuros se presenta y comparado a través de las fuentes de datos .
+The current platform poses two questions: where do resources come from, and where do they go (by sector and location)? Recent, current and future data is presented and compared across data sources.
 
 #about_paragraph5_text
-Con el fin de responder a estas preguntas desde una perspectiva nacional es insuficiente simplemente para mostrar los datos disponibles: es igualmente importante para trazar las lagunas en la información. Hacer frente a la mala calidad o los datos que faltan es una parte esencial de la interfaz de información.
+In order to answer these questions from a country perspective it is insufficient merely to display available data: it is equally important to show the gaps in the information. Coping with poor quality or missing data is an essential part of the information interface.
 
 #about_paragraph6_text
-es una plataforma de código abierto.
+is an open source platform.
 
 #about_paragraph7_text
-A pesar de que actualmente proporciona una implementación genérica para cualquier país que se ha desarrollado con la intención específica de ser modificado para requisitos particulares en el país para satisfacer las necesidades locales. Para más información sobre cómo se puede crear una versión personalizada para un país específico, consulte <a href="#install" class="how"> Cómo instalar </a>.
+While it currently provides a generic deployment for any country it has been developed with the specific intention of being customised in-country to meet local needs. For further information on how you could create a customised version for a specific country, see <a href="#install" class="how">How to Install</a>.
 
 #about_paragraph8_text
-Financiamiento
+Funding
 
 #about_paragraph9_text
-El desarrollo inicial de d- portal.org que duró desde diciembre de 2013 hasta la reunión de la Alianza Global en México en abril de 2014 fue financiada por <a href="http://www.aidtransparency.net/" target="_blank" class="co">IATI</a> y <a href="http://devinit.org/" target="_blank" class="co">Development Initiatives (DI)</a>.
+The initial development of d-portal.org which ran from Dec 2013 to the Global Partnership meeting in Mexico in April 2014 was funded by <a href="http://www.aidtransparency.net/" target="_blank" class="co">IATI</a> and <a href="http://devinit.org/" target="_blank" class="co">Development Initiatives (DI)</a>.
 
 #about_paragraph10_text
-DI está financiando la fase actual del desarrollo y la preparación hasta el final de agosto 2014 Si usted está interesado en la financiación de parte de la elaboración en curso de d- portal , por favor póngase en contacto con <a href="mailto:support@iatistandard.org" target="_blank" class="co">support@iatistandard.org</a>
+DI is funding limited current development. If you are interested in funding part of the ongoing development of d-portal, or specific pieces of future development, please contact <a href="mailto:support@iatistandard.org" target="_blank" class="co">support@iatistandard.org</a>
 
 #savi_paragraph1_text
-SAVI es un único visor de actividad para la IATI XML que se pueden ver en tiempo real, en línea, en tu navegador favorito.
+SAVi is a simple activity viewer for IATI XML that you can view in real time, online, in your favourite browser.
 
 #savi_paragraph2_text
-SAVI usa CSS y JavaScript para mostrar lo contrario compleja - que mira en un formato XML que es más fácil de leer y digerir.
+SAVi uses CSS and javascript to display otherwise complex-looking XML in a format that is easier to read and digest.
 
 #dstore_paragraph_text
-dstore subvenciona la IATI Registry con una versión nodejs + SQLite optimizado para su uso en las consultas en tiempo real.
+dstore subsidises the IATI Registry with an optimized nodejs + SQLite version for use in real time queries.
 
 #q_paragraph_text
-Q le permite consultar información que necesita a través de filtros simples pero complejas.
+Q allows you to query information you need via simple but complex filters.
 
 #q_example_title_text
-Estos son algunos ejemplos de consulta :
+Here are some Query examples:
 
 #q_example1_text
-Vuelve automáticamente XML Todo lo que se ha dado formato a HTML, XML fuente permanece puro
+Returns XML which is automatically formatted into HTML, source remains pure XML
 
 #q_example1_info1_text
-Esta consulta muestra las actividades Limitando la Cantidad de 10
+This query displays activities limiting the amount to 10
 
 #q_example1_info2_text
-ordenados por el día de inicio
+sorted by starting day
 
 #q_example1_info3_text
-y desde 1950 en adelante
+and from 1950 onwards
 
 #q_example2_text
-Vuelve automáticamente XML Todo lo que se ha dado formato a HTML, XML fuente permanece puro
+Returns XML which is automatically formatted into HTML, source remains pure XML
 
 #q_example2_info1_text
-Esta consulta muestra todas las actividades dentro de Bangladesh (código de país es BD)
+This query displays all activities within Bangladesh (country code is BD)
 
 #q_example2_info2_text
-Eso - han Sectores informado acerca de los datos
+that have sectors reported in the data
 
 #q_example2_info3_text
-En última instancia, esta consulta permite que usted mire todas las actividades - tiene que los gráficos en ellos.
+Ultimately, this query allows you to look at all the activities that have graphs in them.
 
 #q_example3_text
-Devuelve JSON (por defecto es JSON) datos sobre las actividades (actividades son por defecto), donde 100 filas de la base de datos es el límite predeterminado
+Returns JSON (JSON is default) data about activites (activites are default) where 100 rows from the database is the default limit
 
 #q_example3_info1_text
-Esta consulta muestra estadísticas de los datos
+This query displays data statistics
 
 #q_example3_info2_text
-actividades sobre la presentación de informes para cada organización
+about activites for each reporting organisation
 
 #q_example3_info3_text
-para Bangladesh
+for Bangladesh
 
 #q_example4_text
-Retornos de archivo CSV (por defecto llamado q.csv)
+Returns CSV file (named q.csv by default)
 
 #q_example4_info1_text
-Esta consulta Permite descargar el CSV
+This query allows you to download the CSV
 
 #q_example4_info2_text
-de 1000
+of 1000
 
 #q_example4_info3_text
-datos de la transacción
+transaction data
 
 #q_example4_info4_text
-ordenados por fecha
+sorted by date
 
-#install_title_text 
-Cómo instalar el d-portal <i>(próximamente)</i>
+#install_title_text
+How to install d-portal
 
-#install_paragraph1_text 
-En el corazón del proyecto d-portal es el objetivo que cualquier persona en cualquier lugar puede tomar el código fuente abierta detrás de d-portal, desplegar por sí mismos y crear un d-portal personalizado para cualquier país que les interesa. Esto podría incluir la adición de cualquier otro dato de emergencia información, Sistemas de Gestión de los presupuestos nacionales y una serie de indicadores socioeconómicos comparables. 
+#install_paragraph1_text
+At the heart of the d-portal project is the aim that anyone anywhere could take the open source code behind d-portal, deploy it for themselves and create a customised d-portal for any country that interests them.  This could include adding any other data from Aid Information Management Systems, national budgets and a range of comparable socio-economic indicators.
 
-#install_paragraph2_text 
-Ya hay ejemplos de medida d-portals específica del país de la siguiente manera: 
+#install_paragraph2_text
+There are already examples of customised country-specific d-portals like
 
-#install_paragraph3_text 
-d-portal se compone de la backend dstore y la interfaz ctrack. Para instalar d-portal, es necesario configurar un servidor. 
+#install_paragraph3_text
+d-portal is made up of the dstore backend and ctrack interface. To install d-portal, you need to set up a server.
 
-#install_paragraph4_text 
-Visita <a href="https://github.com/devinit/D-Portal/blob/master/documents/ctrack_localtest.md" class="country_portal">Github</a> para obtener instrucciones para instalar un servidor d-portal.
+#install_paragraph4_text
+Visit <a href="https://github.com/devinit/D-Portal/blob/master/documents/ctrack_localtest.md" class="country_portal">Github</a> for instructions to install a d-portal server.
 
-#install_title2_text 
-¿Cómo crear un widget-d portal 
+#install_title2_text
+How to generate and re-use d-portal content
 
-#install_paragraph5_text 
-Mediante el uso de iframes, el Generador de d-portal le permite incluir secciones de d-portal en cualquier plataforma de publicación HTML habilitado; es decir. Mensaje Wordpress blog, mensaje Tumblr, un sitio web, etc 
+#install_paragraph5_text
+By using iframes, the d-portal Generator allows you to embed sections of d-portal in any html-enabled publishing platform; ie. Wordpress blog post, Tumblr post, a website etc.
 
-#install_paragraph6_text 
-Visita <a href="http://d-portal.org/ctrack.html#view=generator" class="country_portal">http://d-portal.org/ctrack.html#view=generator</a> para crear un widget-d portal.
+#install_paragraph6_text
+Visit <a href="http://d-portal.org/ctrack.html#view=generator" class="country_portal">http://d-portal.org/ctrack.html#view=generator</a> to generate your chosen d-portal content.
 
 #github_tip_text
-Visite d-portal.org en Github
+Visit d-portal.org on Github
 
 #github_info1_text
-Tenedor nosotros
+Fork us on
 
 #github_info2_text
-d-portal.org está siendo desarrollado y diseñado para que las cosas están cambiando constantemente en la actualidad. Envíanos tus sugerencias, informes de errores y problemas o contacto <a href="mailto:support@iatistandard.org" target="_blank" class="git small"> support@iatistandard.org </a>
+d-portal.org is currently being developed and designed so things are constantly changing. Send us your suggestions, bug reports and issues or contact <a href="mailto:support@iatistandard.org" target="_blank" class="git small">support@iatistandard.org</a>
 
 #github_info3_text
-Si quieres estar al día de las noticias sobre d-portal por favor suscríbase a la <a href="https://groups.google.com/forum/?hl=en-GB#!members/d-portal-list" class="git small">Google grupo</a>.
+If you would like to keep up to date with news on d-portal please subscribe to the <a href="https://groups.google.com/forum/?hl=en-GB#!members/d-portal-list" class="git small">Google group</a>.
 
-#footer_pick_text 
-Elige otro país 
+#footer_pick_text
+Pick another country
 
-#footer_top_text 
-Principio de la página 
+#footer_top_text
+Top of page
 
-#footer_about_text 
-Acerca de d-portal.org 
+#footer_about_text
+About d-portal.org
 
-#dportal_logo_alt_text 
-Logo d-portal
+#dportal_logo_alt_text
+d-portal logo
 
-#mainback_tip_text 
-Volver al d-portal
+#mainback_tip_text
+Back to d-portal
 
-#flava_high_visibility_text 
-Alta Visibilidad 
+#flava_high_visibility_text
+High Visibility
 
-#flava_original_text 
+#flava_original_text
 Original
 
-#blog_head_text 
-d-portal Noticias 
+#blog_head_text
+d-portal News
 
-#posted_on_text 
-Publicado el 
+#posted_on_text
+Posted on
 
-#back_news_text 
-Volver a la página de Noticias 
+#back_news_text
+Back to News page
 
-#disqus_text 
-alimentado por los comentarios
+#news_link1_text
+Interested in funding d-portal?
 
-#dash_title_text 
-Dash: Editores estadísticas de d-portal.org 
+#news_link2_text
+How to create a country d-portal
 
-#dash_paragraph1_text 
-Dash es un resumen de los datos que pueblan d-portal.org con un enfoque principalmente en estadísticas para afiliados y la calidad de los datos notificados por ellos. 
+#disqus_text
+comments powered by
 
-#dash_paragraph2_text 
-Al mostrar cuándo y dónde se informa de datos no válidos, Dash será capaz de explicar las diferencias que se reflejan en el sitio principal. 
+#dash_title_text
+Dash: Publishers statistics for d-portal.org
 
-#dash_paragraph3_text 
-Dash no es específico de cada país por lo que será capaz de ver todas las estadísticas para afiliados disponibles en todos los países incluidos en el portal. Esto es para acomodar el hecho de que hay varios editores que reportan actividades en varios países receptores. 
+#dash_paragraph1_text
+Dash is an overview of the data populating d-portal.org with a focus primarily on publisher statistics and the quality of the data reported by them.
 
-#dash_paragraph4_text 
-Dash es actualmente accesible en <a href="http://d-portal.org/ctrack.html?#view=dash" class="dash_link">http://d-portal.org/ctrack.html?#view=dash</a>. Dash es una característica nueva y todavía se está desarrollando.
+#dash_paragraph2_text
+By showing you when and where invalid data is reported, Dash will be able to explain the gaps that are reflected on the main site.
+
+#dash_paragraph3_text
+Dash is not country specific so you will be able to view all of the publisher statistics available across all countries included in the portal. This is to accomodate the fact that there are multiple publishers that report activities in multiple recipient countries.
+
+#dash_paragraph4_text
+Dash is currently accessible at <a href="http://d-portal.org/ctrack.html?#view=dash" class="dash_link">http://d-portal.org/ctrack.html?#view=dash</a>. Dash is a new feature and is still being developed.
 
 #publisher_title_text
-Explora un publicador
+Explore a Publisher
 
 #publisher_paragraph1_text
-Elige un editor de abajo para explorar sus datos.
+Pick a publisher below to explore their data.
 
-#sources_title_text 
-Reconocimiento y enlace a las fuentes de datos 
+#sources_title_text
+Attribution and link to data sources
 
-#sources_header1_text 
-Datos 
+#sources_header1_text
+Data
 
-#sources_header2_text 
-Nombre de la fuente 
+#sources_header2_text
+Source Name
 
-#sources_header3_text 
-URL Fuente 
+#sources_header3_text
+Source URL
 
-#sources_data1_text 
-Moneda 
+#sources_data1_text
+Currency
 
-#sources_data2_text 
-Banderas de países 
+#sources_data2_text
+Country Flags
 
-#sources_data3_text 
-Fondos País 
+#sources_data3_text
+Country Backgrounds
 
-#sources_data4_text 
-Nombres de países 
+#sources_data4_text
+Country Names
 
-#sources_data5_text 
-2 Códigos Carta País 
+#sources_data5_text
+2 Letter Country Codes
 
-#sources_data6_text 
-Sólo Wikipedia dominio público imágenes 
+#sources_data6_text
+Wikipedia Public Domain only images
 
-#sources_data7_text 
-Pública de hoja de cálculo Google
+#sources_data7_text
+Public Google Spreadsheet
 
-#sources_data8_text 
-Sólo Pixabay dominio público imágenes
+#sources_data8_text
+Pixabay Public Domain only images
 
 #publisher_dropmenu_text trim=ends
-Búsqueda de un editor 
+Type or select to search for a sector spain
 
 #country_dropmenu_text trim=ends
-Busque un país receptor
+Type or select to search for a recipient country spain
 
-#all_countries_text 
-Comparar todos los Países 
+#all_countries_text
+Compare all countries spain
 
-#all_publishers_text 
-Comparar Editores
+#all_agencies_text
+Compare all agencies spain
 
-#flag_alt_text 
-bandera
+#all_sector_text
+Compare all sectors spain
+#flag_alt_text
+flag
+
+#learn_more_about_members
+Learn more about UNDG members and observers spanish
