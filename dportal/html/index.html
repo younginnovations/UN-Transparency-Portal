@@ -26,8 +26,9 @@
                         </div>
                         <div class="menu-link-wrap">
                             <div class="menu">
+
                                 <a href="{tongue_root}about.html">
-                                    <span>About</span>
+                                    <span>{about_text}</span>
                                     <!--<span class="path_txt">{install_info_text}</span>-->
                                 </a>
                             </div>
@@ -39,7 +40,6 @@
                             </div>
                             <div class="menu">
                                 <a href="#explore">
-                                    <span>{explore_button_text}</span>
                                     <!--<span class="path_txt">{explore_info_text}</span>-->
                                 </a>
                             </div>
@@ -56,19 +56,22 @@
                 <div class="tag">{tagline_text}</div>
                 <div class="chart-wrap">
                     <div class="chart-item">
-                        <span class="title">Total Projects</span>
+                        <span class="title">{total_projects_text}</span>
+
                         <div id="total_projects_shown"></div>
-                        <div id="">Active Projects</div>
+                        <div id="">{active_projects_text}</div>
                         <div id="progressBox">
-	                        <div id="progressBar"><span id="display-active-projects"></span></div>
+                            <div id="progressBar"><span id="display-active-projects"></span></div>
 
                         </div>
 
                     </div>
                     <div class="chart-item">
-                        <span class="title">Total Budget</span>
+                        <span class="title">{total_budget_text}</span>
+
                         <div id="totalBudget"></div>
                         <span class="title">Total Expenses</span>
+
                         <div id="totalExpense"></div>
                         <div id="pie1">
                             <span>top</span>
@@ -76,32 +79,38 @@
                         </div>
                     </div>
                     <div class="chart-item">
-                        <span class="title">UN agencies in IATI</span>
+                        <span class="title">{un_agencies_in_iati_text}</span>
+
                         <div id="un_agencies_in_iati"></div>
                         <div id="progressBox2">
-	                        <div id="progressBar2"> <span id="display-un-agencies"></span></div>
+                            <div id="progressBar2"><span id="display-un-agencies"></span></div>
 
                         </div>
 
                     </div>
                     <div class="chart-item">
-                        <span class="title">Countries UN operates in</span>
+                        <span class="title">{countries_un_operates}</span>
+
                         <div id="no_of_countries"></div>
                         <div id="worldMap"></div>
                     </div>
                     <div class="chart-item">
-                        <span class="title">Un vs. other organizations in IATI</span>
+                        <span class="title">{un_vs_other_org}</span>
+
                         <div id="pie2"></div>
                     </div>
                     <div class="chart-item">
-                        <span class="title">Trend of activities published in IATI</span>
+                        <span class="title">{trend_of_activities}</span>
+
                         <div id="linegraph"></div>
                     </div>
                 </div>
                 <div class="description_wrap">
                     <div class="description">
                         <span class="title">{index_title_text}</span>
+
                         <p><span class="bold">d-portal.org</span> {index_paragraph1_text}</p>
+
                         <p>{index_paragraph2_text}</p>
                     </div>
                     <div class="description">
@@ -109,7 +118,9 @@
                         <a href="{tongue_root}news/posts.html" class="read">&gt; {news_page_text}</a>
                         <a href="{tongue_root}about.html" class="read">&gt; {read_more_text}</a>
                         <span class="title">{explore_title_text}</span>
+
                         <p><b>{explore_paragraph1_text}</b></p>
+
                         <p>{explore_paragraph2_text}</p>
                     </div>
                 </div>
@@ -117,7 +128,8 @@
             </div>
             <div class="agencies_wrap">
                 <div class="agencies">
-                    <h2>Participating Agencies</h2>
+                    <h2>{members_and_observers_text}<a class="link-to-members" href="https://undg.org/home/about-undg/members/">{learn_more_about_members}</a></h2>
+
                     <div class="flexslider">
                         <ul id="un_publisher_list" class="country_menu_list slides"></ul>
                     </div>
@@ -153,32 +165,45 @@
                 </div>
                 <div class="sustainable_wrap">
                     <h2>Sustainable Development</h2>
+
                     <div class="sustable_img">
                         <img src="{root}art/sustanable_img.png" alt="">
                     </div>
                 </div>
                 <div class="data_description_wrap">
+
                     <h2>
-                        Where is the  data from?
+                        Where is the data from?
                     </h2>
+
                     <p>
-                        Data in the dropdown menu is built from the database which updates everyday at GMT +0 with new data fetched from the IATI Registry.
+                        Data in the dropdown menu is built from the database which updates everyday at GMT +0 with new
+                        data fetched from the IATI Registry.
                     </p>
+
                     <p>
-                        We list countries that are reported by publishers using ISO3166 Alpha-2. For attribution and links to data sources, go here.
+                        We list countries that are reported by publishers using ISO3166 Alpha-2. For attribution and
+                        links to data sources, go here.
                     </p>
+
                     <p>
-                        The list of publishers with their IATI publisher ID comes straight from the IATI Registry database.
-                        The dropdown list of publishers comes from published XML activities reported by these publishers.
+                        The list of publishers with their IATI publisher ID comes straight from the IATI Registry
+                        database.
+                        The dropdown list of publishers comes from published XML activities reported by these
+                        publishers.
                     </p>
                 </div>
             </div>
             <div class="description_wrap">
                 <div class="description full">
                     <span class="title">{index_title2_text}</span>
+
                     <p>{index_paragraph3_text}</p>
+
                     <p>{index_paragraph4_text}</p>
+
                     <p>{index_paragraph5_text}</p>
+
                     <p>{index_paragraph6_text}</p>
                 </div>
             </div>
@@ -191,7 +216,7 @@
             </div>
             <div class="footer_link top_about_wrap">
                 <!--<div class="top"><a onclick="$('html,body').animate({scrollTop:0},'slow');return false;">-->
-                    <!--{footer2_text}</a>-->
+                <!--{footer2_text}</a>-->
                 <!--</div>-->
                 <div class="about">
                     <a href="{tongue_root}about.html">{footer3_text}</a>
@@ -241,18 +266,18 @@
 #jsmenu
 <script>
 
-var publisher_names = {publisher_names_json};
-var country_names = {country_names_json};
-var crs_countries = {crs_countries_json};
-var sector = {sector};
-var total_projects = {total_projects};
-var active_projects = {active_projects};
-var total_budget = {total_budget};
-var total_expenditure = {total_expenditure};
-var total_un_agencies = {total_un_agencies};
-var un_agencies_in_iati = {un_agencies_in_iati};
-var un_trends = {un_trends};
-var geojson = {geojson};
+    var publisher_names = {publisher_names_json};
+    var country_names = {country_names_json};
+    var crs_countries = {crs_countries_json};
+    var sector = {sector};
+    var total_projects = {total_projects};
+    var active_projects = {active_projects};
+    var total_budget = {total_budget};
+    var total_expenditure = {total_expenditure};
+    var total_un_agencies = {total_un_agencies};
+    var un_agencies_in_iati = {un_agencies_in_iati};
+    var un_trends = {un_trends};
+    var geojson = {geojson};
     $(function () {
         $("#display-active-projects").text(active_projects);
         $("#display-un-agencies").text(un_agencies_in_iati);
@@ -260,18 +285,19 @@ var geojson = {geojson};
         var countries;
         var sectors;
 // default data in page so can display without any ajax
-		countries={rows:[]};
-		var rows=countries.rows;
-		for(idx in crs_countries)
-		{
-			var name=country_names[idx];
-			if(name){ rows.push({name:name,country_code:idx}); }
-		}
-		rows.sort(function(a, b) {
-			var ta = a.name.toUpperCase();
-			var tb = b.name.toUpperCase();
-			return (ta < tb) ? -1 : (ta > tb) ? 1 : 0 ;
-		});
+        countries = {rows: []};
+        var rows = countries.rows;
+        for (idx in crs_countries) {
+            var name = country_names[idx];
+            if (name) {
+                rows.push({name: name, country_code: idx});
+            }
+        }
+        rows.sort(function (a, b) {
+            var ta = a.name.toUpperCase();
+            var tb = b.name.toUpperCase();
+            return (ta < tb) ? -1 : (ta > tb) ? 1 : 0;
+        });
 
         $("#total_projects_shown").html(total_projects.toLocaleString());
         $("#no_of_countries").html(countries.rows.length);
@@ -279,32 +305,30 @@ var geojson = {geojson};
         $("#totalExpense").html("$" + total_expenditure.toLocaleString());
         $("#un_agencies_in_iati").html(un_agencies_in_iati);
 
-		reportings={rows:[]};
+        reportings = {rows: []};
 
-		var rows=reportings.rows;
-		for(idx in publisher_names)
-		{
-			var name=publisher_names[idx];
-			rows.push({name:name,reporting_ref:idx});
-		}
-		rows.sort(function(a, b) {
-			var ta = a.name.toUpperCase();
-			var tb = b.name.toUpperCase();
-			return (ta < tb) ? -1 : (ta > tb) ? 1 : 0 ;
-		});
+        var rows = reportings.rows;
+        for (idx in publisher_names) {
+            var name = publisher_names[idx];
+            rows.push({name: name, reporting_ref: idx});
+        }
+        rows.sort(function (a, b) {
+            var ta = a.name.toUpperCase();
+            var tb = b.name.toUpperCase();
+            return (ta < tb) ? -1 : (ta > tb) ? 1 : 0;
+        });
 
-		sectors = {rows:[]};
-		var rows = sectors.rows;
-		for(idx in sector)
-		{
-			var name = sector[idx];
-			rows.push({name:name, sector_ref: idx});
-		}
-		rows.sort(function(a, b) {
-			var ta = a.name.toUpperCase();
-			var tb = b.name.toUpperCase();
-			return (ta < tb) ? -1 : (ta > tb) ? 1 : 0 ;
-		});
+        sectors = {rows: []};
+        var rows = sectors.rows;
+        for (idx in sector) {
+            var name = sector[idx];
+            rows.push({name: name, sector_ref: idx});
+        }
+        rows.sort(function (a, b) {
+            var ta = a.name.toUpperCase();
+            var tb = b.name.toUpperCase();
+            return (ta < tb) ? -1 : (ta > tb) ? 1 : 0;
+        });
 
 // goto new url
         var change = function () {
@@ -322,106 +346,108 @@ var geojson = {geojson};
         };
 
 // fill in lists
-		var refresh=function(){
-			if(sectors)
-			{
-				var sectorList = $("#sector_list");
-				sectorList.empty();
+        var refresh = function () {
+            if (sectors) {
+                var sectorList = $("#sector_list");
+                sectorList.empty();
 
-				var aa=[];
-				aa.push("<select>");
-				aa.push("<option value=''></option>");
-				for(var i=0;i<sectors.rows.length;i++)
-				{
-					var v=sectors.rows[i];
-					if(v.sector_ref && v.name) // must be real publisher
-					{
-						var t=v.name
-						if(v.count) { t=t+" ("+v.count+") "; }
-						var s="<option value='"+v.sector_ref+"'>"+t+"</option>";
-						aa.push(s);
-					}
-				}
-				aa.push("</select>");
-				$("#publisher_dropmenu").html(aa.join(""));
+                var aa = [];
+                aa.push("<select>");
+                aa.push("<option value=''></option>");
+                for (var i = 0; i < sectors.rows.length; i++) {
+                    var v = sectors.rows[i];
+                    if (v.sector_ref && v.name) // must be real publisher
+                    {
+                        var t = v.name
+                        if (v.count) {
+                            t = t + " (" + v.count + ") ";
+                        }
+                        var s = "<option value='" + v.sector_ref + "'>" + t + "</option>";
+                        aa.push(s);
+                    }
+                }
+                aa.push("</select>");
+                $("#publisher_dropmenu").html(aa.join(""));
 
-				$("#publisher_dropmenu select").change(change);
-				$("#publisher_dropmenu select").chosen({search_contains:true,"placeholder_text_single":"{publisher_dropmenu_text}"});
+                $("#publisher_dropmenu select").change(change);
+                $("#publisher_dropmenu select").chosen({
+                    search_contains: true,
+                    "placeholder_text_single": "{publisher_dropmenu_text}"
+                });
 
-				for(var i=0; i<sectors.rows.length; i++){
-					var v = sectors.rows[i];
-					if(v.sector_ref && v.name)
-					{
-						sectorList.append(
-							"	<li class=\"publishercol\">	"+
-							"	<a class=\"country_code\"> "+
-							"			<span class=\"select_wrap publishername\">"+v.name+"</span>	"+
-							// "			<span class=\"select_wrap publisherid\">"+v.sector_ref+"</span>	"+
-							"	</a> "+
-							"	</li>		"
-						);
+                for (var i = 0; i < sectors.rows.length; i++) {
+                    var v = sectors.rows[i];
+                    if (v.sector_ref && v.name) {
+                        sectorList.append(
+                                "	<li class=\"publishercol\">	" +
+                                "	<a class=\"country_code\"> " +
+                                "			<span class=\"select_wrap publishername\">" + v.name + "</span>	" +
+                                    // "			<span class=\"select_wrap publisherid\">"+v.sector_ref+"</span>	"+
+                                "	</a> " +
+                                "	</li>		"
+                        );
 
-					}
-				}
-			}
-			if(reportings)
-			{
-				var un_publisher_list = $("#un_publisher_list");
-				un_publisher_list.empty();
+                    }
+                }
+            }
+            if (reportings) {
+                var un_publisher_list = $("#un_publisher_list");
+                un_publisher_list.empty();
 
-				for(var i=0;i<reportings.rows.length;i++)
-				{
-					var v=reportings.rows[i];
-					if(v.name && v.reporting_ref)
-					{
+                for (var i = 0; i < reportings.rows.length; i++) {
+                    var v = reportings.rows[i];
+                    if (v.name && v.reporting_ref) {
                         un_publisher_list.append(
                                 "  <li><a class=\"country_code\" href=\"{root}ctrack.html?publisher=" + v.reporting_ref + "&tongue={tongue}\">  " +
                                 "<span class=\"publisher-logo\"><img src=\"{root}art/un_logos/41304.png\" /></span>" +
                                 "      <span class=\"publisher-name\">" + v.name + "</span>  " +
                                 "    </a></li>  ");
-					}
-				}
+                    }
+                }
 
-			}
-			if(countries)
-			{
-				var cl = $('#country_menu_list');
-				var aa=[];
-				aa.push("<select>");
-				aa.push("<option value=''></option>");
-				for(var i=0;i<countries.rows.length;i++)
-				{
-					var v=countries.rows[i];
-					if(v.name) // must be real country
-					{
-						var t=(v.name || v.country_code )
-						if(v.count) { t=t+" ("+v.count+") "; }
-						var s="<option value='"+v.country_code+"'>"+t+"</option>";
-						aa.push(s);
-						cl.append('<li>'+
-								'<a class="country_code" href="{root}ctrack.html?country='+v.country_code+'&tongue={tongue}">'+
-								'<span class="select_wrap">'+
-									'<img src="{root}art/flag/'+v.country_code.toLowerCase()+'.png" alt="'+v.name+'"/>'+
-								'</span>' +
-									'<span class="select_wrap countryid">'+
-										v.country_code +
-									'</span>' +
-									'<span class="select_wrap countryname">'+
-										v.name +
-									'</span>'+
-								'</a>'+
-							'</li>'
-						);
-					}
-				}
-				aa.push("</select>");
-				$("#country_dropmenu").html(aa.join(""));
+            }
+            if (countries) {
+                var cl = $('#country_menu_list');
+                var aa = [];
+                aa.push("<select>");
+                aa.push("<option value=''></option>");
+                for (var i = 0; i < countries.rows.length; i++) {
+                    var v = countries.rows[i];
+                    if (v.name) // must be real country
+                    {
+                        var t = (v.name || v.country_code )
+                        if (v.count) {
+                            t = t + " (" + v.count + ") ";
+                        }
+                        var s = "<option value='" + v.country_code + "'>" + t + "</option>";
+                        aa.push(s);
+                        cl.append('<li>' +
+                                '<a class="country_code" href="{root}ctrack.html?country=' + v.country_code + '&tongue={tongue}">' +
+                                '<span class="select_wrap">' +
+                                '<img src="{root}art/flag/' + v.country_code.toLowerCase() + '.png" alt="' + v.name + '"/>' +
+                                '</span>' +
+                                '<span class="select_wrap countryid">' +
+                                v.country_code +
+                                '</span>' +
+                                '<span class="select_wrap countryname">' +
+                                v.name +
+                                '</span>' +
+                                '</a>' +
+                                '</li>'
+                        );
+                    }
+                }
+                aa.push("</select>");
+                $("#country_dropmenu").html(aa.join(""));
 
-				$("#country_dropmenu select").change(change);
-				$("#country_dropmenu select").chosen({search_contains:true,"placeholder_text_single":"{country_dropmenu_text}"});
+                $("#country_dropmenu select").change(change);
+                $("#country_dropmenu select").chosen({
+                    search_contains: true,
+                    "placeholder_text_single": "{country_dropmenu_text}"
+                });
 
-			}
-		};
+            }
+        };
 
 
 // initialise page
@@ -452,7 +478,7 @@ var geojson = {geojson};
                 animation: "slide",
                 animationLoop: false,
                 itemWidth: 210,
-                itemHeight:145,
+                itemHeight: 145,
                 itemMargin: 5,
                 minItems: getGridSize(), // use function to pull in initial value
                 maxItems: getGridSize() // use function to pull in initial value

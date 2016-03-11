@@ -964,3 +964,7 @@ span.publisher-name {
 .grid path {
     stroke-width: 0;
 }
+
+.link-to-members{
+    font-size: 12px;
+}
