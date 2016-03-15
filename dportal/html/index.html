@@ -94,11 +94,7 @@
                         <div id="no_of_countries"></div>
                         <div id="worldMap"></div>
                     </div>
-                    <div class="chart-item">
-                        <span class="title">{un_vs_other_org}</span>
 
-                        <div id="pie2"></div>
-                    </div>
                     <div class="chart-item">
                         <span class="title">{trend_of_activities}</span>
 
@@ -299,11 +295,32 @@
             return (ta < tb) ? -1 : (ta > tb) ? 1 : 0;
         });
 
+        var changeToMillions = function(number){
+            var prettyNumber = "?";
+            number = Math.round(number);
+
+            var digits = new Number(number).toString().length;
+            console.log(digits);
+
+            if(digits>6) {
+                number = number/(1000000);
+                prettyNumber = Math.round(number).toLocaleString() + ' M';
+            } else {
+                prettyNumber = new Number(number).toString();
+            }
+
+            return prettyNumber;
+        }
+
         $("#total_projects_shown").html(total_projects.toLocaleString());
         $("#no_of_countries").html(countries.rows.length);
-        $("#totalBudget").html("$" + total_budget.toLocaleString());
-        $("#totalExpense").html("$" + total_expenditure.toLocaleString());
+        $("#totalBudget").html("$" + changeToMillions(total_budget));
+        $("#totalExpense").html("$" + changeToMillions(total_expenditure));
         $("#un_agencies_in_iati").html(un_agencies_in_iati);
+
+
+
+
 
         reportings = {rows: []};
 
@@ -399,7 +416,7 @@
                     if (v.name && v.reporting_ref) {
                         un_publisher_list.append(
                                 "  <li><a class=\"country_code\" href=\"{root}ctrack.html?publisher=" + v.reporting_ref + "&tongue={tongue}\">  " +
-                                "<span class=\"publisher-logo\"><img src=\"{root}art/un_logos/41304.png\" /></span>" +
+                                "<span class=\"publisher-logo\"><img src=\"{root}art/un_logos/" + v.reporting_ref +".png\" /></span>" +
                                 "      <span class=\"publisher-name\">" + v.name + "</span>  " +
                                 "    </a></li>  ");
                     }

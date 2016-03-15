@@ -97,6 +97,12 @@ wait.launchFiber(function(){
 		require("./dstore_cache").import_from_un_data( argv._[1] );
 		return;
 	}
+	else
+	if( argv._[0]=="fetch-undata" )
+	{
+		require("./dstore_undata").fetch();
+		return;
+	}
 
 	// help text
 	console.log(

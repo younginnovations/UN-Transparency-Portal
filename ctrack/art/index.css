@@ -580,7 +580,7 @@ nav {
 
 #total_projects_shown,
 #un_agencies_in_iati {
-    font-size: 80px;
+    font-size: 70px;
     margin: 10px -35px 25px;
     line-height: 86px;
     border-bottom: 1px solid rgba(255, 255, 255, 0.2);
@@ -599,7 +599,7 @@ nav {
 #totalExpense,
 #no_of_countries {
     margin: 10px 0;
-    font-size: 30px;
+    font-size: 20px;
 }
 
 #totalBudget{
@@ -627,6 +627,10 @@ nav {
     margin: 5px 10px 10px;
     float: left;
     position: relative;
+}
+
+.chart-item:nth-of-type(5){
+    width: 550px;
 }
 
 .chart-item:nth-of-type(2) span.title {

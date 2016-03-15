@@ -1,5 +1,5 @@
 $(function(){
-    var width = 240;
+    var width = 520;
 	var height = 120;
 	var svg = d3.select("#linegraph")
 				.append("svg")
@@ -8,7 +8,7 @@ $(function(){
 				.attr("id", "trendLineChart");
 	var vis = d3.select("#trendLineChart"),
 				margin = {
-					top: 20, right:20, bottom:20, left: 30
+					top: 20, right:20, bottom:20, left: 50
 				};
 
 	var xScale = d3.scale.ordinal().rangeRoundBands([0,width - 30], 0);
@@ -20,7 +20,7 @@ $(function(){
 	var yAxis = d3.svg.axis()
 					.orient("left")
 					.scale(yScale)
-					.ticks(3);
+					.ticks(5);
 
 	function make_x_axis(){
 		return d3.svg.axis()
@@ -32,7 +32,7 @@ $(function(){
 		return d3.svg.axis()
 				.scale(yScale)
 				.orient("left")
-				.ticks(3)
+				.ticks(5)
 	}
     // console.log(un_trends," trendChart");
 		var mainData = [];
@@ -44,10 +44,10 @@ $(function(){
 			d.value = +d.value;
 		});
 		var maxValue = d3.max(mainData, function(d){ return d.value; });
-		var minValue = d3.min(mainData, function(d){ return d.value; });
+		//var minValue = d3.min(mainData, function(d){ return d.value; });
 
 		xScale.domain(mainData.map(function (d) {return d.year; }));
-		yScale.domain([minValue,maxValue]);
+		yScale.domain([0,maxValue]);
 
 		vis.append("svg:g")
 			.attr("class","axis")
