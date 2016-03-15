@@ -226,7 +226,9 @@ strong, b, .bold {
 #sector_list a.country_code {
     text-align: left;
 }
-
+.noCursor{
+    cursor: default;
+}
 .country_menu_list li:last-child {
     border-bottom: none;
 }

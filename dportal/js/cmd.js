@@ -10,6 +10,7 @@ var path = require('path');
 
 var json_iati_codes=require("../../dstore/json/iati_codes.json");
 var un_agencies_data = require("../../dstore/json/un_agencies_data.json");
+var un_org = require('../../dstore/json/un_org.json');
 var geojson = require("../../dstore/json/countries.geo.json");
 
 var plate = require("../../ctrack/js/plate.js");
@@ -284,6 +285,7 @@ cmd.build = function () {
 
 	chunkopts["sector"]=JSON.stringify( un_agencies_data["sectors"]);
 	chunkopts["publisher_names_json"]=JSON.stringify( json_iati_codes["un_publisher_names"] );
+    chunkopts["iati_un_publishers"] = JSON.stringify( json_iati_codes["iati_un_publishers"]);
     chunkopts["country_names_json"]     = JSON.stringify(un_agencies_data["countries"]);
     chunkopts["crs_countries_json"]     = JSON.stringify(un_agencies_data["countries"]);
     chunkopts["total_projects"] = JSON.stringify(un_agencies_data["total_projects"]);
@@ -292,6 +294,7 @@ cmd.build = function () {
     chunkopts["total_expenditure"] = JSON.stringify(un_agencies_data["total_expenditure"]);
     chunkopts["total_un_agencies"] = JSON.stringify(un_agencies_data["total_un_agencies"]);
     chunkopts["un_agencies_in_iati"] = JSON.stringify(un_agencies_data["un_agencies_in_iati"]);
+    chunkopts["un_org"] = JSON.stringify(un_org);
 
 
     var arr = Object.keys(un_agencies_data["un_trends"]).map(function(k) { return k });
