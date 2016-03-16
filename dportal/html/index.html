@@ -263,6 +263,7 @@
 <script>
 
     var publisher_names = {publisher_names_json};
+    var iati_un_publishers = {iati_un_publishers};
     var country_names = {country_names_json};
     var crs_countries = {crs_countries_json};
     var sector = {sector};
@@ -273,13 +274,17 @@
     var total_un_agencies = {total_un_agencies};
     var un_agencies_in_iati = {un_agencies_in_iati};
     var un_trends = {un_trends};
+    var un_org = {un_org};
     var geojson = {geojson};
     $(function () {
+
         $("#display-active-projects").text(active_projects);
         $("#display-un-agencies").text(un_agencies_in_iati);
         var reportings;
+        var extraReporting;
         var countries;
         var sectors;
+
 // default data in page so can display without any ajax
         countries = {rows: []};
         var rows = countries.rows;
@@ -300,7 +305,6 @@
             number = Math.round(number);
 
             var digits = new Number(number).toString().length;
-            console.log(digits);
 
             if(digits>6) {
                 number = number/(1000000);
@@ -320,20 +324,53 @@
 
 
 
+        var un_org_total_project_each = {rows: []};
+        var un_org_rows = un_org_total_project_each.rows;
+        for(var defined_id in un_org){
+            var id = defined_id;
+            var total_proj = un_org[defined_id]['total_projects'];
 
+            if(total_proj !== undefined) {
+                un_org_rows.push({id:id,total_project: total_proj});
+            }
+            else{
+                un_org_rows.push({id:id,total_project: 0});
+            }
+        }
+        var sorted_un_rows = un_org_rows.sort(function (a,b){
+            var ta = a.total_project;
+            var tb = b.total_project;
+            return (ta > tb) ? -1 : (ta < tb) ? 1 : 0;
+        });
+
+        var un_org_object = {};
+        sorted_un_rows.forEach(function(b){
+//            console.log(b.id + " : " + b.total_project);
+             un_org_object[b.id] = parseInt(b.total_project);
+        });
+
+       var arr= Object.keys(un_org_object).sort(function(a,b){
+           return (un_org_object[a] > un_org_object[b]) ? -1 : (un_org_object[a]<un_org_object[b]) ? 1 : 0;
+        });
+
+        extraReporting = {rows: []};
+
+        var extraReportRows = extraReporting.rows;
+
+        arr.forEach(function(k) {
+            var name = iati_un_publishers[k];
+            extraReportRows.push({name: name, reporting_ref: k});
+        });
 
         reportings = {rows: []};
 
-        var rows = reportings.rows;
+        var reportingRows = reportings.rows;
         for (idx in publisher_names) {
-            var name = publisher_names[idx];
-            rows.push({name: name, reporting_ref: idx});
+            if(arr.indexOf(idx) === -1){
+                var name = publisher_names[idx];
+                reportingRows.push({name: name, reporting_ref: idx});
+            }
         }
-        rows.sort(function (a, b) {
-            var ta = a.name.toUpperCase();
-            var tb = b.name.toUpperCase();
-            return (ta < tb) ? -1 : (ta > tb) ? 1 : 0;
-        });
 
         sectors = {rows: []};
         var rows = sectors.rows;
@@ -407,18 +444,35 @@
                     }
                 }
             }
-            if (reportings) {
+            if (extraReporting) {
                 var un_publisher_list = $("#un_publisher_list");
                 un_publisher_list.empty();
+
+                for (var i = 0; i < extraReporting.rows.length; i++) {
+                    var v = extraReporting.rows[i];
+                    if (v.name && v.reporting_ref) {
+                        un_publisher_list.append(
+                                "  <li><a class=\"country_code\" href=\"{root}ctrack.html?publisher=" + v.reporting_ref + "&tongue={tongue}\">  " +
+                                "<span class=\"publisher-logo\"><img src=\"{root}art/un_logos/" + v.reporting_ref +".png\" /></span>" +
+                                "      <span class=\"publisher-name\">" + v.name.match(/\(([^)]+)\)/)[1]
+                                + "</span>  " +
+                                "    </a></li>  ");
+                    }
+                }
+
+            }
+            if (reportings) {
+                var un_publisher_list = $("#un_publisher_list");
 
                 for (var i = 0; i < reportings.rows.length; i++) {
                     var v = reportings.rows[i];
                     if (v.name && v.reporting_ref) {
                         un_publisher_list.append(
-                                "  <li><a class=\"country_code\" href=\"{root}ctrack.html?publisher=" + v.reporting_ref + "&tongue={tongue}\">  " +
+                                "  <li><a class=\"country_code noCursor\"> " +
                                 "<span class=\"publisher-logo\"><img src=\"{root}art/un_logos/" + v.reporting_ref +".png\" /></span>" +
-                                "      <span class=\"publisher-name\">" + v.name + "</span>  " +
-                                "    </a></li>  ");
+                                "      <span class=\"publisher-name\">" + v.name.match(/\(([^)]+)\)/)[1]
+                                + "</span>  " +
+                                " </a></li>  ");
                     }
                 }
 
