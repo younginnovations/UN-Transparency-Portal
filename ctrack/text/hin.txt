@@ -883,3 +883,9 @@ IATI प्रकाशक
 
 #search_placeholder_txt
 खोज एवं प्रेस दर्ज (उदाहरण। quake) या जोड़ने के लिए टाइप
+
+#stats_budget_text
+कुल बजट
+
+#stats_expenditure_text
+कुल खर्च

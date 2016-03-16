@@ -386,7 +386,7 @@ Nombre de projets présentés
 IATI logo
 
 #dportal_logo_alt_text
-Portail de Développement logo
+Portail de UNDG logo
 
 #tongue_eng_tip_text 
 Voir ce en Anglais(UK) 
@@ -886,3 +886,9 @@ Explorez Résultats
 
 #search_placeholder_txt
 Tapez à Préciser, appuyez sur Entrée (ex. quake) ou sur pour ajouter
+
+#stats_budget_text
+Budget Total
+
+#stats_expenditure_text
+Total Des Dépenses

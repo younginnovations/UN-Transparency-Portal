@@ -16,7 +16,7 @@ ctrack_loader=function(args){
 	args.jslib=args.jslib 	|| root+"jslib/";
 	args.art=args.art 		|| root+"art/";
 	args.q	=args.q 		|| root+"q";
-	
+
 	head.load(
 		root+"jslib/jquery.js",
 		root+"jslib/chosen.jquery.min.js",

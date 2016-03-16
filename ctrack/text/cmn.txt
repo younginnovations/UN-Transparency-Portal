@@ -884,3 +884,9 @@ IATI出版社
 
 #search_placeholder_txt
 键入要搜索和按Enter键（例如，quake），或点击添加
+
+#stats_budget_text
+总预算
+
+#stats_expenditure_text
+总支出
