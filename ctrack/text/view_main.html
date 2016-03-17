@@ -12,24 +12,75 @@
 {main_head}
 {main_max}
 {about_data_links}
+{main_stats}
 {donor_graph}
 {sector_graph}
 {main_map}
-{main_stats}
+
 {main_active}
 {main_ended}
 {main_data_description}
 {main_datainvestigators}
 {view_tail}
 
+
 #about_data_links
 <div class="default about">
 	<a onclick="$('html, body').animate({scrollTop: $('.description').offset().top}, 300);return false;" class="about_data">
 		<img src="{flava}info_icon.png" alt="{info_icon_alt_text}" width="15" height="15"/> {about_this_data_text}
 	</a><a href="#view=data_quality" class="about_data quality">
-		<img src="{flava}alert_icon.png" alt="{alert_icon_alt_text}" width="15" height="15"/> {about_data_quality_text}
-	</a>
+	<img src="{flava}alert_icon.png" alt="{alert_icon_alt_text}" width="15" height="15"/> {about_data_quality_text}
+</a>
 </div>
+
+#main_stats
+<div class="stats_wrap">
+	<table class="title key">
+		<tr>
+			<td class="icon"><img src="{flava}publisher_icon.png" alt="{active_icon_alt_text}" width="40" height="40"/></td>
+			<td>{stats_title_text}</td>
+		</tr>
+	</table>
+	<table class="stats">
+		<tr>
+			<td rowspan="2" colspan="2" title="{stats_active_tip_text}">
+				<a onclick="switch($(this).children('.stats_num').first().html()){ case '0': return false; };" href="#view=active" class="stats_link active">
+					<span class="stats_title">{stats_active_text}</span>
+					<span class="stats_num">{active_projects}</span>
+				</a>
+				<a onclick="switch($(this).children('span').first().html()){ case '0': return false; };" href="#view=missing" class="stats_link missing" title="{stats_missing_tip_text}">{stats_missing_text} <span>{missing_projects}</span></a>
+			</td>
+			<td title="{stats_ended_tip_text}">
+				<a onclick="switch($(this).children('.stats_num').first().html()){ case '0': return false; };" href="#view=ended" class="stats_link">
+					<span class="stats_title">{stats_ended_text}</span>
+					<span class="stats_num small">{ended_projects}</span>
+				</a>
+			</td>
+			<td title="{stats_total_tip_text}">
+				<a onclick="switch($(this).children('.stats_num').first().html()){ case '0': return false; };" href="#view=list_activities" class="stats_link total">
+					<span class="stats_title">{stats_total_text}</span>
+					<span class="stats_num small">{total_projects}</span>
+				</a>
+			</td>
+		</tr>
+		<tr>
+			<td title="{stats_planned_tip_text}">
+				<a onclick="switch($(this).children('.stats_num').first().html()){ case '0': return false; };" href="#view=planned" class="stats_link planned">
+					<span class="stats_title">{stats_budget_text}({USD})</span>
+					<span class="stats_num small">{total_budget}</span>
+				</a>
+			</td>
+			<td title="{stats_publisher_tip_text}">
+				<a onclick="switch($(this).children('.stats_num').first().html()){ case '0': return false; };" href="#view=list_publishers" class="stats_link publishers">
+					<span class="stats_title">{stats_expenditure_text}({USD})</span>
+					<span class="stats_num small">{total_expenditure}</span>
+				</a>
+			</td>
+		</tr>
+	</table>
+	<div class="declare stats">{declare_stats_text}</div>
+</div>
+
 
 #main_data_description
 <div class="description_wrap">
@@ -96,54 +147,6 @@
 		<span>{percent_of_activities_with_location}%</span> {map_percent_text}
 		<b>{map_view_text}</b>
 	</a>
-</div>
-
-#main_stats
-<div class="stats_wrap">
-	<table class="title key">
-		<tr>
-			<td class="icon"><img src="{flava}publisher_icon.png" alt="{active_icon_alt_text}" width="40" height="40"/></td>
-			<td>{stats_title_text}</td>
-		</tr>
-	</table>
-	<table class="stats">
-		<tr>
-			<td rowspan="2" colspan="2" title="{stats_active_tip_text}">
-				<a onclick="switch($(this).children('.stats_num').first().html()){ case '0': return false; };" href="#view=active" class="stats_link active">
-					<span class="stats_title">{stats_active_text}</span>
-					<span class="stats_num">{active_projects}</span>
-				</a>
-				<a onclick="switch($(this).children('span').first().html()){ case '0': return false; };" href="#view=missing" class="stats_link missing" title="{stats_missing_tip_text}">{stats_missing_text} <span>{missing_projects}</span></a>
-			</td>
-			<td title="{stats_ended_tip_text}">
-				<a onclick="switch($(this).children('.stats_num').first().html()){ case '0': return false; };" href="#view=ended" class="stats_link">
-					<span class="stats_title">{stats_ended_text}</span>
-					<span class="stats_num small">{ended_projects}</span>
-				</a>
-			</td>
-			<td title="{stats_total_tip_text}">
-				<a onclick="switch($(this).children('.stats_num').first().html()){ case '0': return false; };" href="#view=list_activities" class="stats_link total">
-					<span class="stats_title">{stats_total_text}</span>
-					<span class="stats_num small">{total_projects}</span>
-				</a>
-			</td>
-		</tr>
-		<tr>
-			<td title="{stats_planned_tip_text}">
-				<a onclick="switch($(this).children('.stats_num').first().html()){ case '0': return false; };" href="#view=planned" class="stats_link planned">
-					<span class="stats_title">{stats_planned_text}</span>
-					<span class="stats_num small">{planned_projects}</span>
-				</a>
-			</td>
-			<td title="{stats_publisher_tip_text}">
-				<a onclick="switch($(this).children('.stats_num').first().html()){ case '0': return false; };" href="#view=list_publishers" class="stats_link publishers">
-					<span class="stats_title">{stats_publisher_text}</span>
-					<span class="stats_num small">{numof_publishers}</span>
-				</a>
-			</td>
-		</tr>
-	</table>
-	<div class="declare stats">{declare_stats_text}</div>
 </div>
 
 #main_active

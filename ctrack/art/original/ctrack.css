@@ -9,7 +9,9 @@ a,img{border:0; outline:none;}textarea:focus,input:focus{outline:0;}*:focus{outl
 img						{-webkit-filter:brightness(200%); filter:brightness(200%);}
 
 body,html 				{background:none; color:#444; width:100%; height:100%; margin:0; padding:0; font-family:Arial,Helvetica,sans-serif; text-rendering:optimizelegibility; word-wrap:break-word;}
-html					{background-color:#000;}
+/*html					{background-color:#000;}*/
+
+body {background-color: #FFFFFF;}
 
 
 /*	Links & fonts
@@ -32,8 +34,8 @@ strong, b, .bold		{font-weight:bold; color:inherit;}
 	============================================= */
 .portal					{-moz-box-sizing:border-box; -webkit-box-sizing:border-box; box-sizing:border-box; display:table; width:100%; height:100%;}
 .main_wrap				{width:100%; min-width:1040px; padding:0px; display:table-cell; background-color:rgba(255,255,255,0.4);}
-#background_image	 	{width:100%; height:100%; position:fixed; top:0; left:0; z-index:-1; background-image:url('/art/mexico_background_image.jpg'); background-repeat:no-repeat; background-position:center center; -webkit-background-size:cover; -moz-background-size:cover; -o-background-size:cover; background-size:cover;}
-.overlay				{width:100%; height:100%; background-color:rgba(46,41,6,0.6); position:relative;}	/* Overlay colour for background image */
+/*#background_image	 	{width:100%; height:100%; position:fixed; top:0; left:0; z-index:-1; background-image:url('/art/mexico_background_image.jpg'); background-repeat:no-repeat; background-position:center center; -webkit-background-size:cover; -moz-background-size:cover; -o-background-size:cover; background-size:cover;}*/
+.overlay				{width:100%; height:100%; position:relative;}	/* Overlay colour for background image background-color:rgba(46,41,6,0.6);*/
 iati-activity			{margin-bottom:40px;}	/* Fixes too-large bottom margin during only this instance */
 iati-activity:after 	{content:""; padding:0; display:initial;}	/* Takes away content since footer is included on site */
 .center_wrap			{width:960px; margin:0 auto; text-align:center;}
@@ -73,7 +75,7 @@ option					{color:#000;}
 
 /*	About data links
 	============================================= */
-a.about_data			{display:inline-block; vertical-align:bottom; padding:0 10px; text-align:center; color:#CCC; font-size:1.0em; line-height:1.2em;}
+a.about_data			{display:inline-block; vertical-align:bottom; padding:0 10px; text-align:center; color:#8F8F8F; font-size:0.9em; line-height:1.2em;}
 a.about_data:hover		{color:#FFF;}
 a.about_data.quality	{border-left:1px solid #CCC; text-align:right; padding-right:0;}
 
@@ -150,14 +152,14 @@ a.map_percent span		{display:inline; font-size:1.15em; line-height:1.0em; color:
 /*	Stats (key figures) styles
 	============================================= */
 .stats_wrap				{width:100%; margin:0 auto; padding:40px 0;}
-span.stats_title		{display:block; font-size:1.5em; color:#ccc; padding-bottom:10px;}
+span.stats_title		{display:block; font-size:1.5em; color:#898989; padding-bottom:10px;}
 span.stats_title.view	{font-size:0.6em; color:#FFF;}
 span.stats_num			{display:block; font-size:8.0em; color:#008FFF;}
-span.stats_num.small	{display:block; font-size:4.0em;}
+span.stats_num.small	{display:block; font-size:49px;}
 span.stats_num.view		{font-size:2.9em; color:#FFF; line-height:0.8em;}
 .declare.stats			{width:960px; margin:0 auto; padding-top:10px; color:#ccc; font-size:0.9em; text-align:right;}
 
-a.stats_link			{display:block; padding:30px 40px; height:100%; color:#ccc; border-radius:6px; background-color:rgba(0,14,32,0.7); margin:15px 5px 5px 10px;}
+a.stats_link			{display:block; padding:30px 40px; height:100%; color:#ccc; border-radius:6px; margin:15px 5px 5px 10px; border:solid 1px #E1EEF7;}
 a.stats_link.active		{margin-left:0; padding:40px;}
 a.stats_link.total, a.stats_link.publishers		{margin-right:0;}
 a.stats_link.planned, a.stats_link.publishers	{margin-top:10px;}
@@ -177,15 +179,15 @@ a.stats_link.missing span	{color:#008FFF;}
 
 /*	Data Description styles
 	============================================= */
-.description_wrap		{width:100%; margin:0 auto; background:linear-gradient(to bottom, rgba(0,0,0,0) 0%,rgba(0,0,0,0.7) 60%,rgba(0,0,0,1) 100%); background:-prefix-linear-gradient(to bottom, rgba(0,0,0,0) 0%,rgba(0,0,0,0.7) 50%,rgba(0,0,0,1) 100%); padding-bottom:40px;}
-.description			{width:880px; margin:0 auto; padding:40px; text-align:left; margin-bottom:40px; background-color:rgba(255,255,255,0.1);}
-.description span.title	{display:block; color:#FFF; line-height:1.35em; font-size:1.4em; margin-top:20px; padding:10px 0; border-top:1px solid #FFF; border-bottom:1px solid #FFF;}
+.description_wrap		{width:100%; margin:0 auto;  padding-bottom:40px;}
+.description			{width:880px; margin:0 auto; padding:40px; text-align:left; margin-bottom:40px; background-color:#F5F5F7;}
+.description span.title	{display:block; color:#344; line-height:1.35em; font-size:1.4em; margin-top:20px; padding:10px 0; border-top:1px solid #FFF; border-bottom:1px solid #FFF;}
 .description span.title.sub	{font-size:1.0em; border:0; margin:0; padding-bottom:10px; font-weight:bold;}
-.description p			{padding:15px 0; font-size:1.0em; color:#FFF; line-height:1.4em;}
-.description p.about_data	{border-top:1px solid #fff; margin-top:30px;}
-.description a			{color:#A8C5E5; text-decoration:none;}
+.description p			{padding:15px 0; font-size:1.0em; color:#344; line-height:1.4em;}
+.description p.about_data	{border-top:1px solid #000; margin-top:30px;}
+.description a			{color:#0067B1; text-decoration:none;}
 .description a:hover	{text-decoration:underline;}
-a.read					{display:inline-block; width:50%; text-decoration:none; color:#A8C5E5; font-size:1.0em;}
+a.read					{display:inline-block; width:50%; text-decoration:none; color:#0067B1; font-size:1.0em;}
 a.read.right			{text-align:right;}
 a.read:hover			{text-decoration:underline;}
 
@@ -275,8 +277,8 @@ table.head img				{-webkit-filter:brightness(100%); filter:brightness(100%);}
 
 /*	Table for Country Name and Flag
 	============================================= */
-table.country				{width:960px; margin:0 auto; padding:20px 0; border-collapse:initial; border-bottom:10px solid #FFF;}
-table.country td.name		{width:800px; max-width:800px; padding-right:10px; font-size:4.0em; line-height:1.1em; color:#FFF;}
+table.country				{width:960px; margin:0 auto; padding:20px 0; border-collapse:initial; border-bottom:10px solid #EFEFEF;}
+table.country td.name		{width:800px; max-width:800px; padding-right:10px; font-size:4.0em; line-height:1.1em; color:#333333;}
 table.country td.name.publisher	{width:960px; max-width:960px; padding-right:0px;}
 table.country td.flag		{text-align:right;}
 table.country td.flag img	{max-height:90px;}
@@ -290,10 +292,10 @@ table.country img			{-webkit-filter:brightness(100%); filter:brightness(100%);}
 
 /*	Table Titles
 	============================================= */
-table.title				{width:100%; margin:0 auto; border-collapse:separate; padding-bottom:15px; border-bottom:10px solid #FFF;}
+table.title				{width:100%; margin:0 auto; border-collapse:separate; padding-bottom:15px; border-bottom:10px solid #EFEFEF;}
 table.title.key			{width:960px;}	/* Fix width for Key Figures */
 table.title.key a		{font-size:0.5em;}
-table.title td			{font-size:1.8em; line-height:1.15em; color:#FFF; vertical-align:bottom;}
+table.title td			{font-size:1.8em; line-height:1.15em; color:#333; vertical-align:bottom;}
 table.title td:hover	{cursor:default;}
 table.title td.sort		{padding:0 20px 0 10px; width:200px; color:#CCC; text-align:right; font-size:0.9em; line-height:1.1em;}
 table.title td.about	{padding-left:10px; width:350px;}

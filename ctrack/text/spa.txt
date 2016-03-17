@@ -883,3 +883,9 @@ Explora Resultados de la búsqueda
 
 #search_placeholder_txt
 Tipo de Busca, pulse Enter (ejemplo. quake) o clic en para añadir
+
+#stats_budget_text
+presupuesto total
+
+#stats_expenditure_text
+el gasto total

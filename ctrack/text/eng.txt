@@ -80,7 +80,7 @@ here
 d-portal.org is currently in BETA.
 
 #mainback_tip_text
-Back to D-Portal
+Back to UN D-Portal
 
 #mainback_publisher_tip_text
 Back to D-Portal: Publisher Edition
@@ -386,7 +386,7 @@ Number of projects reported
 IATI logo
 
 #dportal_logo_alt_text
-D-Portal logo
+D-P logo
 
 #tongue_eng_tip_text
 View this in English(UK)
@@ -461,7 +461,7 @@ Pick another country
 Top of page
 
 #footer_about_text
-About d-portal.org
+About UN d-portal
 
 #read_more_text
 About data quality and why it matters
@@ -884,3 +884,9 @@ Explore Search Results
 
 #search_placeholder_txt
 Type to Search & press Enter (eg. quake) or Click to Add
+
+#stats_budget_text
+Total Budget
+
+#stats_expenditure_text
+Total Expenditure

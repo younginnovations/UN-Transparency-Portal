@@ -886,3 +886,9 @@ IATI出版
 
 #search_placeholder_txt
 検索・Enterを押します（例。quake）追加します
+
+#stats_budget_text
+総予算
+
+#stats_expenditure_text
+総支出額
