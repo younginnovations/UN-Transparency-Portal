@@ -896,3 +896,12 @@ Total Budget
 
 #stats_expenditure_text
 Total Expenditure
+
+#about_text
+About
+
+#generator_text
+Generator
+
+#develop_button_text
+Feedback

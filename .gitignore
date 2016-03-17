@@ -2,7 +2,8 @@
 */node_modules/*
 */tmp/*
 */cache/*
-
+.DS_Store
+/.DS_store
 dstore/db/*
 
 dportal/static/*
