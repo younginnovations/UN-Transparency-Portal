@@ -57,7 +57,7 @@ var https_getbody=function(url,cb)
 };
 
 iati_codes.fetch = function(){
-
+	console.log("iati_codes.fetch");
 	var codes=require('../json/iati_codes'); // merge with old
 	var publishers={};
 	var packages={};

@@ -14,3 +14,4 @@ ctrack/json/*.json
 */.vagrant
 
 dstore/un-json/*
+.idea

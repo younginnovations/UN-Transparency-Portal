@@ -22,7 +22,7 @@ view_stats.chunks = [
     "numof_publishers",
     "total_budget",
     "total_expenditure",
-    "percent_of_activities_with_location",
+    "percent_of_activities_with_location"
 ];
 
 view_stats.calc = function () {
@@ -71,6 +71,7 @@ view_stats.ajax = function (args) {
 //			"title_like":(args.search || ctrack.args.search),
     };
 //	if(dat.country_code) { dat.from+=",country"; }
+
     fetch.ajax_dat_fix(dat, args);
 
     fetch.ajax(dat, args.callback || function (data) {

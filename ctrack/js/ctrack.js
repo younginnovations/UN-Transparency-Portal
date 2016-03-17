@@ -47,12 +47,14 @@ ctrack.url=function(url)
 
 ctrack.get_chart_data=function(name)
 {
+
 		return ctrack.chunk(name) || [];
 };
 
 ctrack.sortby="order";
 ctrack.dosort=function(s)
 {
+
 	if(ctrack.sortby==s) { s="-"+s; } // reverse on second click
 	ctrack.sortby=s;
 	if(ctrack.last_view)
@@ -135,6 +137,7 @@ ctrack.setup=function(args)
 		}
 	};
 	ctrack.convert_num=function(n,v){
+
 		if(ctrack.convert_have[ctrack.display_usd])
 		{
 			return  v[n+"_"+ctrack.display_usd.toLowerCase()];
@@ -370,6 +373,7 @@ ctrack.setup=function(args)
 	};
 	ctrack.show_crumbs=function()
 	{
+
 		for(var i=0;i<ctrack.crumbs.length;i++)
 		{
 			var v=ctrack.crumbs[i];
