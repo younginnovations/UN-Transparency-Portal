@@ -42,7 +42,8 @@ csvw.arrayToRow = function (arr) {
 	return arr2.join(csvw.del);
 };
 
-// Convert a two-dimensional Array into an escaped multi-row CSV 
+// Convert a two-dimensional Array into an
+// escaped multi-row CSV
 csvw.arrayToCSV = function (arr) {
 	var arr2 = arr.slice(0);
 	

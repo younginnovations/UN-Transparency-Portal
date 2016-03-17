@@ -187,6 +187,12 @@ Planned Projects
 #stats_publisher_text
 IATI Publishers
 
+#stats_total_budget
+Total Budget
+
+#stats_total_expenditure
+Total Expenditure
+
 #stats_missing_text
 Other Projects:
 

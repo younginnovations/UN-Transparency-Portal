@@ -26,12 +26,16 @@ view_publishers.chunks=[
 	"table_publishers",
 ];
 
-//
+
 // display the view
 //
 view_publishers.view=function(args)
 {
-	view_publishers.chunks.forEach(function(n){ctrack.chunk(n,"{spinner}");});
+console.log("from view_publishers.view");
+	view_publishers.chunks.forEach(function(n){
+		ctrack.chunk(n,"{spinner}");
+	}
+	);
 	ctrack.setcrumb(1);
 	ctrack.change_hash();
 	view_publishers.ajax(args);
@@ -42,8 +46,9 @@ view_publishers.view=function(args)
 //
 view_publishers.ajax=function(args)
 {
-	args=args || {};
 
+		console.log("from view_publishers.ajax");
+	args=args || {};
 	var year=args.year || parseInt(ctrack.hash.year) || ctrack.year;
 	ctrack.year_chunks(year);
 
@@ -52,6 +57,7 @@ view_publishers.ajax=function(args)
 	ctrack.sortby="order"; // reset sortby
 	var display=function(sortby)
 	{
+		console.log("from display");
 		var s=[];
 		var a=[];
 		for(var n in ctrack.publishers_data) { a.push( ctrack.publishers_data[n] ); }
@@ -80,6 +86,7 @@ view_publishers.ajax=function(args)
 
 	var p=function(s)
 	{
+		console.log("from p");
 		s=s || "";
 		s=s.replace(/[,]/g,"");
 		return parseInt(s);
@@ -98,6 +105,7 @@ view_publishers.ajax=function(args)
 	
 	var fadd=function(d)
 	{
+		console.log("from fadd");
 		var it=ctrack.publishers_data[d.reporting_ref];
 		if(!it) { it={}; ctrack.publishers_data[d.reporting_ref]=it; }
 		
@@ -113,7 +121,9 @@ view_publishers.ajax=function(args)
 	var years=[year-1,year,year+1];
 	years.forEach(function(y)
 	{
+		console.log("from years");
 		var dat={
+
 				"from":"act,trans,country",
 				"limit":args.limit || -1,
 				"select":"reporting_ref,"+ctrack.convert_str("sum_of_percent_of_trans"),
@@ -135,6 +145,7 @@ view_publishers.ajax=function(args)
 				var v=data.rows[i];
 				var d={};
 				var num=ctrack.convert_num("sum_of_percent_of_trans",v);
+
 				d.reporting_ref=v.reporting_ref;
 				d["t"+(2+y-year)]=commafy(""+Math.floor(num));
 				if(y==year)
@@ -143,7 +154,7 @@ view_publishers.ajax=function(args)
 				}
 				fadd(d);
 			}
-//			console.log(ctrack.publishers_data);
+		//console.log(ctrack.publishers_data);
 			
 			display();
 		});

@@ -7,13 +7,13 @@ var iati=exports;
 
 var ctrack=require("./ctrack.js")
 var plate=require("./plate.js")
-//var iati=require("./iati.js")
+var iati=require("./iati.js")
 var fetch=require("./fetch.js")
-
 
 ctrack.iati={};
 ctrack.iati.totext=function(v)
 {
+	console.log("ctrack.iati");
 	if     ( typeof v == "string") { return v; }
 	else if( typeof v == "object") { return ctrack.iati.totext( v.text ); } // text turns up in type? sometimes?
 	return "";
@@ -21,6 +21,7 @@ ctrack.iati.totext=function(v)
 
 ctrack.iati.fill_text=function(vi,vo,ss)
 {
+	console.log("ctrack.iati.fill_text");
 	for(var i=0;i<ss.length;i++)
 	{
 		vo[ ss[i] ] = ctrack.iati.totext ( vi[ ss[i] ] );

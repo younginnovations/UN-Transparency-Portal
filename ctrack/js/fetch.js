@@ -54,7 +54,6 @@ fetch.ajax=function(dat,callback)
 //modify dat so it reflects the args or base settings (eg limit to a publisher)
 fetch.ajax_dat_fix=function(dat,args)
 {
-
 // possibly do not need...
 	dat["country_code"]		=	dat["country_code"]		||	args.country;
 	dat["reporting_ref"]	=	dat["reporting_ref"]	||	args.publisher;
