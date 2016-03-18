@@ -49,9 +49,9 @@ query.maybenumber=function(v,ty)
 //
 query.get_q = function(req){
 	var q={};
-	
+
 	q.start_time=Date.now();
-	
+
 	var cp=function(f,unesc){
 		for(var n in f) // single depth copy only
 		{
@@ -85,7 +85,7 @@ query.get_q = function(req){
 	{
 		cp(req.body);
 	}
-	
+
 // defaults
 	if(!q.from)
 	{
@@ -95,7 +95,7 @@ query.get_q = function(req){
 	{
 		q.from+=",jml"; // ...need a jml join to spit out xml (jml is jsoned xml)
 	}
-	
+
 
 // we now have a json style chunk of data that consists of many possible inputs
 	return q;
@@ -179,7 +179,7 @@ query.getsql_select=function(q,qv){
 			ss.push(" COUNT(*) AS count");
 		}
 	};
-	
+
 // available funcs
 	var calc_funcs={
 		"count":true,
@@ -188,7 +188,7 @@ query.getsql_select=function(q,qv){
 		"percent_of":true,
 		"sum_of_percent_of":true,
 	};
-	
+
 	var calc_func=function(func,name)
 	{
 		switch(func)
@@ -210,7 +210,7 @@ query.getsql_select=function(q,qv){
 			break
 		}
 	};
-	
+
 
 	var done_list=false;
 	if(q.select)
@@ -247,7 +247,7 @@ query.getsql_select=function(q,qv){
 			}
 		}
 	}
-	
+
 	if(done_list) // already dealt with above
 	{
 	}
@@ -296,7 +296,7 @@ query.getsql_select=function(q,qv){
 			}
 		}
 	}
-	
+
 	return " SELECT "+ss.join(" , ");
 };
 
@@ -315,9 +315,9 @@ query.getsql_from=function(q,qv){
 		}
 		return r;
 	});
-			
+
 //	q.from=f[0]; // store the first table name back in the q for later use
-	
+
 	ss.push( " FROM "+f[0]+" " )
 
 	for( var i=1; i<f.length ; i++)
@@ -334,12 +334,13 @@ query.getsql_from=function(q,qv){
 };
 
 query.getsql_where=function(q,qv){
+
 	var ss=[];
-	
+
 	var ns=q[0];
-	
+
 	var joins={};
-	
+
 	var qemap={ // possible comparisons
 		"_lt":"<",
 		"_gt":">",
@@ -403,7 +404,7 @@ query.getsql_where=function(q,qv){
 					{
 						ss.push( " "+n+" "+eq+" $"+n+qe+" " ); qv["$"+n+qe]=v;
 					}
-					
+
 					if(t=="object") // array, string above may also have been split into array
 					{
 						var so=[];
@@ -433,7 +434,7 @@ query.getsql_where=function(q,qv){
 								st.push( " "+n+" "+eq+v );
 							}
 							st.push( " ) " );
-							
+
 							ss.push(st.join(""));
 						}
 					}
@@ -441,10 +442,14 @@ query.getsql_where=function(q,qv){
 			}
 		}
 	}
-	
+
 	var ret="";
 	if(ss[0]) { ret=" WHERE "+ss.join(" AND "); }
-	
+	// console.log(qv);
+	// console.log(q.select+' : '+ ret);
+// if(q.view=='sector' && q.select == 'stats'){
+// 	ret+=" sector_code="+q.sector_ref;
+// }
 	return ret;
 };
 
@@ -472,7 +477,7 @@ query.getsql_group_by=function(q,qv){
 			}
 		}
 	}
-	
+
 	if(ss[0]) { return " GROUP BY "+ss.join(" , "); }
 	return "";
 };
@@ -517,7 +522,7 @@ query.getsql_order_by=function(q,qv){
 query.getsql_limit=function(q,qv){
 	var ss=[];
 	var limit=100;
-	
+
 	if( q.limit )
 	{
 		var n=query.mustbenumber(q.limit);
@@ -526,12 +531,12 @@ query.getsql_limit=function(q,qv){
 			limit=n
 		}
 	}
-	
+
 	if(limit>=0)
 	{
 		ss.push(" LIMIT "+limit+" ");
 	}
-	
+
 	if( q.page )
 	{
 		var n=query.mustbenumber(q.page);
@@ -574,18 +579,18 @@ query.do_select=function(q,res){
 	query.getsql_build_column_names(q);
 
 	var r={rows:[],count:0};
-	var qv={};	
+	var qv={};
 	r.qvals=qv
-	r.query = 	query.getsql_select(q,qv) + 
-				query.getsql_from(q,qv) + 
-				query.getsql_where(q,qv) + 
-				query.getsql_group_by(q,qv) + 
-				query.getsql_order_by(q,qv) + 
+	r.query = 	query.getsql_select(q,qv) +
+				query.getsql_from(q,qv) +
+				query.getsql_where(q,qv) +
+				query.getsql_group_by(q,qv) +
+				query.getsql_order_by(q,qv) +
 				query.getsql_limit(q,qv);
 
 	var db = dstore_db.open();
 	db.serialize();
-	
+
 if(true)
 {
 	db.all( "EXPLAIN QUERY PLAN "+r.query,qv,
@@ -601,7 +606,7 @@ if(true)
 		}
 	);
 }
-	
+
 
 	db.each(r.query,qv, function(err, row)
 	{
@@ -639,11 +644,11 @@ if(true)
 
 			var xsl='<?xml-stylesheet type="text/xsl" href="/art/activities.xsl"?>\n';
 			if(q.xsl=="!") { xsl=""; } // disable pretty view
-			
+
 			res.write(	'<?xml version="1.0" encoding="UTF-8"?>\n'+
 						xsl+
 						'<iati-activities xmlns:dstore="http://d-portal.org/dstore" xmlns:iati-extra="http://datastore.iatistandard.org/ns">\n');
-						
+
 			for(var i=0;i<r.rows.length;i++)
 			{
 				var v=r.rows[i];
@@ -655,7 +660,7 @@ if(true)
 			}
 
 			res.end(	'</iati-activities>\n');
-    
+
    		}
 		else
 		if(q.form=="xml")
@@ -663,7 +668,7 @@ if(true)
 			res.set('Content-Type', 'text/xml');
 
 			res.write(	'<iati-activities xmlns:iati-extra="http://datastore.iatistandard.org/ns">\n');
-						
+
 			for(var i=0;i<r.rows.length;i++)
 			{
 				var v=r.rows[i];
@@ -672,14 +677,14 @@ if(true)
 					var d=JSON.parse(v.jml);
 					delete d["dstore:slug"];	// remove dstore tags
 					delete d["dstore:idx"];
-					
+
 					res.write(	refry.json(d) );
 					res.write(	"\n" );
 				}
 			}
 
 			res.end(	'</iati-activities>\n');
-    
+
    		}
 		else
 		if(q.form=="csv")
@@ -785,7 +790,6 @@ query.serv = function(req,res){
 		});
 		return;
 	}
-	
+
 	return query.do_select(q,res);
 };
-

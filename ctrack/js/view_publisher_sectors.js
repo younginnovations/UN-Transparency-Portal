@@ -53,7 +53,7 @@ view_publisher_sectors.show=function()
 view_publisher_sectors.ajax=function(args)
 {
 	args=args || {};
-	
+
 	var year=args.year || parseInt(ctrack.hash.year) || ctrack.year;
 	ctrack.year_chunks(year);
 	view_publisher_sectors.year=year;
@@ -103,17 +103,17 @@ view_publisher_sectors.ajax=function(args)
 			cc[cc.length]=[v.sector_code,p(v.t1),p(v.t2),p(v.t3),p(v.b1),p(v.b2)];
 		});
 		ctrack.chunk("csv_data","data:text/csv;charset=UTF-8,"+encodeURIComponent(csvw.arrayToCSV(cc)));
- 
+
 		ctrack.display();
 
 	};
 	view_publisher_sectors.display=display;
-	
+
 	var fadd=function(d)
 	{
 		var it=ctrack.publisher_sectors_data[d.sector_code];
 		if(!it) { it={}; ctrack.publisher_sectors_data[d.sector_code]=it; }
-		
+
 		for(var n in d)
 		{
 			if(d[n])
@@ -144,7 +144,7 @@ view_publisher_sectors.ajax=function(args)
 		fetch.ajax(dat,function(data){
 //			console.log("fetch transactions donors "+year);
 //			console.log(data);
-			
+
 			for(var i=0;i<data.rows.length;i++)
 			{
 				var v=data.rows[i];
@@ -160,11 +160,11 @@ view_publisher_sectors.ajax=function(args)
 				fadd(d);
 			}
 //			console.log(ctrack.donors_data);
-			
+
 			display();
 		});
 	});
-	
+
 	var years=[year+1,year+2];
 	years.forEach(function(y)
 	{
@@ -183,10 +183,9 @@ view_publisher_sectors.ajax=function(args)
 		if(!dat.reporting_ref){dat.flags=0;} // ignore double activities unless we are looking at a select publisher
 //		if(dat.country_code) { dat.from+=",country"; }
 		fetch.ajax(dat,function(data){
-			
-//			console.log("fetch budget donors "+year);			
-//			console.log(data);
-			
+
+//			console.log("fetch budget donors "+year);
+
 			for(var i=0;i<data.rows.length;i++)
 			{
 				var v=data.rows[i];
@@ -198,7 +197,7 @@ view_publisher_sectors.ajax=function(args)
 				fadd(d);
 			}
 //			console.log(ctrack.donors_data);
-			
+
 			display();
 		});
 	});

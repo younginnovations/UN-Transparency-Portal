@@ -25,7 +25,7 @@ view_publisher_countries_top.chunks=[
 
 
 //
-// Perform fake ajax call to get data 
+// Perform fake ajax call to get data
 //
 view_publisher_countries_top.ajax=function(args)
 {
@@ -52,8 +52,6 @@ view_publisher_countries_top.ajax=function(args)
 	if(!dat.reporting_ref){dat.flags=0;} // ignore double activities unless we are looking at a select publisher
 	fetch.ajax(dat,function(data){
 //			console.log("fetch transactions donors "+year);
-//			console.log(data);
-			
 		for(var i=0;i<data.rows.length;i++)
 		{
 			var v=data.rows[i];
@@ -63,7 +61,7 @@ view_publisher_countries_top.ajax=function(args)
 			d.usd=Math.floor(ctrack.convert_num("sum_of_percent_of_trans",v));
 			list.push(d)
 		}
-		
+
 		list.sort(function(a,b){
 			return ( (b.usd||0)-(a.usd||0) );
 		});
@@ -75,14 +73,14 @@ view_publisher_countries_top.ajax=function(args)
 		for( var i=0; i<limit ; i++ )
 		{
 			var v=list[i];
-			
+
 			if((i==limit-1)&&(i<(list.length-1))) // last one combines everything else
 			{
 				v={};
 				v.usd=total-shown;
 				v.str_lab=(1+list.length-limit)+" More";
 			}
-			
+
 			if(v)
 			{
 				shown+=v.usd;
@@ -95,7 +93,7 @@ view_publisher_countries_top.ajax=function(args)
 				dd.push(d);
 			}
 		}
-			
+
 		ctrack.chunk("data_chart_publisher_countries",dd);
 		ctrack.chunk("countries_count",list.length);
 

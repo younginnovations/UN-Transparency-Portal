@@ -73,10 +73,9 @@ view_stats.ajax = function (args) {
 //	if(dat.country_code) { dat.from+=",country"; }
 
     fetch.ajax_dat_fix(dat, args);
-
     fetch.ajax(dat, args.callback || function (data) {
 //		console.log("view_stats.numof_callback");
-//      console.log(data);
+    //  console.log(data);
 //            console.log('biju',ctrack.convert_usd);
 //            console.log('biju',ctrack.display_usd);
 

@@ -352,7 +352,7 @@ a.country_code .select_wrap img {
 
 /*	Select dropdowns
 	============================================= */
-#country_dropmenu, #publisher_dropmenu,
+#country_dropmenu, #sector_dropmenu,
 .compare_wrap {
     display: inline-block;
     vertical-align: top;
@@ -361,7 +361,7 @@ a.country_code .select_wrap img {
     margin-right: 10px;
 }
 
-#publisher_dropmenu, .compare_wrap.r {
+#sector_dropmenu, .compare_wrap.r {
     margin-right: 0;
     margin-left: 20px;
 }
@@ -370,7 +370,7 @@ a.country_code .select_wrap img {
     margin-top: 40px;
 }
 
-#country_dropmenu select, #publisher_dropmenu select {
+#country_dropmenu select, #sector_dropmenu select {
     min-width: 460px;
     max-width: 460px;
 }
@@ -996,3 +996,25 @@ a.link-to-members{
 .link-to-members{
     font-size: 12px;
 }
+
+
+/*	Spinner / loading animation
+	============================================= */
+.spinner {
+  height:20px;
+  width:20px;
+  margin:90px auto 0 auto;
+  -webkit-animation:spin .6s infinite linear;
+  -moz-animation:spin .6s infinite linear;
+  -o-animation:spin .6s infinite linear;
+  animation:spin .6s infinite linear;
+  border-left:6px solid rgba(0,143,255,.15);
+  border-right:6px solid rgba(0,143,255,.15);
+  border-bottom:6px solid rgba(0,143,255,.15);
+  border-top:6px solid rgba(0,143,255,.8);
+  border-radius:100%;}
+
+@-webkit-keyframes spin {from {-webkit-transform:rotate(0deg);} to {-webkit-transform: rotate(359deg);}}
+@-moz-keyframes spin {from {-moz-transform: rotate(0deg);} to {-moz-transform: rotate(359deg);}}
+@-o-keyframes spin {from {-o-transform: rotate(0deg);} to {-o-transform: rotate(359deg);}}
+@keyframes spin {from {transform: rotate(0deg);} to {transform: rotate(359deg);}}
