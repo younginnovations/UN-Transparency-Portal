@@ -142,8 +142,21 @@ namespace :app_restart do
     end
 end
 
+namespace :dportal do
+    desc 'Symbolic link for shared folders'
+        task :create_symlink do
+            on roles(:all) do
+            within release_path do
+               execute :"ln -s #{shared_path}/cache #{release_path}/dstore/"
+               execute :"ln -s #{shared_path}/db #{release_path}/dstore/"
+            end
+        end
+    end
+end
+
 namespace :deploy do
     after :starting, "hipchat:start"
+    after :published, "dportal:create_symlink"
     after :published, "app_stop:stop"
     after :published, "install_dependency:install"
     after :published, "app_build:build"
