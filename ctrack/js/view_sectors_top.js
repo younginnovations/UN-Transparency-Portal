@@ -23,7 +23,7 @@ view_sectors_top.chunks=[
 
 
 //
-// Perform fake ajax call to get data 
+// Perform fake ajax call to get data
 //
 view_sectors_top.ajax=function(args)
 {
@@ -50,7 +50,6 @@ view_sectors_top.ajax=function(args)
 
 	if(!dat.reporting_ref){dat.flags=0;} // ignore double activities unless we are looking at a select publisher
 	var callback=function(data){
-		
 		for(var i=0;i<data.rows.length;i++)
 		{
 			var v=data.rows[i];
@@ -77,7 +76,7 @@ view_sectors_top.ajax=function(args)
 		var dd=[];
 		for( var i=0; i<limit ; i++ )
 		{
-			var v=list[i];			
+			var v=list[i];
 			if(v)
 			{
 				if((i==limit-1)&&(i<(list.length-1))) // last one combines everything else
@@ -90,7 +89,7 @@ view_sectors_top.ajax=function(args)
 				{
 					v.usd=Math.floor(v.usd);
 				}
-				
+
 				if(v)
 				{
 					var d={};
@@ -106,7 +105,7 @@ view_sectors_top.ajax=function(args)
 			}
 		}
 
-		ctrack.chunk("data_chart_sectors",dd);	
+		ctrack.chunk("data_chart_sectors",dd);
 		ctrack.display();
 
 	};

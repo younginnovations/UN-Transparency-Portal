@@ -127,6 +127,7 @@
                     <h2>{members_and_observers_text}<a class="link-to-members" href="https://undg.org/home/about-undg/members/">{learn_more_about_members}</a></h2>
 
                     <div class="flexslider">
+                      {loading}
                         <ul id="un_publisher_list" class="country_menu_list slides"></ul>
                     </div>
                 </div>
@@ -151,7 +152,7 @@
                 </div>
                 <div class="country_menu_list_wrap">
                     <div id="country_dropmenu"></div>
-                    <div id="publisher_dropmenu"></div>
+                    <div id="sector_dropmenu"></div>
                     <div class="menu_list_wrap left">
                         <ul id="country_menu_list" class="country_menu_list"></ul>
                     </div>
@@ -250,6 +251,8 @@
     </a>
 </li>
 
+#loading
+<div class="spinner"></div>
 <!-- #publisher_select
 <li class="publishercol">
 	<a class="country_code" href="{root}ctrack.html?publisher={it.id}&tongue={tongue}">
@@ -387,9 +390,9 @@
 // goto new url
         var change = function () {
 
-            var name = "" + $("#publisher_dropmenu select").val();
+            var name = "" + $("#sector_dropmenu select").val();
             if (name && (name != "")) {
-                window.location.href = "{root}ctrack.html?publisher=" + name + "&tongue={tongue}"
+                window.location.href = "{root}ctrack.html?sector=" + name + "&tongue={tongue}"
             }
 
             var name = "" + $("#country_dropmenu select").val();
@@ -421,10 +424,10 @@
                     }
                 }
                 aa.push("</select>");
-                $("#publisher_dropmenu").html(aa.join(""));
+                $("#sector_dropmenu").html(aa.join(""));
 
-                $("#publisher_dropmenu select").change(change);
-                $("#publisher_dropmenu select").chosen({
+                $("#sector_dropmenu select").change(change);
+                $("#sector_dropmenu select").chosen({
                     search_contains: true,
                     "placeholder_text_single": "{publisher_dropmenu_text}"
                 });
@@ -434,9 +437,8 @@
                     if (v.sector_ref && v.name) {
                         sectorList.append(
                                 "	<li class=\"publishercol\">	" +
-                                "	<a class=\"country_code\"> " +
+                                "	<a class=\"country_code\" href=\"{root}ctrack.html?sector=" + v.sector_ref + "&tongue={tongue}\"> " +
                                 "			<span class=\"select_wrap publishername\">" + v.name + "</span>	" +
-                                    // "			<span class=\"select_wrap publisherid\">"+v.sector_ref+"</span>	"+
                                 "	</a> " +
                                 "	</li>		"
                         );
@@ -545,6 +547,7 @@
         // });
 
         $window.load(function () {
+          $('.spinner').hide();
             $('.flexslider').flexslider({
                 animation: "slide",
                 animationLoop: false,
