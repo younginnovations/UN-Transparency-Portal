@@ -65,12 +65,12 @@
 </div>
 
 
-#main_datainvestigators
-<div class="data_wrap">
-	<a href="mailto:support@iatistandard.org" class="data_invest">
-		{data_investigate_text}
-	</a>
-</div>
+<!--#main_datainvestigators-->
+<!--<div class="data_wrap">-->
+	<!--<a href="mailto:support@iatistandard.org" class="data_invest">-->
+		<!--{data_investigate_text}-->
+	<!--</a>-->
+<!--</div>-->
 
 
 #main_head
@@ -82,7 +82,6 @@
 				<a href="/" title="{mainback_tip_text}"><img src="{flava}UNDG_logo.png" alt="{dportal_logo_alt_text}" height="47px"/></a>
 			</td>
 			{main_head_tail_settings}
-			
 			
 #main_settings
 <div id="settings" style="display:none;">
@@ -131,6 +130,26 @@
 
 #main_head_tail_settings
 		<td class="settings_toggle">
+			<div class="menu-link-wrap">
+				<div class="menu">
+					<a href="about.html">
+						<span>{about_text}</span>
+						<!--<span class="path_txt">{install_info_text}</span>-->
+					</a>
+				</div>
+				<div class="menu">
+					<a href="/ctrack.html#view=generator">
+						<span>{generator_text}</span>
+						<!--<span class="path_txt">{install_info_text}</span>-->
+					</a>
+				</div>
+				<div class="menu">
+					<a href="https://github.com/younginnovations/UN-Transparency-Portal/issues" target="_blank">
+						<span>{develop_button_text}</span>
+						<!--<span class="path_txt">{develop_info_text}</span>-->
+					</a>
+				</div>
+			</div>
 			<a href="#" onclick="$('#settings').toggle();" class="settings_link">
 				<span>{change_settings_text}</span><img src="{flava}settings.png" width="35" height="35"/>
 			</a>

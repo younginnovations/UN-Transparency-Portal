@@ -1,12 +1,12 @@
 /*	Original flava CSS for d-portal.org 2014 ^o^
-	If you're reading this in github, 
+	If you're reading this in github,
 	please change to Tabs-4 as github is broken.
 	============================================= */
 html,body,div,span,applet,object,iframe,h1,h2,h3,h4,h5,h6,p,blockquote,pre,a,abbr,acronym,address,big,cite,code,del,dfn,em,img,ins,kbd,q,s,samp,small,strike,strong,sub,sup,tt,var,b,u,i,center,dl,dt,dd,ol,ul,li,fieldset,form,label,legend,table,caption,tbody,tfoot,thead,tr,th,td,article,aside,canvas,details,embed,figure,figcaption,footer,header,hgroup,menu,nav,output,ruby,section,summary,time,mark,audio,video{border:0;font-size:100%;font:inherit;vertical-align:top;margin:0;padding:0}article,aside,details,figcaption,figure,footer,header,hgroup,menu,nav,section{display:block}body{line-height:1}ol,ul{list-style:none}blockquote,q{quotes:none}blockquote:before,blockquote:after,q:before,q:after{content:none}table{border-collapse:collapse;border-spacing:0}	/* Resets */
 
 a,img{border:0; outline:none;}textarea:focus,input:focus{outline:0;}*:focus{outline:0;}
 
-img						{-webkit-filter:brightness(200%); filter:brightness(200%);}
+/*img						{-webkit-filter:brightness(200%); filter:brightness(200%);}*/
 
 body,html 				{background:none; color:#444; width:100%; height:100%; margin:0; padding:0; font-family:Arial,Helvetica,sans-serif; text-rendering:optimizelegibility; word-wrap:break-word;}
 /*html					{background-color:#000;}*/
@@ -36,34 +36,41 @@ strong, b, .bold		{font-weight:bold; color:inherit;}
 .main_wrap				{width:100%; min-width:1040px; padding:0px; display:table-cell; background-color:rgba(255,255,255,0.4);}
 /*#background_image	 	{width:100%; height:100%; position:fixed; top:0; left:0; z-index:-1; background-image:url('/art/mexico_background_image.jpg'); background-repeat:no-repeat; background-position:center center; -webkit-background-size:cover; -moz-background-size:cover; -o-background-size:cover; background-size:cover;}*/
 .overlay				{width:100%; height:100%; position:relative;}	/* Overlay colour for background image background-color:rgba(46,41,6,0.6);*/
-iati-activity			{margin-bottom:40px;}	/* Fixes too-large bottom margin during only this instance */
-iati-activity:after 	{content:""; padding:0; display:initial;}	/* Takes away content since footer is included on site */
-.center_wrap			{width:960px; margin:0 auto; text-align:center;}
-
+.iati-activity			{margin-bottom:40px;}	/* Fixes too-large bottom margin during only this instance */
+.iati-activity:after 	{content:""; padding:0; display:initial;}	/* Takes away content since footer is included on site */
+.center_wrap			{width:960px; margin: 0 auto; text-align:center;}
+/*.center_wrap a.button          {background: none; color: rgba(51, 51, 51, 0.64); padding: 0; font-size: 16px;}*/
+/*.center_wrap a.button:hover          {text-decoration: underline; background: none;}*/
 
 /*	Settings
-	============================================= */
-#settings				{padding:10px 40px 30px 40px; margin:0 auto; background-color:#fff; margin-bottom:40px;}
+    ============================================= */
+#settings				{padding:10px 40px 30px 40px; margin:0 auto 40px; background-color:#fff;}
 span.settings_info		{min-width:135px; display:inline-block;}
 td.settings_toggle		{text-align:right; vertical-align:middle;}
-a.settings_link span	{color:rgba(255,255,255,1); padding:10px 15px 0 0; display:inline-block;}
+a.settings_link         {color: #0067B1; font-size:11px; text-transform:uppercase;}
+a.settings_link span	{padding:10px 15px 0 0; display:inline-block;}
 td.options				{padding-top:20px;}
 td.options:hover		{cursor:default;}
 td.options form			{display:inline-block;}
+.menu-link-wrap         {display: inline-block;padding:10px 0 0;}
+.menu-link-wrap .menu   {float: left; display: inline-block;margin-right: 15px;}
+.menu-link-wrap .menu:last-child   {margin-right: 0;}
+.menu-link-wrap .menu a   {font-size: 11px;text-transform: uppercase; color: #0067B1;}
+.menu-link-wrap .menu a:hover   {color: #004373;}
+
 
 
 /*	Status badge next to d-portal logo in headers
-	============================================= */
-span.badge			{display:inline-block; vertical-align:bottom; color:#fff; padding:5px 10px; border-radius:4px; font-weight:bold; font-size:0.8em; margin-left:10px;}
+    ============================================= */
+span.badge			    {display:inline-block; vertical-align:bottom; color:#fff; padding:5px 10px; border-radius:4px; font-weight:bold; font-size:0.8em; margin-left:10px;}
 span.badge.beta			{background-color:#D80051;}
 
 
 /*	Breadcrumbs
 	============================================= */
-a.crumb					{display:inline-block; vertical-align:top; padding:0 10px; font-size:1.0em; color:#A8C5E5; line-height:1.1em;}
-a.crumb:hover			{color:#FFF;}
+a.crumb					{display:inline-block; vertical-align:top; padding:0 10px; font-size: 12px; color:#0067B1; line-height:1.1em;}
 a.crumb.first			{padding-left:0px;}
-.crumb_wrap				{width:960px; margin:0 auto; padding-top:10px; font-size:0.9em; color:#CCC; line-height:1.1em;}
+.crumb_wrap				{width:960px; margin:0 auto; padding: 30px 0 20px; font-size: 12px; color:#CCC; line-height:1.1em;}
 .crumb_wrap span		{display:inline-block; vertical-align:top; padding:0 10px; font-size:1.0em; color:#FFF; line-height:1.1em;}
 
 
@@ -75,9 +82,11 @@ option					{color:#000;}
 
 /*	About data links
 	============================================= */
-a.about_data			{display:inline-block; vertical-align:bottom; padding:0 10px; text-align:center; color:#8F8F8F; font-size:0.9em; line-height:1.2em;}
-a.about_data:hover		{color:#FFF;}
-a.about_data.quality	{border-left:1px solid #CCC; text-align:right; padding-right:0;}
+.about_more_info       {float: left; font-size: 12px; color: #666;}
+a.more_info             {color:#015CA8;}
+a.about_data			{background: url("/art/ic_about_data.png") no-repeat center left; display:inline-block; vertical-align:bottom; padding-left:20px; text-align:center; color:#666666; font-size:12px; line-height: 18px; margin-right: 30px; height:17px;}
+a.about_data:hover		{color:#666;}
+a.about_data.quality	{background: url("/art/ic_about_quality.png") no-repeat center left; text-align:right; margin-right: 0; padding-left: 23px;}
 
 
 /*	Header styles
@@ -85,7 +94,7 @@ a.about_data.quality	{border-left:1px solid #CCC; text-align:right; padding-righ
 .default				{width:960px; margin:0 auto; padding:0;}
 .default.head			{padding-top:20px;}
 .default.min			{padding-top:10px;}
-.default.declare		{padding:10px 0; font-size:0.9em; color:#FFF;}
+.default.declare		{padding:10px 0; font-size:0.9em; color:#333;border-bottom: 10px solid #0067B1;}
 .default.graph			{padding:40px 0;}
 .default.about			{padding:10px 0; text-align:right;}
 .default.data			{padding:20px 0 40px 0;}
@@ -122,7 +131,7 @@ a.ask.sector:hover		{background-color:#14EE96;}
 .peak					{margin:0 auto; width:0; height:0; border-left:20px solid transparent; border-right:20px solid transparent; display:block;}	/* Triangles */
 .peak.donor				{border-top:20px solid #008FFF;}
 .peak.sector			{border-top:20px solid #00C475;}
-a.view_all_money		{display:block; width:960px; background-color:rgba(0,14,32,0.7); color:#CCC; border-radius:0 0 8px 8px; text-align:center; margin:0 auto; padding:15px 0; font-size:1.1em;}
+a.view_all_money		{display:block; width:960px; background-color:#4C5662; color:#CCC; border-radius:0 0 8px 8px; text-align:center; margin:0 auto; padding:15px 0; font-size:1.1em;}
 a.view_all_money:hover	{background-color:rgba(0,14,32,0.9); color:#FFF;}
 .caption				{border-bottom:0;}
 .caption:last-of-type	{border-bottom:1px;}
@@ -132,7 +141,7 @@ a.view_all_money:hover	{background-color:rgba(0,14,32,0.9); color:#FFF;}
 /*	Map styles (front page)
 	============================================= */
 .map_wrap				{width:100%; min-height:400px; max-height:400px; margin:0 auto; background-color:rgba(0,0,0,0.8); position:relative;}
-.map_info				{width:800px; margin:0 auto; top:0; left:-100px; right:-100px; padding:10px 40px; font-size:1.1em; color:#FFF; line-height:1.35em; position:absolute; background-color:rgba(52,174,255,0.9); border-radius:0 0 8px 8px; text-align:center;}
+.map_info				{width:800px; margin:0 auto; top:0; left:-100px; right:-100px; padding:10px 40px 15px; font-size:1.1em; color:#FFF; line-height:1.35em; position:absolute; background-color:rgba(52,174,255,0.7); border-radius:0 0 8px 8px; text-align:center;}
 .map_no_info			{color:#FFF; font-size:1.2em; line-height:1.35em; text-align:center; position:absolute; top:50%; left:20%; right:20%;}
 a.map_percent			{display:block; width:140px; margin:0 auto; bottom:30px; left:-80px; right:-780px; padding:10px 15px 15px 15px; font-size:0.95em; color:#FFF; line-height:1.15em; position:absolute; background-color:rgba(0,14,32,0.8); border-radius:8px; z-index:1; text-align:left;}
 a.map_percent:hover		{background-color:rgba(0,14,32,0.9);}
@@ -151,19 +160,19 @@ a.map_percent span		{display:inline; font-size:1.15em; line-height:1.0em; color:
 
 /*	Stats (key figures) styles
 	============================================= */
-.stats_wrap				{width:100%; margin:0 auto; padding:40px 0;}
-span.stats_title		{display:block; font-size:1.5em; color:#898989; padding-bottom:10px;}
+.stats_wrap				{width:100%; margin:0 auto; padding:60px 0;}
+span.stats_title		{display:block; font-size:20px; line-height: 26px; color:rgba(102, 102, 102, 0.68); padding-bottom:10px;}
 span.stats_title.view	{font-size:0.6em; color:#FFF;}
-span.stats_num			{display:block; font-size:8.0em; color:#008FFF;}
-span.stats_num.small	{display:block; font-size:49px;}
-span.stats_num.view		{font-size:2.9em; color:#FFF; line-height:0.8em;}
+span.stats_num			{display:block; font-size: 128px; line-height: 134px; color: #0067B1;}
+span.stats_num.small	{display:block; font-size:64px;line-height: 70px;}
+span.stats_num.view		{font-size: 107px; color:#FFF; line-height: 113px;}
 .declare.stats			{width:960px; margin:0 auto; padding-top:10px; color:#ccc; font-size:0.9em; text-align:right;}
 
-a.stats_link			{display:block; padding:30px 40px; height:100%; color:#ccc; border-radius:6px; margin:15px 5px 5px 10px; border:solid 1px #E1EEF7;}
-a.stats_link.active		{margin-left:0; padding:40px;}
+a.stats_link			{display:block; padding:30px 25px; height:100%; color:#ccc; border-radius:6px; margin:15px 5px 5px 10px; border:solid 2px rgba(0, 103, 177, 0.1);}
+a.stats_link.active		{margin-left:0;}
 a.stats_link.total, a.stats_link.publishers		{margin-right:0;}
 a.stats_link.planned, a.stats_link.publishers	{margin-top:10px;}
-a.stats_link:hover			{background-color:rgba(0,14,32,0.9);}
+a.stats_link:hover			{background-color:rgb(242, 250, 255);}
 a.stats_link.missing		{margin-left:0;}
 a.stats_link.missing span	{color:#008FFF;}
 
@@ -172,7 +181,7 @@ a.stats_link.missing span	{color:#008FFF;}
 	============================================= */
 .main_title_wrap		{width:960px; margin:0 auto; padding:40px 20px;}
 .title_wrap				{width:960px; margin:0 auto; padding:0px 20px 40px 20px; margin-bottom:40px;}
-.table_wrap				{background-color:rgba(0,14,32,0.7); padding:0 0 20px 0; border-radius:0 0 8px 8px;}
+.table_wrap				{background-color:rgb(244, 243, 246); padding:0 0 20px 0; border-radius:0 0 8px 8px; text-align: center;}
 .table_wrap.main		{padding-bottom:0;}
 .table_wrap.view		{width:920px; margin:0 auto; padding:20px; margin-bottom:40px;}
 
@@ -180,46 +189,49 @@ a.stats_link.missing span	{color:#008FFF;}
 /*	Data Description styles
 	============================================= */
 .description_wrap		{width:100%; margin:0 auto;  padding-bottom:40px;}
-.description			{width:880px; margin:0 auto; padding:40px; text-align:left; margin-bottom:40px; background-color:#F5F5F7;}
-.description span.title	{display:block; color:#344; line-height:1.35em; font-size:1.4em; margin-top:20px; padding:10px 0; border-top:1px solid #FFF; border-bottom:1px solid #FFF;}
+.description			{width:880px; margin:50px auto 40px; padding:40px; text-align:left; background-color:#0067B1; border-radius: 4px; color: rgba(255, 255, 255, 0.7);}
+.description span.title	{display:block; line-height:1.35em; font-size:1.4em; margin-top:20px; padding:10px 0; border-top: 1px solid rgba(255, 255, 255, 0.2); border-bottom: 1px solid rgba(255, 255, 255, 0.2);}
 .description span.title.sub	{font-size:1.0em; border:0; margin:0; padding-bottom:10px; font-weight:bold;}
-.description p			{padding:15px 0; font-size:1.0em; color:#344; line-height:1.4em;}
-.description p.about_data	{border-top:1px solid #000; margin-top:30px;}
-.description a			{color:#0067B1; text-decoration:none;}
+.description p			{padding:15px 0; font-size:1.0em; line-height:1.4em;}
+.description p.about_data	{border-top:1px solid #000; margin-top:30px; border-top: 1px solid rgba(255, 255, 255, 0.2);}
+.description a			{color:#fff; text-decoration:none;}
 .description a:hover	{text-decoration:underline;}
-a.read					{display:inline-block; width:50%; text-decoration:none; color:#0067B1; font-size:1.0em;}
+a.read					{display:inline-block; width:50%; text-decoration:none; color:#fff; font-size:1.0em;}
 a.read.right			{text-align:right;}
 a.read:hover			{text-decoration:underline;}
 
 
 /*	Generic styles
 	============================================= */
-.head_wrap					{width:860px; margin:0 auto; padding:20px 0;}	
-.icon_wrap					{width:330px; display:inline-block; vertical-align:bottom;}
-.peak_wrap					{display:inline-block; vertical-align:top;}
+.head_wrap					{width:860px; margin:0 auto; padding:60px 0;}
+.icon_wrap					{width:330px; display:inline-block; text-align: center; vertical-align:middle; margin-top: 10px;}
+.icon_wrap img              {width: auto;}
+.head_wrap.publisher .icon_wrap img              {height: 155px;}
+.publisher .peak_wrap       {margin-left: 10px; margin-right: -5px;}
+.publisher .list_peak_space {height: 65px;}
+.peak_wrap					{display:inline-block; vertical-align:top; margin-top: 10px;}
 .peak_space					{height:30px;}
-.list_peak_space			{height:60px;}
+.list_peak_space			{height:90px;}
 .list_peak					{width:0; height:0; border-top:20px solid transparent; border-left:20px solid transparent; border-right:30px solid #008FFF; border-bottom:20px solid transparent;}
 .head_title_wrap			{width:480px; display:inline-block; vertical-align:top;}
 .list_head_title			{width:400px; background-color:#008FFF; padding:20px 40px; text-align:center; color:#FFF; font-size:2.3em;}
 .list_stats_title			{display:block; font-size:0.6em; color:#FFF; padding-bottom:10px;}
 .list_stats_num				{display:block; font-size:2.9em; color:#FFF; line-height:0.8em;}
-a.button					{padding:10px 20px; background-color:#33A4FC; font-size:1.25em; color:#FFF; border-radius:0 0 8px 8px; display:block; max-width:320px; margin:0 auto; text-align:center;}
+a.button					{padding:15px 20px; background-color:#0067B1; font-size:1.25em; color:#FFF; border-radius:0 0 8px 8px; display:block; max-width:320px; margin:0 auto; text-align:center;}
 a.button:hover				{background-color:#008FFF;}
-a.csv_download				{display:block; margin-top:20px; padding:10px 0; background-color:rgba(132,191,255,0.24); text-align:center; color:#ccc; margin-left:20px; margin-right:20px;}
-a.csv_download:hover		{background-color:rgba(115,182,255,0.49); color:#FFF;}
-	
-	
+a.csv_download				{display:inline-block; margin-top:20px; padding:15px 20px 15px 37px; background:rgb(1, 92, 168) url('/art/ic_file_download.png') no-repeat center left 12px; text-align:center; color:#FFF; border-radius: 5px;}
+a.csv_download:hover		{background-color:rgb(4, 110, 199);}
+
 /*	For url #view=donors & all #view=donor_*
 	============================================= */
-.donors_peak				{width:0; height:0; border-top:20px solid transparent; border-left:20px solid transparent; border-right:30px solid #008FFF; border-bottom:20px solid transparent;}	/* Triangles */
-.donors_peak.view			{border-right:30px solid #008FFF;}
-.donors_head_title			{width:400px; background-color:#008FFF; padding:20px 40px; text-align:center; color:#FFF; font-size:2.3em;}
-.donors_head_title.view		{background-color:#008FFF;}
-
+.donors_peak				{width:0; height:0; border-top:10px solid transparent; border-left:10px solid transparent; border-bottom:10px solid transparent;}	/* Triangles */
+.donors_peak.view			{border-right: 14px solid #0067B1;}
+.donors_head_title			{width:400px; border-radius: 8px; background-color: #0067B1;; padding:48px 40px 10px; text-align:center; color:#FFF; font-size:36px; line-height: 42px;}
+.donors_head_title.view		{background-color: #0067B1; border-radius: 8px;}
+.publisher .donors_head_title {padding:48px 40px;}
 
 /*	For url #view=donor_activities
-	============================================= */
+    ============================================= */
 .donor_activities_spend_wrap	{position:relative;}
 .donor_activities_spend			{color:#B8C8CD;}
 .donor_activities_spend span	{padding-bottom:3px;}
@@ -246,8 +258,8 @@ a.csv_download:hover		{background-color:rgba(115,182,255,0.49); color:#FFF;}
 a#search_link				{background-color:rgba(0,14,32,0.7); color:#53B4ED;}
 a#search_link span			{color:#83AEC7;}
 a#search_link:hover			{background-color:rgba(0,14,32,0.9);}
-	
-	
+
+
 /*	Search Headers
 	============================================= */
 .search_cont				{margin:0 auto; padding:5px 0 10px 0; border-bottom:10px solid #FFF;}
@@ -277,13 +289,13 @@ table.head img				{-webkit-filter:brightness(100%); filter:brightness(100%);}
 
 /*	Table for Country Name and Flag
 	============================================= */
-table.country				{width:960px; margin:0 auto; padding:20px 0; border-collapse:initial; border-bottom:10px solid #EFEFEF;}
-table.country td.name		{width:800px; max-width:800px; padding-right:10px; font-size:4.0em; line-height:1.1em; color:#333333;}
+table.country				{width:960px; margin:0 auto; padding:40px 0 0; border-collapse:initial; border-bottom:10px solid #EFEFEF;}
+table.country td.name		{width:800px; max-width:800px; padding-right:10px; font-size:64px; line-height:70px; color:#333333; padding-bottom: 20px;}
 table.country td.name.publisher	{width:960px; max-width:960px; padding-right:0px;}
 table.country td.flag		{text-align:right;}
-table.country td.flag img	{max-height:90px;}
+table.country td.flag img	{max-height:50px;}
 table.country.min			{padding:10px 0;}
-table.country.min td.name	{width:860px; max-width:860px; padding-right:20px; font-size:2.0em; line-height:1.1em; color:#FFF;}
+table.country.min td.name	{width:860px; max-width:860px; padding-right:20px; font-size:2.0em; line-height:1.1em; color:#2D2D2D;}
 table.country.min td.flag img	{max-height:50px;}
 table.country td:hover		{cursor:default;}
 table.country img			{-webkit-filter:brightness(100%); filter:brightness(100%);}
@@ -292,14 +304,15 @@ table.country img			{-webkit-filter:brightness(100%); filter:brightness(100%);}
 
 /*	Table Titles
 	============================================= */
-table.title				{width:100%; margin:0 auto; border-collapse:separate; padding-bottom:15px; border-bottom:10px solid #EFEFEF;}
+table.title				{width:100%; margin:0 auto; border-collapse:separate; padding-bottom:15px; border-bottom:10px solid #0067B1;}
 table.title.key			{width:960px;}	/* Fix width for Key Figures */
 table.title.key a		{font-size:0.5em;}
-table.title td			{font-size:1.8em; line-height:1.15em; color:#333; vertical-align:bottom;}
+table.title td			{font-size:1.8em; line-height:1.15em; color:#333; vertical-align:top;}
 table.title td:hover	{cursor:default;}
 table.title td.sort		{padding:0 20px 0 10px; width:200px; color:#CCC; text-align:right; font-size:0.9em; line-height:1.1em;}
 table.title td.about	{padding-left:10px; width:350px;}
-table.title td.icon		{padding-right:10px; width:40px;}
+table.title td.icon		{width:35px; text-align: center; padding-right: 10px;}
+table.title td.icon img	{width:auto; height: 30px;}
 table.title td.total_spend	{padding-left:10px; width:300px; text-align:right;}
 
 
@@ -311,21 +324,21 @@ table.stats td			{padding:0px; vertical-align:top;}
 
 /*	Table for Active / Ended projects
 	============================================= */
-table.list				{width:100%; border-collapse:collapse;}
-table.list td			{color:#B8C8CD; font-size:1.25em; line-height:1.35em; word-spacing:0.7px; padding:20px 0; vertical-align:top; border-bottom:1px solid #333642;}
+table.list				{width:100%; border-collapse:collapse; text-align: left;}
+table.list td			{color:#2d2d2d; font-size:1.25em; line-height:1.35em; word-spacing:0.7px; padding:20px 0; vertical-align:top; border-bottom:1px solid #dfdfe2;}
 table.list tr:last-child td	{border:0; padding-bottom:20px;}
-table.list tr:hover		{background-color:rgba(0,0,0,0.4);}
+table.list tr:hover		{background-color:rgb(230, 240, 247);}
 table.list td:first-child	{padding-left:20px;}
 table.list td span		{display:block; padding-top:5px; color:#999; font-size:0.7em; line-height:1.0em;}
 table.list td.title		{padding:0;}
 table.list td.date		{text-align:right; padding-right:20px; min-width:160px;}
 table.list td.alert_no_iati		{text-align:center; font-size:2.0em; padding:20px 0 0 0; cursor:default;}
 table.list td.alert_no_iati a	{padding:10px 0;}
-table.list a			{display:inline-block; padding:20px; width:100%; color:#A8C5E5;}
+table.list a			{display:inline-block; padding:20px; width:100%; color:#2d2d2d;}
 table.list a:focus		{color:#FFF; text-decoration:none;}
 table.list a:link  		{color:#A8C5E5; text-decoration:none;}
 table.list a:visited	{color:#A8C5E5; text-decoration:none;}
-table.list a:hover		{color:#FFF; text-decoration:none;}
+table.list a:hover		{text-decoration:none;}
 table.list a:active		{color:#A8C5E5; text-decoration:none;}
 
 
@@ -335,28 +348,29 @@ table.money					{width:100%; border-collapse:collapse; table-layout:fixed;}
 table.money td				{text-align:right; color:#B8C8CD; font-size:1.0em; line-height:1.45em; word-spacing:0.7px; padding:0px; vertical-align:top; border-bottom:1px solid #1E90FF; padding:15px 10px;}
 table.money td.col1			{text-align:left; background-color:rgba(74,82,54,0.4);}
 table.money td.col2			{text-align:left;}
-table.money td.col3			{background-color:rgba(17,46,105,0.2);}
-table.money td.col4			{background-color:rgba(17,46,105,0.4);}
-table.money td.col5			{background-color:rgba(17,46,105,0.6);}
-table.money td.col6			{background-color:rgba(17,101,105,0.4);}
-table.money td.col7			{background-color:rgba(17,101,105,0.6);}
+table.money td.col3			{background-color:#113B59;}
+table.money td.col4			{background-color:#15527D;}
+table.money td.col5			{background-color:#205F8C;}
+table.money td.col6			{background-color:#14635B;}
+table.money td.col7			{background-color:#1C8A7F;}
 
 table.money tr.row1 th		{background-color:transparent; color:#FFF; font-weight:700; text-align:center; padding:0px; position:relative;}
 table.money tr.row1 th:hover{cursor:pointer;}
 table.money tr.row1 th span	{color:#FFF; display:block; padding:20px 10px;}
 table.money tr.row1 th.col1	{background-color:rgba(74,82,54,0.9); padding:20px 10px; text-align:left; border:1px solid rgba(74,87,43,1); border-bottom:1px solid #1E90FF;}
-table.money tr.row1 th.col2	{text-align:left; border-bottom:1px solid #1E90FF; padding:20px 15px; border-top:1px solid rgba(0,50,151,1);}
-table.money tr.row1 th.col3	{background-color:rgba(17,46,105,0.9); border:1px solid rgba(0,50,151,1); border-bottom:1px solid #1E90FF;}
-table.money tr.row1 th.col4	{background-color:rgba(17,101,105,0.9); border:1px solid rgba(7,117,122,1); border-bottom:1px solid #1E90FF;}
+table.money tr.row1 th.col2	{text-align:left; border-bottom:1px solid #1E90FF; padding:20px 15px; border-top:1px solid rgba(0,50,151,1);background: #0067B1;}
+table.money tr.row1 th.col3	{background-color:#00497D; border:1px solid rgba(0,50,151,1); border-bottom:1px solid #1E90FF;}
+table.money tr.row1 th.col4	{background-color:#1F998C; border:1px solid rgba(7,117,122,1); border-bottom:1px solid #1E90FF;}
 
 table.money tr.row2 td		{color:#FFF; font-weight:500; padding:20px 10px;}
 table.money tr.row2 td.col1 {background-color:rgba(74,82,54,0.9); border-left:1px solid rgba(74,87,43,1); border-right:1px solid rgba(74,87,43,1);}
-table.money tr.row2 td.col3	{background-color:rgba(17,46,105,0.6); border-left:1px solid rgba(0,50,151,1);}
-table.money tr.row2 td.col4	{background-color:rgba(17,46,105,0.8);}
-table.money tr.row2 td.col5	{background-color:rgba(17,46,105,0.9); border-right:1px solid rgba(0,50,151,1);}
-table.money tr.row2 td.col6	{background-color:rgba(17,101,105,0.7);}
-table.money tr.row2 td.col7	{background-color:rgba(17,101,105,0.9); border-right:1px solid rgba(7,117,122,1);}
-table.money tr.row2 td.col2	{padding:20px 15px;}
+table.money tr.row2 td.col3	{background-color:#003D69; border-left:1px solid rgba(0,50,151,1);}
+table.money tr.row2 td.col4	{background-color:#00497D;}
+table.money tr.row2 td.col5	{background-color:#00528C; border-right:1px solid rgba(0,50,151,1);}
+table.money tr.row2 td.col6	{background-color:#187A71;}
+table.money tr.row2 td.col7	{background-color:#1C8A7F; border-right:1px solid rgba(7,117,122,1);}
+table.money tr.row2 td.col2	{padding:20px 15px; background: #0067B1;}
+table.money tr.rows td:first-child{background: #0067B1;}
 
 table.money tr.rows td.col1	{border-left:1px solid rgba(74,87,43,1); border-right:1px solid rgba(74,87,43,1);}
 table.money tr.rows td.col3	{border-left:1px solid rgba(0,50,151,1);}
@@ -365,34 +379,30 @@ table.money tr.rows td.col7	{border-right:1px solid rgba(7,117,122,1);}
 
 table.money td.col1:hover	{cursor:default;}
 table.money tr.row2 td.col1:hover	{cursor:pointer;}
-table.money tr.rows td.col2:hover, table.money tr.rows td.col3:hover, 
+table.money tr.rows td.col2:hover, table.money tr.rows td.col3:hover,
 table.money tr.rows td.col4:hover, table.money tr.rows td.col5:hover	{background-color:rgba(17,46,105,1);}
 table.money tr.rows td.col6:hover	{background-color:rgba(17,101,105,1);}
 table.money tr.rows td.col7:hover	{cursor:initial; color:#B8C8CD;}
 
-table.money a				{display:block; color:#A8C5E5; word-wrap:normal;}
+table.money a				{display:block; color: rgba(255, 255, 255, 0.7); word-wrap:normal;}
 table.money a:focus			{color:#A8C5E5; text-decoration:none;}
 table.money a:link  		{color:#A8C5E5; text-decoration:none;}
 table.money a:visited		{color:#A8C5E5; text-decoration:none;}
 table.money td:hover,
 table.money a:hover			{color:#FFF; text-decoration:none;}
 table.money a:active		{color:#A8C5E5; text-decoration: none;}
-table.money a.year			{position:absolute; background-color:#3371B8; padding:20px 10px; top:0;}
+table.money a.year			{position:absolute; background-color:#002A47; padding:20px 10px; top:0;}
 table.money a.year.prev		{left:0;}
 table.money a.year.next		{right:0;}
-
-table.money.publishers th.col2,
-table.money.publishers td.col2	{border-left:1px solid rgba(0,50,151,1);}
-table.money.publishers th.col2	{border-top:1px solid rgba(0,50,151,1);}
 
 
 /*	Table for Activities list (Donors / Sectors)
 	============================================= */
-table.activity			{width:100%; border-collapse:collapse;}
-table.activity td		{color:#B8C8CD; font-size:1.25em; line-height:1.0em; word-spacing:0.7px; padding:10px 20px; vertical-align:top; border-bottom:1px solid #333642;}
+table.activity			{width:100%; border-collapse:collapse; text-align: left;}
+table.activity td		{color:#2D2D2D; font-size:1.25em; line-height:1.0em; word-spacing:0.7px; padding:10px 20px; vertical-align:top; border-bottom:1px solid #DFDFE2;}
 table.activity th:hover	{cursor:default;}
 table.activity tr:last-child td	{border:0;}
-table.activity tr:hover	{background-color:rgba(0,0,0,0.4);}
+table.activity tr:hover	{background-color:rgb(230, 240, 247);}
 table.activity tr:first-child:hover	{background-color:transparent;}
 table.activity td.num	{padding:10px 0 10px 20px; font-size:1.0em; line-height:1.75em;}
 table.activity td.title	{padding:0 30px 0 0;}
@@ -402,24 +412,24 @@ table.activity td.count	{text-align:right; padding:10px 20px 0 40px; font-size:1
 table.activity td.date	{text-align:right; white-space:nowrap; font-size:1.0em; line-height:1.75em;}
 table.activity td.alert_no_iati	{text-align:center; font-size:2.0em; padding:20px 0 0 0; cursor:default;}
 table.activity td span	{display:block; padding:2px 0 3px 0; color:#999; font-size:0.7em; line-height:1.25em;}
-table.activity a		{display:inline-block; padding:10px 20px; width:100%; color:#95B0CF; line-height:1.35em; box-sizing:border-box;}
+table.activity a		{display:inline-block; padding:10px 20px; width:100%; color:#2D2D2D; line-height:1.35em; box-sizing:border-box;}
 table.activity a.percent{padding:10px 0px 20px 20px;}
 table.activity a:focus	{color:#FFF; text-decoration:none;}
 table.activity a:link  	{color:#A8C5E5; text-decoration:none;}
 table.activity a:visited{color:#A8C5E5; text-decoration:none;}
-table.activity a:hover	{color:#FFF; text-decoration:none;}
+table.activity a:hover	{text-decoration:none;}
 table.activity a:active	{color:#A8C5E5; text-decoration:none;}
 
 
 /*	Table for data descriptions footer (Donors / Sectors)
 	============================================= */
 table.data				{width:880px; border-collapse:collapse;}
-table.data td			{color:#FFF; font-size:1.0em; line-height:1.4em; padding:10px 20px; vertical-align:top; border:1px solid #CCC; cursor:default;}
+table.data td			{color:#FFF; font-size:1.0em; line-height:1.4em; padding:10px 20px; vertical-align:top; border:1px solid rgba(255, 255, 255, 0.2); cursor:default;}
 
 
 /*	Missing data
 	============================================= */
-.missing_data_wrap		{padding:40px; background-color:rgba(0,14,32,0.7); font-size:2em; color:#FFF; line-height:1.4em;}	
+.missing_data_wrap		{padding:40px; background-color:rgba(0,14,32,0.7); font-size:2em; color:#FFF; line-height:1.4em;}
 
 
 /*	Data Investigators alert
@@ -465,3 +475,5 @@ a.beige:hover			{color:#FFF;}
 @-moz-keyframes spin {from {-moz-transform: rotate(0deg);} to {-moz-transform: rotate(359deg);}}
 @-o-keyframes spin {from {-o-transform: rotate(0deg);} to {-o-transform: rotate(359deg);}}
 @keyframes spin {from {transform: rotate(0deg);} to {transform: rotate(359deg);}}
+
+
