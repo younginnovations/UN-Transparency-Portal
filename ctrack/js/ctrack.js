@@ -211,7 +211,13 @@ ctrack.setup=function(args)
 		args.publisher_select=cc.join("|");
 		args.chunks["publisher_code"]=args.publisher;
 		args.chunks["publisher_name"]=iati_codes.publisher_names[args.publisher] || args.publisher;
-
+		// args.chunks["link_address"]=iati_codes.about_more_info[args.publisher] || args.publisher;
+		if(iati_codes.about_more_info[args.publisher]){
+			args.chunks["link_address"] = "<span class='about_more_info'>For more details, please visit <a class='more_info' href='"+iati_codes.about_more_info[args.publisher]+"'>"+iati_codes.about_more_info[args.publisher]+"</a></span>";
+		}
+		else{
+			args.chunks["link_address"]="";
+		}
 		var nn=0;
 		var cc="";
 		var ii=0;
@@ -234,6 +240,7 @@ ctrack.setup=function(args)
 		args.chunks["main_publisher_map"]="";
 		args.chunks["publisher_name"]="";
 		args.chunks["back_publisher"]="";
+		args.chunks["link_address"]="";
 	}
 
 
