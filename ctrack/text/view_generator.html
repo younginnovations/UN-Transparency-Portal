@@ -1,6 +1,10 @@
 #view_generator
 {view_head}
-<style>.main_wrap{height:100%;}.overlay{background-color:rgba(40,40,40,0.9);}img{-webkit-filter:brightness(100%);filter:brightness(100%);}#background_image{url('/art/mexico_background_image.jpg')};{css}</style>
+<style>
+	.main_wrap{height:100%;}
+	.overlay{background-color:#fff;}
+	#background_image{url('/art/mexico_background_image.jpg')};{css}
+</style>
 {beige}
 {instructions}
 {generator}
@@ -171,9 +175,7 @@ Please select <b>ONE</b> recipient and <b>NO</b> publisher to generate content h
 #instructions
 <div class="instruct_wrap">
 	<div class="default">
-		<a href="http://d-portal.org/" title="Back to d-portal" class="logo">
-			<img src="/art/original/dp_logo.60.png" alt="d-portal logo" width="150" height="60">{status}
-		</a><div class="instruct_head"> Create IATI content with the d-portal Generator</div>
+		<div class="instruct_head"> Create UNDG’s IATI content with our generator</div>
 	</div>
 </div>
 <div class="instruct_col_wrap">
@@ -218,28 +220,28 @@ A 2016 project by United Nations Development Group
 
 #css
 body				{font-size:16px;}
-textarea			{display:block; width:884px; height:100px; margin-top:5px;}
+textarea			{display:block; width:800px; height:110px; margin-top:5px;border: 2px solid #d8d8d8; border-radius: 6px;}
 form div			{padding:5px 0;}
-form div span.opt	{display:inline-block; min-width:100px; color:#FFF; text-align:right; vertical-align:middle; margin-right:10px;}
+form div span.opt	{display:inline-block; min-width:100px; text-align:left; vertical-align:middle; margin-right:10px;}
 select				{border-radius:2px;}
  #frame				{margin:0 auto; width:960px; padding:20px 20px 0 20px; text-align:center;}
 a#frame_fix_size	{display:block; margin:0 auto; width:960px; border-radius:4px; padding:10px 0; text-align:center; background-color:#2573CD; color:#FFF; margin-top:10px; margin-bottom:10px;}
 a#frame_fix_size:hover	{background-color:#2F84E5;}
-.generator			{width:960px; margin:0 auto; padding:0; padding-top:20px;}
+.generator			{width:960px; margin:0 auto; padding:0; padding-top:20px;color: #333;border: 2px solid rgba(0, 103, 177, 0.1);border-radius: 6px;}
 .default			{width:960px; margin:0 auto; padding:0;}
 .mid_wrap			{display:inline-block; vertical-align:top; width:460px; max-width:460px;}
 .arrow				{width:0; height:0; border-top:30px solid #2573CD; border-left:30px solid transparent; border-right:30px solid transparent;}
-.instruct_wrap		{margin:0 auto; width:100%; padding:20px 0 40px 0; background-color:#2573CD;}
-.instruct_head		{display:inline-block; vertical-align:bottom; width:710px; text-align:right; color:#FFF; font-size:2em;}
-.instruct_info		{color:#FFF; margin-top:15px;}
-.instruct_down		{margin-left:70px; padding:20px 0; color:#FFF; font-size:0.97em; line-height:1.35em;}
+.instruct_wrap		{margin:0 auto; width:100%; padding:32px 0; background-color:#2573CD;}
+.instruct_head		{text-align:center; color:#FFF; font-size:2em;}
+.instruct_info		{margin-top:15px;}
+.instruct_down		{margin-left:70px; padding:20px 0; font-size:14px; line-height:20px;}
 .instruct_col_wrap	{width:100%;}
-.instruct_col		{display:inline-block; vertical-align:top; width:231px; padding:30px 20px; background-color:rgba(21,21,21,0.7); margin:40px 6px; box-sizing:border-box; border-radius:6px; max-height:280px; height:280px;}
+.instruct_col		{display:inline-block; vertical-align:top; width:231px; padding:30px 20px; border: 2px solid rgba(0, 103, 177, 0.1); margin:40px 6px; box-sizing:border-box; border-radius:6px; max-height:280px; height:280px;}
 .instruct_col.first	{margin-left:0;}
 .instruct_col.last	{margin-right:0;}
-.instruct_num		{text-align:center; color:#eee; font-size:6em; margin-bottom:10px;}
-.instruct_text		{text-align:center; color:#4CA0FF; font-size:1.4em;}
-.instruct_sub		{text-align:center; color:#ccc; font-size:1.0em; line-height:1.2em; margin-top:10px;}
+.instruct_num		{text-align:center; color:#333; font-size:100px; font-weight: bold; line-height: 106px; margin-bottom:10px;}
+.instruct_text		{text-align:center; color:#333; font-size: 24px; line-height: 30px;}
+.instruct_sub		{text-align:center; color: rgba(51, 51, 51, 0.7); font-size: 14px; line-height: 20px; margin-top:10px;}
 .instruct_fix		{background-color:#333; color:#ccc; padding:15px 0; text-align:center;}
 .instruct_fix span	{color:#4CA0FF; font-weight:bold;}
 .chosen-container	{min-width:250px; max-width:500px;}
@@ -268,11 +270,11 @@ margin-left:10px; line-height:1.5em;}
 span.overtxt		{display:none;}
 a.view:hover span.overtxt	{display:block; position:absolute; top:0; left:0; width:260px; height:119px; background-color:rgba(0,0,0,0.6); color:#FFF; text-align:center; line-height:6em;}
 
-.instruct_side		{display:inline-block; vertical-align:middle; margin-right:40px; width:30px; font-size:5em; color:#CCC;}
-.instruct_more		{display:inline-block; vertical-align:middle; width:890px;}
+.instruct_side		{display:inline-block; vertical-align:middle; width:30px; font-size:100px; line-height: 106px; color:#333; font-weight: bold; padding-left: 30px; margin-right: 60px;}
+.instruct_more		{display:inline-block; vertical-align:middle; width: 800px;}
 .instruct_more.a	{width:440px;}
-.instruct_more.b	{width:450px; font-size:0.9em; color:#CCC; font-style:italic;}
-.instruct_chunk		{width:960px; margin:0 auto; padding-top:10px; border-top:1px solid #535661; margin-top:10px;}
+.instruct_more.b	{width:200px; font-size:0.9em; color:#CCC; font-style:italic;}
+.instruct_chunk		{width:960px; margin:0 auto; padding-top:10px; border-top: 2px solid rgba(0, 103, 177, 0.1); margin-top:10px;}
 
 .instruct_rel		{position:relative;}
 span.drop_arrow		{display:block; width:20px; height:100%; background:url(/art/chosen-sprite.png) no-repeat 0 2px; text-align:right; position:absolute; left:595px; top:15px; z-index:999; pointer-events:none;}

@@ -11,36 +11,52 @@
 </head>
 <body>
 <div class="about-page">
-	<!--{view_head}-->
-	{main_head}
+	<nav>
+		<div class="menu-wrap">
+			<div class="img-wrap">
+				<a href="/"><img class="logo-img" src="{root}art/UNDG_logo.png" alt="UNDG logo"/></a>
+			</div>
+			<div class="menu-link-wrap">
+				<div class="menu">
 
-	<br/>
-	<h2 style="display: block;text-align: center;">ABOUT PAGE</h2>
-	<br/>
-	<p>
-
-		"Neque porro quisquam est qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit..."
-		"There is no one who loves pain itself, who seeks after it and wants to have it, simply because it is pain..."
-		Lipsum
-		Lipsum
-		Lipsum
-		Lipsum
-	</p>
-	<p>
-		Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin fermentum sapien eu nulla facilisis, et porttitor dolor consectetur. Vivamus suscipit metus arcu, fringilla tincidunt ex aliquet a. Duis non nisi ut velit consequat pellentesque nec ac nunc. Sed ut malesuada justo. Vivamus porta ligula egestas justo aliquam, consectetur mattis diam finibus. Maecenas sapien quam, malesuada et urna et, sodales ornare ante. Quisque et mi in nisl placerat finibus.
-</p>
-	<p>
-		Sed cursus vulputate justo vestibulum pulvinar. Cras accumsan gravida velit quis pharetra. Etiam lobortis lectus ut ex pellentesque facilisis sit amet ac turpis. Integer posuere leo vel mauris cursus laoreet. Nulla tempor erat vitae sollicitudin faucibus. Donec ut nulla eget erat rutrum congue. In commodo accumsan est, mollis efficitur nisl. Sed vehicula dictum lectus, sit amet vestibulum sapien suscipit a. Etiam convallis neque sed nisl gravida ultricies. Pellentesque vitae volutpat turpis. Integer congue, neque nec pretium varius, turpis felis consequat dolor, in ullamcorper nunc nibh vel arcu. Curabitur tincidunt neque lorem, quis vehicula ligula aliquam ut.
-	</p>
-	<p>
-		Mauris tincidunt purus ac velit ullamcorper, at fermentum nulla tincidunt. Sed efficitur varius accumsan. Praesent aliquam blandit lectus a tempor. Sed rhoncus fermentum ligula, at pharetra elit dictum vel. Maecenas egestas dolor et dictum faucibus. Phasellus odio nisi, porttitor nec efficitur non, mollis id nisi. Aliquam sit amet vulputate purus. Integer varius ipsum tortor, semper feugiat nisi semper eget. Vestibulum dictum, nisi in iaculis iaculis, odio tortor pulvinar nisl, ac viverra odio enim eu dui. Donec ornare tristique elementum. Nunc gravida molestie nibh in bibendum. Proin lobortis velit nunc, eget imperdiet mi fermentum sit amet. Suspendisse ante dui, vehicula nec enim vitae, accumsan feugiat quam. In dui tellus, malesuada sed neque rutrum, vehicula fermentum tortor. Donec finibus at ex vel mattis. Aliquam egestas sit amet velit ac hendrerit.
-	</p>
-	<p>
-		Pellentesque fringilla, ligula quis pulvinar pulvinar, justo purus hendrerit nisi, ut sodales purus arcu nec leo. Nullam dapibus, erat a pulvinar porta, dui felis malesuada leo, vel facilisis nisi neque sed odio. Pellentesque fringilla cursus malesuada. Duis elementum ullamcorper massa, sed tincidunt tellus convallis sagittis. Suspendisse potenti. Mauris mattis feugiat arcu, ut ullamcorper velit. Vivamus convallis ac dui vitae gravida.
-	</p>
-	<p>
-		Curabitur non ex at nisi tempus efficitur. In bibendum laoreet pellentesque. Etiam eget odio tincidunt, vulputate lectus in, fringilla dui. Praesent eget purus feugiat, elementum lacus aliquet, vulputate velit. Etiam at posuere nisl. Pellentesque convallis massa eget purus placerat feugiat. Nunc ac pulvinar tortor. Aliquam volutpat vel velit eget placerat. Aliquam erat volutpat. Cras nibh felis, sollicitudin et mattis a, scelerisque sit amet lectus.
-	</p>
+					<a href="about.html">
+						<span>{about_text}</span>
+						<!--<span class="path_txt">{install_info_text}</span>-->
+					</a>
+				</div>
+				<div class="menu">
+					<a href="/ctrack.html#view=generator">
+						<span>{install_button_text}</span>
+						<!--<span class="path_txt">{install_info_text}</span>-->
+					</a>
+				</div>
+				<!--<div class="menu">-->
+				<!--<a href="#explore">-->
+				<!--&lt;!&ndash;<span class="path_txt">{explore_info_text}</span>&ndash;&gt;-->
+				<!--</a>-->
+				<!--</div>-->
+				<div class="menu">
+					<a href="https://github.com/devinit/D-Portal/issues" target="_blank">
+						<span>{develop_button_text}</span>
+						<!--<span class="path_txt">{develop_info_text}</span>-->
+					</a>
+				</div>
+			</div>
+		</div>
+		<div class="tongue_wrap">{tongue_select}</div>
+	</nav>
+	<h2 class="title">About UNDG Transparency Portal</h2>
+	<div class="about-info">
+		<div>
+			<p>The International Aid Transparency Initiative (IATI) is a voluntary, multi-stakeholder initiative that seeks to improve the transparency of aid, development, and humanitarian resources in order to increase their effectiveness in tackling poverty. IATI brings together donor and recipient countries, civil society organizations, and other experts in aid information who are committed to working together to increase the transparency and openness of aid. At the center of IATI is the IATI Standard, a format and framework for publishing data on development cooperation activities, intended to be used by all organizations in development, including government donors, private sector organizations, and national and international NGOs. It was designed in close consultation with key users of development cooperation data in developing countries, to ensure its relevance and utility for a variety of different data users.[1]</p>
+			<p>In 2011, at the Fourth High Level Forum on Aid Effectiveness in Busan, Korea, the United Nations Development Group (UNDG) endorsed the Busan Partnership for Effective Development Co-operation. Paragraph 23(c) encourages its signatories to publish data according to IATI standard. An increasing number of UNDG members and observers are now publishing data and joining IATI as members.</p>
+		</div>
+		<div>
+			<h3>How to use the portal?</h3>
+			<p>The portal displays data of all UNDG members that are currently publishing data as per the IATI standard. The data is updated in real time by pulling data from the IATI registry
+				<a href="http://www.d-portal.org/">(http://www.d-portal.org/)</a>, the central data store gathering all data published to the IATI standard. This portal is meant to be a way for our partners to see all UNDG related data in one place. Data can be displayed by country, UN agency or sector.</p>
+		</div>
+	</div>
 	<!--{about_dportal}-->
 	<!--{more_dportal}-->
 	<!--{about_savi}-->
