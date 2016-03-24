@@ -15,8 +15,8 @@ $(function(){
 								.append("g");
 
 			var projection = d3.geo.mercator()
-								.scale(155)
-								.translate([340,300]);
+								.scale(120)
+								.translate([400,400]);
 
 			var geoPath = d3.geo.path().projection(projection);
 

@@ -32,7 +32,7 @@ view_test.view=function(args)
 }
 
 //
-// Perform fake ajax call to get data 
+// Perform fake ajax call to get data
 //
 view_test.ajax=function(args)
 {
@@ -61,14 +61,14 @@ view_test.ajax=function(args)
 	for( var i=0; i<limit ; i++ )
 	{
 		var v=list[i];
-		
+
 		if(i==limit-1)
 		{
 			v={};
 			v.usd=total-shown;
 			v.funder="Others...";
 		}
-		
+
 		if(v)
 		{
 			shown+=v.usd;
@@ -81,7 +81,7 @@ view_test.ajax=function(args)
 			dd.push(d);
 		}
 	}
-		
+
 	ctrack.chunk("data_chart_donors",dd);
 
 	ctrack.display();

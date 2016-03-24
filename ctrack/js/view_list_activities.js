@@ -48,7 +48,7 @@ view_list_activities.ajax=function(args)
 	var dat={
 			"from":"act",
 			"limit":args.limit || -1,
-			"select":"title,aid,funder_ref,"+ctrack.convert_str("commitment")+","+ctrack.convert_str("spend")+",reporting,reporting_ref,day_start,day_end",
+			"select":"title,aid,funder_ref,"+ctrack.convert_str("commitment")+","+ctrack.convert_str("spend")+",reporting,reporting_ref,sector_ref,day_start,day_end",
 			"orderby":"4-",
 			"groupby":"aid",
 //			"country_code":(args.country || ctrack.args.country_select),
@@ -67,8 +67,6 @@ view_list_activities.ajax=function(args)
 //	if(dat.location_latitude && dat.location_longitude) { dat.from+=",location"; }
 
 	fetch.ajax_dat_fix(dat,args);
-
-
 	if(args.output=="count") // just count please
 	{
 		dat.select="count_aid";
@@ -76,7 +74,7 @@ view_list_activities.ajax=function(args)
 		delete dat.orderby;
 		delete dat.groupby;
 	}
-		
+
 	fetch.ajax(dat,function(data){
 		if(args.output=="count")
 		{
@@ -85,7 +83,7 @@ view_list_activities.ajax=function(args)
 		}
 		else
 		{
-			
+
 			if(args.compare)
 			{
 				data.rows.sort(args.compare);
@@ -108,7 +106,7 @@ view_list_activities.ajax=function(args)
 				d.funder=v.funder || "N/A";
 				d.aid=encodeURIComponent(v.aid || "N/A");
 				d.title=v.title || v.aid || "N/A";
-				
+
 				d.date_start="N/A"
 				d.date_end="N/A"
 				if(v.day_start!==null) { d.date_start=fetch.get_nday(v.day_start); }
@@ -139,7 +137,7 @@ view_list_activities.ajax=function(args)
 				cc[cc.length]=[v.aid,v.title,v.reporting,v.commitment,v.spend,v.currency];
 			});
 			ctrack.chunk((args.chunk || "list_activities_datas")+"_csv","data:text/csv;charset=UTF-8,"+encodeURIComponent(csvw.arrayToCSV(cc)));
-			
+
 		}
 		if(args.callback){args.callback(data);}
 		ctrack.display();

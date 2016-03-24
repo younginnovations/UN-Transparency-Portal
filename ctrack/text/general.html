@@ -39,6 +39,7 @@
 <span class="badge beta">BETA</span>
 
 #portal_name
+{sector_name}
 {country_name}
 {publisher_name}
 
@@ -47,7 +48,7 @@
 	<div class="main_wrap">
 		<!--<div id="background_image"></div>-->
 		<div class="overlay">
-	
+
 #view_tail
 		</div>
 	</div>
@@ -82,7 +83,7 @@
 				<a href="/" title="{mainback_tip_text}"><img src="{flava}UNDG_logo.png" alt="{dportal_logo_alt_text}" height="47px"/></a>
 			</td>
 			{main_head_tail_settings}
-			
+
 #main_settings
 <div id="settings" style="display:none;">
 <table class="head">
@@ -118,15 +119,15 @@
 			<form action="">
 			<span class="settings_info">{settings_themes_text} </span>
 			<select id="flava_select" name="flava" class="">
-				<option value="original">{flava_original_text}</option> 
-				<option value="high">{flava_high_visibility_text}</option> 
+				<option value="original">{flava_original_text}</option>
+				<option value="high">{flava_high_visibility_text}</option>
 			</select>
 			</form>
 		</td>
 	</tr>
 </table>
 </div>
-	
+
 
 #main_head_tail_settings
 		<td class="settings_toggle">
@@ -220,9 +221,19 @@
 
 
 #main_min
+{main_sectormin}
 {main_countrymin}
 {main_pubmin}
 {main_searchmin}
+
+#main_sectormin
+<div class="default min">
+	<table class="country min">
+		<tr>
+			<td class="name publisher">{portal_name}</td>
+		</tr>
+	</table>
+</div>
 
 #main_countrymin
 <div class="default min">
@@ -267,11 +278,21 @@
 		</div>
 	</div>
 </div>
-	
+
 #main_max
+{main_sector}
 {main_country}
 {main_publisher}
 {main_search}
+
+#main_sector
+<div class="default">
+	<table class="country">
+		<tr>
+			<td class="name publisher">{portal_name}</td>
+		</tr>
+	</table>
+</div>
 
 #main_country
 <div class="default">

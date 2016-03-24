@@ -88,6 +88,9 @@ Back to D-Portal: Publisher Edition
 #back_text
 Back to {portal_name}
 
+#crumbname_sector_text
+{portal_name}
+
 #crumbname_main_text
 {portal_name} Home
 

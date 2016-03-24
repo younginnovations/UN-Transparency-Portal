@@ -25,6 +25,7 @@ views.map=require("./view_map.js");
 
 views.search=require("./view_search.js");
 views.main=require("./view_main.js");
+views.sector=require("./view_sector.js");
 views.publisher=require("./view_publisher.js");
 
 views.donors_top=require("./view_donors_top.js");
@@ -59,6 +60,8 @@ views.publisher_countries_top=require("./view_publisher_countries_top.js");
 
 views.publisher_sectors=require("./view_publisher_sectors.js");
 views.publisher_sectors_top=require("./view_publisher_sectors_top.js");
+
+views.sector_publisher_top = require("./view_sector_publisher_top.js");
 
 views.frame=require("./view_frame.js");
 views.generator=require("./view_generator.js");
