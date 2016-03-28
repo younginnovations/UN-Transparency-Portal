@@ -31,7 +31,6 @@ view_publishers.chunks=[
 //
 view_publishers.view=function(args)
 {
-console.log("from view_publishers.view");
 	view_publishers.chunks.forEach(function(n){
 		ctrack.chunk(n,"{spinner}");
 	}
@@ -46,8 +45,6 @@ console.log("from view_publishers.view");
 //
 view_publishers.ajax=function(args)
 {
-
-		console.log("from view_publishers.ajax");
 	args=args || {};
 	var year=args.year || parseInt(ctrack.hash.year) || ctrack.year;
 	ctrack.year_chunks(year);
@@ -57,7 +54,7 @@ view_publishers.ajax=function(args)
 	ctrack.sortby="order"; // reset sortby
 	var display=function(sortby)
 	{
-		console.log("from display");
+		// console.log("from display");
 		var s=[];
 		var a=[];
 		for(var n in ctrack.publishers_data) { a.push( ctrack.publishers_data[n] ); }
@@ -86,7 +83,7 @@ view_publishers.ajax=function(args)
 
 	var p=function(s)
 	{
-		console.log("from p");
+		// console.log("from p");
 		s=s || "";
 		s=s.replace(/[,]/g,"");
 		return parseInt(s);
@@ -97,18 +94,18 @@ view_publishers.ajax=function(args)
 			cc[cc.length]=[v.publisher,p(v.t1),p(v.t2),p(v.t3),p(v.b1),p(v.b2)];
 		});
 		ctrack.chunk("csv_data","data:text/csv;charset=UTF-8,"+encodeURIComponent(csvw.arrayToCSV(cc)));
- 
+
 		ctrack.display();
 
 	};
 	view_publishers.display=display;
-	
+
 	var fadd=function(d)
 	{
-		console.log("from fadd");
+		// console.log("from fadd");
 		var it=ctrack.publishers_data[d.reporting_ref];
 		if(!it) { it={}; ctrack.publishers_data[d.reporting_ref]=it; }
-		
+
 		for(var n in d)
 		{
 			if(d[n])
@@ -121,7 +118,7 @@ view_publishers.ajax=function(args)
 	var years=[year-1,year,year+1];
 	years.forEach(function(y)
 	{
-		console.log("from years");
+		// console.log("from years");
 		var dat={
 
 				"from":"act,trans,country",
@@ -139,7 +136,7 @@ view_publishers.ajax=function(args)
 		fetch.ajax(dat,function(data){
 //			console.log("fetch transactions publishers "+year);
 //			console.log(data);
-			
+
 			for(var i=0;i<data.rows.length;i++)
 			{
 				var v=data.rows[i];
@@ -155,11 +152,11 @@ view_publishers.ajax=function(args)
 				fadd(d);
 			}
 		//console.log(ctrack.publishers_data);
-			
+
 			display();
 		});
 	});
-	
+
 	var years=[year+1,year+2];
 	years.forEach(function(y)
 	{
@@ -177,10 +174,10 @@ view_publishers.ajax=function(args)
 		fetch.ajax_dat_fix(dat,args);
 		if(!dat.reporting_ref){dat.flags=0;} // ignore double activities unless we are looking at a select publisher
 		fetch.ajax(dat,function(data){
-			
-//			console.log("fetch budget publishers "+year);			
+
+//			console.log("fetch budget publishers "+year);
 //			console.log(data);
-			
+
 			for(var i=0;i<data.rows.length;i++)
 			{
 				var v=data.rows[i];
@@ -191,7 +188,7 @@ view_publishers.ajax=function(args)
 			}
 //			console.log( "b"+(y-year) );
 //			console.log(ctrack.publishers_data);
-			
+
 			display();
 		});
 	});

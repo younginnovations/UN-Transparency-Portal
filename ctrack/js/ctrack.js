@@ -72,7 +72,6 @@ ctrack.setup=function(args)
 		var aa=n.split("=");
 		ctrack.q[aa[0]]=decodeURIComponent(aa[1]||"");
 	});
-
 	args=args || {};
 	args.jslib	=args.jslib 	|| "http://d-portal.org/jslib/"; // load stuff from here
 	args.tongue	=args.tongue 	|| 	"eng"; 		// english

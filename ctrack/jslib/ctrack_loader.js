@@ -10,7 +10,7 @@
 
 
 ctrack_loader=function(args){
-	
+
 	var root=args.root 	|| "http://d-portal.org/";
 
 	args.jslib=args.jslib 	|| root+"jslib/";
@@ -24,13 +24,11 @@ ctrack_loader=function(args){
 		root+"jslib/ctrack.min.js",
 //		root+"jslib/ctrack.js",
 	function(){
-		
-		args.master=$(args.master);
 
+		args.master=$(args.master);
 		window.ctrack=require("ctrack");
 		window.ctrack.setup(args);
 
 	});
 
 };
-
