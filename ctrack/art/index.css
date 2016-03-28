@@ -217,6 +217,8 @@ strong, b, .bold {
 .flex-viewport .country_menu_list li {
     border: none;
     text-align: center;
+    height: 215px;
+    position: relative;
 }
 
 .country_menu_list li {
@@ -272,6 +274,8 @@ strong, b, .bold {
 
 #un_publisher_list a.country_code {
     opacity: 0.5;
+    position: absolute;
+    bottom: 0;
 }
 
 #un_publisher_list a.country_code:hover {
@@ -687,9 +691,10 @@ nav {
 }
 
 .flexslider .slides span.publisher-logo img {
-    width: auto;
-    max-height: 75px;
     display: inline-block;
+    max-height: 100px;
+    max-width: 200px;
+    width: auto;
 }
 
 #pie1 {
@@ -743,7 +748,7 @@ span.publisher-name {
     font-size: 16px;
     line-height: 24px;
     text-align: center;
-    margin-top: -25px;
+    margin-top: -20px;
 }
 
 .agencies_wrap {
