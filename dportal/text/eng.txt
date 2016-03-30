@@ -18,25 +18,25 @@ Top
 About
 
 #total_projects_text
-Total Projects
+Total projects
 
 #active_projects_text
 Active Projects
 
 #total_budget_text
-Total UN Budget
+Total UN budget
 
 #un_agencies_in_iati_text
-UN Agencies in IATI
+UN agencies in IATI
 
 #countries_un_operates
-Countries UN Operates in
+Countries UN operates in
 
 #un_vs_other_org
 Un vs. other organizations in IATI
 
 #trend_of_activities
-Trend of UN Activities Published in IATI
+Trend of UN activities published in IATI
 
 #tagline_text
 Helping you understand development data.

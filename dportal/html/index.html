@@ -124,7 +124,7 @@
             </div>
             <div class="agencies_wrap">
                 <div class="agencies">
-                    <h2>{members_and_observers_text}<a class="link-to-members" href="https://undg.org/home/about-undg/members/">{learn_more_about_members}</a></h2>
+                    <h2><a target="_blank" href="https://undg.org/home/about-undg/members/">{members_and_observers_text}</a></h2>
 
                     <div class="flexslider">
                       {loading}
@@ -323,7 +323,7 @@
         $("#no_of_countries").html(countries.rows.length);
         $("#totalBudget").html("$" + changeToMillions(total_budget));
         $("#totalExpense").html("$" + changeToMillions(total_expenditure));
-        $("#un_agencies_in_iati").html(un_agencies_in_iati);
+        $("#un_agencies_in_iati").html(un_agencies_in_iati+' <span style="font-size:24px;vertical-align: middle;line-height: 30px;">of</span> '+total_un_agencies);
 
 
 
@@ -455,9 +455,8 @@
                     if (v.name && v.reporting_ref) {
                         un_publisher_list.append(
                                 "  <li><a class=\"country_code\" href=\"{root}ctrack.html?publisher=" + v.reporting_ref + "&tongue={tongue}\">  " +
-                                "<span class=\"publisher-logo\"><img src=\"{root}art/un_logos/" + v.reporting_ref +".png\" /></span>" +
-                                "      <span class=\"publisher-name\">" + v.name.match(/\(([^)]+)\)/)[1]
-                                + "</span>  " +
+                                "<span class=\"publisher-logo\"><img src=\"{root}art/un_logos/" + v.reporting_ref +".png\" alt=\""+ v.name.match(/\(([^)]+)\)/)[1]+"\"/></span>" +
+
                                 "    </a></li>  ");
                     }
                 }
@@ -471,9 +470,8 @@
                     if (v.name && v.reporting_ref) {
                         un_publisher_list.append(
                                 "  <li><a class=\"country_code noCursor\"> " +
-                                "<span class=\"publisher-logo\"><img src=\"{root}art/un_logos/" + v.reporting_ref +".png\" /></span>" +
-                                "      <span class=\"publisher-name\">" + v.name.match(/\(([^)]+)\)/)[1]
-                                + "</span>  " +
+                                "<span class=\"publisher-logo\"><img src=\"{root}art/un_logos/" + v.reporting_ref +".png\" alt=\""+ v.name.match(/\(([^)]+)\)/)[1]+"\" /></span>" +
+
                                 " </a></li>  ");
                     }
                 }
