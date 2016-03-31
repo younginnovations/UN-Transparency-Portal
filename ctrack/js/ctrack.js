@@ -206,7 +206,7 @@ ctrack.setup = function (args) {
         // args.chunks["link_address"]=iati_codes.about_more_info[args.publisher] || args.publisher;
         args.chunks["publisher_flag"] = "{art}un_logos/" + args.publisher + ".png";
         if (iati_codes.about_more_info[args.publisher]) {
-            args.chunks["link_address"] = "<span class='about_more_info'>For more details, please visit <a class='more_info' href='http://" + iati_codes.about_more_info[args.publisher] + "'>" + iati_codes.about_more_info[args.publisher] + "</a></span>";
+            args.chunks["link_address"] = "<span class='about_more_info'>For more details, please visit <a target='_blank' class='more_info' href='http://" + iati_codes.about_more_info[args.publisher] + "'>" + iati_codes.about_more_info[args.publisher] + "</a></span>";
         }
         else {
             args.chunks["link_address"] = "";

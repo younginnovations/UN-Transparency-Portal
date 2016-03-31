@@ -66,7 +66,7 @@ span.settings_info		{min-width:135px; display:inline-block;}
 td.settings_toggle		{text-align:right; vertical-align:middle;}
 a.settings_link         {color: #0067B1; font-size:11px; text-transform:uppercase;}
 a.settings_link img     {display: none;}
-a.settings_link span	{padding:10px 0 0 0; display:inline-block; margin-left: 15px;}
+a.settings_link span	{padding:0; display:inline-block;}
 td.options				{padding-top:20px;}
 td.options:hover		{cursor:default;}
 td.options form			{display:inline-block;float: right; font-size: 12px;}

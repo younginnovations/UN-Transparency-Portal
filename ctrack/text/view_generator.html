@@ -174,6 +174,38 @@ Please select <b>ONE</b> recipient and <b>NO</b> publisher to generate content h
 {reminder}
 
 #instructions
+<nav>
+	<div class="menu-wrap">
+		<div class="img-wrap">
+			<a href="/"><img class="logo-img" src="/art/UNDG_logo.png" alt="UNDG logo"/></a>
+		</div>
+		<div class="menu-link-wrap">
+			<div class="menu">
+				<a href="about.html">
+					<span>{about_text}</span>
+					<!--<span class="path_txt">{install_info_text}</span>-->
+				</a>
+			</div>
+			<div class="menu">
+				<a href="/ctrack.html#view=generator">
+					<span>{generator_text}</span>
+					<!--<span class="path_txt">{install_info_text}</span>-->
+				</a>
+			</div>
+			<!--<div class="menu">-->
+			<!--<a href="#explore">-->
+			<!--&lt;!&ndash;<span class="path_txt">{explore_info_text}</span>&ndash;&gt;-->
+			<!--</a>-->
+			<!--</div>-->
+			<div class="menu">
+				<a href="https://github.com/younginnovations/UN-Transparency-Portal/issues" target="_blank">
+					<span>{develop_button_text}</span>
+					<!--<span class="path_txt">{develop_info_text}</span>-->
+				</a>
+			</div>
+		</div>
+	</div>
+</nav>
 <div class="instruct_wrap">
 	<div class="default">
 
@@ -231,16 +263,16 @@ select				{border-radius:2px;}
  #frame				{margin:0 auto; width:960px; padding:20px 20px 0 20px; text-align:center;}
 a#frame_fix_size	{display:block; margin:0 auto; width:960px; border-radius:4px; padding:10px 0; text-align:center; background-color:#2573CD; color:#FFF; margin-top:10px; margin-bottom:10px;}
 a#frame_fix_size:hover	{background-color:#2F84E5;}
-.generator			{width:960px; margin:0 auto; padding:0; padding-top:20px;color: #333;border: 2px solid rgba(0, 103, 177, 0.1);border-radius: 6px;}
+.generator			{width:960px; margin:0 auto; padding:35px 0 60px;color: #333;border: 2px solid rgba(0, 103, 177, 0.1);border-radius: 6px;}
 .default			{width:960px; margin:0 auto; padding:0;}
-.mid_wrap			{display:inline-block; vertical-align:top; width:460px; max-width:460px;}
-.arrow				{width:0; height:0; border-top:30px solid #2573CD; border-left:30px solid transparent; border-right:30px solid transparent;}
-.instruct_wrap		{margin:0 auto; width:100%; padding:32px 0; background-color:#2573CD;}
-.instruct_head		{text-align:center; color:#FFF; font-size:2em;}
+.mid_wrap			{display:inline-block; vertical-align:top; width:466px; max-width:466px;}
+.arrow				{width:0; height:0; border-top:15px solid #0067B1; border-left:15px solid transparent; border-right:15px solid transparent;}
+.instruct_wrap		{margin:0 auto; width:960px; padding:32px 0; background-color:#0067B1;border-radius:4px;}
+.instruct_head		{text-align:center; color:#FFF; font-size:32px;lineheight: 38px;}
 .instruct_info		{margin-top:15px;}
 .instruct_down		{margin-left:70px; padding:20px 0; font-size:14px; line-height:20px;}
 .instruct_col_wrap	{width:100%;}
-.instruct_col		{display:inline-block; vertical-align:top; width:231px; padding:30px 20px; border: 2px solid rgba(0, 103, 177, 0.1); margin:40px 6px; box-sizing:border-box; border-radius:6px; max-height:280px; height:280px;}
+.instruct_col		{display:inline-block; vertical-align:top; width:231px; padding:30px 20px; border: 2px solid rgba(0, 103, 177, 0.1); margin:25px 6px 40px; box-sizing:border-box; border-radius:6px; max-height:280px; height:280px;}
 .instruct_col.first	{margin-left:0;}
 .instruct_col.last	{margin-right:0;}
 .instruct_num		{text-align:center; color:#333; font-size:100px; font-weight: bold; line-height: 106px; margin-bottom:10px;}
@@ -248,11 +280,12 @@ a#frame_fix_size:hover	{background-color:#2F84E5;}
 .instruct_sub		{text-align:center; color: rgba(51, 51, 51, 0.7); font-size: 14px; line-height: 20px; margin-top:10px;}
 .instruct_fix		{background-color:#333; color:#ccc; padding:15px 0; text-align:center;}
 .instruct_fix span	{color:#4CA0FF; font-weight:bold;}
-.chosen-container	{min-width:250px; max-width:500px;}
-.reminder_wrap		{margin:0 auto; margin-top:60px; background-color:rgba(21, 21, 21, 0.7); width:880px; padding:20px 40px 30px 40px; color:#ccc; font-size:0.9em; line-height:1.2em; margin-bottom:200px;}
+.chosen-container	{min-width:250px; max-width:535px; width: 535px !important;}
+.reminder_wrap		{font-size: 19px;line-height: 25px;max-width: 860px;margin: 50px auto;background: #0067B1;padding: 50px;border-radius: 4px;color: rgba(255, 255, 255, 0.7);}
+.reminder_wrap b    {font-weight: normal}
 .reminder_wrap.top	{background-color:#2573CD; font-size:1.4em; color:#FFF; padding:30px 40px; margin-bottom:0;}
 .reminder_wrap p	{padding-top:15px; color:#ccc; display:list-item; list-style-position:inside;}
-.tips_head			{border-bottom:1px solid #666; padding:15px 0 10px 0; font-size:1.2em; color:#aaa; display:block;}
+.tips_head			{border-bottom:1px solid rgba(255, 255, 255, 0.19); padding:15px 0 10px 0; font-size:1.2em; color:#fff; display:block;}
 .reminder_wrap.top p{color:#FFF;}
 .view_info			{padding-bottom:10px; color:#FFF; font-size:0.9em; border-bottom:3px solid #666; margin-bottom:20px;}
 .view_info span		{display:inline-block; vertical-align:top; width:100px; color:#ccc;}
@@ -266,8 +299,8 @@ a.view span.imgtxt	{display:block; margin-top:5px; color:#ccc; font-size:0.8em;}
 a.mail				{display:block; margin-top:15px; color:#4CA0FF; padding:5px 0;}
 a.mail:hover		{color:#74B5FF;}
 a.logo				{display:inline-block; vertical-align:bottom; width:250px;}
-a.toggle			{display:inline-block; vertical-align:middle; margin-left:20px; font-size:0.9em; color:#FFF; padding:6px 10px; background-color:#2573CD; border-radius:4px;}
-a.toggle:hover		{background-color:#428DE3;}
+a.toggle			{display:inline-block; vertical-align:middle; margin-left:20px; font-size:16px; color:#0067B1;}
+a.toggle:hover		{color:#004373;}
  #generator_aid_div span.txt, #generator_limit_div span.txt, #generator_maxheight_div span.txt	{display:inline-block; vertical-align:middle; font-size:0.9em; color:#ccc; width:520px;
 margin-left:10px; line-height:1.5em;}
 
@@ -276,12 +309,31 @@ a.view:hover span.overtxt	{display:block; position:absolute; top:0; left:0; widt
 
 .instruct_side		{display:inline-block; vertical-align:middle; width:30px; font-size:100px; line-height: 106px; color:#333; font-weight: bold; padding-left: 30px; margin-right: 60px;}
 .instruct_more		{display:inline-block; vertical-align:middle; width: 800px;}
-.instruct_more.a	{width:440px;}
+.instruct_more.a	{width:415px;}
 .instruct_more.b	{width:200px; font-size:0.9em; color:#CCC; font-style:italic;}
 .instruct_chunk		{width:960px; margin:0 auto; padding-top:10px; border-top: 2px solid rgba(0, 103, 177, 0.1); margin-top:10px;}
 
 .instruct_rel		{position:relative;}
-span.drop_arrow		{display:block; width:20px; height:100%; background:url(/art/chosen-sprite.png) no-repeat 0 2px; text-align:right; position:absolute; left:595px; top:15px; z-index:999; pointer-events:none;}
+span.drop_arrow		{display:block; width:20px; height:100%; background:url(/art/chosen-sprite.png) no-repeat 0 2px; text-align:right; position:absolute; left:595px; top:15px; z-index:999; pointer-events:none; display: none;}
 span.drop_arrow.b	{left:393px;}
 
 div#generator_maxheight_dropdown_chosen	{margin-left:113px;}
+
+nav {padding: 20px 0 40px;max-width: 960px;margin: 0 auto;}
+.menu-wrap {overflow: hidden;}
+.logo-img {height: 47px;}
+.img-wrap {float: left;}
+.menu {display: inline-block;float: left;margin-right: 15px;}
+.menu a {font-size: 11px;text-transform: uppercase;}
+.menu:last-child {margin-right: 0;}
+.menu-link-wrap {float: right;}
+.chosen-container-multi .chosen-choices{width: 100%;min-height: 50px !important;border: 2px solid #d8d8d8;border-radius: 4px;background-image: none;}
+.chosen-container-single .chosen-single {width: 100%;height: 50px !important;border: 2px solid #d8d8d8;border-radius: 4px;background-image: none;background: none;box-shadow: none;padding: 0}
+.chosen-container-single .chosen-single span {margin: 15px 0 10px;color: rgba(51, 51, 51, 0.4);display: inline-block;padding-left: 20px;font-size: 16px;width: auto !important;}
+.chosen-container-single .chosen-single div b {display: none;}
+.chosen-container-multi .chosen-choices li.search-field {width: 100%;}
+.chosen-container-multi .chosen-choices li.search-field input[type=text] {margin: 10px 0;color: rgba(51, 51, 51, 0.4);display: inline-block;padding-left: 20px;font-size: 16px;width: auto !important;}
+.instruct_more.a .chosen-container {width: 245px !important;}
+.chosen-container-active .chosen-choices {box-shadow: none;}
+.chosen-container-active.chosen-with-drop .chosen-single {border: 2px solid #d8d8d8; background-image: none; box-shadow: none;}
+.chosen-container-single .chosen-single abbr {top: 20px;}

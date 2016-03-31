@@ -118,26 +118,25 @@ result[type="2"] indicator span-title:before {content:" "; margin:0;}
 result[type="3"] indicator span-title:before {content:" "; margin:0;}
 result[type="9"] indicator span-title:before {content:" "; margin:0;}
 
-result indicator description{font-size:0.9em; color:#ccc; padding-top:10px;}
+result indicator description{font-size:0.9em; color:rgba(51,51,51,0.7); padding-top:10px;}
 
 result indicator period		{display:block; padding-top:10px;}
-result indicator period period-start:before	{content:"Start "; font-size:14px; color:#ccc; display:block; padding-right:10px;}
-result indicator period period-end:before	{content:"End "; font-size:14px; color:#ccc; display:block; padding-right:10px;}
-result indicator period target:before	{content:"Target "; font-size:14px; color:#ccc; display:block; padding-right:10px;}
-result indicator period actual:before	{content:"Actual "; font-size:14px; color:#ccc; display:block; padding-right:10px;}
+result indicator period period-start:before	{content:"Start "; font-size:14px; color:rgba(51,51,51,0.7); display:block; padding-right:10px;}
+result indicator period period-end:before	{content:"End "; font-size:14px; color:rgba(51,51,51,0.7); display:block; padding-right:10px;}
+result indicator period target:before	{content:"Target "; font-size:14px; color:rgba(51,51,51,0.7); display:block; padding-right:10px;}
+result indicator period actual:before	{content:"Actual "; font-size:14px; color:rgba(51,51,51,0.7); display:block; padding-right:10px;}
 
 result indicator period period-start, result indicator period period-end,
 result indicator period target, result indicator period actual	{display:inline-block; vertical-align:top; width:220px; max-width:220px; line-height:1.35em;}
 
 result indicator > baseline			{display:block;}
-result indicator > baseline comment	{display:block; color:rgba(255,255,255,1); padding:10px 40px; line-height:1.25em;}
+result indicator > baseline comment	{display:block; color:rgba(51,51,51,0.7); padding:10px 40px; line-height:1.25em;}
 
 
 /*	Sectors (also turned into graph: sector_pie)
 	============================================= */
 sector *						{display:none;}
 sector[vocabulary="DAC"]		{font-size:1.0em; color:#333; width:240px; display:inline-block; vertical-align:top; padding:30px 40px 20px 40px; max-height:80px; min-height:80px;}
-sector:nth-child(even)			{background-color:rgba(0,14,32,0.7);}
 sector[vocabulary="DAC"]:before	{content:"SECTOR"; font-size:14px; color:rgba(51,51,51,0.7); width:240px; display:block; padding-bottom:5px;}
 sector span						{color:#333; padding-top:5px;}
 sector span:nth-of-type(1)		{line-height:1.2em;}
@@ -203,10 +202,10 @@ span.span_contact-info {border-bottom: solid 2px rgba(0, 103, 177, 0.1);}
 
 /*	Website or external links
 	============================================= */
-activity-website		{display:block; width:880px; margin:0 auto; text-align:center; padding:20px 40px; font-size:14px; border:0; color:#FF9E45; background-color: rgba(0,14,32,0.7);}
+activity-website		{display:block; width:880px; margin:0 auto; text-align:center; padding:20px 40px; font-size:14px; border:0; color:#0067B1;background: #f7f7f7;border-bottom:solid 2px rgba(0, 103, 177, 0.1);}
 activity-website *		{display:block; padding:5px 0;}
-activity-website:before {content:"FOR MORE INFORMATION, VISIT "; font-size:14px; color:#ccc; display:inline-block; padding-right:10px;}
-activity-website:hover	{color:#FF7A00;}
+activity-website:before {content:"FOR MORE INFORMATION, VISIT "; font-size:14px; color:rgba(51,51,51,0.7); display:inline-block; padding-right:10px;}
+activity-website:hover	{color:#004373;}
 
 
 /*	Activity Status
@@ -223,12 +222,12 @@ activity-status:before		{content:"ACTIVITY STATUS:"; font-size:14px; color: #fff
 /*	Related documents list
 	============================================= */
 span.span_document-link							{width:880px; padding:0 40px; margin:0 auto; counter-reset:section;}
-span.span_document-link:before					{content:"Related Documents"; font-size:34px; color:#FFF; display:block; padding:40px 0 20px 0; margin-bottom:20px; border-bottom:3px solid #FFF;}
+span.span_document-link:before					{content:"Related Documents"; font-size:34px; color:#333; display:block; padding:40px 0 20px 0; margin-bottom:20px; border-bottom:10px solid #efefef;}
 a.a_document-link::before						{counter-increment:section; content:counter(section) ". ";}
 a.a_document-link								{display:inline-block; width:880px; padding:10px 0; font-size:1.0em; line-height:1.25em; list-style-type:decimal; list-style-position:inside; color:#ccc;}
 a.a_document-link:last-of-type					{padding-bottom:40px;}
-a.a_document-link document-link span-title		{color:#FFF; padding:0;}
-a.a_document-link document-link span-title:hover{color:#FFAB5E;}
+a.a_document-link document-link span-title		{color:#0067B1; padding:0;}
+a.a_document-link document-link span-title:hover{color:#004373;}
 document-link									{display:inline;}
 document-link span								{font-size:1.0em; display:block; color:#ccc;}
 document-link span-title						{display:inline;}
