@@ -4,10 +4,6 @@
 <head>
     <meta charset="UTF-8">
     <title>{welcome_text}</title>
-    <script src="{root}jslib/jquery.js"></script>
-    <script src="{root}jslib/chosen.jquery.min.js"></script>
-    <script src="{root}jslib/modernizr.custom.js"></script>
-    <script src="{root}jslib/jquery.bxslider.js"></script>
     <!--<script src="{root}jslib/jquery.flexslider-min.js"></script>-->
     <!--<script src="{root}jslib/jquery.elastislide.js"></script>-->
     <!--<script src="{root}jslib/jquerypp.custom.js"></script>-->
@@ -17,6 +13,9 @@
     <!--<link href="{root}art/flexslider.css" rel="stylesheet" type="text/css">-->
     <!--<link href="{root}art/elastislide.css" rel="stylesheet" type="text/css">-->
     <link href="{root}art/index.css" rel="stylesheet" type="text/css">
+    <script src="{root}jslib/jquery.js"></script>
+    <script src="{root}jslib/chosen.jquery.min.js"></script>
+    <script src="{root}jslib/jquery.bxslider.js"></script>
     {ganal}
 </head>
 <body>
@@ -475,7 +474,7 @@
                     var v = reportings.rows[i];
                     if (v.name && v.reporting_ref) {
                         un_publisher_list.append(
-                                "  <li><a class=\"country_code noCursor\"> " +
+                                "  <li data-tooltip='Not an IATI Publisher'><a class=\"country_code noCursor fade-out\"> " +
                                 "<span class=\"publisher-logo\"><img src=\"{root}art/un_logos/" + v.reporting_ref +".png\" alt=\""+ v.name.match(/\(([^)]+)\)/)[1]+"\" /></span>" +
 
                                 " </a></li>  ");
@@ -552,6 +551,7 @@
 
         $window.load(function () {
           $('.spinner').hide();
+            $('.slider-wrap .country_menu_list li').show();
 //            $('.flexslider').flexslider({
 //                animation: "slide",
 //                animationLoop: false,
@@ -563,10 +563,12 @@
 //            });
 //            $('#un_publisher_lis').elastislide();
             $('.bxslider').bxSlider({
-                minSlides: 2,
-                maxSlides: 6,
+                minSlides: 5,
+                maxSlides: 5,
                 slideWidth: 192,
-                slideMargin: 10
+                slideMargin: 10,
+                infiniteLoop: false,
+                hideControlOnEnd: true
             });
         });
 
