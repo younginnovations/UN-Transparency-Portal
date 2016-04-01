@@ -6,10 +6,16 @@
     <title>{welcome_text}</title>
     <script src="{root}jslib/jquery.js"></script>
     <script src="{root}jslib/chosen.jquery.min.js"></script>
-    <script src="{root}jslib/jquery.flexslider-min.js"></script>
+    <script src="{root}jslib/modernizr.custom.js"></script>
+    <script src="{root}jslib/jquery.bxslider.js"></script>
+    <!--<script src="{root}jslib/jquery.flexslider-min.js"></script>-->
+    <!--<script src="{root}jslib/jquery.elastislide.js"></script>-->
+    <!--<script src="{root}jslib/jquerypp.custom.js"></script>-->
     <script src="{root}jslib/d3.min.js"></script>
     <link href="{root}art/chosen.min.css" rel="stylesheet" type="text/css">
-    <link href="{root}art/flexslider.css" rel="stylesheet" type="text/css">
+    <link href="{root}art/jquery.bxslider.css" rel="stylesheet" type="text/css">
+    <!--<link href="{root}art/flexslider.css" rel="stylesheet" type="text/css">-->
+    <!--<link href="{root}art/elastislide.css" rel="stylesheet" type="text/css">-->
     <link href="{root}art/index.css" rel="stylesheet" type="text/css">
     {ganal}
 </head>
@@ -22,7 +28,7 @@
                 <nav>
                     <div class="menu-wrap">
                         <div class="img-wrap">
-                            <img class="logo-img" src="{root}art/UNDG_logo.png" alt="UNDG logo"/>
+                            <a href="/"><img class="logo-img" src="{root}art/UNDG_logo.png" alt="UNDG logo"/></a>
                         </div>
                         <div class="menu-link-wrap">
                             <div class="menu">
@@ -44,7 +50,7 @@
                                 <!--</a>-->
                             <!--</div>-->
                             <div class="menu">
-                                <a href="https://github.com/devinit/D-Portal/issues" target="_blank">
+                                <a href="https://github.com/younginnovations/UN-Transparency-Portal/issues" target="_blank">
                                     <span>{develop_button_text}</span>
                                     <!--<span class="path_txt">{develop_info_text}</span>-->
                                 </a>
@@ -126,9 +132,9 @@
                 <div class="agencies">
                     <h2><a target="_blank" href="https://undg.org/home/about-undg/members/">{members_and_observers_text}</a></h2>
 
-                    <div class="flexslider">
+                    <div class="slider-wrap">
                       {loading}
-                        <ul id="un_publisher_list" class="country_menu_list slides"></ul>
+                        <ul id="un_publisher_list" class="country_menu_list bxslider"></ul>
                     </div>
                 </div>
             </div>
@@ -546,14 +552,21 @@
 
         $window.load(function () {
           $('.spinner').hide();
-            $('.flexslider').flexslider({
-                animation: "slide",
-                animationLoop: false,
-                itemWidth: 210,
-                itemHeight: 145,
-                itemMargin: 5,
-                minItems: getGridSize(), // use function to pull in initial value
-                maxItems: getGridSize() // use function to pull in initial value
+//            $('.flexslider').flexslider({
+//                animation: "slide",
+//                animationLoop: false,
+//                itemWidth: 210,
+//                itemHeight: 145,
+//                itemMargin: 5,
+//                minItems: getGridSize(), // use function to pull in initial value
+//                maxItems: getGridSize() // use function to pull in initial value
+//            });
+//            $('#un_publisher_lis').elastislide();
+            $('.bxslider').bxSlider({
+                minSlides: 2,
+                maxSlides: 6,
+                slideWidth: 192,
+                slideMargin: 10
             });
         });
 
