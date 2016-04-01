@@ -77,7 +77,7 @@ $(function(){
 
 		vis.append('svg:path')
 			.attr('d', lineGen(mainData))
-			.attr("transform", "translate(" + (margin.left + 35) + ",0)")
+			.attr("transform", "translate(" + (((xScale(mainData[0].year) + xScale(mainData[1].year))/2) + margin.left) + ",0)")
 			.attr("stroke", "#fff")
 			.attr("stroke-width", 1)
 			.attr("fill", "none");
@@ -92,7 +92,7 @@ $(function(){
 			.attr("r", 3.5)
 			.attr("fill", "#fff")
 			.attr("cx", function (d){
-				return xScale(d.year) + (margin.left + 35);
+				return xScale(d.year) + (((xScale(mainData[0].year) + xScale(mainData[1].year))/2) + margin.left);
 			})
 			.attr("cy", function (d){
 				return yScale(d.value);

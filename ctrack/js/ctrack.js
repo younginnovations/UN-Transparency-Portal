@@ -105,7 +105,6 @@ ctrack.setup = function (args) {
 
     ctrack.args = args;
 
-
     ctrack.display_usd = "USD";
     ctrack.convert_usd = 1;
 //	ctrack.convert_have={}; // test old style

@@ -25,7 +25,7 @@
 		<a download="dportal_list_transactions.csv" href="{list_transactions_datas_csv}" class="csv_download">{download_csv_text}</a>
 	</div>
 	<div class="center_wrap">
-		<a href="#view=publisher_countries" class="button">{list_country_back_text}</a>
+
 	</div>
 </div>
 {list_transactions_data_description}
@@ -58,7 +58,7 @@
 #list_transactions_head
 <div class="head_wrap">
 	<div class="icon_wrap">
-		<img src="{flava}total_icon_big.png" alt="{money_title_icon_alt_text}" width="330" height="180"/>	
+		<img src="{flava}total_icon_big.png" alt="{money_title_icon_alt_text}" width="330" height="180"/>
 	</div><div class="peak_wrap">
 			<div class="list_peak_space"></div>
 			<div class="list_peak"></div>
@@ -69,4 +69,16 @@
 			</div>
 		</div>
 </div>
+<span id="back-sector-table" style="display:none">{list_sector_back_text}</span>
+<span id="back-country-table" style="display:none">{list_country_back_text}</span>
+<script>
 
+if({q:ctrack.hash}.q.sector_code){
+	var a = $('#back-sector-table').text();
+	$(".center_wrap").append("<a href=\"#view=publisher_sectors\" class=\"button\">"+a+"</a>");
+}
+else{
+	var a = $('#back-country-table').text();
+	$(".center_wrap").append("<a href=\"#view=publisher_countries\" class=\"button\">"+a+"</a>");
+}
+</script>
