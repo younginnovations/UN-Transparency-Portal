@@ -77,8 +77,6 @@ view_list_transactions.ajax=function(args)
 
 	fetch.ajax(dat,function(data){
 //		console.log("fetch transactions "+year);
-//		console.log(data);
-
 		if(args.output=="count")
 		{
 			ctrack.chunk(args.chunk || "list_transactions_count",data.rows[0]["count"]);
@@ -127,7 +125,6 @@ view_list_transactions.ajax=function(args)
 				cc[cc.length]=[v.aid,v.title,v.reporting,v.amount_num,v.currency];
 			});
 			ctrack.chunk((args.chunk || "list_transactions_datas")+"_csv","data:text/csv;charset=UTF-8,"+encodeURIComponent(csvw.arrayToCSV(cc)));
-
 		}
 		if(args.callback){args.callback(data);}
 		ctrack.display();
