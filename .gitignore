@@ -16,3 +16,4 @@ ctrack/json/*.json
 
 dstore/un-json/*
 .idea
+./config/deploy.rb
