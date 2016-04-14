@@ -83,7 +83,7 @@
 
 #table_publisher_sectors_row
 <tr class="rows">
-	<td class="col2" title="{table_publisher_explore_tip_text}" onclick="return ctrack.url('#view=list_transactions&sector_code={sector_code}');">
+	<td class="col2" title="{table_publisher_explore_tip_text}" onclick="return ctrack.compare_url('/ctrack.html?sector={sector_code}&tongue={tongue}');">
 		<a>{sector_name}</a></td>
 	<td class="col3" title="{table_sector_tip_t1_text}" onclick="switch($(this).children().first().html()){ case '0': case '-' : $('html, body').animate({scrollTop: $('.description').offset().top}, 300); return false; } return ctrack.url('#view=list_transactions&year={year1}&sector_code={sector_code}');">
 		<a>{t1}</a></td>

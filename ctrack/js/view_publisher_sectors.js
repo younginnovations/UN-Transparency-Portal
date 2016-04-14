@@ -14,7 +14,9 @@ var fetch=require("./fetch.js")
 var tables=require("./tables.js")
 
 var refry=require("../../dstore/js/refry.js")
-var iati_codes=require("../../dstore/json/iati_codes.json")
+//var iati_codes=require("../../dstore/json/iati_codes.json");
+var un_agencies_data = require("../../dstore/json/un_agencies_data.json");
+
 
 var commafy=function(s) { return s.replace(/(^|[^\w.])(\d{4,})/g, function($0, $1, $2) {
 		return $1 + $2.replace(/\d(?=(?:\d\d\d)+(?!\d))/g, "$&,"); }) };
@@ -59,6 +61,7 @@ view_publisher_sectors.ajax=function(args)
 	view_publisher_sectors.year=year;
 
 	ctrack.publisher_sectors_data={};
+	console.log(ctrack.publisher_sectors_data);
 
 	ctrack.sortby="order"; // reset sortby
 	var display=function(sortby)
@@ -71,7 +74,8 @@ view_publisher_sectors.ajax=function(args)
 		}
 		var s=[];
 		var a=[];
-		for(var n in ctrack.publisher_sectors_data) { a.push( ctrack.publisher_sectors_data[n] ); }
+		for(var n in ctrack.publisher_sectors_data) {
+			a.push( ctrack.publisher_sectors_data[n] ); }
 		if(!sortby)
 		{
 			sortby=tables.sortby();
@@ -150,14 +154,20 @@ view_publisher_sectors.ajax=function(args)
 				var v=data.rows[i];
 				var d={};
 				var num=ctrack.convert_num("sum_of_percent_of_trans",v);
-				d.sector_code=v.sector_code || "N/A";
-				d.sector_name=iati_codes.sector[v.sector_code] || iati_codes.sector_category[v.sector_code] || v.sector_code || "N/A";
-				d["t"+(2+y-year)]=commafy(""+Math.floor(num));
-				if(y==year)
-				{
-					d.order=num; // default, use ctrack.year transaction value for sort
+
+				if(un_agencies_data.sectors[v.sector_code] !== undefined){
+					d.sector_code=v.sector_code;
+					d.sector_name = un_agencies_data.sectors[v.sector_code];
+					d["t"+(2+y-year)]=commafy(""+Math.floor(num));
+					if(y==year)
+					{
+						d.order=num; // default, use ctrack.year transaction value for sort
+					}
+					fadd(d);
 				}
-				fadd(d);
+				//d.sector_name=iati_codes.sector[v.sector_code] || iati_codes.sector_category[v.sector_code] || v.sector_code || "N/A";
+
+
 			}
 //			console.log(ctrack.donors_data);
 
@@ -191,10 +201,16 @@ view_publisher_sectors.ajax=function(args)
 				var v=data.rows[i];
 				var d={};
 				var num=ctrack.convert_num("sum_of_percent_of_budget",v);
-				d.sector_code=v.sector_code || "N/A";
-				d.sector_name=iati_codes.sector[v.sector_code] || iati_codes.sector_category[v.sector_code] || v.sector_code || "N/A";
-				d["b"+(y-year)]=commafy(""+Math.floor(num));
-				fadd(d);
+
+				//d.sector_name=iati_codes.sector[v.sector_code] || iati_codes.sector_category[v.sector_code] || v.sector_code || "N/A";
+				if(un_agencies_data.sectors[v.sector_code] !== undefined){
+					d.sector_code=v.sector_code;
+					d.sector_name = un_agencies_data.sectors[v.sector_code];
+					d["b"+(y-year)]=commafy(""+Math.floor(num));
+					fadd(d);
+				}
+
+
 			}
 //			console.log(ctrack.donors_data);
 

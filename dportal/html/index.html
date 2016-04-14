@@ -89,7 +89,7 @@
                         <div id="un_agencies_in_iati"></div>
                         <div id="progressBox2">
                             <div id="progressBar2"><span id="display-un-agencies"></span></div>
-
+                            <span id="total-un-agencies"></span>
                         </div>
 
                     </div>
@@ -288,6 +288,7 @@
 
         $("#display-active-projects").text(active_projects);
         $("#display-un-agencies").text(un_agencies_in_iati);
+        $("#total-un-agencies").text(total_un_agencies);
         var reportings;
         var extraReporting;
         var countries;
@@ -328,37 +329,33 @@
         $("#no_of_countries").html(countries.rows.length);
         $("#totalBudget").html("$" + changeToMillions(total_budget));
         $("#totalExpense").html("$" + changeToMillions(total_expenditure));
-        $("#un_agencies_in_iati").html(un_agencies_in_iati+' <span style="font-size:24px;vertical-align: middle;line-height: 30px;">of</span> '+total_un_agencies);
+        $("#un_agencies_in_iati").html(un_agencies_in_iati);
 
 
-
-        var un_org_total_project_each = {rows: []};
-        var un_org_rows = un_org_total_project_each.rows;
+        var un_org_total_budget_each = {rows: []};
+        var un_org_budget_rows = un_org_total_budget_each.rows;
         for(var defined_id in un_org){
             var id = defined_id;
-            var total_proj = un_org[defined_id]['total_projects'];
-
-            if(total_proj !== undefined) {
-                un_org_rows.push({id:id,total_project: total_proj});
-            }
-            else{
-                un_org_rows.push({id:id,total_project: 0});
-            }
+            var un_total_budget = un_org[id]['total_budget'];
+            if(un_total_budget !== undefined)
+                un_org_budget_rows.push({id:id,total_budget: un_total_budget});
+            else
+                un_org_budget_rows.push({id:id,total_budget: 0});
         }
-        var sorted_un_rows = un_org_rows.sort(function (a,b){
-            var ta = a.total_project;
-            var tb = b.total_project;
+
+        var sorted_un_budget = un_org_budget_rows.sort(function(a,b){
+            var ta = a.total_budget;
+            var tb = b.total_budget;
             return (ta > tb) ? -1 : (ta < tb) ? 1 : 0;
         });
 
-        var un_org_object = {};
-        sorted_un_rows.forEach(function(b){
-//            console.log(b.id + " : " + b.total_project);
-             un_org_object[b.id] = parseInt(b.total_project);
+        var un_org_budget = {};
+        sorted_un_budget.forEach(function(b){
+            un_org_budget[b.id] = parseInt(b.total_budget);
         });
 
-       var arr= Object.keys(un_org_object).sort(function(a,b){
-           return (un_org_object[a] > un_org_object[b]) ? -1 : (un_org_object[a]<un_org_object[b]) ? 1 : 0;
+       var arr= Object.keys(un_org_budget).sort(function(a,b){
+           return (un_org_budget[a] > un_org_budget[b]) ? -1 : (un_org_budget[a]<un_org_budget[b]) ? 1 : 0;
         });
 
         extraReporting = {rows: []};
@@ -386,6 +383,7 @@
             var name = sector[idx];
             rows.push({name: name, sector_ref: idx});
         }
+
         rows.sort(function (a, b) {
             var ta = a.name.toUpperCase();
             var tb = b.name.toUpperCase();
