@@ -31,7 +31,7 @@ view_list_transactions.chunks=[
 view_list_transactions.view=function()
 {
 	view_list_transactions.chunks.forEach(function(n){ctrack.chunk(n,"{spinner_in_table_row}");});
-	ctrack.setcrumb(1);
+	ctrack.setcrumb(3);
 	ctrack.change_hash();
 	view_list_transactions.ajax({q:ctrack.hash});
 };

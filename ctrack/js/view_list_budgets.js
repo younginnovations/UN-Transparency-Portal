@@ -31,7 +31,7 @@ view_list_budgets.chunks=[
 view_list_budgets.view=function()
 {
 	view_list_budgets.chunks.forEach(function(n){ctrack.chunk(n,"{spinner_in_table_row}");});
-	ctrack.setcrumb(1);
+	ctrack.setcrumb(3);
 	ctrack.change_hash();
 	view_list_budgets.ajax({year:ctrack.hash.year,funder:ctrack.hash.funder});
 };

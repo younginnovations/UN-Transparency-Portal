@@ -48,7 +48,7 @@ view_ended.view=function(args)
 {
 	view_ended.chunks.forEach(function(n){ctrack.chunk(n,"{spinner}");});
 
-	ctrack.setcrumb(1);
+	ctrack.setcrumb(2);
 	ctrack.change_hash();
 
 	view_ended.ajax({output:"count"});

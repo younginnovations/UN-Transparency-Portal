@@ -38,7 +38,7 @@ view_publisher.view=function(args)
 	views.publisher_sectors_top.chunks.forEach(function(n){ctrack.chunk(n,"{spinner}");});
 
 
-	ctrack.setcrumb(0);
+	ctrack.setcrumb(1);
 	ctrack.change_hash();
 
 	views.planned.ajax({output:"count"});

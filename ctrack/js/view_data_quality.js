@@ -23,6 +23,6 @@ view_data_quality.chunks=[
 view_data_quality.view=function(args)
 {
 
-	ctrack.setcrumb(1);
+	ctrack.setcrumb(3);
 	ctrack.change_hash();
 }
