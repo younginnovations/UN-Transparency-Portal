@@ -1074,6 +1074,7 @@ a.link-to-members {
 
 #progressBox2 {
     width: 240px;
+    position: relative;
 }
 
 #progressBar, #progressBar2 {
@@ -1085,14 +1086,20 @@ a.link-to-members {
 }
 
 #progressBar > span,
-#progressBar2 > span {
+#progressBar2 > #display-un-agencies {
     position: absolute;
     right: -8px;
     display: block;
     bottom: -18px;
     z-index: 999;
 }
-
+#progressBox2 > #total-un-agencies{
+    position: absolute;
+    right: 0;
+    display: block;
+    bottom: -18px;
+    z-index: 999;
+}
 /*css for trends line chart*/
 #trendLineChart {
     background: #0067B1;

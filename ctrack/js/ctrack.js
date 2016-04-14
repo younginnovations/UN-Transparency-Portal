@@ -37,8 +37,15 @@ ctrack.url = function (url) {
         return false;
     }
 };
-
-
+ctrack.compare_url = function(url){
+    if (ctrack.popout == "frame") {
+        window.open(url);
+    }
+    else {
+        window.location.href = url;
+        return false;
+    }
+};
 ctrack.get_chart_data = function (name) {
     return ctrack.chunk(name) || [];
 };
@@ -417,7 +424,7 @@ ctrack.setup = function (args) {
                 }
             }
         }
-        console.log(ctrack.chunk);
+
         ctrack.chunk("crumbs", "{crumbs" + ctrack.crumbs.length + "}");
     }
 
