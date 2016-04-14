@@ -18,3 +18,4 @@ dstore/un-json/*
 .idea
 ./config/deploy.rb
 dstore/cache_new/
+
