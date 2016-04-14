@@ -23,6 +23,6 @@ view_total.chunks=[
 view_total.view=function(args)
 {
 
-	ctrack.setcrumb(1);
+	ctrack.setcrumb(2);
 	ctrack.change_hash();
 }

@@ -38,7 +38,7 @@ view_main.view=function(args)
 	views.sectors_top.chunks.forEach(function(n){ctrack.chunk(n,"{spinner}");});
 
 
-	ctrack.setcrumb(0);
+	ctrack.setcrumb(1);
 	ctrack.change_hash();
 
 /*

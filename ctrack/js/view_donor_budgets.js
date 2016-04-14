@@ -24,7 +24,7 @@ view_donor_budgets.chunks=[
 view_donor_budgets.view=function()
 {
 	view_donor_budgets.chunks.forEach(function(n){ctrack.chunk(n,"{spinner_in_table_row}");});
-	ctrack.setcrumb(2);
+	ctrack.setcrumb(3);
 	ctrack.change_hash();
 	
 	var year=ctrack.hash.year || parseInt(ctrack.hash.year) || ctrack.year;

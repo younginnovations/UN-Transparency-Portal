@@ -32,7 +32,7 @@ view_donors.chunks=[
 view_donors.view=function(args)
 {
 	view_donors.chunks.forEach(function(n){ctrack.chunk(n,"{spinner}");});
-	ctrack.setcrumb(1);
+	ctrack.setcrumb(2);
 	ctrack.change_hash();
 	view_donors.ajax(args);
 };

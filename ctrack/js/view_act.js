@@ -30,7 +30,7 @@ view_act.fixup=function()
 view_act.view=function(args)
 {
 	view_act.chunks.forEach(function(n){ctrack.chunk(n,"{spinner}");});
-	ctrack.setcrumb(3);
+	ctrack.setcrumb(4);
 	ctrack.change_hash();
 	view_act.ajax({
 		aid:ctrack.hash.aid,

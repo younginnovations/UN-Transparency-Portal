@@ -32,7 +32,7 @@ view_publisher_sectors.chunks=[
 view_publisher_sectors.view=function(args)
 {
 	view_publisher_sectors.chunks.forEach(function(n){ctrack.chunk(n,"{spinner}");});
-	ctrack.setcrumb(1);
+	ctrack.setcrumb(2);
 	ctrack.change_hash();
 	view_publisher_sectors.ajax(args);
 };

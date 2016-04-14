@@ -46,7 +46,7 @@ view_missing.view=function(args)
 {
 	view_missing.chunks.forEach(function(n){ctrack.chunk(n,"{spinner}");});
 
-	ctrack.setcrumb(1);
+	ctrack.setcrumb(2);
 	ctrack.change_hash();
 
 	view_missing.ajax({output:"count"});

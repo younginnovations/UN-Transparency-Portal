@@ -33,7 +33,7 @@ view_dash.view=function()
 		view_dash.ajax({});
 	}
 
-	ctrack.setcrumb(1);
+	ctrack.setcrumb(3);
 	ctrack.change_hash();
 }
 

@@ -39,7 +39,7 @@ view_sector.view=function(args)
 	views.sector_publisher_top.chunks.forEach(function(n){ctrack.chunk(n,"{spinner}");})
 
 
-	ctrack.setcrumb(0);
+	ctrack.setcrumb(1);
 	ctrack.change_hash();
 
 /*

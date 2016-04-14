@@ -17,6 +17,9 @@ Top
 #about_text
 About
 
+#crumbname_home
+Home
+
 #total_projects_text
 Total projects
 
