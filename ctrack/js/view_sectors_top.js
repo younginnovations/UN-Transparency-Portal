@@ -74,36 +74,44 @@ view_sectors_top.ajax=function(args)
 		});
 		var shown=0;
 		var dd=[];
-		for( var i=0; i<limit ; i++ )
-		{
-			var v=list[i];
-			if(v)
-			{
-				if((i==limit-1)&&(i<(list.length-1))) // last one combines everything else
-				{
-					v={};
-					v.usd=Math.floor(total-shown);
-					v.sector_group=(1+list.length-limit)+" More";
-				}
-				else
-				{
-					v.usd=Math.floor(v.usd);
-				}
+		list.forEach(function(v){
+			var d = {};
+			d.num = v.usd;
+			if(d.num < 0){d.num = -d.num; }
+			d.str_lab = v.sector_group;
+			dd.push(d);
+		});
 
-				if(v)
-				{
-					var d={};
-					d.num=v.usd;
-					if(d.num<0) { d.num=-d.num; }
-					shown+=d.num;
-					d.pct=Math.floor(100*d.num/total);
-					d.str_num=commafy(v.usd)+" "+ctrack.display_usd;
-					d.str_lab=v.sector_group;
-					d.str="<b>"+d.str_num+"</b> ("+d.pct+"%)<br/>"+d.str_lab;
-					dd.push(d);
-				}
-			}
-		}
+		//for( var i=0; i<limit ; i++ )
+		//{
+		//	var v=list[i];
+		//	if(v)
+		//	{
+		//		if((i==limit-1)&&(i<(list.length-1))) // last one combines everything else
+		//		{
+		//			v={};
+		//			v.usd=Math.floor(total-shown);
+		//			v.sector_group=(1+list.length-limit)+" More";
+		//		}
+		//		else
+		//		{
+		//			v.usd=Math.floor(v.usd);
+		//		}
+        //
+		//		if(v)
+		//		{
+		//			var d={};
+		//			d.num=v.usd;
+		//			if(d.num<0) { d.num=-d.num; }
+		//			shown+=d.num;
+		//			d.pct=Math.floor(100*d.num/total);
+		//			d.str_num=commafy(v.usd)+" "+ctrack.display_usd;
+		//			d.str_lab=v.sector_group;
+		//			d.str="<b>"+d.str_num+"</b> ("+d.pct+"%)<br/>"+d.str_lab;
+		//			dd.push(d);
+		//		}
+		//	}
+		//}
 
 		ctrack.chunk("data_chart_sectors",dd);
 		ctrack.display();

@@ -74,29 +74,37 @@ view_publisher_sectors_top.ajax=function(args)
 		var shown=0;
 		var top=list[0] && list[0].usd || 0;
 		var dd=[];
-		for( var i=0; i<limit ; i++ )
-		{
-			var v=list[i];
+		list.forEach(function(v){
+			var d = {};
+			d.num = v.usd;
+			if(d.num < 0){d.num = -d.num; }
+			d.str_lab = v.sector_name;
+			dd.push(d);
+		});
 
-			if((i==limit-1)&&(i<(list.length-1))) // last one combines everything else
-			{
-				v={};
-				v.usd=total-shown;
-				v.str_lab=(1+list.length-limit)+" More";
-			}
-
-			if(v)
-			{
-				shown+=v.usd;
-				var d={};
-				d.num=v.usd;
-				d.pct=Math.floor(100*v.usd/total);
-				d.str_num=commafy(d.num)+" "+ctrack.display_usd;
-				d.str_lab=v.str_lab || v.sector_name;
-				d.str="<b>"+d.str_num+"</b> ("+d.pct+"%)<br/>"+d.str_lab;
-				dd.push(d);
-			}
-		}
+		//for( var i=0; i<limit ; i++ )
+		//{
+		//	var v=list[i];
+        //
+		//	if((i==limit-1)&&(i<(list.length-1))) // last one combines everything else
+		//	{
+		//		v={};
+		//		v.usd=total-shown;
+		//		v.str_lab=(1+list.length-limit)+" More";
+		//	}
+        //
+		//	if(v)
+		//	{
+		//		shown+=v.usd;
+		//		var d={};
+		//		d.num=v.usd;
+		//		d.pct=Math.floor(100*v.usd/total);
+		//		d.str_num=commafy(d.num)+" "+ctrack.display_usd;
+		//		d.str_lab=v.str_lab || v.sector_name;
+		//		d.str="<b>"+d.str_num+"</b> ("+d.pct+"%)<br/>"+d.str_lab;
+		//		dd.push(d);
+		//	}
+		//}
 
 		ctrack.chunk("data_chart_publisher_sectors",dd);
 		ctrack.chunk("sectors_count",list.length);
