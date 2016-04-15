@@ -10,7 +10,7 @@ $(function(){
     var margin = { top:5, right: 5, bottom: 5, left: 5};
 	var w = 110;
 	var h = 110;
-
+	var divNode = d3.select("#overlay").node();
 	var color = d3.scale.quantize()
 					.range(["#0067B1","#fff"]);
 	var outerRadius = w / 2;
@@ -53,7 +53,22 @@ $(function(){
 			.attr("fill", function(d,i){
 				return color(i);
 			})
-			.attr("d", arc);
+			.attr("d", arc)
+			.on("mousemove", function(d){
+				var mousePos = d3.mouse(divNode);
+				d3.select("#mainTooltip")
+					.style("left", mousePos[0] - 65 + "px")
+					.style("top", mousePos[1] - 60 + "px")
+					.select("#value")
+					.attr("text-anchor", "middle")
+					.html("$" + Math.ceil(d.value).toLocaleString());
+
+				d3.select("#mainTooltip").classed("hidden", false);
+			})
+			.on("mouseout", function(d) {
+				d3.select("#mainTooltip").classed("hidden", true);
+			});
+
 	outterArcs.append("path")
 			.attr("fill","#3385C0")
 			.attr("d",arcOutter);

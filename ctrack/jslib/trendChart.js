@@ -1,6 +1,7 @@
 $(function(){
     var width = 520;
 	var height = 120;
+	var divNode = d3.select("#overlay").node();
 	var svg = d3.select("#linegraph")
 				.append("svg")
 				.attr("width", width)
@@ -96,5 +97,19 @@ $(function(){
 			})
 			.attr("cy", function (d){
 				return yScale(d.value);
+			})
+			.on("mousemove",function(d){
+				var mousePos = d3.mouse(divNode);
+				d3.select("#mainTooltip")
+					.style("left", mousePos[0] - 60 + "px")
+					.style("top", mousePos[1] - 60 + "px")
+					.select("#value")
+					.attr("text-anchor",'middle')
+					.html(d.value.toLocaleString());
+
+				d3.select("#mainTooltip").classed("hidden", false);
+			})
+			.on("mouseout", function(d) {
+				d3.select("#mainTooltip").classed("hidden", true);
 			});
 });

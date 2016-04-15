@@ -22,7 +22,10 @@
 {jsmenu}
 <div class="portal">
     <div class="main_wrap">
-        <div class="overlay">
+        <div  id="overlay" class="overlay">
+            <div id="mainTooltip" class="hidden">
+                <p><span id="value"></span></p>
+            </div>
             <div class="default index">
                 <nav>
                     <div class="menu-wrap">
@@ -286,9 +289,9 @@
     var geojson = {geojson};
     $(function () {
 
-        $("#display-active-projects").text(active_projects);
-        $("#display-un-agencies").text(un_agencies_in_iati);
-        $("#total-un-agencies").text(total_un_agencies);
+        $("#display-active-projects").text(active_projects.toLocaleString());
+        $("#display-un-agencies").text(un_agencies_in_iati.toLocaleString());
+        $("#total-un-agencies").text(total_un_agencies.toLocaleString());
         var reportings;
         var extraReporting;
         var countries;
