@@ -8,6 +8,6 @@ mkdir un-json
 for code in "${codes[@]}"
 do
   if [ ! -f un-json/datastore_${code}.json ]; then
-    wget --ignore-length -O un-json/datastore_${code}.json http://datastore.iatistandard.org/api/1/access/activity?reporting-org=${code}\&limit=100000 || rm -f file
+    wget --ignore-length -O un-json/datastore_${code}.json http://datastore.iatistandard.org/api/1/access/activity?reporting-org=${code}\&limit=110000 || rm -f file
   fi
 done

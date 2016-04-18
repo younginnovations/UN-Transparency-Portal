@@ -37,7 +37,7 @@ view_sector.view=function(args)
 	// views.donors_top.chunks.forEach(function(n){ctrack.chunk(n,"{spinner}");});
 	// views.sectors_top.chunks.forEach(function(n){ctrack.chunk(n,"{spinner}");});
 	views.sector_publisher_top.chunks.forEach(function(n){ctrack.chunk(n,"{spinner}");})
-
+	views.sector_category.chunks.forEach(function(n){ctrack.chunk(n,"{spinner}");})
 
 	ctrack.setcrumb(1);
 	ctrack.change_hash();
@@ -56,6 +56,7 @@ view_sector.view=function(args)
 	// views.donors_top.ajax();
 	// views.sectors_top.ajax();
 	views.sector_publisher_top.ajax();
+	views.sector_category.ajax();
 
 	ctrack.map.pins=undefined;
 	views.map.ajax_heat({limit:200});

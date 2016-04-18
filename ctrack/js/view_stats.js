@@ -71,8 +71,7 @@ view_stats.ajax = function (args) {
 //			"title_like":(args.search || ctrack.args.search),
     };
 //	if(dat.country_code) { dat.from+=",country"; }
-
-    fetch.ajax_dat_fix(dat, args);
+     fetch.ajax_dat_fix(dat, args);
     fetch.ajax(dat, args.callback || function (data) {
 //		console.log("view_stats.numof_callback");
     //  console.log(data);

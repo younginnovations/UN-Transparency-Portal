@@ -8,7 +8,7 @@ var util = require('util');
 var path = require('path');
 
 
-var json_iati_codes=require("../../dstore/json/iati_codes.json");
+var json_iati_codes = require("../../dstore/json/iati_codes.json");
 var un_agencies_data = require("../../dstore/json/un_agencies_data.json");
 var un_org = require('../../dstore/json/un_org.json');
 var geojson = require("../../dstore/json/countries.geo.json");
@@ -245,49 +245,64 @@ cmd.build = function () {
     chunkopts["bloglist_last5"] = b5;
 
 // auto update the publisher chunk
-	var pubs=[];
-	for(var id in un_agencies_data["sectors"])
-	{
-		var name = un_agencies_data["sectors"][id];
-		var d = {name:name}
-		pubs.push(d);
-	}
-	for(var id in json_iati_codes["un_publisher_names"])
-	{
-		var name=json_iati_codes["un_publisher_names"][id];
-		var d={name:name,id:id};
-		pubs.push(d);
-	}
-	pubs.sort(function(a, b) {
-		var ta = a.name.toUpperCase();
-		var tb = b.name.toUpperCase();
-		return (ta < tb) ? -1 : (ta > tb) ? 1 : 0 ;
-	});
-	chunkopts["publishers"]=pubs;
+    var pubs = [];
+    for (var id in un_agencies_data["sectors"]) {
+        var name = un_agencies_data["sectors"][id];
+        var d = {name: name}
+        pubs.push(d);
+    }
+    for (var id in json_iati_codes["un_publisher_names"]) {
+        var name = json_iati_codes["un_publisher_names"][id];
+        var d = {name: name, id: id};
+        pubs.push(d);
+    }
+    pubs.sort(function (a, b) {
+        var ta = a.name.toUpperCase();
+        var tb = b.name.toUpperCase();
+        return (ta < tb) ? -1 : (ta > tb) ? 1 : 0;
+    });
+    chunkopts["publishers"] = pubs;
 
 // auto update the countries chunk
-	var ccs=[];
-	for(var id in un_agencies_data["countries"])
-	{
-		var name=un_agencies_data["countries"][id];
-		if(name)
-		{
-			var d={name:name,id:id};
-			ccs.push(d);
-		}
-	}
-	ccs.sort(function(a, b) {
-		var ta = a.name.toUpperCase();
-		var tb = b.name.toUpperCase();
-		return (ta < tb) ? -1 : (ta > tb) ? 1 : 0 ;
-	});
-	chunkopts["countries"]=ccs;
+    var ccs = [];
+    for (var id in un_agencies_data["countries"]) {
+        var name = un_agencies_data["countries"][id];
+        if (name) {
+            var d = {name: name, id: id};
+            ccs.push(d);
+        }
+    }
+    ccs.sort(function (a, b) {
+        var ta = a.name.toUpperCase();
+        var tb = b.name.toUpperCase();
+        return (ta < tb) ? -1 : (ta > tb) ? 1 : 0;
+    });
+    chunkopts["countries"] = ccs;
 
-	chunkopts["sector"]=JSON.stringify( un_agencies_data["sectors"]);
-	chunkopts["publisher_names_json"]=JSON.stringify( json_iati_codes["un_publisher_names"] );
-    chunkopts["iati_un_publishers"] = JSON.stringify( json_iati_codes["iati_un_publishers"]);
-    chunkopts["country_names_json"]     = JSON.stringify(un_agencies_data["countries"]);
-    chunkopts["crs_countries_json"]     = JSON.stringify(un_agencies_data["countries"]);
+    var sec = [];
+    var secId = [];
+    for (var id in un_agencies_data["sectors"]) {
+        var cat = id.substring(0, 3);
+
+        if (secId.indexOf(cat) == -1) {
+            var s = {name: json_iati_codes["sector_category"][cat], id: cat};
+            sec.push(s);
+            secId.push(cat);
+        }
+    }
+
+    sec.sort(function (a, b) {
+        var ta = a.name.toUpperCase();
+        var tb = b.name.toUpperCase();
+
+        return (ta < tb) ? -1 : (ta > tb) ? 1 : 0;
+    });
+
+    chunkopts["sector"] = JSON.stringify(sec);
+    chunkopts["publisher_names_json"] = JSON.stringify(json_iati_codes["un_publisher_names"]);
+    chunkopts["iati_un_publishers"] = JSON.stringify(json_iati_codes["iati_un_publishers"]);
+    chunkopts["country_names_json"] = JSON.stringify(un_agencies_data["countries"]);
+    chunkopts["crs_countries_json"] = JSON.stringify(un_agencies_data["countries"]);
     chunkopts["total_projects"] = JSON.stringify(un_agencies_data["total_projects"]);
     chunkopts["active_projects"] = JSON.stringify(un_agencies_data["active_projects"]);
     chunkopts["total_budget"] = JSON.stringify(un_agencies_data["total_budget"]);
@@ -297,20 +312,22 @@ cmd.build = function () {
     chunkopts["un_org"] = JSON.stringify(un_org);
 
 
-    var arr = Object.keys(un_agencies_data["un_trends"]).map(function(k) { return k });
-    arr=arr.slice(Math.max(arr.length - 7, 1));
+    var arr = Object.keys(un_agencies_data["un_trends"]).map(function (k) {
+        return k
+    });
+    arr = arr.slice(Math.max(arr.length - 7, 1));
 
     var un_trending = {};
-     arr.forEach(function(year){
-         un_trending[year]=un_agencies_data["un_trends"][year];
-     });
+    arr.forEach(function (year) {
+        un_trending[year] = un_agencies_data["un_trends"][year];
+    });
 
 
     chunkopts["un_trends"] = JSON.stringify(un_trending);
 
     chunkopts["geojson"] = JSON.stringify(geojson);
 
-	find_pages("")
+    find_pages("")
 
 // copy raw files into static
 

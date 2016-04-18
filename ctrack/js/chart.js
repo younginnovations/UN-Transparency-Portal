@@ -113,27 +113,56 @@ chart.draw=function(sel,data,options){
 				return total(d.num) + 10})
 			.attr("dy", textAlign);
 
-		svgHorz.selectAll("text.name")
-			.data(data)
-			.enter()
-			.append("text")
-			.text(function(d){
-				if(d.str_lab !== undefined) {
-					if (d.str_lab.length < 40)
-						return d.str_lab;
-					else
-						return d.str_lab.slice(0, 40) + "...";
-				}
-				else{
-					return "N/A"
-				}
-			})
-			.style("font-size", "14px")
-			.attr("y", function(d,i){
-				return i * (height / data.length);
-			})
-			.attr("dx", -(parentWidth/3))
-			.attr("dy", textAlign);
+		if(sel === "#sector_category_graph"){
+			svgHorz.selectAll("text.name")
+					.data(data)
+					.enter()
+					.append("text")
+					.text(function(d){
+						if(d.str_lab !== undefined) {
+							if (d.str_lab.length < 40)
+								return d.str_lab;
+							else
+								return d.str_lab.slice(0, 40) + "...";
+						}
+						else{
+							return "N/A"
+						}
+					})
+					.style("font-size", "14px")
+					.attr("y", function(d,i){
+						return i * (height / data.length);
+					})
+					.attr("dx", -(parentWidth/3))
+					.attr("dy", textAlign)
+					.on("click",function(d){
+						window.location.assign(window.location.origin+ "/ctrack.html?sector="+ d.sector_code+"&tongue=eng");
+					})
+					.style("cursor","pointer");
+		}
+		else{
+			svgHorz.selectAll("text.name")
+					.data(data)
+					.enter()
+					.append("text")
+					.text(function(d){
+						if(d.str_lab !== undefined) {
+							if (d.str_lab.length < 40)
+								return d.str_lab;
+							else
+								return d.str_lab.slice(0, 40) + "...";
+						}
+						else{
+							return "N/A"
+						}
+					})
+					.style("font-size", "14px")
+					.attr("y", function(d,i){
+						return i * (height / data.length);
+					})
+					.attr("dx", -(parentWidth/3))
+					.attr("dy", textAlign);
+		}
 	}
 }
 

@@ -419,11 +419,11 @@
             rows.push({name: name, sector_ref: idx});
         }
 
-        rows.sort(function (a, b) {
-            var ta = a.name.toUpperCase();
-            var tb = b.name.toUpperCase();
-            return (ta < tb) ? -1 : (ta > tb) ? 1 : 0;
-        });
+//        rows.sort(function (a, b) {
+//            var ta = a.name.toUpperCase();
+//            var tb = b.name.toUpperCase();
+//            return (ta < tb) ? -1 : (ta > tb) ? 1 : 0;
+//        });
 
 // goto new url
         var change = function () {
@@ -449,15 +449,15 @@
                 var aa = [];
                 aa.push("<select>");
                 aa.push("<option value=''></option>");
-                for (var i = 0; i < sectors.rows.length; i++) {
-                    var v = sectors.rows[i];
-                    if (v.sector_ref && v.name) // must be real publisher
+                for (var i = 0; i < sector.length; i++) {
+                    var v = sector[i];
+                    if (v.id && v.name) // must be real publisher
                     {
                         var t = v.name
                         if (v.count) {
                             t = t + " (" + v.count + ") ";
                         }
-                        var s = "<option value='" + v.sector_ref + "'>" + t + "</option>";
+                        var s = "<option value='" + v.id + "'>" + t + "</option>";
                         aa.push(s);
                     }
                 }
@@ -470,13 +470,13 @@
                     "placeholder_text_single": "{publisher_dropmenu_text}"
                 });
 
-                for (var i = 0; i < sectors.rows.length; i++) {
-                    var v = sectors.rows[i];
-                    if (v.sector_ref && v.name) {
+                for (var i = 0; i < sector.length; i++) {
+                    var v = sector[i];
+                    if (v.id && v.name) {
                         sectorList.append(
                                 "	<li class=\"publishercol\">	" +
-                                "	<a class=\"country_code\" href=\"{root}ctrack.html?sector=" + v.sector_ref + "&tongue={tongue}\"> " +
-                                "			<span class=\"select_wrap publishername\">" + v.name + "</span>	" +
+                                "	<a class=\"country_code\" href=\"{root}ctrack.html?sector_group=" + v.id + "&tongue={tongue}\"> " +
+                                "			<span class=\"select_wrap publishername\">" + toTitleCase(v.name) + "</span>	" +
                                 "	</a> " +
                                 "	</li>		"
                         );
@@ -558,7 +558,6 @@
             }
         };
 
-
 // initialise page
         refresh();
 
@@ -624,5 +623,13 @@
                     .appendTo('#slideshow');
         },  3000);
     }());
+
+
+    function toTitleCase(str)
+    {
+        return str.replace(/\w\S*/g, function(txt){
+            return txt.charAt(0).toUpperCase() + txt.substr(1).toLowerCase();
+        });
+    }
 
 </script>
