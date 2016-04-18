@@ -1,0 +1,19 @@
+cd `dirname $0`
+cd dstore
+
+#rm db/dstore.sqlite
+
+#node js/cmd init
+#node js/cmd analyze
+
+#agencies=( 41108 41111 41119 41120 41122 41127 41304 XM-OCHA-CERF XM-DAC-41114 41AAA XM-DAC-30010 XM-DAC-41140 44000 )
+agencies=( 41122 )
+
+for agency in "${agencies[@]}"
+do
+     node js/cmd import "cache/datastore_${agency}.xml" || exit 1
+done
+
+#make it smarter
+node js/cmd vacuum
+node js/cmd analyze

@@ -108,7 +108,7 @@ dstore_cache.import_from_un_data = function (xmlfile) {
         var activeProjects = 0;
         var total_budget = 0;
         var total_expenditure = 0;
-        var year={};
+        var year = {};
 
         org.forEach(function (organizations) {
 
@@ -135,17 +135,16 @@ dstore_cache.import_from_un_data = function (xmlfile) {
                             total_budget = total_budget + getProjectBudget(od[1]);
                         }
 
-                        if (od[0] === 'transaction' && checkTransaction(od[1]))
-                        {
+                        if (od[0] === 'transaction' && checkTransaction(od[1])) {
                             total_expenditure = total_expenditure + getProjectBudget(od[1]);
                         }
 
-                        if((od[0]=='activity-date' && od.type == 'start-actual')){
-                            abc(year,od[1][0]);
+                        if ((od[0] == 'activity-date' && od.type == 'start-actual')) {
+                            fetchStartDate(year, od[1][0]);
                         }
                         //else if (od[0]=='activity-date' && od.type == 'start-planned'){
-                          //  abc(year,od[1][0]);
-                      // }
+                        //  fetchStartDate(year,od[1][0]);
+                        // }
 
                     });
                 });
@@ -182,16 +181,16 @@ dstore_cache.import_from_un_data = function (xmlfile) {
 
 }
 
-function abc(yearArray,startDate){
-var yy=startDate.split('-');
+function fetchStartDate(yearArray, startDate) {
+    var yy = startDate.split('-');
     console.log(yearArray);
 
-    if ( yy[0] in yearArray ) {
-            yearArray[yy[0]] =yearArray[yy[0]]+1;
+    if (yy[0] in yearArray) {
+        yearArray[yy[0]] = yearArray[yy[0]] + 1;
 
-        } else {
-        yearArray[yy[0]]=1;
-     }
+    } else {
+        yearArray[yy[0]] = 1;
+    }
 
 }
 
@@ -259,6 +258,7 @@ dstore_cache.import_xmlfile = function (xmlfile) {
         if (charset == "ascii") {
             charset = "utf-8";
         } // so force utf-8 over ascii
+
         return iconv.decode(buffer, charset);
     }
 
