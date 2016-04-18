@@ -407,3 +407,12 @@ flag
 
 #learn_more_about_members
 Learn more about UNDG members and observers spanish
+
+#explore_UNDG
+Explore cómo GNUD está contribuyendo a la agenda global.
+
+#portal_info
+Este portal muestra los datos de todos los miembros del Grupo que están publicando actualmente los datos según el estándar IATI.
+
+#learn_more
+Aprende más

@@ -13,15 +13,15 @@ body,html 				{background:none; color:#444; width:100%; height:100%; margin:0; p
 
 /* allignment of the web content*/
 body        {background-color: #FFFFFF;}
-.about-page {width:960px; margin:auto;}
-.about-page h2.title{font-size: 64px; line-height: 70px; margin: 60px 0 40px; border-bottom: 12px solid #EFEFEF; padding-bottom: 20px;}
-.about-page nav {padding-top: 26px;}
+.about-page h2.title{font-size: 64px; line-height: 70px; width: 960px; margin: 0 auto 30px; border-bottom: 12px solid #EFEFEF; padding-bottom: 20px;}
+.about-page nav {background: #0067B1;padding: 23px 32px;}
 .about-page .menu-wrap {overflow: hidden;}
 .about-page .img-wrap {float: left;}
 .about-page .logo-img {height: 47px;}
 .about-page .menu-link-wrap {float: right;}
 .about-page .menu {display: inline-block;float: left;margin-right: 15px;}
 .about-page .tongue_wrap{float: right;}
+.about-info {overflow: hidden;width: 960px; margin: 0 auto;}
 .about-info > div{float: left; width: 50%; line-height: 24px;}
 .about-info > div a:hover{text-decoration: underline;}
 .about-info > div:last-child{margin-left: 80px; width: 35%; background: #0067B1; color: #fff; padding: 30px; border-radius: 13px;}
@@ -61,21 +61,23 @@ strong, b, .bold		{font-weight:bold; color:inherit;}
 
 /*	Settings
     ============================================= */
-#settings				{padding:10px 40px 30px 40px; margin:0 auto 40px; background-color:#fff;}
+#settings				{padding: 20px; margin: 0; display: block;}
+#settings table.head	{padding: 0;background: none;}
 span.settings_info		{min-width:135px; display:inline-block;}
 td.settings_toggle		{text-align:right; vertical-align:middle;}
-a.settings_link         {color: #0067B1; font-size:11px; text-transform:uppercase;}
+a.settings_link         {color: #fff; font-size:11px; text-transform:uppercase;}
+a.settings_link:hover   {color: rgba(255,255,255,0.7);}
 a.settings_link img     {display: none;}
 a.settings_link span	{padding:0; display:inline-block;}
 td.options				{padding-top:20px;}
 td.options:hover		{cursor:default;}
 td.options form			{display:inline-block;float: right; font-size: 12px;}
 
-.menu-link-wrap         {display: inline-block;padding:10px 0 0;}
+.menu-link-wrap         {display: inline-block;padding:15px 0 0;}
 .menu-link-wrap .menu   {float: left; display: inline-block;margin-right: 15px;}
 .menu-link-wrap .menu:last-child   {margin-right: 0;}
-.menu-link-wrap .menu a   {font-size: 11px;text-transform: uppercase; color: #0067B1;}
-.menu-link-wrap .menu a:hover   {color: #004373;}
+.menu-link-wrap .menu a   {font-size: 11px;text-transform: uppercase; color: #fff;}
+.menu-link-wrap .menu a:hover   {color: rgba(255, 255, 255, 0.7);}
 
 
 /*	Status badge next to d-portal logo in headers
@@ -88,7 +90,7 @@ span.badge.beta			{background-color:#D80051;}
 	============================================= */
 a.crumb					{display:inline-block; vertical-align:top; padding:0 10px; font-size: 12px; color:#0067B1; line-height:1.1em;}
 a.crumb.first			{padding-left:0px;}
-.crumb_wrap				{width:960px; margin:0 auto; padding: 30px 0 20px; font-size: 12px; color: rgba(51,51,51,0.7); line-height:1.1em;}
+.crumb_wrap				{ background: #f3f3f3; padding: 15px 32px;font-size: 12px; margin-bottom: 40px; color: rgba(51,51,51,0.7); line-height:1.1em;}
 .crumb_wrap span		{display:inline-block; vertical-align:top; padding:0 10px; font-size:1.0em; color: rgba(51,51,51,0.7); line-height:1.1em;}
 
 
@@ -110,7 +112,7 @@ a.about_data.quality	{background: url("/art/ic_about_quality.png") no-repeat cen
 /*	Header styles
 	============================================= */
 .default				{width:960px; margin:0 auto; padding:0;}
-.default.head			{padding-top:20px;}
+.default.head			{width: 100%}
 .default.min			{padding-top:10px;}
 .default.declare		{padding:10px 0; font-size:0.9em; color:#333;border-bottom: 10px solid #0067B1;}
 .default.graph			{padding:40px 0;}
@@ -142,6 +144,7 @@ a.back_news:hover	{color:#A8C5E5;}
 #publisher_sectors_graph{background-color:#FFF; font-size:1.0em; line-height:1.3em; color:#444; border:1px solid #FFF; }
 #publisher_countries_graph, #publisher_sectors_graph { height: 300px; overflow-x: hidden; overflow-y: scroll; margin-bottom: 20px; background-color: #FBFBFB  ;
 }
+
 a.ask					{display:block; width:960px; margin:0 auto; padding:0; color:#FFF; font-size:1.8em; text-align:center;}
 a.ask.donor				{background-color:#008FFF;}
 a.ask.donor:hover		{background-color:#33A4FC;}
@@ -307,7 +310,7 @@ th.titles:last-child		{min-width:100px;}
 
 /*	Table for Header logo and Translations
 	============================================= */
-table.head					{width:100%; margin:0 auto; border-collapse:initial;}
+table.head					{width:100%;background: #0067B1;padding: 23px 32px;; border-collapse:initial;}
 table.head td				{cursor:default;}
 table.head img				{-webkit-filter:brightness(100%); filter:brightness(100%);}
 
@@ -318,6 +321,7 @@ table.head img				{-webkit-filter:brightness(100%); filter:brightness(100%);}
 table.country				{width:960px; margin:0 auto; padding:40px 0 0; border-collapse:initial; border-bottom:10px solid #EFEFEF;}
 table.country td.name		{width:800px; max-width:800px; padding-right:10px; font-size:64px; line-height:70px; color:#333333; padding-bottom: 20px;}
 table.country td.name.publisher	{width:960px; max-width:960px; padding-right:0px;}
+table.country td.name.publisher + td	{vertical-align: middle;}
 table.country td.flag		{text-align:right;}
 table.country td.flag img	{max-height:50px;}
 table.country.min			{padding:10px 0;}
