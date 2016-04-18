@@ -407,3 +407,12 @@ flag
 
 #learn_more_about_members
 Learn more about UNDG members and observers french
+
+#explore_UNDG
+Découvrez comment GNUD contribue à l'ordre du jour mondial.
+
+#portal_info
+Ce portail affiche les données de tous les membres du GNUD qui sont actuellement la publication de données selon la norme de l'IITA.
+
+#learn_more
+Apprendre encore plus

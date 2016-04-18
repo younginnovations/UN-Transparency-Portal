@@ -47,21 +47,30 @@
                                 </a>
                             </div>
                             <!--<div class="menu">-->
-                                <!--<a href="#explore">-->
-                                    <!--&lt;!&ndash;<span class="path_txt">{explore_info_text}</span>&ndash;&gt;-->
-                                <!--</a>-->
+                            <!--<a href="#explore">-->
+                            <!--&lt;!&ndash;<span class="path_txt">{explore_info_text}</span>&ndash;&gt;-->
+                            <!--</a>-->
                             <!--</div>-->
                             <div class="menu">
-                                <a href="https://github.com/younginnovations/UN-Transparency-Portal/issues" target="_blank">
+                                <a href="https://github.com/younginnovations/UN-Transparency-Portal/issues"
+                                   target="_blank">
                                     <span>{develop_button_text}</span>
                                     <!--<span class="path_txt">{develop_info_text}</span>-->
                                 </a>
                             </div>
+                            <div class="tongue_wrap">{tongue_select}</div>
                         </div>
                     </div>
                 </nav>
-                <div class="tongue_wrap">{tongue_select}</div>
-                <div class="tag">{tagline_text}</div>
+
+                <div class="tag">
+                    <div class="text-info">
+                        <h2>{explore_UNDG}</h2>
+                        <span>{portal_info}</span>
+                        <a href="about.html">{learn_more}</a>
+                    </div>
+                    <!--{tagline_text}-->
+                </div>
                 <div class="chart-wrap">
                     <div class="chart-item">
                         <span class="title">{total_projects_text}</span>
@@ -132,10 +141,11 @@
             </div>
             <div class="agencies_wrap">
                 <div class="agencies">
-                    <h2><a target="_blank" href="https://undg.org/home/about-undg/members/">{members_and_observers_text}</a></h2>
+                    <h2><a target="_blank"
+                           href="https://undg.org/home/about-undg/members/">{members_and_observers_text}</a></h2>
 
                     <div class="slider-wrap">
-                      {loading}
+                        {loading}
                         <ul id="un_publisher_list" class="country_menu_list bxslider"></ul>
                     </div>
                 </div>
@@ -312,14 +322,14 @@
             return (ta < tb) ? -1 : (ta > tb) ? 1 : 0;
         });
 
-        var changeToMillions = function(number){
+        var changeToMillions = function (number) {
             var prettyNumber = "?";
             number = Math.round(number);
 
             var digits = new Number(number).toString().length;
 
-            if(digits>6) {
-                number = number/(1000000);
+            if (digits > 6) {
+                number = number / (1000000);
                 prettyNumber = Math.round(number).toLocaleString() + ' M';
             } else {
                 prettyNumber = new Number(number).toString();
@@ -337,35 +347,35 @@
 
         var un_org_total_budget_each = {rows: []};
         var un_org_budget_rows = un_org_total_budget_each.rows;
-        for(var defined_id in un_org){
+        for (var defined_id in un_org) {
             var id = defined_id;
             var un_total_budget = un_org[id]['total_budget'];
-            if(un_total_budget !== undefined)
-                un_org_budget_rows.push({id:id,total_budget: un_total_budget});
+            if (un_total_budget !== undefined)
+                un_org_budget_rows.push({id: id, total_budget: un_total_budget});
             else
-                un_org_budget_rows.push({id:id,total_budget: 0});
+                un_org_budget_rows.push({id: id, total_budget: 0});
         }
 
-        var sorted_un_budget = un_org_budget_rows.sort(function(a,b){
+        var sorted_un_budget = un_org_budget_rows.sort(function (a, b) {
             var ta = a.total_budget;
             var tb = b.total_budget;
             return (ta > tb) ? -1 : (ta < tb) ? 1 : 0;
         });
 
         var un_org_budget = {};
-        sorted_un_budget.forEach(function(b){
+        sorted_un_budget.forEach(function (b) {
             un_org_budget[b.id] = parseInt(b.total_budget);
         });
 
-       var arr= Object.keys(un_org_budget).sort(function(a,b){
-           return (un_org_budget[a] > un_org_budget[b]) ? -1 : (un_org_budget[a]<un_org_budget[b]) ? 1 : 0;
+        var arr = Object.keys(un_org_budget).sort(function (a, b) {
+            return (un_org_budget[a] > un_org_budget[b]) ? -1 : (un_org_budget[a] < un_org_budget[b]) ? 1 : 0;
         });
 
         extraReporting = {rows: []};
 
         var extraReportRows = extraReporting.rows;
 
-        arr.forEach(function(k) {
+        arr.forEach(function (k) {
             var name = iati_un_publishers[k];
             extraReportRows.push({name: name, reporting_ref: k});
         });
@@ -374,7 +384,7 @@
 
         var reportingRows = reportings.rows;
         for (idx in publisher_names) {
-            if(arr.indexOf(idx) === -1){
+            if (arr.indexOf(idx) === -1) {
                 var name = publisher_names[idx];
                 reportingRows.push({name: name, reporting_ref: idx});
             }
@@ -461,7 +471,7 @@
                     if (v.name && v.reporting_ref) {
                         un_publisher_list.append(
                                 "  <li><a class=\"country_code\" href=\"{root}ctrack.html?publisher=" + v.reporting_ref + "&tongue={tongue}\">  " +
-                                "<span class=\"publisher-logo\"><img src=\"{root}art/un_logos/" + v.reporting_ref +".png\" alt=\""+ v.name.match(/\(([^)]+)\)/)[1]+"\"/></span>" +
+                                "<span class=\"publisher-logo\"><img src=\"{root}art/un_logos/" + v.reporting_ref + ".png\" alt=\"" + v.name.match(/\(([^)]+)\)/)[1] + "\"/></span>" +
 
                                 "    </a></li>  ");
                     }
@@ -476,7 +486,7 @@
                     if (v.name && v.reporting_ref) {
                         un_publisher_list.append(
                                 "  <li data-tooltip='Not an IATI Publisher'><a class=\"country_code noCursor fade-out\"> " +
-                                "<span class=\"publisher-logo\"><img src=\"{root}art/un_logos/" + v.reporting_ref +".png\" alt=\""+ v.name.match(/\(([^)]+)\)/)[1]+"\" /></span>" +
+                                "<span class=\"publisher-logo\"><img src=\"{root}art/un_logos/" + v.reporting_ref + ".png\" alt=\"" + v.name.match(/\(([^)]+)\)/)[1] + "\" /></span>" +
 
                                 " </a></li>  ");
                     }
@@ -551,7 +561,7 @@
         // });
 
         $window.load(function () {
-          $('.spinner').hide();
+            $('.spinner').hide();
             $('.slider-wrap .country_menu_list li').show();
 //            $('.flexslider').flexslider({
 //                animation: "slide",

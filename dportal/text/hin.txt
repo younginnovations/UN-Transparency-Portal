@@ -407,3 +407,13 @@ flag
 
 #learn_more_about_members
 Learn more about UNDG members and observers hindi
+
+#explore_UNDG
+Explore how UNDG is contributing to global agenda.
+
+#portal_info
+This portal displays data of all UNDG members that are currently publishing data as per the IATI standard.
+
+#learn_more
+Learn more
+

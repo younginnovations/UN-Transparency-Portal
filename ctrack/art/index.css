@@ -165,7 +165,7 @@ strong, b, .bold {
 
 /* Overlay colour for background image */
 .default {
-    width: 960px;
+    width: 100%;
     margin: 0 auto;
     padding: 0;
     position: relative;
@@ -187,9 +187,7 @@ strong, b, .bold {
 }
 
 .tongue_wrap {
-    text-align: right;
-    width: 960px;
-    padding-bottom: 10px;
+    float: left;
 }
 
 /*	Buttons and header styles
@@ -677,12 +675,13 @@ a.beige:hover {
     color: #fff;
 }
 
-nav {
-    padding-top: 26px;
-}
-
 .menu-wrap {
     overflow: hidden;
+}
+
+nav{
+    background: #0067B1;
+    padding: 23px 32px;
 }
 
 .img-wrap {
@@ -695,6 +694,7 @@ nav {
 
 .menu-link-wrap {
     float: right;
+    margin-top: 15px;
 }
 
 .menu {
@@ -710,21 +710,59 @@ nav {
 .menu a {
     font-size: 11px;
     text-transform: uppercase;
+    color: #fff;
+}
+
+.menu a:hover{
+    color: rgba(255,255,255,0.7);
 }
 
 .tag {
-    font-size: 22px;
-    color: #666666;
+    background: url("/art/hero_bg.jpg") no-repeat;
+    background-size: cover;
+    height: 441px;
+}
+
+.text-info{
+    width: 770px;
+    margin: 0 auto;
     text-align: center;
-    border-top: 1px solid rgba(151, 151, 151, 0.1);
-    border-bottom: 1px solid rgba(151, 151, 151, 0.1);
-    padding: 18px 0;
-    margin-top: 50px;
+    padding-top: 80px;
+}
+
+.text-info h2 {
+    font-size: 32px;
+    color: #fff;
+    margin-bottom: 12px;
+    line-height: 38px;
+    padding: 0 100px;
+}
+
+.text-info a{
+    background: rgba(255, 255, 255, 0.2);
+    padding: 15px 40px;
+    border-radius: 4px;
+    color: #fff;
+    font-size: 20px;
+    display: inline-block;
+    margin-top: 20px;
+}
+
+.text-info a:hover{
+    background: rgba(255, 255, 255, 0.4);
+}
+
+.text-info span{
+    font-size: 16px;
+    line-height: 22px;
+    color: rgba(255, 255, 255, 0.7);
+    display: block;
 }
 
 .chart-wrap {
     overflow: hidden;
-    margin-top: 35px;
+    width: 960px;
+    margin: -110px auto 0;
 }
 
 #total_projects_shown,
@@ -1079,7 +1117,7 @@ a.link-to-members {
 
 #progressBar, #progressBar2 {
     height: 30px;
-    background: #76C6FF;
+    background: #fff;
     border-radius: 5px 0 0 5px;
     overflow: visible;
     position: relative;
