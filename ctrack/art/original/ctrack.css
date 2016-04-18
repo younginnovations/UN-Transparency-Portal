@@ -139,7 +139,9 @@ a.back_news:hover	{color:#A8C5E5;}
 /*	Graph styles
 	============================================= */
 #donor_graph, #sector_graph, #publisher_countries_graph,
-#publisher_sectors_graph{background-color:#FFF; font-size:1.0em; line-height:1.3em; color:#444; border:1px solid #FFF;}
+#publisher_sectors_graph{background-color:#FFF; font-size:1.0em; line-height:1.3em; color:#444; border:1px solid #FFF; }
+#publisher_countries_graph, #publisher_sectors_graph { height: 300px; overflow-x: hidden; overflow-y: scroll; margin-bottom: 20px; background-color: #FBFBFB  ;
+}
 a.ask					{display:block; width:960px; margin:0 auto; padding:0; color:#FFF; font-size:1.8em; text-align:center;}
 a.ask.donor				{background-color:#008FFF;}
 a.ask.donor:hover		{background-color:#33A4FC;}
