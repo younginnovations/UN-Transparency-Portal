@@ -15,12 +15,12 @@ body,html 				{background:none; color:#444; width:100%; height:100%; margin:0; p
 body        {background-color: #FFFFFF;}
 .about-page h2.title{font-size: 64px; line-height: 70px; width: 960px; margin: 0 auto 30px; border-bottom: 12px solid #EFEFEF; padding-bottom: 20px;}
 .about-page nav {background: #0067B1;padding: 23px 32px;}
-.about-page .menu-wrap {overflow: hidden;}
+.about-page .menu-wrap {overflow: hidden; max-width: 960px; margin: 0 auto;}
 .about-page .img-wrap {float: left;}
 .about-page .logo-img {height: 47px;}
 .about-page .menu-link-wrap {float: right;}
 .about-page .menu {display: inline-block;float: left;margin-right: 15px;}
-.about-page .tongue_wrap{float: right;}
+.about-page .tongue_wrap{float: left; margin-top: -4px;}
 .about-info {overflow: hidden;width: 960px; margin: 0 auto;}
 .about-info > div{float: left; width: 50%; line-height: 24px;}
 .about-info > div a:hover{text-decoration: underline;}
@@ -93,9 +93,8 @@ a.crumb.first			{padding-left:0px;}
 .crumb_wrap				{ background: #f3f3f3; padding: 15px 32px;font-size: 12px; margin-bottom: 40px; color: rgba(51,51,51,0.7); line-height:1.1em;}
 .crumb_wrap span		{display:inline-block; vertical-align:top; padding:0 10px; font-size:1.0em; color: rgba(51,51,51,0.7); line-height:1.1em;}
 
-
-/*	Translation dropdown
-	============================================= */
+    /*	Translation dropdown
+        ============================================= */
 select					{font-size:0.9em; color:#000;}
 option					{color:#000;}
 
@@ -141,9 +140,7 @@ a.back_news:hover	{color:#A8C5E5;}
 /*	Graph styles
 	============================================= */
 #donor_graph, #sector_graph, #publisher_countries_graph,
-#publisher_sectors_graph{background-color:#FFF; font-size:1.0em; line-height:1.3em; color:#444; border:1px solid #FFF; }
-#publisher_countries_graph, #publisher_sectors_graph { height: 300px; overflow-x: hidden; overflow-y: scroll; margin-bottom: 20px; background-color: #FBFBFB  ;
-}
+#publisher_sectors_graph{font-size:1.0em; line-height:1.3em; color:#444; border:1px solid #f3f3f3;height: 300px; overflow-x: hidden; overflow-y: scroll; margin-bottom: 20px; background: #f9f9f9; margin-top: 10px; padding: 0px 15px; border-radius: 4px;}
 
 a.ask					{display:block; width:960px; margin:0 auto; padding:0; color:#FFF; font-size:1.8em; text-align:center;}
 a.ask.donor				{background-color:#008FFF;}
@@ -505,3 +502,10 @@ a.beige:hover			{color:#FFF;}
 @-moz-keyframes spin {from {-moz-transform: rotate(0deg);} to {-moz-transform: rotate(359deg);}}
 @-o-keyframes spin {from {-o-transform: rotate(0deg);} to {-o-transform: rotate(359deg);}}
 @keyframes spin {from {transform: rotate(0deg);} to {transform: rotate(359deg);}}
+
+@media screen
+and (min-width: 1400px) {
+    .crumb_wrap > div {
+        margin: 0 auto; width: 960px;
+    }
+}

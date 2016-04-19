@@ -1280,3 +1280,32 @@ a.link-to-members {
     font-size: 14px;
     line-height: 20px;
 }
+
+@media screen
+and (min-width: 1400px) {
+    .tag {
+        height: 600px;
+    }
+    .text-info {
+        width: 960px;
+        padding-top: 120px;
+    }
+    .text-info h2 {
+        font-size: 64px;
+        line-height: 70px;
+        padding: 0;
+    }
+    .text-info span {
+        font-size: 20px;
+        line-height: 26px;
+    }
+    .chart-wrap {
+        margin: -100px auto 0;
+    }
+    .menu-wrap {
+        overflow: hidden;
+        max-width: 960px;
+        margin: 0 auto;
+    }
+}
+
