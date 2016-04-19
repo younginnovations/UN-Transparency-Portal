@@ -208,8 +208,10 @@ Please select <b>ONE</b> recipient and <b>NO</b> publisher to generate content h
 </nav>
 
 <div class="crumb_wrap">
-	<a href="/" class="crumb first">{crumbname_home}</a> >
-	<span>generator</span>
+	<div>
+		<a href="/" class="crumb first">{crumbname_home}</a> >
+		<span>generator</span>
+	</div>
 </div>
 
 <div class="instruct_wrap">
@@ -298,7 +300,8 @@ a#frame_fix_size:hover	{background-color:#2F84E5;}
 .view_info span.see	{width:740px; text-align:right; color:#FFF;}
 .view_wrap			{display:none; vertical-align:top; margin-left:110px;}
 .view_links			{margin-bottom:20px;}
-a.view				{display:inline-block; veview mid savirtical-align:top; width:260px; position:relative;}
+a.view				{display:inline-block; vertical-align:top; width:210px; position:relative;}
+a.view img			{width: 100%;}
 a.view.mid			{margin:0 30px;}
 a.view.mid.savi		{text-align:center;}
 a.view span.imgtxt	{display:block; margin-top:5px; color:#ccc; font-size:0.8em;}
@@ -311,7 +314,7 @@ a.toggle:hover		{color:#004373;}
 margin-left:10px; line-height:1.5em;}
 
 span.overtxt		{display:none;}
-a.view:hover span.overtxt	{display:block; position:absolute; top:0; left:0; width:260px; height:119px; background-color:rgba(0,0,0,0.6); color:#FFF; text-align:center; line-height:6em;}
+a.view:hover span.overtxt	{display:block; position:absolute; top:0; left:0; width:100%; height:119px; background-color:rgba(0,0,0,0.6); color:#FFF; text-align:center; line-height:6em;}
 
 .instruct_side		{display:inline-block; vertical-align:middle; width:30px; font-size:100px; line-height: 106px; color:#333; font-weight: bold; padding-left: 30px; margin-right: 60px;}
 .instruct_more		{display:inline-block; vertical-align:middle; width: 800px;}
@@ -343,3 +346,12 @@ nav {background: #0067B1;padding: 23px 32px;}
 .chosen-container-active .chosen-choices {box-shadow: none;}
 .chosen-container-active.chosen-with-drop .chosen-single {border: 2px solid #d8d8d8; background-image: none; box-shadow: none;}
 .chosen-container-single .chosen-single abbr {top: 20px;}
+
+@media screen
+and (min-width: 1400px) {
+.menu-wrap {
+	overflow: hidden;
+	max-width: 960px;
+	margin: 0 auto;
+	}
+}
