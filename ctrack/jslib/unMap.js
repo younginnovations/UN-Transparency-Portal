@@ -25,7 +25,7 @@ $(function(){
 		.attr("d", geoPath)
 		.style("fill",function(d){
 			if(country_names[d.id2] != undefined)
-			return "#B3D1E7";
+			return "#fff";
 
 			else
 			return "#3385C0";
