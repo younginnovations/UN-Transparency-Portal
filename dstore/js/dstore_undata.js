@@ -15,6 +15,15 @@ dstore_undata.fetch = function () {
 
     var unOrganizations = require('../json/iati_codes');
     var overAllUNData = require('../json/un_agencies_data');
+
+    overAllUNData['countries'] = {};
+    overAllUNData['sectors'] = {};
+    overAllUNData['total_budget'] = 0;
+    overAllUNData['total_expenditure'] = 0;
+    overAllUNData['total_projects'] = 0;
+    overAllUNData['active_projects'] = 0;
+    overAllUNData['un_trends'] = {};
+
     unOrganizations = unOrganizations['iati_un_publishers'];
     var codes = require('../json/un_org');
 
@@ -27,39 +36,110 @@ dstore_undata.fetch = function () {
         var projectTrends = {};
         try {
             console.log("Fetching Start data for " + unOrganizations[key]);
-            var data = require("../un-json/datastore_" + key);
-            data = JSON.stringify(data);
-            data = JSON.parse(data);
+            if (key == 41122) {
+                for (var i = 1; i < 12; i++) {
+                    var data = require("../un-json/datastoOCre_" + key + i);
+                    data = JSON.stringify(data);
+                    data = JSON.parse(data);
 
-            data['iati-activities'].forEach(function (activity) {
-                countries = extend(countries, fillGivenData(countries, activity['iati-activity']['recipient-country'], 'country'));
-                sectors = extend(sectors, fillGivenData(sectors, activity['iati-activity']['sector'], 'sector'));
-                activeProjects = activeProjects + parseInt(getActiveProjects(activity['iati-activity']['activity-date'], 'active'));
-                totalBudget = totalBudget + parseFloat(getProjectBudget(activity['iati-activity']['budget']));
-                totalExpenditure = totalExpenditure + parseFloat(getProjectExpenditure(activity['iati-activity']['transaction']));
-                projectTrends = getProjectTrends(projectTrends, activity['iati-activity']['activity-date']);
+                    data['iati-activities'].forEach(function (activity) {
+                        countries = extend(countries, fillGivenData(countries, activity['iati-activity']['recipient-country'], 'country'));
+                        sectors = extend(sectors, fillGivenData(sectors, activity['iati-activity']['sector'], 'sector'));
+                        activeProjects = activeProjects + parseInt(getActiveProjects(activity['iati-activity']['activity-date'], 'active'));
+                        totalBudget = totalBudget + parseFloat(getProjectBudget(activity['iati-activity']['budget']));
+                        totalExpenditure = totalExpenditure + parseFloat(getProjectExpenditure(activity['iati-activity']['transaction']));
+                        projectTrends = getProjectTrends(projectTrends, activity['iati-activity']['activity-date']);
+                    });
+                }
+                console.log("Fetching Finish data for " + unOrganizations[key]);
+                overAllUNData['countries'] = extend(overAllUNData['countries'], countries);
+                overAllUNData['sectors'] = extend(overAllUNData['sectors'], sectors);
+                overAllUNData['total_budget'] = parseFloat(overAllUNData['total_budget']) + parseFloat(totalBudget);
+                overAllUNData['total_expenditure'] = parseFloat(overAllUNData['total_expenditure']) + parseFloat(totalExpenditure);
+                overAllUNData['total_projects'] = parseFloat(overAllUNData['total_projects']) + parseFloat(data['total-count']);
+                overAllUNData['active_projects'] = parseFloat(overAllUNData['active_projects']) + parseFloat(activeProjects);
+                overAllUNData['un_trends'] = mergeData(overAllUNData['un_trends'], projectTrends);
 
-            });
+                codes[key] = {
+                    countries: countries,
+                    sectors: sectors,
+                    total_projects: data['total-count'],
+                    active_projects: activeProjects,
+                    total_budget: totalBudget,
+                    total_expenditure: totalExpenditure,
+                    un_trends: projectTrends
+                };
+            } else if (key == 44000) {
+                for (var i = 1; i < 4; i++) {
+                    var data = require("../un-json/datastoOCre_" + key + i);
+                    data = JSON.stringify(data);
+                    data = JSON.parse(data);
+
+                    data['iati-activities'].forEach(function (activity) {
+                        countries = extend(countries, fillGivenData(countries, activity['iati-activity']['recipient-country'], 'country'));
+                        sectors = extend(sectors, fillGivenData(sectors, activity['iati-activity']['sector'], 'sector'));
+                        activeProjects = activeProjects + parseInt(getActiveProjects(activity['iati-activity']['activity-date'], 'active'));
+                        totalBudget = totalBudget + parseFloat(getProjectBudget(activity['iati-activity']['budget']));
+                        totalExpenditure = totalExpenditure + parseFloat(getProjectExpenditure(activity['iati-activity']['transaction']));
+                        projectTrends = getProjectTrends(projectTrends, activity['iati-activity']['activity-date']);
+                    });
+                }
+                console.log("Fetching Finish data for " + unOrganizations[key]);
+                overAllUNData['countries'] = extend(overAllUNData['countries'], countries);
+                overAllUNData['sectors'] = extend(overAllUNData['sectors'], sectors);
+                overAllUNData['total_budget'] = parseFloat(overAllUNData['total_budget']) + parseFloat(totalBudget);
+                overAllUNData['total_expenditure'] = parseFloat(overAllUNData['total_expenditure']) + parseFloat(totalExpenditure);
+                overAllUNData['total_projects'] = parseFloat(overAllUNData['total_projects']) + parseFloat(data['total-count']);
+                overAllUNData['active_projects'] = parseFloat(overAllUNData['active_projects']) + parseFloat(activeProjects);
+                overAllUNData['un_trends'] = mergeData(overAllUNData['un_trends'], projectTrends);
+
+                codes[key] = {
+                    countries: countries,
+                    sectors: sectors,
+                    total_projects: data['total-count'],
+                    active_projects: activeProjects,
+                    total_budget: totalBudget,
+                    total_expenditure: totalExpenditure,
+                    un_trends: projectTrends
+                };
+
+            } else {
+                var data = require("../un-json/datastoOCre_" + key);
+                data = JSON.stringify(data);
+                data = JSON.parse(data);
+
+                data['iati-activities'].forEach(function (activity) {
+                    countries = extend(countries, fillGivenData(countries, activity['iati-activity']['recipient-country'], 'country'));
+                    sectors = extend(sectors, fillGivenData(sectors, activity['iati-activity']['sector'], 'sector'));
+                    activeProjects = activeProjects + parseInt(getActiveProjects(activity['iati-activity']['activity-date'], 'active'));
+                    totalBudget = totalBudget + parseFloat(getProjectBudget(activity['iati-activity']['budget']));
+                    totalExpenditure = totalExpenditure + parseFloat(getProjectExpenditure(activity['iati-activity']['transaction']));
+                    projectTrends = getProjectTrends(projectTrends, activity['iati-activity']['activity-date']);
+
+                });
 
 
-            console.log("Fetching Finish data for " + unOrganizations[key]);
-            overAllUNData['countries'] = extend(overAllUNData['countries'], countries);
-            overAllUNData['sectors'] = extend(overAllUNData['sectors'], sectors);
-            overAllUNData['total_budget'] = parseFloat(overAllUNData['total_budget']) + parseFloat(totalBudget);
-            overAllUNData['total_expenditure'] = parseFloat(overAllUNData['total_expenditure']) + parseFloat(totalExpenditure);
-            overAllUNData['total_projects'] = parseFloat(overAllUNData['total_projects']) + parseFloat(data['total-count']);
-            overAllUNData['active_projects'] = parseFloat(overAllUNData['active_projects']) + parseFloat(activeProjects);
-            overAllUNData['un_trends'] = mergeData(overAllUNData['un_trends'], projectTrends);
+                console.log("Fetching Finish data for " + unOrganizations[key]);
+                overAllUNData['countries'] = extend(overAllUNData['countries'], countries);
+                overAllUNData['sectors'] = extend(overAllUNData['sectors'], sectors);
+                overAllUNData['total_budget'] = parseFloat(overAllUNData['total_budget']) + parseFloat(totalBudget);
+                overAllUNData['total_expenditure'] = parseFloat(overAllUNData['total_expenditure']) + parseFloat(totalExpenditure);
+                overAllUNData['total_projects'] = parseFloat(overAllUNData['total_projects']) + parseFloat(data['total-count']);
+                overAllUNData['active_projects'] = parseFloat(overAllUNData['active_projects']) + parseFloat(activeProjects);
+                overAllUNData['un_trends'] = mergeData(overAllUNData['un_trends'], projectTrends);
 
-            codes[key] = {
-                countries: countries,
-                sectors: sectors,
-                total_projects: data['total-count'],
-                active_projects: activeProjects,
-                total_budget: totalBudget,
-                total_expenditure: totalExpenditure,
-                un_trends: projectTrends
-            };
+                codes[key] = {
+                    countries: countries,
+                    sectors: sectors,
+                    total_projects: data['total-count'],
+                    active_projects: activeProjects,
+                    total_budget: totalBudget,
+                    total_expenditure: totalExpenditure,
+                    un_trends: projectTrends
+                };
+            }
+
+
         } catch (e) {
             codes[key] = {};
             console.log(e.message);
@@ -116,14 +196,19 @@ function getProjectExpenditure(transactions) {
     var expenses = 0;
     if (typeof transactions !== 'undefined') {
 
-        if (transactions.length) {
+        if (transactions.length > 0) {
             transactions.forEach(function (transaction) {
                 if ((typeof transaction['transaction-type']) !== 'undefined' && (transaction['transaction-type'].code === 'E' || transaction['transaction-type'].code == 4)) {
-                    expenses = transaction['value'].text;
+                    expenses = expenses + parseFloat(transaction['value'].text);
                 }
             });
         } else {
-            expenses = transactions['value'].text;
+            if (typeof transactions === 'object') {
+                if (transactions['transaction-type'].code === 'E' || transactions['transaction-type'].code == 4)
+                    expenses = transactions['value'].text;
+            } else {
+                expenses = transactions['value'].text;
+            }
         }
     }
     // console.log(expenses);
@@ -138,15 +223,15 @@ function getProjectBudget(budget) {
 
         if (typeof budget.length !== 'undefined') {
             budget.forEach(function (b) {
-                if (b['type'] == 1 || b['type'].toLowerCase() === 'original') {
-                    bdgt = bdgt + Number(b['value'].text);
-                }
+                //if (b['type'] == 1 || b['type'].toLowerCase() === 'original') {
+                bdgt = bdgt + Number(b['value'].text);
+                //}
             });
         } else {
             //console.log(budget['value'].text);
-            if (budget['type'] == 1 || budget['type'].toLowerCase() === 'original') {
-                bdgt = parseFloat(budget['value'].text);
-            }
+            //if (budget['type'] == 1 || budget['type'].toLowerCase() === 'original') {
+            bdgt = parseFloat(budget['value'].text);
+            //}
         }
 
         return bdgt;
@@ -276,34 +361,3 @@ function extend(obj, src) {
     }
     return obj;
 }
-
-//"iati_un_publishers":{
-//    "41108": "International Fund for Agricultural Development",
-//        "41111": "United Nations Capital Development Fund",
-//        "41119": "United Nations Population Fund",
-//        "41120": "UN-Habitat",
-//        "41122": "United Nations Children's Fund (UNICEF)",
-//        "41127": "United Nations Office for the Coordination of Humanitarian Affairs (OCHA)",
-//        "41304": "United Nations Educational, Scientific and Cultural Organization (UNESCO)",
-//        "XM-OCHA-CERF": "United Nations Central Emergency Response Fund (CERF)",
-//        "XM-DAC-41114": "United Nations Development Programme",
-//        "41AAA": "United Nations Office for Project Services (UNOPS)",
-//        "XM-DAC-30010": "UNITAID",
-//        "XM-DAC-41140": "United Nations World Food Programme",
-//        "44000": "The World Bank"
-//},
-
-//"un_publisher_names": {
-//    "41111": "United Nations Capital Development Fund",
-//        "41119": "United Nations Population Fund",
-//        "41120": "UN-Habitat",
-//        "41122": "United Nations Children's Fund (UNICEF)",
-//        "41127": "United Nations Office for the Coordination of Humanitarian Affairs (OCHA)",
-//        "41304": "United Nations Educational, Scientific and Cultural Organization (UNESCO)",
-//        "XM-OCHA-CERF": "United Nations Central Emergency Response Fund (CERF)",
-//        "XM-DAC-41114": "United Nations Development Programme",
-//        "41AAA": "United Nations Office for Project Services (UNOPS)",
-//        "XM-DAC-30010": "UNITAID",
-//        "XM-DAC-41140": "United Nations World Food Programme"
-//},
-//codes=( 41108 41111 41119 41120 41122 41127 41304 XM-OCHA-CERF XM-DAC-41114 41AAA XM-DAC-30010 XM-DAC-41140 44000)

@@ -1,29 +1,23 @@
 cd `dirname $0`
 cd dstore
 
-countries= ( sl sd in pg uy ci tg bd mm vn gh ug st am td cm cn kh tn ki np ma jo eg ge mg lb rw ml af ph bi co pe lr et ht ke er sc br bf zr ng mx bo cv uz ve py mz id tr mv kg to bj gm ne zm md dj ye pk cu la hn ni sn gn ls bt mw tz mr cd za so sb tl gw cf km th fj al ao ar az ba bw by cg cl cr do dz ec ga gq gt iq ir kp kz lk ly mk mn mu my na om pa ps ro rs ru ss sv sy sz tj tm ua xk zw jp ai ag dm gd kn lc es ws sa jm nr nu pw kw ck aw bz vg cw gy vc sx sr tt qa hr bg lt me us il it vu bh mh cy bb ae tv tk fm sk bs kr se hu be ie eh gr )
-
 agencies=( 41108 41111 41119 41120 41122 41127 41304 XM-OCHA-CERF XM-DAC-41114 41AAA XM-DAC-30010 XM-DAC-41140 44000 )
 
 mkdir cache
 
-for country in "${countries[@]}"
-do
+
     for agency in "${agencies[@]}"
     do
-      if [ ! -f cache/datastore_${country}_${agency}.xml ]; then
-        wget --ignore-length -O cache/datastore_${country}_${agency}.xml "http://datastore.iatistandard.org/api/1/access/activity.xml?recipient-country=${country}\&reporting-org=${agency}\&stream=True" || rm -f file
+      if [ ! -f cache/datastore_${agency}.xml ]; then
+        wget --ignore-length -O cache/datastore_${agency}.xml "http://datastore.iatistandard.org/api/1/access/activity.xml?\&reporting-org=${agency}\&limit=12000" || rm -f file
       fi
   done
-done
 
-for country in "${countries[@]}"
-do
+
     for agency in "${agencies[@]}"
     do
-         node js/cmd import "cache/datastore_${country}_${agency}.xml" || exit 1
+         node js/cmd import "cache/datastore_${agency}.xml" || exit 1
     done
-done
 
 #make it smarter
 node js/cmd vacuum

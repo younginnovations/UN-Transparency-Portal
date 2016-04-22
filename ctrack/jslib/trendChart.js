@@ -9,7 +9,7 @@ $(function(){
 				.attr("id", "trendLineChart");
 	var vis = d3.select("#trendLineChart"),
 				margin = {
-					top: 20, right:20, bottom:20, left: 50
+					top: 20, right:20, bottom:20, left: 60
 				};
 
 	var xScale = d3.scale.ordinal().rangeRoundBands([0,width - 30], 0);
@@ -52,7 +52,7 @@ $(function(){
 
 		vis.append("svg:g")
 			.attr("class","axis")
-			.attr("transform", "translate(" + (margin.left) + "," + (height - margin.bottom)+ ")")
+			.attr("transform", "translate(" + (margin.left-15) + "," + (height - margin.bottom)+ ")")
 			.call(xAxis);
 
 		vis.append("svg:g")
@@ -78,7 +78,7 @@ $(function(){
 
 		vis.append('svg:path')
 			.attr('d', lineGen(mainData))
-			.attr("transform", "translate(" + (((xScale(mainData[0].year) + xScale(mainData[1].year))/2) + margin.left) + ",0)")
+			.attr("transform", "translate(" + (((xScale(mainData[0].year) + xScale(mainData[1].year))/2) + margin.left-15) + ",0)")
 			.attr("stroke", "#fff")
 			.attr("stroke-width", 1)
 			.attr("fill", "none");
@@ -93,7 +93,7 @@ $(function(){
 			.attr("r", 3.5)
 			.attr("fill", "#fff")
 			.attr("cx", function (d){
-				return xScale(d.year) + (((xScale(mainData[0].year) + xScale(mainData[1].year))/2) + margin.left);
+				return xScale(d.year) + (((xScale(mainData[0].year) + xScale(mainData[1].year))/2) + margin.left-15);
 			})
 			.attr("cy", function (d){
 				return yScale(d.value);

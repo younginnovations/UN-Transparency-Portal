@@ -57,11 +57,30 @@ view_stats.calc = function () {
 //	console.log(pm);
 }
 
+
 //
 // Perform ajax call to get numof data
 //
 view_stats.ajax = function (args) {
     args = args || {};
+
+    var dat = {
+        "select": "budget",
+        "from": "act,budget"
+    };
+
+    fetch.ajax_dat_fix(dat, args);
+    fetch.ajax(dat, args.callback || function (data) {
+            //console.log("Fetching Budget");
+            //console.log(data);
+
+            if (data.rows[0]) {
+                ctrack.chunk("total_budget", changeToMillions(data.rows[0]["TOTAL(budget_value)"], ctrack.convert_usd));
+            }
+
+            ctrack.display(); // every fetch.ajax must call display once
+        });
+
 
     var dat = {
         "select": "stats",
@@ -71,17 +90,17 @@ view_stats.ajax = function (args) {
 //			"title_like":(args.search || ctrack.args.search),
     };
 //	if(dat.country_code) { dat.from+=",country"; }
-     fetch.ajax_dat_fix(dat, args);
+    fetch.ajax_dat_fix(dat, args);
     fetch.ajax(dat, args.callback || function (data) {
 //		console.log("view_stats.numof_callback");
-    //  console.log(data);
+//      console.log(data);
 //            console.log('biju',ctrack.convert_usd);
 //            console.log('biju',ctrack.display_usd);
 
             if (data.rows[0]) {
                 ctrack.chunk("total_projects", data.rows[0]["COUNT(DISTINCT aid)"]);
                 ctrack.chunk("numof_publishers", data.rows[0]["COUNT(DISTINCT reporting_ref)"]);
-                ctrack.chunk("total_budget", changeToMillions(data.rows[0]["TOTAL(commitment)"], ctrack.convert_usd));
+                //ctrack.chunk("total_budget", changeToMillions(data.rows[0]["TOTAL(budget_value)"], ctrack.convert_usd));
                 ctrack.chunk("total_expenditure", changeToMillions(data.rows[0]["TOTAL(spend)"], ctrack.convert_usd));
             }
 

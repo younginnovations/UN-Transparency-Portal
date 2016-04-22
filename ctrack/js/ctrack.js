@@ -393,7 +393,18 @@ ctrack.setup = function (args) {
 
     var crumb_hash;
     ctrack.setcrumb = function (idx) {
-        
+
+        // try not to leave holes in the crumbs list, so align to left
+
+        //  if (idx > ctrack.crumbs.length) {
+        //      idx = ctrack.crumbs.length;
+        //  }
+        // ctrack.crumbs = ctrack.crumbs.slice(0, idx);
+        // var it = {};
+        // ctrack.crumbs[idx] = it;
+        //     it.hash = ctrack.last_hash;
+        //     it.view= ctrack.last_view;
+
         if(crumb_hash == 'crumb2_hash' && ctrack.last_view == 'act') {
             ctrack.crumbs = ctrack.crumbs.slice(0, 3);
             var it = {};

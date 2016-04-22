@@ -63,6 +63,7 @@ strong, b, .bold		{font-weight:bold; color:inherit;}
 
 /*	Settings
     ============================================= */
+
 #settings				{padding: 20px; margin: 0; display: block;}
 #settings table.head	{padding: 0;background: none;}
 span.settings_info		{min-width:135px; display:inline-block;}
