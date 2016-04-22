@@ -138,7 +138,7 @@ International Aid Transparency Initiative (IATI)
 Top of page
 
 #footer3_text
-About UN d-portal
+About UNDG Transparency Portal
 
 #footer4_text
 Back to d-portal.org
@@ -413,10 +413,10 @@ flag
 Learn more about UNDG members and observers
 
 #explore_UNDG
-Explore how UNDG is contributing to global agenda.
+Explore how UNDG is contributing to the global development agenda.
 
 #portal_info
-This portal displays data of all UNDG members that are currently publishing data as per the IATI standard.
+This portal displays data from UNDG members that are currently publishing to the IATI standard.
 
 #learn_more
 Learn more
