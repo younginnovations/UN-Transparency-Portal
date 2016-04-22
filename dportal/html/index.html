@@ -63,13 +63,35 @@
                     </div>
                 </nav>
 
-                <div class="tag">
-                    <div class="text-info">
-                        <h2>{explore_UNDG}</h2>
-                        <span>{portal_info}</span>
-                        <a href="about.html">{learn_more}</a>
+                <div class="slideshow-wrap">
+                    <div class="tag">
+                        <div class="text-info">
+                            <h2>{explore_UNDG}</h2>
+                            <span>{portal_info}</span>
+                            <a href="about.html">{learn_more}</a>
+                        </div>
+                        <!--{tagline_text}-->
                     </div>
-                    <!--{tagline_text}-->
+                    <div id="slideshow">
+                        <div>
+                            <img src="/art/slideshow_img/1.jpg">
+                        </div>
+                        <div>
+                            <img src="/art/slideshow_img/2.jpg">
+                        </div>
+                        <div>
+                            <img src="/art/slideshow_img/3.jpg">
+                        </div>
+                        <div>
+                            <img src="/art/slideshow_img/4.jpg">
+                        </div>
+                        <div>
+                            <img src="/art/slideshow_img/5.jpg">
+                        </div>
+                        <div>
+                            <img src="/art/slideshow_img/6.jpg">
+                        </div>
+                    </div>
                 </div>
                 <div class="chart-wrap">
                     <div class="chart-item">
@@ -590,6 +612,17 @@
             flexslider.vars.minItems = gridSize;
             flexslider.vars.maxItems = gridSize;
         });
+
+        $("#slideshow > div:gt(0)").hide();
+
+        setInterval(function() {
+            $('#slideshow > div:first')
+                    .fadeOut(1000)
+                    .next()
+                    .fadeIn(1000)
+                    .end()
+                    .appendTo('#slideshow');
+        },  3000);
     }());
 
 </script>
