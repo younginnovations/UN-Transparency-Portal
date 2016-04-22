@@ -63,7 +63,6 @@ dstore_sqlite.query_exec = function(db,q,v,cb){
 	return db.exec(q,v,cb);
 }
 
-
 dstore_sqlite.create_tables = function(){
 
 	var db = dstore_sqlite.open();

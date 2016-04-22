@@ -18,4 +18,6 @@ dstore/un-json/*
 .idea
 ./config/deploy.rb
 dstore/cache_new/
-
+dstore/db.zip
+dstore/json/un_agencies_data copy.json
+dstore/json/un_org copy.json
