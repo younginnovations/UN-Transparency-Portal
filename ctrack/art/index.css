@@ -610,6 +610,7 @@ a.read:hover {
     display: inline-block;
     vertical-align: top;
     float: left;
+    font-size: 13px;
 }
 
 .footer_link.top_about_wrap {
@@ -619,7 +620,7 @@ a.read:hover {
 
 .footer_link a {
     color: #818181;
-    font-size: 14px;
+    font-size: 13px;
 }
 
 .footer_link a:focus {
