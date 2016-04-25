@@ -129,7 +129,7 @@ Only countries and publishers with data published to IATI are available for expl
 UNDG Members and Observers
 
 #footer1_text
-A 2016 project by United Nations Development Group
+A 2016 project by
 
 #footer1_tip_text
 International Aid Transparency Initiative (IATI)

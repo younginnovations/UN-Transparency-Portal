@@ -614,11 +614,12 @@ a.read:hover {
 
 .footer_link.top_about_wrap {
     float: right;
+
 }
 
 .footer_link a {
-    font-size: 14px;
     color: #818181;
+    font-size: 14px;
 }
 
 .footer_link a:focus {

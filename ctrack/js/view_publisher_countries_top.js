@@ -73,6 +73,7 @@ view_publisher_countries_top.ajax=function(args)
 		list.forEach(function(v){
 			var d = {};
 			d.num = v.usd;
+			d.pct=Math.ceil(100*v.usd/total);
 			if(d.num < 0){d.num = -d.num; }
 			d.str_lab = v.country_name;
 			dd.push(d);
