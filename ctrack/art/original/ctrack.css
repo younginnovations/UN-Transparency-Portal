@@ -141,7 +141,7 @@ a.back_news:hover	{color:#A8C5E5;}
 
 /*	Graph styles
 	============================================= */
-#donor_graph,#sector_graph,#publisher_countries_graph,#publisher_sectors_graph,#sector_publisher_graph{padding: 0 15px; border: 1px solid #f3f3f3; margin-bottom: 15px; border-radius: 4px; -webkit-box-shadow: inset 0px -6px 47px -13px rgba(0,0,0,0.81); -moz-box-shadow: inset 0px -6px 47px -13px rgba(0,0,0,0.81); box-shadow: inset 0px -6px 47px -13px rgba(0,0,0,0.81); color: #444;max-height: 300px; margin-top: 10px; overflow-x: hidden;}
+#donor_graph,#sector_graph,#publisher_countries_graph,#sector_category_graph,#publisher_sectors_graph,#sector_publisher_graph{padding: 0 15px; border: 1px solid #f3f3f3; margin-bottom: 15px; border-radius: 4px; -webkit-box-shadow: inset 0px -6px 47px -13px rgba(0,0,0,0.81); -moz-box-shadow: inset 0px -6px 47px -13px rgba(0,0,0,0.81); box-shadow: inset 0px -6px 47px -13px rgba(0,0,0,0.81); color: #444;max-height: 300px; margin-top: 10px; overflow-x: hidden;}
 
 a.ask					{display:block; width:960px; margin:0 auto; padding:0; color:#FFF; font-size:1.8em; text-align:center;}
 a.ask.donor				{background-color:#008FFF;}
@@ -471,7 +471,7 @@ a.data_invest:hover		{color:#FFF; background-color:rgba(194,0,255,0.8);}
 	============================================= */
 .footer_wrap			{display:table-footer-group; height:1px; background-color:rgba(0,0,0,0.95);}
 .footer					{width:960px; margin:0 auto; padding:10px 0; overflow: hidden;}
-.footer_link			{width:320px; display:inline-block; vertical-align:top; float: left;}
+.footer_link			{width:320px; display:inline-block; vertical-align:top; float: left; font-size:14px;}
 .footer_link.top_about_wrap		{float: right;}
 .footer_link a			{font-size:0.8em; line-height:1.5em; color:#CCC;}
 .footer_link a:focus	{color:#FFF;}
