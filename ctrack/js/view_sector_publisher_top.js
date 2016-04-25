@@ -65,6 +65,7 @@ view_sector_publisher_top.ajax = function(args){
 		list.forEach(function(v){
 			var d = {};
 			d.num = v.usd;
+			d.pct=Math.ceil(100*d.num/total);
 			if(d.num < 0){d.num = -d.num; }
 			d.str_lab = iati_codes.iati_un_publishers[v.funder];
 			dd.push(d);

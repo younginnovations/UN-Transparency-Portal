@@ -14,7 +14,7 @@ chart.draw=function(sel,data,options){
 		var parentWidth = $(sel).parent().width();
 		var barHeight = 30;
 		var height = barHeight * data.length;
-		var marginHorz = { top: 20, right: 80, bottom: 40, left: parentWidth/3},
+		var marginHorz = { top: 20, right: 115, bottom: 40, left: parentWidth/3},
 			widthHorz = parentWidth - marginHorz.left - marginHorz.right,
 			heightHorz = height;
 
@@ -99,19 +99,25 @@ chart.draw=function(sel,data,options){
 			.attr("height", barHeight-5);
 
 		var textAlign = barHeight - 13;
-		svgHorz.selectAll("text.value")
-			.data(data)
-			.enter()
-			.append("text")
-			.text(function(d) { return "$"+d.num.toLocaleString(); })
-			.attr("class","bar")
-			.style("font-size", "14px")
-			.attr("y", function(d,i){
-				return i * (heightHorz / data.length);
-			})
-			.attr("dx",function (d){
-				return total(d.num) + 10})
-			.attr("dy", textAlign);
+			svgHorz.selectAll("text.value")
+				.data(data)
+				.enter()
+				.append("text")
+				.attr("class","bar")
+				.style("font-size", "14px")
+				.attr("y", function(d,i){
+					return i * (heightHorz / data.length);
+				})
+				.attr("dx",function (d){
+					return total(d.num) + 10})
+				.attr("dy", textAlign)
+				.text(function(d) {
+					if(d.pct !== undefined){
+						return "$"+d.num.toLocaleString() + " (" + d.pct + "%)";
+					}
+					else{
+						return "$"+d.num.toLocaleString();
+					}});
 
 		if(sel === "#sector_category_graph"){
 			svgHorz.selectAll("text.name")
