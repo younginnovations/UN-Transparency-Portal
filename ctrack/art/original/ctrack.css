@@ -471,9 +471,9 @@ a.data_invest:hover		{color:#FFF; background-color:rgba(194,0,255,0.8);}
 	============================================= */
 .footer_wrap			{display:table-footer-group; height:1px; background-color:rgba(0,0,0,0.95);}
 .footer					{width:960px; margin:0 auto; padding:10px 0; overflow: hidden;}
-.footer_link			{width:320px; display:inline-block; vertical-align:top; float: left; font-size:14px;}
+.footer_link			{width:320px; display:inline-block; vertical-align:top; float: left; font-size:13px;}
 .footer_link.top_about_wrap		{float: right;}
-.footer_link a			{font-size:0.8em; line-height:1.5em; color:#CCC;}
+.footer_link a			{font-size:13px; color:#CCC;}
 .footer_link a:focus	{color:#FFF;}
 .footer_link a:link  	{color:#999;}
 .footer_link a:visited	{color:#999;}
