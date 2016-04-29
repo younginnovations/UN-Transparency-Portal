@@ -32,7 +32,7 @@ view_list_activities.chunks=[
 view_list_activities.view=function()
 {
 	view_list_activities.chunks.forEach(function(n){ctrack.chunk(n,"{spinner_in_table_row}");});
-	ctrack.setcrumb(3);
+	ctrack.setcrumb(2);
 	ctrack.change_hash();
 	view_list_activities.ajax({q:ctrack.hash});
 };

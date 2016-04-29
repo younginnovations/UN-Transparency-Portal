@@ -2,29 +2,29 @@
 {spinner}
 
 #crumbs1
-{crumbname_{crumb0_view}}
+<span class="crumb">{crumbname_{crumb0_view}}</span>
 
 #crumbs2
 <a href="/" class="crumb first">{crumbname_home}</a> >
-<span>{crumbname_{crumb1_view}}</span>
+<span class="crumb">{crumbname_{crumb1_view}}</span>
 
 #crumbs3
 <a href="/" class="crumb first">{crumbname_home}</a> >
 <a href="{crumb1_hash}" class="crumb">{crumbname_{crumb1_view}}</a> >
-<span>{crumbname_{crumb2_view}}</span>
+<span class="crumb">{crumbname_{crumb2_view}}</span>
 
 #crumbs4
 <a href="/" class="crumb first">{crumbname_home}</a> >
 <a href="{crumb1_hash}" class="crumb">{crumbname_{crumb1_view}}</a> >
 <a href="{crumb2_hash}" class="crumb">{crumbname_{crumb2_view}}</a> >
-<span>{crumbname_{crumb3_view}}</span>
+<span class="crumb">{crumbname_{crumb3_view}}</span>
 
 #crumbs5
 <a href="/" class="crumb first">{crumbname_home}</a> >
 <a href="{crumb1_hash}" class="crumb">{crumbname_{crumb1_view}}</a> >
 <a href="{crumb2_hash}" class="crumb">{crumbname_{crumb2_view}}</a> >
 <a href="{crumb3_hash}" class="crumb">{crumbname_{crumb3_view}}</a> >
-<span>{crumbname_{crumb4_view}}</span>
+<span class="crumb">{crumbname_{crumb4_view}}</span>
 
 #spinner
 <div class="spinner"></div>
@@ -45,10 +45,29 @@
 #status
 <span class="badge beta">BETA</span>
 
+#sss
+<span id="spend_id"></span>
+<script>
+	var x ='{publisher_name}';
+	var y ='{country_name}';
+	var z ='{sector_name}';
+	if(!x && !y && !z){
+		document.getElementById("spend_id").innerHTML='Spend';
+	}
+//	else{
+//		document.getElementById("spend_id").innerHTML='';
+//	}
+</script>
+
 #portal_name
 {sector_name}
 {country_name}
 {publisher_name}
+{sss}
+
+
+
+
 
 #view_head
 <div class="portal">
@@ -61,8 +80,8 @@
 	</div>
 	<div class="footer_wrap">
 	<div class="footer">
-		<div class="footer_link" style="font-size: 14px;">
-			{footer_pick_text}<a href="http://undg.org/">United Nations Development Group</a>
+		<div class="footer_link"><a href="/">
+			{footer_pick_text}</a>
 		</div><div class="footer_link top"><a onclick="$('html,body').animate({scrollTop:0},'slow');return false;">
 			{footer_top_text}</a>
 		</div><div class="footer_link about"><a href="/about.html">
@@ -237,7 +256,7 @@
 <div class="default min">
 	<table class="country min">
 		<tr>
-			<td class="name publisher">{portal_name}</td>
+			<td class="name publisher">{sector_name}</td>
 		</tr>
 	</table>
 </div>
@@ -246,8 +265,10 @@
 <div class="default min">
 	<table class="country min">
 		<tr>
-			<td class="name">{portal_name}</td>
-			<td class="flag"><img src="{country_flag}" alt="{portal_name} {flag_alt_text}"/></td>
+			<td class="name">{country_name}</td>
+			<td class="flag">
+				<img src="{country_flag}" alt="{country_name} {flag_alt_text}"/>
+			</td>
 		</tr>
 	</table>
 </div>
@@ -256,9 +277,9 @@
 <div class="default min">
 	<table class="country min">
 		<tr>
-			<td class="name publisher">{portal_name}</td>
+			<td class="name publisher">{publisher_name}</td>
 
-			<td><img src="{publisher_flag}" alt="{portal_name}"/></td>
+			<td><img src="{publisher_flag}" alt="{publisher_name}"/></td>
 		</tr>
 	</table>
 </div>
@@ -308,7 +329,7 @@
 	<table class="country">
 		<tr>
 			<td class="name">{portal_name}</td>
-			<td class="flag"><img src="{country_flag}" alt="{portal_name} {flag_alt_text}"/></td>
+			<td class="flag"><img src="{country_flag}" alt="{country_name}"/></td>
 		</tr>
 	</table>
 </div>
@@ -319,7 +340,7 @@
 		<tr>
 			<td class="name publisher">{portal_name}</td>
 
-			<td><img src="{publisher_flag}" alt="{portal_name}"/></td>
+			<td><img src="{publisher_flag}" alt="{publisher_name}"/></td>
 		</tr>
 	</table>
 </div>

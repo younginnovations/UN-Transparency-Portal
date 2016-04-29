@@ -107,7 +107,7 @@ Donor Spend
 Donor Activities
 
 #crumbname_sectors_text
-Sector Table
+Total Expenditure
 
 #crumbname_sector_budgets_text
 Sector Budget
@@ -152,7 +152,7 @@ Country Table
 Publisher List
 
 #crumbname_list_transactions_text
-Spend
+{portal_name}
 
 #crumbname_list_budgets_text
 Budget
@@ -209,7 +209,7 @@ Total number of projects that are still active now
 Total number of projects that have ended
 
 #stats_total_tip_text
-Total number of projects calculated for {portal_name}
+Total number of projects calculated
 
 #stats_planned_tip_text
 Total number of projects being planned in the future
@@ -339,6 +339,7 @@ Click to explore donor's IATI budget for {year3}
 
 #table_donor_tip_b2_text
 Click to explore donor's IATI budget for {year4}
+spend
 
 #table_sector_title_transaction_text
 IATI SPEND ({USD})

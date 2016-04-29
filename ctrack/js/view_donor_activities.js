@@ -21,7 +21,7 @@ view_donor_activities.chunks=[
 view_donor_activities.view=function()
 {
 	view_donor_activities.chunks.forEach(function(n){ctrack.chunk(n,"{spinner_in_table_row}");});
-	ctrack.setcrumb(3);
+	ctrack.setcrumb(2);
 	ctrack.change_hash();
 	
 	var funder=ctrack.hash.funder;
