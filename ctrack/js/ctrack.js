@@ -406,28 +406,69 @@ ctrack.setup = function (args) {
     else if (args.sector) {
         ctrack.crumbs = [{hash: "#view=sector", view: "sector"}];
     }
+
     else {
         ctrack.crumbs = [{hash: "/", view: "main"}];
     }
 
+    var crumb_hash;
     ctrack.setcrumb = function (idx) {
-// try not to leave holes in the crumbs list, so align to left
-        if (idx > ctrack.crumbs.length) {
-            idx = ctrack.crumbs.length;
-        }
-        var it = {};
-        ctrack.crumbs = ctrack.crumbs.slice(0, idx);
-        ctrack.crumbs[idx] = it;
-        it.hash = ctrack.last_hash;
-        it.view = ctrack.last_view;
-    };
-    ctrack.show_crumbs = function () {
+        // try not to leave holes in the crumbs list, so align to left
 
+        //  if (idx > ctrack.crumbs.length) {
+        //      idx = ctrack.crumbs.length;
+        //  }
+        // ctrack.crumbs = ctrack.crumbs.slice(0, idx);
+        // var it = {};
+        // ctrack.crumbs[idx] = it;
+        //     it.hash = ctrack.last_hash;
+        //     it.view= ctrack.last_view;
+        
+        if(crumb_hash == 'crumb2_hash' && ctrack.last_view == 'act') {
+            ctrack.crumbs = ctrack.crumbs.slice(0, 3);
+            var it = {};
+            ctrack.crumbs[3] = it;
+            it.hash = ctrack.last_hash;
+            it.view= ctrack.last_view;
+        }
+        else if(crumb_hash == 'crumb0_hash' && ctrack.last_view == 'act') {
+            ctrack.crumbs = ctrack.crumbs.slice(0, 1);
+            var it = {};
+            ctrack.crumbs[1] = it;
+            it.hash = ctrack.last_hash;
+            it.view= ctrack.last_view;
+        }
+
+
+        else if(crumb_hash == 'crumb1_hash' && ctrack.last_view == 'publisher_sectors')
+        {
+            ctrack.crumbs = ctrack.crumbs.slice(0, 2);
+            var it = {};
+            ctrack.crumbs[2] = it;
+            it.hash = ctrack.last_hash;
+            it.view= ctrack.last_view;
+
+         }
+
+        else
+        {
+            ctrack.crumbs = ctrack.crumbs.slice(0, idx);
+            var it = {};
+            ctrack.crumbs[idx] = it;
+            it.hash = ctrack.last_hash;
+            it.view= ctrack.last_view;
+        }
+    };
+
+    ctrack.show_crumbs = function () {
         for (var i = 0; i < ctrack.crumbs.length; i++) {
             var v = ctrack.crumbs[i];
             if (v) {
                 ctrack.chunk("crumb" + i + "_hash", v.hash);
                 ctrack.chunk("crumb" + i + "_view", v.view);
+                ctrack.chunk(v.publisher);
+                ;
+                crumb_hash = "crumb" + i + "_hash", v.hash;
             }
             else {
                 if (args.publisher) {
@@ -442,14 +483,16 @@ ctrack.setup = function (args) {
                     ctrack.chunk("crumb" + i + "_hash", "view=sector");
                     ctrack.chunk("crumb" + i + "_view", "sector");
                 }
+
+
                 else {
                     ctrack.chunk("crumb" + i + "_hash", "/");
                     ctrack.chunk("crumb" + i + "_view", "main");
                 }
             }
-        }
 
-        ctrack.chunk("crumbs", "{crumbs" + ctrack.crumbs.length + "}");
+        }
+            ctrack.chunk("crumbs", "{crumbs" + ctrack.crumbs.length + "}");
     }
 
     ctrack.chunks = {};
