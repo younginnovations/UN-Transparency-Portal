@@ -80,9 +80,6 @@
                             <img src="/art/slideshow_img/2.jpg">
                         </div>
                         <div>
-                            <img src="/art/slideshow_img/3.jpg">
-                        </div>
-                        <div>
                             <img src="/art/slideshow_img/4.jpg">
                         </div>
                         <div>
@@ -616,12 +613,12 @@
 
         setInterval(function() {
             $('#slideshow > div:first')
-                    .fadeOut(1000)
+                    .fadeOut(2000)
                     .next()
-                    .fadeIn(1000)
+                    .fadeIn(2000)
                     .end()
                     .appendTo('#slideshow');
-        },  3000);
+        },  5000);
     }());
 
 
