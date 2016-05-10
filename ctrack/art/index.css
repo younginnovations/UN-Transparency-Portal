@@ -1364,9 +1364,10 @@ and (min-width: 1400px) {
 .modal {
     display: none; /* Hidden by default */
     position: fixed; /* Stay in place */
-    z-index: 1; /* Sit on top */
+    z-index: 1000; /* Sit on top */
     padding-top: 100px; /* Location of the box */
     left: 0;
+    font-family: arial;
     top: 0;
     width: 100%; /* Full width */
     height: 100%; /* Full height */
@@ -1375,10 +1376,6 @@ and (min-width: 1400px) {
     background-color: rgba(0,0,0,0.6); /* Black w/ opacity */
 }
 
-/* Modal Content */
-.modal{
-    z-index: 1000;
-}
 .modal-content {
     position: relative;
     background-color: #fefefe;
@@ -1421,11 +1418,11 @@ and (min-width: 1400px) {
     border: 1px solid #bbb;
 }
 
-.form-contrrol input:focus,.form-contrrol keygen:focus, .form-contrrol select:focus {
+.form-control input:focus,.form-control keygen:focus, .form-control select:focus {
     outline-offset: 0;
 }
 
-.form-contrrol:-webkit-autofill, .form-contrrol select:-webkit-autofill {
+.form-control:-webkit-autofill, .form-control select:-webkit-autofill {
     background: none;
     color: rgb(0, 0, 0);
 }
@@ -1455,8 +1452,10 @@ and (min-width: 1400px) {
 }
 .successMessage{
     display:none;
+    width: 197px;
+    margin: 0 auto;
     text-align: center;
-    padding: 44px 0 35px 0;
+    padding: 2px 0 51px 0;
     font-weight: bold;
 }
 /* The Close Button */
@@ -1468,7 +1467,6 @@ and (min-width: 1400px) {
     margin-top: 23px;
     margin-right: 15px;
 }
-
 .close:hover,
 .close:focus {
     color: #000;
@@ -1476,8 +1474,20 @@ and (min-width: 1400px) {
     cursor: pointer;
     margin-top: 23px;
 }
-
-
 .modal-body {
     padding: 30px 35px;
+}
+#githubIssue{
+    font-size: 14px;
+    text-align: center;
+    padding-top: 38px;
+    color: #344;
+}
+#githubIssue>a{
+    color: #0067B1;
+    font-size: 14px;
+    text-transform: lowercase;
+}
+#githubIssue>a:hover{
+    color: #00406E;
 }
