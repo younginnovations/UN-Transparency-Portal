@@ -172,10 +172,27 @@
 					</a>
 				</div>
 				<div class="menu">
-					<a href="about.html#feedback_section" target="_blank">
+					<a href="javascript:" id="sendFeedbackPopup">
 						<span>{develop_button_text}</span>
-						<!--<span class="path_txt">{develop_info_text}</span>-->
 					</a>
+					<div id="myModal" class="modal">
+
+						<!-- Modal content -->
+						<div class="modal-content">
+								<span class="close">×</span>
+								<h2 class="modal-header">Send Feedback</h2>
+								<div class="modal-body">
+									<form id="feedbackForm">
+										<input class="form-control" type="text" id="fullname" name="fullname" placeholder="YOUR NAME" >
+										<input class="form-control" type="email" id="email" name="email" placeholder="YOUR EMAIL" >
+										<textarea class="form-control" placeholder="YOUR MESSAGE" id="message" name="message" ></textarea>
+										<button class="form-button" type="button" id="sendFeedback">Send Message</button>
+									</form>
+								</div>
+								<h2 class="successMessage">Your message has been successfully sent.</h2>
+						</div>
+
+					</div>
 				</div>
 				<a href="#" onclick="$('#settings').toggle();" class="settings_link">
 					<span>{change_settings_text}</span><img src="{flava}settings.png" width="35" height="35"/>
@@ -188,6 +205,44 @@
 </div>
 
 <script>
+		var modal = document.getElementById('myModal');
+
+		var btn = document.getElementById("sendFeedbackPopup");
+
+		var cross = document.getElementsByClassName("close")[0];
+
+		btn.onclick = function() {
+			modal.style.display = "block";
+			$("body").css('overflow','hidden');
+		}
+
+		cross.onclick = function() {
+			modal.style.display = "none";
+			$("body").css('overflow','visible');
+		}
+
+		window.onclick = function(event) {
+			if (event.target == modal) {
+				modal.style.display = "none";
+				$("body").css('overflow','visible');
+			}
+		}
+		$("#sendFeedback").on('click',function(e){
+			e.preventDefault();
+			var name  = $('#fullname').val();
+			var email  = $('#email').val();
+			var message = $('#message').val();
+			var data = {name: name, email: email,message:message};
+			$.ajax({
+				url : '/feedback',
+				data : data,
+				success : function(response){
+					$("#feedbackForm").hide();
+					$(".successMessage").show();
+				}
+			});
+		});
+
 	$(function(){
 		$('#tongue_select').children().each(function(i,it){
 			if("{tongue}"==$(it).val())
@@ -244,6 +299,7 @@
 			return false;
 		});
 	});
+
 </script>
 
 

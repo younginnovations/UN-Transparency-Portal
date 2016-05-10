@@ -12,6 +12,8 @@ var chart = require("./chart.js")
 var views = require("./views.js");
 
 var ganal = require("./ganal.js");
+var sendgrid = require('sendgrid')('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');
+
 
 var iati_codes = require("../../dstore/json/iati_codes.json");
 var un_agencies_data = require("../../dstore/json/un_agencies_data.json");
@@ -66,6 +68,7 @@ ctrack.dosort = function (s) {
 };
 
 ctrack.setup = function (args) {
+
     ctrack.q = {};
     window.location.search.substring(1).split("&").forEach(function (n) {
         var aa = n.split("=");
@@ -156,7 +159,6 @@ ctrack.setup = function (args) {
     }
     args.chunks["USD"] = ctrack.display_usd;
 //console.log("convert USD "+ctrack.convert_usd);
-
 // temporary country force hack
     if (ctrack.q.country) {
         var cc = ctrack.q.country.toLowerCase().split(","); // allow list

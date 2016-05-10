@@ -8,17 +8,17 @@
   },
   "dependencies": {
     "express": "*",
-    "morgan": "*",
-    "yargs": "*",
     "marked": "*",
-    "pm2":"*"
+    "morgan": "*",
+    "pm2": "*",
+    "sendgrid": "^2.0.0",
+    "yargs": "*"
   },
   "devDependencies": {
-    "pm2":"*"
+    "pm2": "*"
   },
   "scripts": {
     "build": "node js/cmd.js build",
     "serv": "node js/serv.js"
   }
 }
-

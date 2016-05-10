@@ -34,6 +34,28 @@ app.use(function(req, res, next) {
 app.use(express.static(__dirname+"/../static"));
 
 
+
+app.get('/feedback', function (req, res) {
+	try {
+		var name = req.query.name;
+		var feedbackEmail = req.query.email;
+		var message = req.query.message;
+		var sendgrid = require("sendgrid")("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");
+		var email = new sendgrid.Email();
+
+		email.addTo("aayush.rijal@yipl.com.np");
+		email.setFrom(feedbackEmail);
+		email.setSubject("About UNTP");
+		email.setHtml(name + "," + "<br />" + message);
+
+		sendgrid.send(email, function (err, json) {
+			return res.json(json);
+		});
+	} catch (e) {
+		return res.json(e.message);
+	}
+});
+
 app.use(function(req, res, next) {
 	var aa=req.path.split("/");
 	var ab=aa && (aa[aa.length-1].split("."));
