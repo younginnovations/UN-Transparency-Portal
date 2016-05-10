@@ -4,14 +4,9 @@
 <head>
     <meta charset="UTF-8">
     <title>{welcome_text}</title>
-    <!--<script src="{root}jslib/jquery.flexslider-min.js"></script>-->
-    <!--<script src="{root}jslib/jquery.elastislide.js"></script>-->
-    <!--<script src="{root}jslib/jquerypp.custom.js"></script>-->
     <script src="{root}jslib/d3.min.js"></script>
     <link href="{root}art/chosen.min.css" rel="stylesheet" type="text/css">
     <link href="{root}art/jquery.bxslider.css" rel="stylesheet" type="text/css">
-    <!--<link href="{root}art/flexslider.css" rel="stylesheet" type="text/css">-->
-    <!--<link href="{root}art/elastislide.css" rel="stylesheet" type="text/css">-->
     <link href="{root}art/index.css" rel="stylesheet" type="text/css">
     <script src="{root}jslib/jquery.js"></script>
     <script src="{root}jslib/chosen.jquery.min.js"></script>
@@ -43,20 +38,28 @@
                             <div class="menu">
                                 <a href="/ctrack.html#view=generator">
                                     <span>{install_button_text}</span>
-                                    <!--<span class="path_txt">{install_info_text}</span>-->
                                 </a>
                             </div>
-                            <!--<div class="menu">-->
-                            <!--<a href="#explore">-->
-                            <!--&lt;!&ndash;<span class="path_txt">{explore_info_text}</span>&ndash;&gt;-->
-                            <!--</a>-->
-                            <!--</div>-->
                             <div class="menu">
-                                <a href="{root}about.html#feedback_section"
-                                   target="_blank">
+                                <a href="javascript:" id="sendFeedbackPopup">
                                     <span>{develop_button_text}</span>
-                                    <!--<span class="path_txt">{develop_info_text}</span>-->
                                 </a>
+                                <div id="myModal" class="modal">
+                                    <div class="modal-content">
+                                        <span class="close">×</span>
+                                        <h2 class="modal-header">Send Feedback</h2>
+                                        <div class="modal-body">
+                                            <form id="feedbackForm">
+                                                <input class="form-control" type="text" id="fullname" name="fullname" placeholder="YOUR NAME" >
+                                                <input class="form-control" type="email" id="email" name="email" placeholder="YOUR EMAIL" >
+                                                <textarea class="form-control" placeholder="YOUR MESSAGE" id="message" name="message" ></textarea>
+                                                <button class="form-button" type="button" id="sendFeedback">Send Message</button>
+                                            </form>
+                                        </div>
+                                        <h2 class="successMessage">Your message has been successfully sent.</h2>
+                                    </div>
+
+                                </div>
                             </div>
                             <div class="tongue_wrap">{tongue_select}</div>
                         </div>
@@ -70,7 +73,6 @@
                             <span>{portal_info}</span>
                             <a href="about.html">{learn_more}</a>
                         </div>
-                        <!--{tagline_text}-->
                     </div>
                     <div id="slideshow">
                         <div>
@@ -249,9 +251,6 @@
                 {footer1_text}<a href="http://undg.org/" title="{footer1_tip_text}">United Nations Development Group</a>
             </div>
             <div class="footer_link top_about_wrap">
-                <!--<div class="top"><a onclick="$('html,body').animate({scrollTop:0},'slow');return false;">-->
-                <!--{footer2_text}</a>-->
-                <!--</div>-->
                 <div class="about">
                     <a href="{tongue_root}about.html">{footer3_text}</a>
                 </div>
@@ -262,7 +261,6 @@
 <script src="{root}jslib/progressBar1.js"></script>
 <script src="{root}jslib/progressBar2.js"></script>
 <script src="{root}jslib/budgetPie.js"></script>
-<script src="{root}jslib/orgCompPie.js"></script>
 <script src="{root}jslib/unMap.js"></script>
 <script src="{root}jslib/trendChart.js"></script>
 </body>
@@ -290,16 +288,11 @@
 
 #loading
 <div class="spinner"></div>
-<!-- #publisher_select
-<li class="publishercol">
-	<a class="country_code" href="{root}ctrack.html?publisher={it.id}&tongue={tongue}">
-		<span class="select_wrap publishername">{it.name}</span>
-		<span class="select_wrap publisherid">{it.id}</span>
-	</a>
-</li> -->
+
 #js_country_lookup
 "{it.cc}":"{it.name}",
 #jsmenu
+
 <script>
 
     var publisher_names = {publisher_names_json};
@@ -316,6 +309,7 @@
     var un_trends = {un_trends};
     var un_org = {un_org};
     var geojson = {geojson};
+
     $(function () {
 
         $("#display-active-projects").text(active_projects.toLocaleString());
@@ -416,13 +410,6 @@
             rows.push({name: name, sector_ref: idx});
         }
 
-//        rows.sort(function (a, b) {
-//            var ta = a.name.toUpperCase();
-//            var tb = b.name.toUpperCase();
-//            return (ta < tb) ? -1 : (ta > tb) ? 1 : 0;
-//        });
-
-// goto new url
         var change = function () {
 
             var name = "" + $("#sector_dropmenu select").val();
@@ -557,8 +544,43 @@
 
 // initialise page
         refresh();
+        var modal = document.getElementById('myModal');
 
+        var btn = document.getElementById("sendFeedbackPopup");
 
+        var cross = document.getElementsByClassName("close")[0];
+
+        btn.onclick = function() {
+            modal.style.display = "block";
+            $("body").css('overflow','hidden');
+        }
+
+        cross.onclick = function() {
+            modal.style.display = "none";
+            $("body").css('overflow','visible');
+        }
+
+        window.onclick = function(event) {
+            if (event.target == modal) {
+                modal.style.display = "none";
+                $("body").css('overflow','visible');
+            }
+        }
+        $("#sendFeedback").on('click',function(e){
+            e.preventDefault();
+            var name  = $('#fullname').val();
+            var email  = $('#email').val();
+            var message = $('#message').val();
+            var data = {name: name, email: email,message:message};
+            $.ajax({
+                url : '/feedback',
+                data : data,
+                success : function(response){
+                    $("#feedbackForm").hide();
+                    $(".successMessage").show();
+                }
+            });
+        });
     });
 
     //Flexslider
@@ -574,23 +596,9 @@
                     (window.innerWidth < 900) ? 3 : 4;
         }
 
-        // $(function () {
-        //     SyntaxHighlighter.all();
-        // });
-
         $window.load(function () {
             $('.spinner').hide();
             $('.slider-wrap .country_menu_list li').show();
-//            $('.flexslider').flexslider({
-//                animation: "slide",
-//                animationLoop: false,
-//                itemWidth: 210,
-//                itemHeight: 145,
-//                itemMargin: 5,
-//                minItems: getGridSize(), // use function to pull in initial value
-//                maxItems: getGridSize() // use function to pull in initial value
-//            });
-//            $('#un_publisher_lis').elastislide();
             $('.bxslider').bxSlider({
                 minSlides: 5,
                 maxSlides: 5,
@@ -620,7 +628,6 @@
                     .appendTo('#slideshow');
         },  5000);
     }());
-
 
     function toTitleCase(str)
     {
