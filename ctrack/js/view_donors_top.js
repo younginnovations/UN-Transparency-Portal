@@ -73,7 +73,7 @@ view_donors_top.ajax=function(args)
 			d.num = v.usd;
 			d.pct=Math.ceil(100*d.num/total);
 			if(d.num < 0){d.num = -d.num; }
-			d.str_lab =iati_codes.funder_names[v.funder];
+			d.str_lab =iati_codes.funder_names[v.funder] || iati_codes.un_publisher_names[v.funder];
 			dd.push(d);
 		});
 		//for( var i=0; i<limit ; i++ )

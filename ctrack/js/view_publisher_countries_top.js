@@ -51,7 +51,6 @@ view_publisher_countries_top.ajax=function(args)
 	fetch.ajax_dat_fix(dat,args);
 	if(!dat.reporting_ref){dat.flags=0;} // ignore double activities unless we are looking at a select publisher
 	fetch.ajax(dat,function(data){
-//			console.log("fetch transactions donors "+year);
 		for(var i=0;i<data.rows.length;i++)
 		{
 			var v=data.rows[i];

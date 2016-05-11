@@ -49,17 +49,25 @@
                                         <span class="close">×</span>
                                         <h2 class="modal-header">Send Feedback</h2>
                                         <div class="modal-body">
-                                            <form id="feedbackForm">
-                                                <input class="form-control" type="text" id="fullname" name="fullname" placeholder="YOUR NAME" >
-                                                <input class="form-control" type="email" id="email" name="email" placeholder="YOUR EMAIL" >
-                                                <textarea class="form-control" placeholder="YOUR MESSAGE" id="message" name="message" ></textarea>
+                                            <div id="emptyAlert"></div>
+                                            <form id="feedbackForm" name="feedbackForms">
+                                                <input class="form-control" type="text" id="fullname" name="fullname" placeholder="YOUR NAME" required>
+                                                <input class="form-control" type="email" id="email" name="email" placeholder="YOUR EMAIL" required>
+                                                <textarea class="form-control" placeholder="YOUR MESSAGE" id="message" name="message" required></textarea>
                                                 <button class="form-button" type="button" id="sendFeedback">Send Message</button>
                                             </form>
                                             <div id="githubIssue">You can also post Github issues <a href="https://github.com/younginnovations/UN-Transparency-Portal/issues" target="_blank">here</a></div>
                                         </div>
-                                        <h2 class="successMessage">Your message has been successfully sent.</h2>
                                     </div>
-
+                                </div>
+                                <div id="myModalSuccess" class="modalSuccess">
+                                    <div class="modal-content-success">
+                                        <span class="close">×</span>
+                                        <h2 class="modal-header">Send Feedback</h2>
+                                        <div class="modal-body">
+                                            <h2 class="successMessage">Your message has been successfully sent.</h2>
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
                             <div class="tongue_wrap">{tongue_select}</div>
@@ -546,7 +554,7 @@
 // initialise page
         refresh();
         var modal = document.getElementById('myModal');
-
+        var modalSuccess = document.getElementById('myModalSuccess');
         var btn = document.getElementById("sendFeedbackPopup");
 
         var cross = document.getElementsByClassName("close")[0];
@@ -554,31 +562,44 @@
         btn.onclick = function() {
             modal.style.display = "block";
             $("body").css('overflow','hidden');
-        }
+        };
 
         cross.onclick = function() {
             modal.style.display = "none";
             $("body").css('overflow','visible');
-        }
+        };
 
         window.onclick = function(event) {
             if (event.target == modal) {
                 modal.style.display = "none";
                 $("body").css('overflow','visible');
             }
-        }
+        };
+
         $("#sendFeedback").on('click',function(e){
             e.preventDefault();
             var name  = $('#fullname').val();
             var email  = $('#email').val();
             var message = $('#message').val();
+            if(name == "" || email == "" || message == ""){
+                $("#emptyAlert").html("Please fill all the fields!!");
+                return false;
+            }
             var data = {name: name, email: email,message:message};
             $.ajax({
                 url : '/feedback',
                 data : data,
                 success : function(response){
-                    $("#feedbackForm").hide();
-                    $(".successMessage").show();
+                    $("#myModal").hide();
+                    $("#emptyAlert").hide();
+                    $('#fullname').val("");
+                    $('#email').val("");
+                    $('#message').val("");
+                    $("#myModalSuccess").show();
+                    setInterval(function(){
+                        $("#myModalSuccess").hide();
+                        $("body").css('overflow','visible');
+                    },3000);
                 }
             });
         });
