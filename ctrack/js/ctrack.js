@@ -3,21 +3,17 @@
 
 var ctrack = exports;
 
-var plate = require("./plate.js")
-var iati = require("./iati.js")
-var fetch = require("./fetch.js")
-var savi = require("./savi.js")
-var chart = require("./chart.js")
-
+var plate = require("./plate.js");
+var iati = require("./iati.js");
+var fetch = require("./fetch.js");
+var savi = require("./savi.js");
+var chart = require("./chart.js");
 var views = require("./views.js");
-
 var ganal = require("./ganal.js");
-var sendgrid = require('sendgrid')('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');
-
-
 var iati_codes = require("../../dstore/json/iati_codes.json");
 var un_agencies_data = require("../../dstore/json/un_agencies_data.json");
 var usd_years = require("../../dstore/json/usd_year.json");
+
 ctrack.usd_year = {}; // merge latest data into here
 for (var year = 1990; year < 2100; year++) {
     if (usd_years[year]) {
@@ -68,7 +64,6 @@ ctrack.dosort = function (s) {
 };
 
 ctrack.setup = function (args) {
-
     ctrack.q = {};
     window.location.search.substring(1).split("&").forEach(function (n) {
         var aa = n.split("=");
@@ -103,9 +98,9 @@ ctrack.setup = function (args) {
         head.load(args.css);
     }
 
-    ctrack.year = parseInt(args.year || ctrack.q.year || 2015); // default base year for graphs tables etc
+    ctrack.year = parseInt(args.year || ctrack.q.year || 2015);
 
-    ctrack.year_chunks = function (y) {					// function to build visible range of years for display
+    ctrack.year_chunks = function (y) {
         ctrack.chunk("year", y);
         ctrack.chunk("year1", y - 1);
         ctrack.chunk("year2", y);
@@ -117,7 +112,6 @@ ctrack.setup = function (args) {
 
     ctrack.display_usd = "USD";
     ctrack.convert_usd = 1;
-//	ctrack.convert_have={}; // test old style
     ctrack.convert_have = {"CAD": true, "EUR": true, "GBP": true};
     ctrack.convert_str = function (n) {
         if (ctrack.convert_have[ctrack.display_usd]) {
@@ -139,7 +133,7 @@ ctrack.setup = function (args) {
             return v[n + "_" + ctrack.display_usd.toLowerCase()];
         }
         else {
-            if ((n == "spend") || (n == "commitment")) // special USD case
+            if ((n == "spend") || (n == "commitment"))
             {
                 return v[n] * ctrack.convert_usd;
             }
@@ -149,19 +143,16 @@ ctrack.setup = function (args) {
         }
     };
 
-
     if (ctrack.q.usd) {
         var usd = ctrack.q.usd.toUpperCase();
         if (ctrack.usd_year[usd]) {
             ctrack.display_usd = usd;
-            ctrack.convert_usd = ctrack.usd_year[usd]; // conversion from usd to whatever we wish to display
+            ctrack.convert_usd = ctrack.usd_year[usd];
         }
     }
     args.chunks["USD"] = ctrack.display_usd;
-//console.log("convert USD "+ctrack.convert_usd);
-// temporary country force hack
     if (ctrack.q.country) {
-        var cc = ctrack.q.country.toLowerCase().split(","); // allow list
+        var cc = ctrack.q.country.toLowerCase().split(",");
         if (cc.length == 1) {
             ctrack.q.country.toLowerCase().split("|");
         }
@@ -180,7 +171,7 @@ ctrack.setup = function (args) {
         args.chunks["country_name"] = "";
     }
 
-    if (ctrack.q.tongue) // choose a new tongue
+    if (ctrack.q.tongue)
     {
         args.tongue = ctrack.q.tongue;
     }
@@ -219,12 +210,6 @@ ctrack.setup = function (args) {
         args.chunks['link_to_total_expense'] = "#view=publisher_sectors";
 
     }
-    //else {
-    //    args.chunks["main_sector"] = "";
-    //    args.chunks["main_sectormin"] = "";
-    //    args.chunks["sector_code"] = "";
-    //    //args.chunks["sector_name"] = "";
-    //}
 
     if (ctrack.q.publisher) {
         var cc = ctrack.q.publisher.split(","); // allow list
@@ -281,8 +266,6 @@ ctrack.setup = function (args) {
         args.chunks["back_publisher"] = "";
         args.chunks["link_address"] = "";
     }
-
-
     if (ctrack.q.sector_code) {
         var cc = ctrack.q.sector_code.split(",");
         if (cc.length == 1) {
@@ -322,17 +305,13 @@ ctrack.setup = function (args) {
 // always show search headers and hide publisher/country headers even if the searchstring is empty
         ctrack.args.showsearch = true;
     }
-//console.log("search="+ctrack.args.search);
 
 // show special search header
     if (ctrack.args.showsearch) {
-// fill in possible search vars...
-
         args.chunks["main_countrymin"] = "";
         args.chunks["main_country"] = "";
         args.chunks["main_country_head"] = "";
         args.chunks["back_country"] = "";
-
         args.chunks["main_pubmin"] = "";
         args.chunks["main_publisher"] = "";
         args.chunks["main_publisher_head"] = "";
@@ -408,23 +387,12 @@ ctrack.setup = function (args) {
     else if (args.sector) {
         ctrack.crumbs = [{hash: "#view=sector", view: "sector"}];
     }
-
     else {
         ctrack.crumbs = [{hash: "/", view: "main"}];
     }
 
     var crumb_hash;
     ctrack.setcrumb = function (idx) {
-        // try not to leave holes in the crumbs list, so align to left
-
-        //  if (idx > ctrack.crumbs.length) {
-        //      idx = ctrack.crumbs.length;
-        //  }
-        // ctrack.crumbs = ctrack.crumbs.slice(0, idx);
-        // var it = {};
-        // ctrack.crumbs[idx] = it;
-        //     it.hash = ctrack.last_hash;
-        //     it.view= ctrack.last_view;
         
         if(crumb_hash == 'crumb2_hash' && ctrack.last_view == 'act') {
             ctrack.crumbs = ctrack.crumbs.slice(0, 3);
@@ -449,7 +417,6 @@ ctrack.setup = function (args) {
             ctrack.crumbs[2] = it;
             it.hash = ctrack.last_hash;
             it.view= ctrack.last_view;
-
          }
 
         else
@@ -495,24 +462,24 @@ ctrack.setup = function (args) {
 
         }
             ctrack.chunk("crumbs", "{crumbs" + ctrack.crumbs.length + "}");
-    }
+    };
 
     ctrack.chunks = {};
-    if (args.tongue != "non") // use non as a debugging mode
+    if (args.tongue != "non")
     {
-        plate.push_namespace(require("../json/eng.json")); // english fallback for any missing chunks
+        plate.push_namespace(require("../json/eng.json"));
 
-        var tongues = require("../json/tongues.js"); // load all tongues
+        var tongues = require("../json/tongues.js");
         var tongue = tongues[args.tongue];
         if (tongue) {
             plate.push_namespace(tongue);
-        } // translation requested
+        }
     }
-    plate.push_namespace(require("../json/chunks.json")); //the main chunks
+    plate.push_namespace(require("../json/chunks.json"));
     if (args.chunks) {
-        plate.push_namespace(args.chunks); // override on load
+        plate.push_namespace(args.chunks);
     }
-    plate.push_namespace(ctrack.chunks); // the data we create at runtime
+    plate.push_namespace(ctrack.chunks);
 
 // set or get a chunk in the ctrack namespace
     ctrack.chunk = function (n, s) {
@@ -525,7 +492,7 @@ ctrack.setup = function (args) {
         ctrack.chunks[n] = undefined;
     };
 // set global defaults
-    ctrack.chunk("yearcrs", 2013); // the crs data is for this year
+    ctrack.chunk("yearcrs", 2013);
     ctrack.chunk("art", args.art);
     ctrack.chunk("flava", args.art + args.flava + "/");
     ctrack.chunk("flava_name", args.flava);
@@ -541,8 +508,6 @@ ctrack.setup = function (args) {
 
     ctrack.chunk("today", fetch.get_today());
     ctrack.chunk("hash", "");
-
-// build ? strings for url changes
 
     var aa = {}
     if (args.flava != "original") {
@@ -646,14 +611,12 @@ ctrack.setup = function (args) {
         var aa = q.split("&");
         aa.forEach(function (it) {
             var bb = it.split("=");
-//console.log(bb);
             if (( "string" == typeof bb[0] ) && ( "string" == typeof bb[1] )) {
                 v[bb[0]] = decodeURIComponent(bb[1]);
             }
         });
         return v;
-    }
-
+    };
 
     ctrack.view_done = {};
     ctrack.show_view = function (name) {
@@ -663,9 +626,9 @@ ctrack.setup = function (args) {
             if (v && v.view) {
                 v.view();
             }
-            ganal.view(); // record view action
+            ganal.view();
         }
-    }
+    };
 
     if (args.publisher) {
         ctrack.hash = {"view": "publisher"};
@@ -678,13 +641,12 @@ ctrack.setup = function (args) {
     }
     ctrack.display_wait = 0;
     ctrack.display = function () {
-//console.log(ctrack.display_wait);
         ctrack.display_wait--;
         if (ctrack.display_wait <= 0) {
             ctrack.display_wait = 0;
             ctrack.change_hash();
         }
-    }
+    };
     ctrack.change_hash = function (h) {
         if (h) {
             ctrack.hash = {};
@@ -695,14 +657,14 @@ ctrack.setup = function (args) {
         ctrack.last_hash = "";
         ctrack.display_hash();
         ctrack.check_hash();
-    }
+    };
     ctrack.display_hash = function () {
         var a = [];
         for (var n in ctrack.hash) {
             a.push(n + "=" + encodeURIComponent(ctrack.hash[n]));
         }
         document.location.hash = a.join("&");
-    }
+    };
     ctrack.last_hash = "";
     ctrack.last_view = "";
     ctrack.check_hash = function () {
@@ -714,7 +676,7 @@ ctrack.setup = function (args) {
             ctrack.hash = ctrack.hash_split(h, l);
 
             var change_of_view = false;
-            if (ctrack.last_view != l.view) // scroll up when changing views
+            if (ctrack.last_view != l.view)
             {
                 change_of_view = true;
                 ctrack.last_view = l.view;
@@ -726,22 +688,18 @@ ctrack.setup = function (args) {
                 })
 
                 ctrack.show_view(l.view);
-//console.log("new view");
             }
-
-//console.log("displaying view");
 
             ctrack.show_crumbs();
 
-// these are now view hooks
             var name = l.view;
             if (name) {
                 name = name.toLowerCase();
                 var v = views[name];
                 if (v && v.show) {
-                    v.show(change_of_view); // special fill
+                    v.show(change_of_view);
                 }
-                else // default fill
+                else
                 {
                     ctrack.div.master.html(plate.replace("{view_" + l.view + "}"));
                 }
@@ -762,12 +720,11 @@ ctrack.setup = function (args) {
         var v = views[n];
         if (typeof v == "object") {
             if (v.setup) {
-//				console.log("setup "+n);
-                v.setup(); // perform initalization of all views
+                v.setup();
             }
         }
     }
     ctrack.check_hash();
-    ctrack.display_hash(); // this will display view=main or whatever page is requsted
+    ctrack.display_hash();
 
 }

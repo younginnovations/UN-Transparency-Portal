@@ -514,41 +514,12 @@ and (min-width: 1400px) {
 }
 
 /*===================== Modal for internal views ================================*/
-/*!* The Modal (background) *!*/
-/*design for modal*/
-.modal {
-    display: none; /* Hidden by default */
-    position: fixed; /* Stay in place */
-    z-index: 1; /* Sit on top */
-    padding-top: 100px; /* Location of the box */
-    left: 0;
-    top: 0;
-    width: 100%; /* Full width */
-    height: 100%; /* Full height */
-    overflow: auto; /* Enable scroll if needed */
-    background-color: rgb(0,0,0); /* Fallback color */
-    background-color: rgba(0,0,0,0.6); /* Black w/ opacity */
-}
 
-/* Modal Content */
-.modal{
-    z-index: 1000;
-}
-.modal-content {
-    position: relative;
-    background-color: #fefefe;
-    max-width: 330px;
-    margin: 0 auto;
-    box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2),0 6px 20px 0 rgba(0,0,0,0.19);
-    -webkit-animation-name: animatetop;
-    -webkit-animation-duration: 0.4s;
-    animation-name: animatetop;
-    animation-duration: 0.4s;
-}
+.modal { display: none; font-family: arial; position: fixed; z-index: 1000; padding-top: 100px; left: 0; top: 0; width: 100%; height: 100%; overflow: auto; background-color: rgb(0,0,0); background-color: rgba(0,0,0,0.6); }
+.modal-content { position: relative; background-color: #fefefe; max-width: 330px; margin: 0 auto; box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2),0 6px 20px 0 rgba(0,0,0,0.19); -webkit-animation-name: animatetop; -webkit-animation-duration: 0.4s; animation-name: animatetop; animation-duration: 0.4s; }
 
 /* Add Animation */
-@-webkit-keyframes animatetop {
-    from {top:-300px; opacity:0}
+@-webkit-keyframes animatetop { from {top:-300px; opacity:0 }
     to {top:0; opacity:1}
 }
 
@@ -556,83 +527,31 @@ and (min-width: 1400px) {
     from {top:-300px; opacity:0}
     to {top:0; opacity:1}
 }
-.modal-header{
-    text-align: left;
-    font-size: 24px;
-    line-height: 30px;
-    margin: 0;
-    padding: 20px 35px;
-    border-bottom: 2px solid #0067B1;
-    background: #0067B1;
-    color: #fff;
-}
-.form-control{
-    box-sizing: border-box;
-    width: 100%;
-    margin: 10px auto;
-    padding: 20px 0 20px 10px;
-    color: #555;
-    font-size: 14px;
-    border: 1px solid #bbb;
-}
+.modal-header{ text-align: left; font-size: 24px; line-height: 30px; margin: 0; padding: 20px 35px; border-bottom: 2px solid #0067B1; background: #0067B1; color: #fff; }
+.form-control{ box-sizing: border-box; width: 100%; margin: 10px auto; padding: 20px 0 20px 10px; color: #555; font-size: 14px; border: 1px solid #bbb; }
 
-.form-contrrol input:focus,.form-contrrol keygen:focus, .form-contrrol select:focus {
-    outline-offset: 0;
-}
+.form-control input:focus,.form-control keygen:focus, .form-control select:focus { outline-offset: 0; }
 
-.form-contrrol:-webkit-autofill, .form-contrrol select:-webkit-autofill {
-    background: none;
-    color: rgb(0, 0, 0);
-}
-.form-button{
-    width: 100%;
-    display: block;
-    border: none;
-    background: #0067B1;
-    padding: 15px 0;
-    color: #fff;
+.form-control:-webkit-autofill, .form-control select:-webkit-autofill { background: none; color: rgb(0, 0, 0); }
+.form-button{ width: 100%; display: block; border: none; background: #0067B1; padding: 15px 0; color: #fff; font-size: 14px; margin: 16px 0 0 0; text-transform: uppercase; font-weight: bold; cursor: pointer; -webkit-transition: all .2s ease-in-out; -moz-transition: all .2s ease-in-out; -o-transition: all .2s ease-in-out; -ms-transition: all .2s ease-in-out; }
+.form-button:hover{ background: #00406E; -webkit-transition: all .2s ease-in-out; -moz-transition: all .2s ease-in-out; -o-transition: all .2s ease-in-out; -ms-transition: all .2s ease-in-out; }
+.successMessage{ display:none; width: 197px; margin: 0 auto; text-align: center; padding: 2px 0 51px 0; font-weight: bold; }
+.close { color: #aaaaaa; float: right; font-size: 28px; font-weight: bold; margin-top: 23px; margin-right: 15px; }
+
+.close:hover, .close:focus { color: #000; text-decoration: none; cursor: pointer; margin-top: 23px; }
+
+.modal-body { padding: 30px 35px; }
+#githubIssue{
     font-size: 14px;
-    margin: 16px 0 0 0;
-    text-transform: uppercase;
-    font-weight: bold;
-    cursor: pointer;
-    -webkit-transition: all .2s ease-in-out;
-    -moz-transition: all .2s ease-in-out;
-    -o-transition: all .2s ease-in-out;
-    -ms-transition: all .2s ease-in-out;
-}
-.form-button:hover{
-    background: #00406E;
-    -webkit-transition: all .2s ease-in-out;
-    -moz-transition: all .2s ease-in-out;
-    -o-transition: all .2s ease-in-out;
-    -ms-transition: all .2s ease-in-out;
-}
-.successMessage{
-    display:none;
     text-align: center;
-    padding: 44px 0 35px 0;
-    font-weight: bold;
+    padding-top: 38px;
+    color: #344;
 }
-/* The Close Button */
-.close {
-    color: #aaaaaa;
-    float: right;
-    font-size: 28px;
-    font-weight: bold;
-    margin-top: 23px;
-    margin-right: 15px;
+#githubIssue>a{
+    color: #0067B1;
+    font-size: 14px;
+    text-transform: lowercase;
 }
-
-.close:hover,
-.close:focus {
-    color: #000;
-    text-decoration: none;
-    cursor: pointer;
-    margin-top: 23px;
-}
-
-
-.modal-body {
-    padding: 30px 35px;
+#githubIssue>a:hover{
+    color: #00406E;
 }
