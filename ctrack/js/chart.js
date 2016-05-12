@@ -9,17 +9,16 @@ var csscolor=require("./csscolor.js")
 var ctrack=require("./ctrack.js");
 var d3 = require("d3");
 
-chart.draw=function(sel,data,options){
+chart.draw=function(sel,data,options,barColor){
 	if(typeof data === "object"){
 		var parentWidth = $(sel).parent().width();
 		var barHeight = 30;
 		var height = barHeight * data.length;
-		var marginHorz = { top: 20, right: 115, bottom: 40, left: parentWidth/3},
+		var marginHorz = { top: 20, right: 120, bottom: 40, left: parentWidth/3},
 			widthHorz = parentWidth - marginHorz.left - marginHorz.right,
 			heightHorz = height;
 
 		var labelSpace = 60;
-		// innerMargin = widthHorz/2+labelSpace;
 
 		var dataRange = d3.max(data,function(d) { return d.num; });
 
@@ -84,7 +83,7 @@ chart.draw=function(sel,data,options){
 			.data(data)
 			.enter().append("rect")
 			.attr("class", "bar")
-			.style("fill", "#33A4FC")
+			.style("fill", barColor)
 			.transition()
 			.ease("quad-out")
 			.duration(4000)
@@ -99,25 +98,33 @@ chart.draw=function(sel,data,options){
 			.attr("height", barHeight-5);
 
 		var textAlign = barHeight - 13;
-			svgHorz.selectAll("text.value")
+		var valueText =	svgHorz.selectAll("text.value")
 				.data(data)
 				.enter()
 				.append("text")
 				.attr("class","bar")
-				.style("font-size", "14px")
 				.attr("y", function(d,i){
 					return i * (heightHorz / data.length);
 				})
 				.attr("dx",function (d){
 					return total(d.num) + 10})
-				.attr("dy", textAlign)
+				.attr("dy", textAlign);
+
+			valueText.append("tspan")
+				.style("font-size", "14px")
+				.style("font-weight", "bold")
+				.text(function(d) {
+					return "$"+d.num.toLocaleString();
+				});
+
+			valueText.append("tspan")
+				.style("font-size","14px")
+				.style("fill", "#8C8989")
 				.text(function(d) {
 					if(d.pct !== undefined){
-						return "$"+d.num.toLocaleString() + " (" + d.pct + "%)";
+						return " (" + d.pct + "%)";
 					}
-					else{
-						return "$"+d.num.toLocaleString();
-					}});
+				});
 
 		if(sel === "#sector_category_graph"){
 			svgHorz.selectAll("text.name")

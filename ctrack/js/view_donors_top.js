@@ -39,15 +39,10 @@ view_donors_top.ajax=function(args)
 			"groupby":"funder_ref",
 			"trans_code":"D|E",
 			"trans_day_gteq":year+"-"+ctrack.args.newyear,"trans_day_lt":(parseInt(year)+1)+"-"+ctrack.args.newyear,
-//			"country_code":(args.country || ctrack.args.country_select),
-//			"reporting_ref":(args.publisher || ctrack.args.publisher_select),
-//			"title_like":(args.search || ctrack.args.search),
 		};
 	fetch.ajax_dat_fix(dat,args);
-	if(!dat.reporting_ref){dat.flags=0;} // ignore double activities unless we are looking at a select publisher
+	if(!dat.reporting_ref){dat.flags=0;}
 	fetch.ajax(dat,function(data){
-//			console.log("fetch transactions donors "+year);
-//			console.log(data);
 		
 		var list=[];
 
@@ -71,34 +66,17 @@ view_donors_top.ajax=function(args)
 		list.forEach(function(v){
 			var d = {};
 			d.num = v.usd;
-			d.pct=Math.ceil(100*d.num/total);
+			var initialPct = 100*d.num/total;
+			if(initialPct < 1){
+				d.pct = "<1";
+			}
+			else{
+				d.pct=Math.round(initialPct);
+			}
 			if(d.num < 0){d.num = -d.num; }
 			d.str_lab =iati_codes.funder_names[v.funder] || iati_codes.un_publisher_names[v.funder];
 			dd.push(d);
 		});
-		//for( var i=0; i<limit ; i++ )
-		//{
-		//	var v=list[i];
-		//
-		//	if((i==limit-1)&&(i<(list.length-1))) // last one combines everything else
-		//	{
-		//		v={};
-		//		v.usd=total-shown;
-		//		v.funder=(1+list.length-limit)+" More";
-		//	}
-		//
-		//	if(v)
-		//	{
-		//		shown+=v.usd;
-		//		var d={};
-		//		d.num=v.usd;
-		//		d.pct=Math.floor(100*v.usd/total);
-		//		d.str_num=commafy(d.num)+" "+ctrack.display_usd;
-		//		d.str_lab=iati_codes.funder_names[v.funder] || iati_codes.publisher_names[v.funder] || iati_codes.country[v.funder] || v.funder;
-		//		d.str="<b>"+d.str_num+"</b> ("+d.pct+"%)<br/>"+d.str_lab;
-		//		dd.push(d);
-		//	}
-		//}
 		
 		ctrack.chunk("data_chart_donors",dd);
 		ctrack.display();

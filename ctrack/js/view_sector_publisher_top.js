@@ -65,35 +65,17 @@ view_sector_publisher_top.ajax = function(args){
 		list.forEach(function(v){
 			var d = {};
 			d.num = v.usd;
-			d.pct=Math.ceil(100*d.num/total);
+			var initialPct = 100*d.num/total;
+			if(initialPct < 1){
+				d.pct = "<1";
+			}
+			else{
+				d.pct=Math.round(initialPct);
+			}
 			if(d.num < 0){d.num = -d.num; }
 			d.str_lab = iati_codes.iati_un_publishers[v.funder];
 			dd.push(d);
 		});
-		//for( var i=0; i<limit ; i++ )
-		//{
-		//	var v=list[i];
-        //
-		//	if((i==limit-1)&&(i<(list.length-1))) // last one combines everything else
-		//	{
-		//		v={};
-		//		v.usd=total-shown;
-		//		v.funder=(1+list.length-limit)+" More";
-		//	}
-        //
-		//	if(v)
-		//	{
-		//		shown+=v.usd;
-		//		var d={};
-		//		d.num=v.usd;
-		//		d.pct=Math.floor(100*v.usd/total);
-		//		d.str_num=commafy(d.num)+" "+ctrack.display_usd;
-		//		d.str_lab=iati_codes.iati_un_publishers[v.funder]; //|| iati_codes.publisher_names[v.funder] || iati_codes.country[v.funder] || v.funder;
-		//		d.str="<b>"+d.str_num+"</b> ("+d.pct+"%)<br/>"+d.str_lab;
-		//		dd.push(d);
-		//	}
-		//}
-
 		ctrack.chunk("data_chart_sector_publisher",dd);
 		ctrack.chunk("countries_count",list.length);
 
