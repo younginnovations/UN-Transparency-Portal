@@ -1361,7 +1361,7 @@ and (min-width: 1400px) {
 }
 
 /*design for modal*/
-.modal {
+.modal, .modalSuccess {
     display: none; /* Hidden by default */
     position: fixed; /* Stay in place */
     z-index: 1000; /* Sit on top */
@@ -1376,7 +1376,7 @@ and (min-width: 1400px) {
     background-color: rgba(0,0,0,0.6); /* Black w/ opacity */
 }
 
-.modal-content {
+.modal-content, .modal-content-success {
     position: relative;
     background-color: #fefefe;
     max-width: 330px;
@@ -1450,13 +1450,20 @@ and (min-width: 1400px) {
     -o-transition: all .2s ease-in-out;
     -ms-transition: all .2s ease-in-out;
 }
+#emptyAlert{
+    font-size: 14px;
+    color: red;
+    font-weight: bold;
+    text-align: center;
+    padding-bottom: 20px;
+}
 .successMessage{
-    display:none;
     width: 197px;
     margin: 0 auto;
     text-align: center;
-    padding: 2px 0 51px 0;
+    padding: 51px 0;
     font-weight: bold;
+    color: green;
 }
 /* The Close Button */
 .close {

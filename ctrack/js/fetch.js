@@ -66,7 +66,6 @@ fetch.ajax_dat_fix=function(dat,args)
 	dat["sector_code"]		=	dat["sector_code"]		||	ctrack.args.sector_code_select || ctrack.args.sector;
 	dat["sector_group"]		=	dat["sector_group"]		||	ctrack.args.sector_group_select;
 	dat["funder_ref"]		=	dat["funder_ref"]		||	ctrack.args.funder_ref_select;
-
 	if( !dat["day_start_lteq"] )
 	{
 		if(ctrack.args.year_max)

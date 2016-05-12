@@ -515,8 +515,8 @@ and (min-width: 1400px) {
 
 /*===================== Modal for internal views ================================*/
 
-.modal { display: none; font-family: arial; position: fixed; z-index: 1000; padding-top: 100px; left: 0; top: 0; width: 100%; height: 100%; overflow: auto; background-color: rgb(0,0,0); background-color: rgba(0,0,0,0.6); }
-.modal-content { position: relative; background-color: #fefefe; max-width: 330px; margin: 0 auto; box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2),0 6px 20px 0 rgba(0,0,0,0.19); -webkit-animation-name: animatetop; -webkit-animation-duration: 0.4s; animation-name: animatetop; animation-duration: 0.4s; }
+.modal, .modalSuccess { display: none; font-family: arial; position: fixed; z-index: 1000; padding-top: 100px; left: 0; top: 0; width: 100%; height: 100%; overflow: auto; background-color: rgb(0,0,0); background-color: rgba(0,0,0,0.6); }
+.modal-content, .modal-content-success { position: relative; background-color: #fefefe; max-width: 330px; margin: 0 auto; box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2),0 6px 20px 0 rgba(0,0,0,0.19); -webkit-animation-name: animatetop; -webkit-animation-duration: 0.4s; animation-name: animatetop; animation-duration: 0.4s; }
 
 /* Add Animation */
 @-webkit-keyframes animatetop { from {top:-300px; opacity:0 }
@@ -535,7 +535,8 @@ and (min-width: 1400px) {
 .form-control:-webkit-autofill, .form-control select:-webkit-autofill { background: none; color: rgb(0, 0, 0); }
 .form-button{ width: 100%; display: block; border: none; background: #0067B1; padding: 15px 0; color: #fff; font-size: 14px; margin: 16px 0 0 0; text-transform: uppercase; font-weight: bold; cursor: pointer; -webkit-transition: all .2s ease-in-out; -moz-transition: all .2s ease-in-out; -o-transition: all .2s ease-in-out; -ms-transition: all .2s ease-in-out; }
 .form-button:hover{ background: #00406E; -webkit-transition: all .2s ease-in-out; -moz-transition: all .2s ease-in-out; -o-transition: all .2s ease-in-out; -ms-transition: all .2s ease-in-out; }
-.successMessage{ display:none; width: 197px; margin: 0 auto; text-align: center; padding: 2px 0 51px 0; font-weight: bold; }
+#emptyAlert{ font-size: 14px; color: red; font-weight: bold; text-align: center; padding-bottom: 20px; }
+.successMessage{ width: 197px; margin: 0 auto; text-align: center; padding: 51px 0; font-weight: bold; color: green;}
 .close { color: #aaaaaa; float: right; font-size: 28px; font-weight: bold; margin-top: 23px; margin-right: 15px; }
 
 .close:hover, .close:focus { color: #000; text-decoration: none; cursor: pointer; margin-top: 23px; }

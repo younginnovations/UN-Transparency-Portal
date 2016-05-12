@@ -1160,7 +1160,8 @@
     "UNPBF": "UN Peacebuilding Fund",
     "UNRWA": "UN Relief and Works Agency",
     "WFP": "World Food Programme",
-    "WHO": "World Health Organisation"
+    "WHO": "World Health Organisation",
+    "UN-Habitat": "UN-Habitat"
   },
   "crs_funders": {
     "AfDB": "AfDB",
