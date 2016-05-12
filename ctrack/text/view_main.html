@@ -282,7 +282,7 @@
 			border:[0.5,0.5,0.5,0.5],
 		},
 	}
-	ctrack.draw_chart("#donor_graph",data,opts);
+	ctrack.draw_chart("#donor_graph",data,opts,"#008FFF");
 </script>
 <style>
  #donor_graph .chart_caption
@@ -338,7 +338,7 @@
 		},
 	}
 
-	ctrack.draw_chart("#sector_graph",data,opts);
+	ctrack.draw_chart("#sector_graph",data,opts,"#00C475");
 </script>
 <style>
  #sector_graph .chart_caption
@@ -393,7 +393,7 @@
 		},
 	}
 
-	ctrack.draw_chart("#publisher_countries_graph",data,opts);
+	ctrack.draw_chart("#publisher_countries_graph",data,opts,"#008FFF");
 </script>
 <style>
  #publisher_countries_graph .chart_caption
@@ -448,7 +448,7 @@
 		},
 	}
 
-	ctrack.draw_chart("#sector_publisher_graph",data,opts);
+	ctrack.draw_chart("#sector_publisher_graph",data,opts,"#008FFF");
 </script>
 
 <style>
@@ -504,7 +504,7 @@
 			border:[0.5,0.5,0.5,0.5],
 		},
 	}
-	ctrack.draw_chart("#publisher_sectors_graph",data,opts);
+	ctrack.draw_chart("#publisher_sectors_graph",data,opts,"#00C475");
 </script>
 <style>
  #publisher_sectors_graph .chart_caption
@@ -562,7 +562,7 @@
 					border:[0.5,0.5,0.5,0.5],
 				},
 			}
-			ctrack.draw_chart("#sector_category_graph",data,opts);
+			ctrack.draw_chart("#sector_category_graph",data,opts,"#00C475");
 		}else{
 			var elem = document.getElementById('sector_category_graph').parentElement;
 			elem.style.display = 'none';

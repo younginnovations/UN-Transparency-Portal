@@ -321,7 +321,6 @@ table.country				{width:960px; margin:0 auto; padding:40px 0 0; border-collapse:
 table.country td.name		{font-size:32px; line-height:38px; color:#333333;}
 table.country td.name.publisher	{width:960px; max-width:960px; padding-right: 30px; padding-bottom: 10px; vertical-align: bottom;}
 table.country td.name.publisher + td	{vertical-align: bottom; padding-bottom: 15px;}
-table.country td.name.publisher + td img	{max-height: 50px;}
 table.country td.flag		{text-align:right;}
 table.country td.flag img	{max-height:60px;}
 table.country.min			{padding:10px 0;}
