@@ -70,7 +70,7 @@
                                     </div>
                                 </div>
                             </div>
-                            <div class="tongue_wrap">{tongue_select}</div>
+                            <!--<div class="tongue_wrap">{tongue_select}</div>-->
                         </div>
                     </div>
                 </nav>
@@ -367,30 +367,28 @@
         $("#un_agencies_in_iati").html(un_agencies_in_iati);
 
 
-        var un_org_total_budget_each = {rows: []};
-        var un_org_budget_rows = un_org_total_budget_each.rows;
+        var un_org_total_project_each = {rows: []};
+        var un_org_total_projects_rows = un_org_total_project_each.rows;
         for (var defined_id in un_org) {
             var id = defined_id;
-            var un_total_budget = un_org[id]['total_budget'];
-            if (un_total_budget !== undefined)
-                un_org_budget_rows.push({id: id, total_budget: un_total_budget});
+            var un_total_projects = un_org[id]['total_projects'];
+            if (un_total_projects !== undefined)
+                un_org_total_projects_rows.push({id: id, total_projects: un_total_projects});
             else
-                un_org_budget_rows.push({id: id, total_budget: 0});
+                un_org_total_projects_rows.push({id: id, total_projects: 0});
         }
-
-        var sorted_un_budget = un_org_budget_rows.sort(function (a, b) {
-            var ta = a.total_budget;
-            var tb = b.total_budget;
+        var sorted_un_total_projects = un_org_total_projects_rows.sort(function (a, b) {
+            var ta = a.total_projects;
+            var tb = b.total_projects;
             return (ta > tb) ? -1 : (ta < tb) ? 1 : 0;
         });
 
-        var un_org_budget = {};
-        sorted_un_budget.forEach(function (b) {
-            un_org_budget[b.id] = parseInt(b.total_budget);
+        var un_org_projects = {};
+        sorted_un_total_projects.forEach(function (b) {
+            un_org_projects[b.id] = parseInt(b.total_projects);
         });
-
-        var arr = Object.keys(un_org_budget).sort(function (a, b) {
-            return (un_org_budget[a] > un_org_budget[b]) ? -1 : (un_org_budget[a] < un_org_budget[b]) ? 1 : 0;
+        var arr = Object.keys(un_org_projects).sort(function (a, b) {
+            return (un_org_projects[a] > un_org_projects[b]) ? -1 : (un_org_projects[a] < un_org_projects[b]) ? 1 : 0;
         });
 
         extraReporting = {rows: []};
@@ -423,7 +421,7 @@
 
             var name = "" + $("#sector_dropmenu select").val();
             if (name && (name != "")) {
-                window.location.href = "{root}ctrack.html?sector=" + name + "&tongue={tongue}"
+                window.location.href = "{root}ctrack.html?sector_group=" + name + "&tongue={tongue}"
             }
 
             var name = "" + $("#country_dropmenu select").val();
@@ -579,10 +577,18 @@
         $("#sendFeedback").on('click',function(e){
             e.preventDefault();
             var name  = $('#fullname').val();
+            var trimmedName = $.trim(name);
             var email  = $('#email').val();
             var message = $('#message').val();
-            if(name == "" || email == "" || message == ""){
+            var trimmedMessage = $.trim(message);
+            var atPos = email.indexOf("@");
+            var dotPos = email.lastIndexOf(".");
+            if(trimmedName == "" || email == "" || trimmedMessage == ""){
                 $("#emptyAlert").html("Please fill all the fields!!");
+                return false;
+            }
+            if( atPos < 1 || dotPos < atPos+2 || dotPos+2>=email.length){
+                $("#emptyAlert").html("Not a valid email address!");
                 return false;
             }
             var data = {name: name, email: email,message:message};

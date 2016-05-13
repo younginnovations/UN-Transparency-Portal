@@ -65,7 +65,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="tongue_wrap">{tongue_select}</div>
+                <!--<div class="tongue_wrap">{tongue_select}</div>-->
             </div>
         </div>
     </nav>
@@ -153,10 +153,18 @@
     $("#sendFeedback").on('click',function(e){
         e.preventDefault();
         var name  = $('#fullname').val();
+        var trimmedName = $.trim(name);
         var email  = $('#email').val();
         var message = $('#message').val();
-        if(name == "" || email == "" || message == ""){
+        var trimmedMessage = $.trim(message);
+        var atPos = email.indexOf("@");
+        var dotPos = email.lastIndexOf(".");
+        if(trimmedName == "" || email == "" || trimmedMessage == ""){
             $("#emptyAlert").html("Please fill all the fields!!");
+            return false;
+        }
+        if( atPos < 1 || dotPos < atPos+2 || dotPos+2>=email.length){
+            $("#emptyAlert").html("Not a valid email address!");
             return false;
         }
         var data = {name: name, email: email,message:message};

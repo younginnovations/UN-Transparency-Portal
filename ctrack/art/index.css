@@ -819,24 +819,25 @@ nav{
 }
 
 .chart-item:nth-of-type(2) span.title {
-    font-size: 16px;
+    font-size: 20px;
     color: rgba(255, 255, 255, 0.7);
 }
 
 .chart-item:nth-of-type(2) span.title:nth-of-type(2) {
+    font-size: 16px;
     margin-top: 55px;
     display: inline-block;
 }
 
 .chart-item:nth-of-type(4) span.title {
     display: block;
-    font-size: 16px;
+    font-size: 20px;
     color: rgba(255, 255, 255, 0.7);
-    margin-bottom: 25px;
+    margin-bottom: 22px;
 }
 
 .chart-item:nth-of-type(5) span.title {
-    font-size: 16px;
+    font-size: 20px;
     color: rgba(255, 255, 255, 0.7);
 }
 
@@ -846,7 +847,7 @@ nav{
 }
 
 .chart-item span.title {
-    font-size: 24px;
+    font-size: 20px;
     color: rgba(255, 255, 255, 0.7);
 }
 
