@@ -121,19 +121,19 @@
 				<select id="usd_select" name="usd" class="">{all_usd_options}</select>
 			</form>
 		</td>
-		<td class="options">
-			<form action="">
-			<span class="settings_info">{settings_language_text} </span>
-			<select id="tongue_select" name="tongue" class="">
-				<option value="eng" title="{tongue_eng_tip_text}">{tongue_eng_text}</option>
-				<option value="fra" title="{tongue_fra_tip_text}">{tongue_fra_text}</option>
-				<option value="spa" title="{tongue_spa_tip_text}">{tongue_spa_text}</option>
-				<option value="jpn" title="{tongue_jpn_tip_text}">{tongue_jpn_text}</option>
-				<option value="cmn" title="{tongue_cmn_tip_text}">{tongue_cmn_text}</option>
-				<option value="hin" title="{tongue_hin_tip_text}">{tongue_hin_text}</option>
-			</select>
-			</form>
-		</td>
+		<!--<td class="options">-->
+			<!--<form action="">-->
+			<!--<span class="settings_info">{settings_language_text} </span>-->
+			<!--<select id="tongue_select" name="tongue" class="">-->
+				<!--<option value="eng" title="{tongue_eng_tip_text}">{tongue_eng_text}</option>-->
+				<!--<option value="fra" title="{tongue_fra_tip_text}">{tongue_fra_text}</option>-->
+				<!--<option value="spa" title="{tongue_spa_tip_text}">{tongue_spa_text}</option>-->
+				<!--<option value="jpn" title="{tongue_jpn_tip_text}">{tongue_jpn_text}</option>-->
+				<!--<option value="cmn" title="{tongue_cmn_tip_text}">{tongue_cmn_text}</option>-->
+				<!--<option value="hin" title="{tongue_hin_tip_text}">{tongue_hin_text}</option>-->
+			<!--</select>-->
+			<!--</form>-->
+		<!--</td>-->
 	</tr>
 	<tr>
 		<td class="options">
@@ -237,10 +237,18 @@
 		$("#sendFeedback").on('click',function(e){
 			e.preventDefault();
 			var name  = $('#fullname').val();
+			var trimmedName = $.trim(name);
 			var email  = $('#email').val();
 			var message = $('#message').val();
-			if(name == "" || email == "" || message == ""){
+			var trimmedMessage = $.trim(message);
+			var atPos = email.indexOf("@");
+			var dotPos = email.lastIndexOf(".");
+			if(trimmedName == "" || email == "" || trimmedMessage == ""){
 				$("#emptyAlert").html("Please fill all the fields!!");
+				return false;
+			}
+			if( atPos < 1 || dotPos < atPos+2 || dotPos+2>=email.length){
+				$("#emptyAlert").html("Not a valid email address!");
 				return false;
 			}
 			var data = {name: name, email: email,message:message};
