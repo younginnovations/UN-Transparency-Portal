@@ -474,7 +474,7 @@ Pick another country
 Top of page
 
 #footer_about_text
-About UN d-portal
+About UNDG Transparency Portal
 
 #read_more_text
 About data quality and why it matters
