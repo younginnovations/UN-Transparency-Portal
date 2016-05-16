@@ -274,8 +274,8 @@ cmd.build = function () {
         }
     }
     ccs.sort(function (a, b) {
-        var ta = a.name.toUpperCase();
-        var tb = b.name.toUpperCase();
+        var ta = (a.id === 'global-regional')?'Regional and global':a.name.toUpperCase();
+        var tb = (b.id === 'global-regional')?'Regional and global':b.name.toUpperCase();
         return (ta < tb) ? -1 : (ta > tb) ? 1 : 0;
     });
     chunkopts["countries"] = ccs;

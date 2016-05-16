@@ -1,8 +1,5 @@
 {
 	"countries": {
-		"89": "Europe, regional",
-		"679": "South Asia, regional",
-		"889": "Oceania, regional",
 		"SL": "Sierra Leone",
 		"SD": "Sudan",
 		"IN": "India",
@@ -78,7 +75,6 @@
 		"MW": "Malawi",
 		"TZ": "Tanzania, United Republic of",
 		"MR": "Mauritania",
-		"GLOBAL PROJECTS": "GLOBAL PROJECTS",
 		"CD": "Congo, the Democratic Republic of the",
 		"ZA": "South Africa",
 		"SO": "Somalia",
@@ -131,7 +127,6 @@
 		"UA": "Ukraine",
 		"XK": "Kosovo (under UNSCR 1244/99)",
 		"ZW": "Zimbabwe",
-		"WW": "Worldwide",
 		"JP": "Japan",
 		"AI": "Anguilla",
 		"AG": "Antigua and Barbuda",
@@ -172,12 +167,10 @@
 		"MH": "Marshall Islands",
 		"TV": "Tuvalu",
 		"FM": "Micronesia (Federated States of)",
-		"-1": "Global",
 		"BS": "Bahamas",
 		"CY": "Cyprus",
 		"AE": "United Arab Emirates",
 		"TK": "Tokelau",
-		"Multiple": "Multiple",
 		"SK": "Slovakia",
 		"KR": "Republic of Korea",
 		"SE": "Sweden",
@@ -185,7 +178,16 @@
 		"BE": "Belgium",
 		"IE": "Ireland",
 		"EH": "Western Sahara",
-		"GR": "Greece"
+		"GR": "Greece",
+		"global-regional": {
+			"89": "Europe, regional",
+			"679": "South Asia, regional",
+			"889": "Oceania, regional",
+			"GLOBAL PROJECTS": "GLOBAL PROJECTS",
+			"WW": "Worldwide",
+			"-1": "Global",
+			"Multiple": "Multiple"
+		}
 	},
 	"sectors": {
 		"11110": "Education policy and administrative management",
