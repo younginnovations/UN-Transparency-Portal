@@ -583,12 +583,24 @@
             var trimmedMessage = $.trim(message);
             var atPos = email.indexOf("@");
             var dotPos = email.lastIndexOf(".");
-            if(trimmedName == "" || email == "" || trimmedMessage == ""){
-                $("#emptyAlert").html("Please fill all the fields!!");
+            if(trimmedName == ""){
+                $("#emptyAlert").html("Please enter your name!");
+                $("#fullname").focus();
+                return false;
+            }
+            if(email == ""){
+                $("#emptyAlert").html("Please enter your email address!");
+                $("#email").focus();
                 return false;
             }
             if( atPos < 1 || dotPos < atPos+2 || dotPos+2>=email.length){
-                $("#emptyAlert").html("Not a valid email address!");
+                $("#emptyAlert").html("Please enter a valid email address!");
+                $("#email").css("border","1px solid #BB0303");
+                return false;
+            }
+            if(trimmedMessage == ""){
+                $("#emptyAlert").html("Please enter your message!");
+                $("#message").focus();
                 return false;
             }
             var data = {name: name, email: email,message:message};
@@ -597,9 +609,11 @@
                 data : data,
                 success : function(response){
                     $("#myModal").hide();
-                    $("#emptyAlert").hide();
+                    $("#emptyAlert").empty();
                     $('#fullname').val("");
                     $('#email').val("");
+                    $("#email").css("border","1px solid #bbb");
+                    $("#email").css("background","#fff");
                     $('#message').val("");
                     $("#myModalSuccess").show();
                     setInterval(function(){

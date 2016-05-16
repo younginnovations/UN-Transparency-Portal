@@ -1462,7 +1462,7 @@ and (min-width: 1400px) {
 }
 #emptyAlert{
     font-size: 14px;
-    color: red;
+    color: #BB0303;
     font-weight: bold;
     text-align: center;
     padding-bottom: 20px;

@@ -37,7 +37,7 @@ view_sectors_top.ajax=function(args)
 	var dat={
 			"from":"act,trans,country,sector",
 			"limit":-1,
-			"select":"sector_group,"+ctrack.convert_str("sum_of_percent_of_trans"),
+			"select":"sector_group,sector_code,"+ctrack.convert_str("sum_of_percent_of_trans"),
 			"sector_group_not_null":1,
 			"groupby":"sector_group",
 			"trans_code":"D|E",
@@ -52,6 +52,7 @@ view_sectors_top.ajax=function(args)
 			var v=data.rows[i];
 			var d={};
 			d.sector_group=iati_codes.sector_names[ v.sector_group ];
+			d.sector_name = iati_codes.sector[v.sector_code];
 			d.usd=Math.floor(ctrack.convert_num("sum_of_percent_of_trans",v));
 			list.push(d);
 		}
@@ -82,7 +83,7 @@ view_sectors_top.ajax=function(args)
 				d.pct=Math.round(initialPct);
 			}
 			if(d.num < 0){d.num = -d.num; }
-			d.str_lab = v.sector_group;
+			d.str_lab = v.sector_name;
 			dd.push(d);
 		});
 		ctrack.chunk("data_chart_sectors",dd);
