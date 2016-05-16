@@ -487,6 +487,7 @@ a.country_code {
 a.country_code .select_wrap img {
     height: 20px;
     max-width: 30px;
+    width: 30px;
 }
 
 /*	Select dropdowns
@@ -512,6 +513,7 @@ a.country_code .select_wrap img {
 #country_dropmenu select, #sector_dropmenu select {
     min-width: 460px;
     max-width: 460px;
+    width: 460px;
 }
 
 .chosen-container-single .chosen-single span {
@@ -855,6 +857,7 @@ nav{
     display: inline-block;
     max-height: 100px;
     max-width: 200px;
+    width: 200px;
     width: auto;
 }
 
@@ -919,6 +922,7 @@ span.publisher-name {
 
 .agencies {
     max-width: 960px;
+    width: 960px;
     margin: 0 auto;
 }
 
@@ -1020,6 +1024,7 @@ a.link-to-members {
 
 .compare_list {
     max-width: 960px;
+    width: 960px;
     margin: auto;
     overflow: hidden;
     position: absolute;
@@ -1030,6 +1035,7 @@ a.link-to-members {
 
 .sustainable_wrap {
     max-width: 960px;
+    width: 960px;
     margin: 0 auto;
     text-align: center;
     padding: 70px 0 50px;
@@ -1080,6 +1086,7 @@ a.link-to-members {
 
 .data_description_wrap {
     max-width: 860px;
+    width: 860px;
     margin: 50px auto 0;
     background: #0067B1;
     padding: 50px;
@@ -1304,6 +1311,7 @@ and (min-width: 1400px) {
     .menu-wrap {
         overflow: hidden;
         max-width: 960px;
+        width: 960px;
         margin: 0 auto;
     }
 }
@@ -1381,6 +1389,7 @@ and (min-width: 1400px) {
     position: relative;
     background-color: #fefefe;
     max-width: 330px;
+    width: 330px;
     margin: 0 auto;
     box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2),0 6px 20px 0 rgba(0,0,0,0.19);
     -webkit-animation-name: animatetop;
