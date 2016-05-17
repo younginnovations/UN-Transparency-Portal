@@ -280,7 +280,9 @@ query.getsql_select = function (q, qv) {
             }
         }
     }
-
+    if(q.select == "budget"){
+        return "SELECT TOTAL(budget_value) ";
+    }
     return " SELECT " + ss.join(" , ");
 };
 
@@ -303,7 +305,7 @@ query.getsql_from = function (q, qv) {
 
 //	q.from=f[0]; // store the first table name back in the q for later use
 
-    ss.push(" FROM " + f[0] + " ")
+    ss.push(" FROM " + f[0] + " ");
 
     for (var i = 1; i < f.length; i++) {
         var n = f[i];
@@ -553,12 +555,11 @@ query.getsql_build_column_names = function (q, qv) {
 
 };
 
-query.fetch_sector = function()
-{
+query.fetch_sector = function () {
     var db = dstore_db.open();
     db.serialize();
 
-    db.all("SELECT sector_code FROM sector;",function(err,rows){
+    db.all("SELECT sector_code FROM sector;", function (err, rows) {
         console.log(rows);
     });
 
