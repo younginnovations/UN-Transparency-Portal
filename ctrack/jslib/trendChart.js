@@ -35,10 +35,10 @@ $(function(){
 				.orient("left")
 				.ticks(5)
 	}
-    // console.log(un_trends," trendChart");
+    // console.log(un_current_trends," trendChart");
 		var mainData = [];
-		for(var key in un_trends){
-			mainData.push({'year': key, 'value': un_trends[key]})
+		for(var key in un_current_trends){
+			mainData.push({'year': key, 'value': un_current_trends[key]})
 		}
 		mainData.forEach(function(d){
 			d.year = d.year;

@@ -23,6 +23,7 @@ dstore_undata.fetch = function () {
     overAllUNData['total_projects'] = 0;
     overAllUNData['active_projects'] = 0;
     overAllUNData['un_trends'] = {};
+    overAllUNData['un_current_trends']= {};
 
     unOrganizations = unOrganizations['iati_un_publishers'];
     var codes = require('../json/un_org');
@@ -34,6 +35,7 @@ dstore_undata.fetch = function () {
         var totalBudget = 0;
         var totalExpenditure = 0;
         var projectTrends = {};
+        var currentProjectTrend = {};
         try {
             console.log("Fetching Start data for " + unOrganizations[key]);
             if (key == 41122) {
@@ -49,6 +51,7 @@ dstore_undata.fetch = function () {
                         totalBudget = totalBudget + parseFloat(getProjectBudget(activity['iati-activity']['budget']));
                         totalExpenditure = totalExpenditure + parseFloat(getProjectExpenditure(activity['iati-activity']['transaction']));
                         projectTrends = getProjectTrends(projectTrends, activity['iati-activity']['activity-date']);
+                        currentProjectTrend = getCurrentTrends(currentProjectTrend, activity['iati-activity']['activity-date']);
                     });
                 }
                 console.log("Fetching Finish data for " + unOrganizations[key]);
@@ -59,6 +62,7 @@ dstore_undata.fetch = function () {
                 overAllUNData['total_projects'] = parseFloat(overAllUNData['total_projects']) + parseFloat(data['total-count']);
                 overAllUNData['active_projects'] = parseFloat(overAllUNData['active_projects']) + parseFloat(activeProjects);
                 overAllUNData['un_trends'] = mergeData(overAllUNData['un_trends'], projectTrends);
+                overAllUNData['un_current_trends'] = mergeData(overAllUNData['un_current_trends'], currentProjectTrend);
 
                 codes[key] = {
                     countries: countries,
@@ -67,7 +71,8 @@ dstore_undata.fetch = function () {
                     active_projects: activeProjects,
                     total_budget: totalBudget,
                     total_expenditure: totalExpenditure,
-                    un_trends: projectTrends
+                    un_trends: projectTrends,
+                    un_current_trends:currentProjectTrend
                 };
             } else if (key == 44000) {
                 for (var i = 1; i < 4; i++) {
@@ -82,6 +87,7 @@ dstore_undata.fetch = function () {
                         totalBudget = totalBudget + parseFloat(getProjectBudget(activity['iati-activity']['budget']));
                         totalExpenditure = totalExpenditure + parseFloat(getProjectExpenditure(activity['iati-activity']['transaction']));
                         projectTrends = getProjectTrends(projectTrends, activity['iati-activity']['activity-date']);
+                        currentProjectTrend = getCurrentTrends(currentProjectTrend, activity['iati-activity']['activity-date']);
                     });
                 }
                 console.log("Fetching Finish data for " + unOrganizations[key]);
@@ -92,6 +98,7 @@ dstore_undata.fetch = function () {
                 overAllUNData['total_projects'] = parseFloat(overAllUNData['total_projects']) + parseFloat(data['total-count']);
                 overAllUNData['active_projects'] = parseFloat(overAllUNData['active_projects']) + parseFloat(activeProjects);
                 overAllUNData['un_trends'] = mergeData(overAllUNData['un_trends'], projectTrends);
+                overAllUNData['un_current_trends'] = mergeData(overAllUNData['un_current_trends'], currentProjectTrend);
 
                 codes[key] = {
                     countries: countries,
@@ -100,7 +107,8 @@ dstore_undata.fetch = function () {
                     active_projects: activeProjects,
                     total_budget: totalBudget,
                     total_expenditure: totalExpenditure,
-                    un_trends: projectTrends
+                    un_trends: projectTrends,
+                    un_current_trends:currentProjectTrend
                 };
 
             } else {
@@ -115,7 +123,7 @@ dstore_undata.fetch = function () {
                     totalBudget = totalBudget + parseFloat(getProjectBudget(activity['iati-activity']['budget']));
                     totalExpenditure = totalExpenditure + parseFloat(getProjectExpenditure(activity['iati-activity']['transaction']));
                     projectTrends = getProjectTrends(projectTrends, activity['iati-activity']['activity-date']);
-
+                    currentProjectTrend = getCurrentTrends(currentProjectTrend, activity['iati-activity']['activity-date']);
                 });
 
 
@@ -127,7 +135,7 @@ dstore_undata.fetch = function () {
                 overAllUNData['total_projects'] = parseFloat(overAllUNData['total_projects']) + parseFloat(data['total-count']);
                 overAllUNData['active_projects'] = parseFloat(overAllUNData['active_projects']) + parseFloat(activeProjects);
                 overAllUNData['un_trends'] = mergeData(overAllUNData['un_trends'], projectTrends);
-
+                overAllUNData['un_current_trends'] = mergeData(overAllUNData['un_current_trends'], currentProjectTrend);
                 codes[key] = {
                     countries: countries,
                     sectors: sectors,
@@ -135,14 +143,13 @@ dstore_undata.fetch = function () {
                     active_projects: activeProjects,
                     total_budget: totalBudget,
                     total_expenditure: totalExpenditure,
-                    un_trends: projectTrends
+                    un_trends: projectTrends,
+                    un_current_trends:currentProjectTrend
                 };
             }
-
-
         } catch (e) {
             codes[key] = {};
-            console.log(e.message);
+            console.log(e);
         }
         console.log("=================================================================================================");
     }
@@ -178,7 +185,6 @@ function filterData(data, type) {
 
 function mergeData(obj, src) {
     if (Object.keys(obj).length) {
-
         for (var y in src) {
 
             if (!(y in obj)) {
@@ -213,6 +219,24 @@ function getProjectTrends(projectTrends, activityDates) {
     return projectTrends;
 }
 
+// function to make an object of trending projects that persists in actual year
+function getCurrentTrends(currentProjectTrend, activityDates){
+    var yearly = getCurrentProject(activityDates);
+    var year = 0;
+    if(yearly != 0){
+        var diff = yearly[1] - yearly[0];
+        for (var i = 0; i <= diff; i++){
+            year = parseInt(yearly[0]) + i;
+            if(year in currentProjectTrend){
+                currentProjectTrend[year] = currentProjectTrend[year] + 1;
+            }
+            else{
+                currentProjectTrend[year] = 1;
+            }
+        }
+    }
+    return currentProjectTrend;
+}
 //to find expenditures per project
 function getProjectExpenditure(transactions) {
     var expenses = 0;
@@ -266,7 +290,6 @@ function getProjectBudget(budget) {
 function getActiveProjects(activityDates, type) {
     var dt = 0;
     if (typeof activityDates !== 'undefined') {
-
         if (type === 'active') {
             if (typeof activityDates.length !== 'undefined') {
                 activityDates.forEach(function (ad) {
@@ -305,9 +328,52 @@ function getActiveProjects(activityDates, type) {
             return (dt != 0) ? dt.split("-") : dt;
         }
     }
-
     return dt;
 
+}
+
+//returns an array of the start date and end date of individual project, made by aayush
+function getCurrentProject(activityDates){
+    var dt = {};
+    var mainDt = [];
+    if(typeof activityDates !== 'undefined' ) {
+        if (typeof activityDates.length != 'undefined') {
+            activityDates.forEach(function (ad) {
+                if (typeof dt["startDate"] == 'undefined' && (ad.type === 'start-actual' || ad.type == 2)) {
+                    dt["startDate"] = ad['iso-date'];
+                }
+                else if (typeof dt["startDate"] == 'undefined' && (ad.type === 'start-planned' || ad.type == 1)) {
+                    dt["startDate"] = ad['iso-date'];
+                }
+                else if (typeof dt["endDate"] == 'undefined' && (ad.type === 'end-actual' || ad.type == 4)) {
+                    dt["endDate"] = ad['iso-date'];
+                }
+                else if (typeof dt["endDate"] == 'undefined' && (ad.type === 'end-planned' || ad.type == 3)) {
+                    dt["endDate"] = ad['iso-date'];
+                }
+            });
+        } else {
+            if (typeof dt["startDate"] == 'undefined' && (activityDates.type === 'start-actual' || activityDates.type == 2)) {
+                dt["startDate"] = activityDates['iso-date'];
+            }
+            else if (typeof dt["startDate"] == 'undefined' && (activityDates.type === 'start-planned' || activityDates.type == 1)) {
+                dt["startDate"] = activityDates['iso-date'];
+            }
+            else if (typeof dt["endDate"] == 'undefined' && (activityDates.type === 'end-actual' || activityDates.type == 4)) {
+                dt["endDate"] = activityDates['iso-date'];
+            }
+            else if (typeof dt["endDate"] == 'undefined' && (activityDates.type === 'end-planned' || activityDates.type == 3)) {
+                dt["endDate"] = activityDates['iso-date'];
+            }
+        }
+        if (typeof dt["startDate"] != 'undefined' && typeof dt["endDate"] != 'undefined') {
+            dt["startDate"] = (dt["startDate"] != 0) ? dt["startDate"].split("-") : dt["startDate"];
+            dt["endDate"] = (dt["endDate"] != 0) ? dt["endDate"].split("-") : dt["endDate"];
+            mainDt.push(dt.startDate[0]);
+            mainDt.push(dt.endDate[0]);
+        }
+    }
+    return mainDt;
 }
 
 //validate if project is active
