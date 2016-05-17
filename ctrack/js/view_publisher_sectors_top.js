@@ -49,7 +49,6 @@ view_publisher_sectors_top.ajax=function(args)
 
 	if(!dat.reporting_ref){dat.flags=0;}
 	fetch.ajax(dat,function(data){
-
 		for(var i=0;i<data.rows.length;i++)
 		{
 			var v=data.rows[i];
