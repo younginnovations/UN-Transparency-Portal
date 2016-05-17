@@ -172,6 +172,7 @@
 		"MH": "Marshall Islands",
 		"TV": "Tuvalu",
 		"FM": "Micronesia (Federated States of)",
+		"-1": "Global",
 		"BS": "Bahamas",
 		"CY": "Cyprus",
 		"AE": "United Arab Emirates",
@@ -398,17 +399,18 @@
 		"2009": 893,
 		"2010": 1112,
 		"2011": 1477,
-		"2012": 25422,
-		"2013": 5913,
-		"2014": 11859,
-		"2015": 5273,
-		"2016": 4235,
-		"2017": 1
+		"2012": 25435,
+		"2013": 5914,
+		"2014": 11870,
+		"2015": 5283,
+		"2016": 4252,
+		"2017": 2,
+		"2018": 2
 	},
-	"total_projects": 33885,
-	"active_projects": 25841,
-	"total_budget": 678101911203.1703,
+	"total_projects": 33940,
+	"active_projects": 25854,
+	"total_budget": 678204215157.1703,
 	"total_expenditure": 106163275899.09999,
 	"total_un_agencies": 29,
-	"un_agencies_in_iati": 13
+	"un_agencies_in_iati": 14
 }
