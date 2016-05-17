@@ -23,8 +23,8 @@ view_active.ajax=function(args)
 	var today=fetch.get_today();
 	
 	args=args || {};
-	
-	
+
+
 	args.q=args.q || {};
 	args.q.day_end_gteq = today + ( args.notnull?"":"|NULL" ); // if args.notnull then ignore nulls...
 	args.q.day_start_lteq = today;

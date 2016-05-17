@@ -15,6 +15,7 @@ var tables=require("./tables.js")
 
 var refry=require("../../dstore/js/refry.js")
 var iati_codes=require("../../dstore/json/iati_codes.json")
+var un_agencies_data=require("../../dstore/json/un_agencies_data.json")
 
 var commafy=function(s) { return s.replace(/(^|[^\w.])(\d{4,})/g, function($0, $1, $2) {
 		return $1 + $2.replace(/\d(?=(?:\d\d\d)+(?!\d))/g, "$&,"); }) };
@@ -54,7 +55,6 @@ view_publishers.ajax=function(args)
 	ctrack.sortby="order"; // reset sortby
 	var display=function(sortby)
 	{
-		// console.log("from display");
 		var s=[];
 		var a=[];
 		for(var n in ctrack.publishers_data) { a.push( ctrack.publishers_data[n] ); }
@@ -77,13 +77,12 @@ view_publishers.ajax=function(args)
 			}
 		});
 		ctrack.chunk(args.chunk || "table_publishers_rows",s.join(""));
-		ctrack.chunk("table_publishers_count",a.length);
+		ctrack.chunk("table_publishers_count",un_agencies_data.un_agencies_in_iati);
 
 		ctrack.chunk_clear("table_publishers");
 
 	var p=function(s)
 	{
-		// console.log("from p");
 		s=s || "";
 		s=s.replace(/[,]/g,"");
 		return parseInt(s);
@@ -102,7 +101,6 @@ view_publishers.ajax=function(args)
 
 	var fadd=function(d)
 	{
-		// console.log("from fadd");
 		var it=ctrack.publishers_data[d.reporting_ref];
 		if(!it) { it={}; ctrack.publishers_data[d.reporting_ref]=it; }
 
@@ -118,7 +116,6 @@ view_publishers.ajax=function(args)
 	var years=[year-1,year,year+1];
 	years.forEach(function(y)
 	{
-		// console.log("from years");
 		var dat={
 
 				"from":"act,trans,country",
@@ -128,15 +125,12 @@ view_publishers.ajax=function(args)
 				"trans_code":"D|E",
 				"trans_day_gteq":y+"-"+ctrack.args.newyear,"trans_day_lt":(parseInt(y)+1)+"-"+ctrack.args.newyear,
 				"country_code":(args.country || ctrack.args.country_select),
-//				"reporting_ref":(args.publisher || ctrack.args.publisher_select),
+				//"reporting_ref":(args.publisher || ctrack.args.publisher_select),
 //				"title_like":(args.search || ctrack.args.search),
 			};
 		fetch.ajax_dat_fix(dat,args);
 		if(!dat.reporting_ref){dat.flags=0;} // ignore double activities unless we are looking at a select publisher
 		fetch.ajax(dat,function(data){
-//			console.log("fetch transactions publishers "+year);
-//			console.log(data);
-
 			for(var i=0;i<data.rows.length;i++)
 			{
 				var v=data.rows[i];
@@ -151,7 +145,21 @@ view_publishers.ajax=function(args)
 				}
 				fadd(d);
 			}
-		//console.log(ctrack.publishers_data);
+
+			for(var key in iati_codes['iati_un_publishers']){
+				if(typeof ctrack.publishers_data[key] == 'undefined'){
+
+					ctrack.publishers_data[key]=[];
+					ctrack.publishers_data[key]['b1']=0;
+					ctrack.publishers_data[key]['b2']=0;
+					ctrack.publishers_data[key]['order']=0;
+					ctrack.publishers_data[key]['publisher']=iati_codes['iati_un_publishers'][key];
+					ctrack.publishers_data[key]['reporting_ref']=key;
+					ctrack.publishers_data[key]['t1']=0;
+					ctrack.publishers_data[key]['t2']=0;
+					ctrack.publishers_data[key]['t3']=0;
+				}
+			}
 
 			display();
 		});
@@ -175,9 +183,6 @@ view_publishers.ajax=function(args)
 		if(!dat.reporting_ref){dat.flags=0;} // ignore double activities unless we are looking at a select publisher
 		fetch.ajax(dat,function(data){
 
-//			console.log("fetch budget publishers "+year);
-//			console.log(data);
-
 			for(var i=0;i<data.rows.length;i++)
 			{
 				var v=data.rows[i];
@@ -186,8 +191,6 @@ view_publishers.ajax=function(args)
 				d["b"+(y-year)]=commafy(""+Math.floor(ctrack.convert_num("sum_of_percent_of_budget",v)));
 				fadd(d);
 			}
-//			console.log( "b"+(y-year) );
-//			console.log(ctrack.publishers_data);
 
 			display();
 		});
