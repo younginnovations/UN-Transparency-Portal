@@ -153,7 +153,31 @@ chart.draw=function(sel,data,options,barColor){
 					})
 					.style("cursor","pointer");
 		}
-		else{
+		else if(sel == "#publisher_sectors_graph"){
+			svgHorz.selectAll("text.name")
+					.data(data)
+					.enter()
+					.append("text")
+					.text(function(d){
+						if(d.str_lab !== undefined) {
+							if(typeof d.str_lab == "string"){
+								if (d.str_lab.length < 40)
+									return (d.str_lab);
+								else
+									return (d.str_lab).slice(0, 40) + "...";
+							}
+						}
+						else{
+							return "N/A"
+						}
+					})
+					.style("font-size", "14px")
+					.attr("y", function(d,i){
+						return i * (height / data.length);
+					})
+					.attr("dx", -(parentWidth/3))
+					.attr("dy", textAlign);
+		}else{
 			svgHorz.selectAll("text.name")
 					.data(data)
 					.enter()
@@ -161,7 +185,7 @@ chart.draw=function(sel,data,options,barColor){
 					.text(function(d){
 						if(d.str_lab !== undefined) {
 							if (d.str_lab.length < 40)
-								return d.str_lab;
+								return (d.str_lab);
 							else
 								return d.str_lab.slice(0, 40) + "...";
 						}

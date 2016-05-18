@@ -312,20 +312,21 @@ cmd.build = function () {
     chunkopts["un_agencies_in_iati"] = JSON.stringify(un_agencies_data["un_agencies_in_iati"]);
     chunkopts["un_org"] = JSON.stringify(un_org);
 
-
-
-    var arr = Object.keys(un_agencies_data["un_trends"]).map(function (k) {
-        return k
+    var arr = Object.keys(un_agencies_data["un_current_trends"]).map(function(k){
+        return k;
     });
-    arr = arr.slice(Math.max(arr.length - 7, 1));
-
+    var newYear = new Date();
+    var currentYear = newYear.getFullYear();
+    var currentYearStart = currentYear - 5;
+    currentYearStart = currentYearStart.toString();
+    var currentYearEnd = currentYear + 1;
+    currentYearEnd = currentYearEnd.toString();
+    var arr = arr.slice(arr.indexOf(currentYearStart),arr.indexOf(currentYearEnd));
     var un_trending = {};
-    arr.forEach(function (year) {
-        un_trending[year] = un_agencies_data["un_trends"][year];
+    arr.forEach(function(year){
+        un_trending[year] = un_agencies_data["un_current_trends"][year];
     });
-
-
-    chunkopts["un_trends"] = JSON.stringify(un_trending);
+    chunkopts["un_current_trends"] = JSON.stringify(un_trending);
 
     chunkopts["geojson"] = JSON.stringify(geojson);
 
