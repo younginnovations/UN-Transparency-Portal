@@ -147,11 +147,33 @@ dstore_undata.fetch = function () {
         console.log("=================================================================================================");
     }
     //console.log(codes);
+    overAllUNData['countries'] = filterData(overAllUNData['countries'], 'country');
+    overAllUNData['sectors'] = filterData(overAllUNData['sectors'], 'sector');
 
     fs.writeFile(__dirname + "/../json/un_org.json", JSON.stringify(codes, null, '\t'));
     fs.writeFile(__dirname + "/../json/un_agencies_data.json", JSON.stringify(overAllUNData, null, '\t'));
     console.log("Data has been successfully imported.");
 
+}
+
+function filterData(data, type) {
+    var codes = require('../json/iati_codes');
+    var regional = {};
+
+    for (var key in data) {
+        if (!codes[type][key]) {
+            regional[key] = data[key];
+            //console.log('================', regional);
+            delete data[key];
+        }
+    }
+
+    if(type === 'country') {
+        data['global-regional'] = regional;
+        console.log(data['global-regional']);
+    }
+
+    return data;
 }
 
 function mergeData(obj, src) {
@@ -302,7 +324,6 @@ function active_project(end_date) {
 
 //fill in the array of provided organization data
 function fillGivenData(dataObject, orgData, fetch) {
-
     if (orgData !== undefined) {
         if (orgData.length) {
             orgData.forEach(function (data) {
@@ -332,7 +353,6 @@ function getData(dataObject, data, fetch) {
         } else {
             dataObject[data.text] = data.text;
         }
-
     }
 
     return dataObject;
@@ -343,7 +363,10 @@ function getMissingValues(element, key, type) {
     var codes = require('../json/iati_codes');
 
     if (type === 'key') {
-        return codes[element][key];
+        if (codes[element][key]) {
+            return codes[element][key];
+        }
+        return key;
     } else {
         for (var k in codes[element]) {
 
