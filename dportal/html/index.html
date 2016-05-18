@@ -17,7 +17,7 @@
 {jsmenu}
 <div class="portal">
     <div class="main_wrap">
-        <div  id="overlay" class="overlay">
+        <div id="overlay" class="overlay">
             <div id="mainTooltip" class="hidden">
                 <p><span id="value"></span></p>
             </div>
@@ -44,26 +44,38 @@
                                 <a href="javascript:" id="sendFeedbackPopup">
                                     <span>{develop_button_text}</span>
                                 </a>
+
                                 <div id="myModal" class="modal">
                                     <div class="modal-content">
                                         <span class="close">×</span>
+
                                         <h2 class="modal-header">Send Feedback</h2>
+
                                         <div class="modal-body">
                                             <div id="emptyAlert"></div>
                                             <form id="feedbackForm" name="feedbackForms">
-                                                <input class="form-control" type="text" id="fullname" name="fullname" placeholder="YOUR NAME" required>
-                                                <input class="form-control" type="email" id="email" name="email" placeholder="YOUR EMAIL" required>
-                                                <textarea class="form-control" placeholder="YOUR MESSAGE" id="message" name="message" required></textarea>
-                                                <button class="form-button" type="button" id="sendFeedback">Send Message</button>
+                                                <input class="form-control" type="text" id="fullname" name="fullname"
+                                                       placeholder="YOUR NAME" required>
+                                                <input class="form-control" type="email" id="email" name="email"
+                                                       placeholder="YOUR EMAIL" required>
+                                                <textarea class="form-control" placeholder="YOUR MESSAGE" id="message"
+                                                          name="message" required></textarea>
+                                                <button class="form-button" type="button" id="sendFeedback">Send
+                                                    Message
+                                                </button>
                                             </form>
-                                            <div id="githubIssue">You can also post Github issues <a href="https://github.com/younginnovations/UN-Transparency-Portal/issues" target="_blank">here</a></div>
+                                            <div id="githubIssue">You can also post Github issues <a
+                                                    href="https://github.com/younginnovations/UN-Transparency-Portal/issues"
+                                                    target="_blank">here</a></div>
                                         </div>
                                     </div>
                                 </div>
                                 <div id="myModalSuccess" class="modalSuccess">
                                     <div class="modal-content-success">
                                         <span class="close">×</span>
+
                                         <h2 class="modal-header">Send Feedback</h2>
+
                                         <div class="modal-body">
                                             <h2 class="successMessage">Your message has been successfully sent.</h2>
                                         </div>
@@ -333,14 +345,19 @@
         countries = {rows: []};
         var rows = countries.rows;
         for (idx in crs_countries) {
+
             var name = country_names[idx];
+
+            if (idx === 'global-regional') {
+                name = 'Regional and global';
+            }
             if (name) {
                 rows.push({name: name, country_code: idx});
             }
         }
         rows.sort(function (a, b) {
-            var ta = (a.country_code === 'global-regional')?'Regional and global':a.name.toUpperCase();
-            var tb = (b.country_code === 'global-regional')?'Regional and global':b.name.toUpperCase();
+            var ta = a.name.toUpperCase();
+            var tb = b.name.toUpperCase();
             return (ta < tb) ? -1 : (ta > tb) ? 1 : 0;
         });
 
@@ -515,6 +532,7 @@
                     var v = countries.rows[i];
                     if (v.name) // must be real country
                     {
+                        var cd = (v.country_code == 'global-regional') ? 'GR' : v.country_code;
                         var t = (v.name || v.country_code )
                         if (v.count) {
                             t = t + " (" + v.count + ") ";
@@ -527,7 +545,7 @@
                                 '<img src="{root}art/flag/' + v.country_code.toLowerCase() + '.png" alt="' + v.name + '"/>' +
                                 '</span>' +
                                 '<span class="select_wrap countryid">' +
-                                v.country_code +
+                                cd +
                                 '</span>' +
                                 '<span class="select_wrap countryname">' +
                                 v.name +
@@ -557,69 +575,69 @@
 
         var cross = document.getElementsByClassName("close")[0];
 
-        btn.onclick = function() {
+        btn.onclick = function () {
             modal.style.display = "block";
-            $("body").css('overflow','hidden');
+            $("body").css('overflow', 'hidden');
         };
 
-        cross.onclick = function() {
+        cross.onclick = function () {
             modal.style.display = "none";
-            $("body").css('overflow','visible');
+            $("body").css('overflow', 'visible');
         };
 
-        window.onclick = function(event) {
+        window.onclick = function (event) {
             if (event.target == modal) {
                 modal.style.display = "none";
-                $("body").css('overflow','visible');
+                $("body").css('overflow', 'visible');
             }
         };
 
-        $("#sendFeedback").on('click',function(e){
+        $("#sendFeedback").on('click', function (e) {
             e.preventDefault();
-            var name  = $('#fullname').val();
+            var name = $('#fullname').val();
             var trimmedName = $.trim(name);
-            var email  = $('#email').val();
+            var email = $('#email').val();
             var message = $('#message').val();
             var trimmedMessage = $.trim(message);
             var atPos = email.indexOf("@");
             var dotPos = email.lastIndexOf(".");
-            if(trimmedName == ""){
+            if (trimmedName == "") {
                 $("#emptyAlert").html("Please enter your name!");
                 $("#fullname").focus();
                 return false;
             }
-            if(email == ""){
+            if (email == "") {
                 $("#emptyAlert").html("Please enter your email address!");
                 $("#email").focus();
                 return false;
             }
-            if( atPos < 1 || dotPos < atPos+2 || dotPos+2>=email.length){
+            if (atPos < 1 || dotPos < atPos + 2 || dotPos + 2 >= email.length) {
                 $("#emptyAlert").html("Please enter a valid email address!");
-                $("#email").css("border","1px solid #BB0303");
+                $("#email").css("border", "1px solid #BB0303");
                 return false;
             }
-            if(trimmedMessage == ""){
+            if (trimmedMessage == "") {
                 $("#emptyAlert").html("Please enter your message!");
                 $("#message").focus();
                 return false;
             }
-            var data = {name: name, email: email,message:message};
+            var data = {name: name, email: email, message: message};
             $.ajax({
-                url : '/feedback',
-                data : data,
-                success : function(response){
+                url: '/feedback',
+                data: data,
+                success: function (response) {
                     $("#myModal").hide();
                     $("#emptyAlert").empty();
                     $('#fullname').val("");
                     $('#email').val("");
-                    $("#email").css("border","1px solid #bbb");
-                    $("#email").css("background","#fff");
+                    $("#email").css("border", "1px solid #bbb");
+                    $("#email").css("background", "#fff");
                     $('#message').val("");
                     $("#myModalSuccess").show();
-                    setInterval(function(){
+                    setInterval(function () {
                         $("#myModalSuccess").hide();
-                        $("body").css('overflow','visible');
-                    },3000);
+                        $("body").css('overflow', 'visible');
+                    }, 3000);
                 }
             });
         });
@@ -661,19 +679,18 @@
 
         $("#slideshow > div:gt(0)").hide();
 
-        setInterval(function() {
+        setInterval(function () {
             $('#slideshow > div:first')
                     .fadeOut(2000)
                     .next()
                     .fadeIn(2000)
                     .end()
                     .appendTo('#slideshow');
-        },  5000);
+        }, 5000);
     }());
 
-    function toTitleCase(str)
-    {
-        return str.replace(/\w\S*/g, function(txt){
+    function toTitleCase(str) {
+        return str.replace(/\w\S*/g, function (txt) {
             return txt.charAt(0).toUpperCase() + txt.substr(1).toLowerCase();
         });
     }

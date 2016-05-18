@@ -267,15 +267,21 @@ cmd.build = function () {
 // auto update the countries chunk
     var ccs = [];
     for (var id in un_agencies_data["countries"]) {
+
         var name = un_agencies_data["countries"][id];
+
+        if (id === 'global-regional') {
+            name = 'Regional and global';
+        }
+
         if (name) {
             var d = {name: name, id: id};
             ccs.push(d);
         }
     }
     ccs.sort(function (a, b) {
-        var ta = (a.id === 'global-regional')?'Regional and global':a.name.toUpperCase();
-        var tb = (b.id === 'global-regional')?'Regional and global':b.name.toUpperCase();
+        var ta = a.name.toUpperCase();
+        var tb = b.name.toUpperCase();
         return (ta < tb) ? -1 : (ta > tb) ? 1 : 0;
     });
     chunkopts["countries"] = ccs;
@@ -319,7 +325,7 @@ cmd.build = function () {
     var currentYear = newYear.getFullYear();
     var currentYearStart = currentYear - 5;
     currentYearStart = currentYearStart.toString();
-    var currentYearEnd = currentYear + 1;
+    var currentYearEnd = currentYear + 2;
     currentYearEnd = currentYearEnd.toString();
     var arr = arr.slice(arr.indexOf(currentYearStart),arr.indexOf(currentYearEnd));
     var un_trending = {};
