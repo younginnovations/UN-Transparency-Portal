@@ -103,7 +103,6 @@ view_sectors.ajax = function (args) {
             }
 
         });
-       
         ctrack.chunk("table_sectors_rows", s.join(""));
         ctrack.chunk_clear("table_sectors");
 
@@ -111,7 +110,7 @@ view_sectors.ajax = function (args) {
             s = s || "";
             s = s.replace(/[,]/g, "");
             return parseInt(s);
-        }
+        };
         //var cc = [];
         //cc[0] = ["crs", "sector", "t" + (year - 1), "t" + year, "t" + (year + 1), "b" + (year + 1), "b" + (year + 2)];
         //a.forEach(function (v) {

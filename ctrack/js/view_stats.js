@@ -66,18 +66,16 @@ view_stats.ajax = function (args) {
 
     var dat = {
         "select": "budget",
-        "from": "act,budget"
+        "from": "act,budget",
+        "budget": "budget"
     };
 
     fetch.ajax_dat_fix(dat, args);
     fetch.ajax(dat, args.callback || function (data) {
-            //console.log("Fetching Budget");
-            //console.log(data);
 
             if (data.rows[0]) {
                 ctrack.chunk("total_budget", changeToMillions(data.rows[0]["TOTAL(budget_value)"], ctrack.convert_usd));
             }
-
             ctrack.display(); // every fetch.ajax must call display once
         });
 
