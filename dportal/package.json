@@ -12,7 +12,8 @@
     "morgan": "*",
     "pm2": "*",
     "sendgrid": "^2.0.0",
-    "yargs": "*"
+    "yargs": "*",
+    "sqlite3": "*"
   },
   "devDependencies": {
     "pm2": "*"

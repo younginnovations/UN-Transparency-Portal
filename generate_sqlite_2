@@ -1,0 +1,23 @@
+cd `dirname $0`
+cd dstore
+
+rm db/dstore.sqlite
+
+node js/cmd init
+node js/cmd analyze
+IFS=$'\n'
+
+FILES=data/*
+for f in $FILES
+do
+    FL=$f/*
+    for d in $FL
+        do
+             echo $d
+             node --max-old-space-size=8192 js/cmd import $d || exit 1
+        done
+done
+
+#make it smarter
+node js/cmd vacuum
+node js/cmd analyze

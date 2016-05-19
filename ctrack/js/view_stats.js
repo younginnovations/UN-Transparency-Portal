@@ -72,6 +72,9 @@ view_stats.ajax = function (args) {
 
     fetch.ajax_dat_fix(dat, args);
     fetch.ajax(dat, args.callback || function (data) {
+            //console.log("Fetching Budget");
+            //console.log(dat);
+            //console.log(data);
 
             if (data.rows[0]) {
                 ctrack.chunk("total_budget", changeToMillions(data.rows[0]["TOTAL(budget_value)"], ctrack.convert_usd));
@@ -85,7 +88,6 @@ view_stats.ajax = function (args) {
     };
     fetch.ajax_dat_fix(dat, args);
     fetch.ajax(dat, args.callback || function (data) {
-
             if (data.rows[0]) {
                 ctrack.chunk("total_projects", data.rows[0]["COUNT(DISTINCT aid)"]);
                 ctrack.chunk("numof_publishers", data.rows[0]["COUNT(DISTINCT reporting_ref)"]);
@@ -129,7 +131,7 @@ view_stats.ajax = function (args) {
     views.ended.ajax({output: "count"});
     views.missing.ajax({output: "count"});
 
-}
+};
 
 var changeToMillions = function (number, currencyVal) {
     function numberWithCommas(x) {

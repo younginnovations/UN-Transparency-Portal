@@ -441,7 +441,7 @@
 			"99810": "Sectors not specified"
 		},
 		"total_projects": 383,
-		"active_projects": 47,
+		"active_projects": 42,
 		"total_budget": 922218733,
 		"total_expenditure": 719658182,
 		"un_trends": {
@@ -633,7 +633,7 @@
 		"total_projects": 10375,
 		"active_projects": 4564,
 		"total_budget": 19153544368,
-		"total_expenditure": 16096887173,
+		"total_expenditure": 17622189308,
 		"un_trends": {
 			"2012": 6496,
 			"2013": 1036,
@@ -880,7 +880,7 @@
 			"MSS": "Bureau of Management of Support Services (MSS)"
 		},
 		"total_projects": 2486,
-		"active_projects": 150,
+		"active_projects": 145,
 		"total_budget": 301658599,
 		"total_expenditure": 1023776993,
 		"un_trends": {
@@ -1475,9 +1475,9 @@
 			"0097": "Anti-Money Laundering and Combating the Financing of Terrorism"
 		},
 		"total_projects": 2263,
-		"active_projects": 1330,
+		"active_projects": 1320,
 		"total_budget": 408114963777.4701,
-		"total_expenditure": 0,
+		"total_expenditure": 169653932285,
 		"un_trends": {
 			"1969": 1,
 			"1970": 1,
@@ -1677,7 +1677,7 @@
 		"total_projects": 16,
 		"active_projects": 0,
 		"total_budget": 0,
-		"total_expenditure": 0,
+		"total_expenditure": 81292980.3,
 		"un_trends": {},
 		"un_current_trends": {}
 	},
@@ -1877,7 +1877,7 @@
 			"99810": "Sectors not specified"
 		},
 		"total_projects": 8708,
-		"active_projects": 6471,
+		"active_projects": 6409,
 		"total_budget": 21013719669,
 		"total_expenditure": 12711262139,
 		"un_trends": {
@@ -2246,7 +2246,7 @@
 			"99810": "Sectors not specified"
 		},
 		"total_projects": 857,
-		"active_projects": 382,
+		"active_projects": 374,
 		"total_budget": 9782692002,
 		"total_expenditure": 4284410202,
 		"un_trends": {
@@ -2290,9 +2290,9 @@
 		"countries": {},
 		"sectors": {},
 		"total_projects": 47,
-		"active_projects": 22,
+		"active_projects": 21,
 		"total_budget": 0,
-		"total_expenditure": 0,
+		"total_expenditure": 1509764523,
 		"un_trends": {
 			"2006": 2,
 			"2007": 8,
@@ -2445,7 +2445,7 @@
 			"74010": "Disaster prevention and preparedness"
 		},
 		"total_projects": 756,
-		"active_projects": 176,
+		"active_projects": 175,
 		"total_budget": 56750282076,
 		"total_expenditure": 27350212039,
 		"un_trends": {

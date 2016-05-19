@@ -191,15 +191,14 @@ dstore_db.fill_acts = function (acts, slug, data, head, main_cb) {
         var org = refry.xml(data, slug); // raw xml convert to jml
         var aid = iati_xml.get_aid(org);
 
-
-        console.log("importing budgets from org file for " + aid)
+        console.log("importing budgets from org file for " + aid);
 
         db.run("DELETE FROM budget    WHERE aid=?", aid);
 
-
         var o = refry.tag(org, "iati-organisation");
+
         if (o) {
-            console.log(o[0] + " -> " + o["default-currency"])
+            console.log(o[0] + " -> " + o["default-currency"]);
             iati_cook.activity(o); // cook the raw json(xml) ( most cleanup logic has been moved here )
         }
 
