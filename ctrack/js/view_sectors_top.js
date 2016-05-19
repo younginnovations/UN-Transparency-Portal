@@ -50,11 +50,13 @@ view_sectors_top.ajax=function(args)
 		for(var i=0;i<data.rows.length;i++)
 		{
 			var v=data.rows[i];
-			var d={};
-			d.sector_group=iati_codes.sector_names[ v.sector_group ];
-			d.sector_name = iati_codes.sector[v.sector_code];
-			d.usd=Math.floor(ctrack.convert_num("sum_of_percent_of_trans",v));
-			list.push(d);
+			if(iati_codes.sector[v.sector_code]){
+				var d = {};
+				d.sector_group = iati_codes.sector_names[v.sector_group];
+				d.sector_name = iati_codes.sector[v.sector_code];
+				d.usd = Math.floor(ctrack.convert_num("sum_of_percent_of_trans", v));
+				list.push(d);
+			}
 		}
 		list.sort(function(a,b){
 			return ( (b.usd||0)-(a.usd||0) );

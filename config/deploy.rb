@@ -2,10 +2,11 @@ lock '3.4.0'
 
 # Application #
 #####################################################################################
-set :application,     'UN-Transparency-Portal'
+set :application,     'UNDG-Portal'
 set :branch,          ENV["branch"] || "master"
 set :user,            ENV["user"] || ENV["USER"] || "dportal"
-set :default_env, {"PATH" => "PATH=$PATH:/home/dportal/.nvm/versions/node/v5.7.0/bin"}
+#set :default_env, {"PATH" => "PATH=$PATH:/home/dportal/.nvm/versions/node/v5.7.0/bin"}
+set :default_env, {"PATH" => "PATH=$PATH:/home/undg/usr/bin/node"}
 set :port,            ENV["port"] || "1337"
 
 # SCM #

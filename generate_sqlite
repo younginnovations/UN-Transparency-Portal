@@ -6,8 +6,8 @@ rm db/dstore.sqlite
 node js/cmd init
 node js/cmd analyze
 
-agencies=( 41108 41111 41119 41120 41122 41122-p1 41122-p2 41127 41304 XM-OCHA-CERF XM-DAC-41114 41AAA XM-DAC-30010 XM-DAC-41140 44000 411124 )
-#agencies=( 41122 )
+agencies=( 41108 41111 41119 41120 41122 41122-p1 41122-p2 41122-p3 41127 41304 XM-OCHA-CERF XM-DAC-41114 41AAA XM-DAC-30010 XM-DAC-41140 44000 411124 )
+#agencies=( 41122-p1 )
 
 for agency in "${agencies[@]}"
 do

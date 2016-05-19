@@ -1,3 +1,3 @@
-server '128.199.73.92', :user => 'dportal', :roles => %{web app}
+server '188.166.155.208', :user => 'undg', :roles => %{web app}
 
-  set :deploy_to, '/home/dportal/stage'
+  set :deploy_to, '/home/undg/stage'
