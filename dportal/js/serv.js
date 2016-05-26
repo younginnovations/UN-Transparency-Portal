@@ -43,8 +43,8 @@ app.get('/feedback', function (req, res) {
 		var sendgrid = require("sendgrid")("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");
 		var email = new sendgrid.Email();
 
-		email.addTo("aayush.rijal@yipl.com.np");
-		//email.addCc("kit.doco@undp.org");
+		email.addTo("kit.doco@undp.org");
+		email.addCc("aayush.rijal@yipl.com.np");
 		email.setFrom(feedbackEmail);
 		email.setSubject("About UNTP");
 		email.setHtml(name + "," + "<br />" + message);

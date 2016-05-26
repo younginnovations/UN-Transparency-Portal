@@ -39,8 +39,9 @@ dstore_undata.fetch = function () {
         try {
             console.log("Fetching Start data for " + unOrganizations[key]);
             if (key == 41122) {
-                for (var i = 1; i < 12; i++) {
-                    var data = require("../un-json/datastoOCre_" + key + i);
+                var cnt =0;
+                for (var i = 1; i < 5; i++) {
+                    var data = require("../un-json/datastore_" + key + i);
                     data = JSON.stringify(data);
                     data = JSON.parse(data);
 
@@ -52,8 +53,10 @@ dstore_undata.fetch = function () {
                         totalExpenditure = totalExpenditure + parseFloat(getProjectExpenditure(activity['iati-activity']['transaction']));
                         projectTrends = getProjectTrends(projectTrends, activity['iati-activity']['activity-date']);
                         currentProjectTrend = getCurrentTrends(currentProjectTrend, activity['iati-activity']['activity-date']);
+                        cnt++;
                     });
                 }
+                console.log('Total : ',cnt);
                 console.log("Fetching Finish data for " + unOrganizations[key]);
                 overAllUNData['countries'] = extend(overAllUNData['countries'], countries);
                 overAllUNData['sectors'] = extend(overAllUNData['sectors'], sectors);
@@ -76,7 +79,7 @@ dstore_undata.fetch = function () {
                 };
             } else if (key == 44000) {
                 for (var i = 1; i < 4; i++) {
-                    var data = require("../un-json/datastoOCre_" + key + i);
+                    var data = require("../un-json/datastore_" + key + i);
                     data = JSON.stringify(data);
                     data = JSON.parse(data);
 
@@ -112,7 +115,7 @@ dstore_undata.fetch = function () {
                 };
 
             } else {
-                var data = require("../un-json/datastoOCre_" + key);
+                var data = require("../un-json/datastore_" + key);
                 data = JSON.stringify(data);
                 data = JSON.parse(data);
 

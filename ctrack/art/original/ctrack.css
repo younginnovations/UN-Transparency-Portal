@@ -187,7 +187,7 @@ a.map_percent span		{display:inline; font-size:1.15em; line-height:1.0em; color:
 span.stats_title		{display:block; font-size:20px; line-height: 26px; color:rgba(102, 102, 102, 0.68); padding-bottom:10px;}
 span.stats_title.view	{font-size:0.6em; color:#FFF;}
 span.stats_num			{display:block; font-size: 128px; line-height: 134px; color: #0067B1;}
-span.stats_num.small	{display:block; font-size:64px;line-height: 70px;}
+span.stats_num.small	{display:block; font-size:55px;line-height: 70px;}
 span.stats_num.view		{font-size: 107px; color:#FFF; line-height: 113px;}
 .declare.stats			{width:960px; margin:0 auto; padding-top:10px; color:#ccc; font-size:0.9em; text-align:right;}
 

@@ -156,10 +156,15 @@ ctrack.setup = function (args) {
         if (cc.length == 1) {
             ctrack.q.country.toLowerCase().split("|");
         }
+
         args.country = cc[0].toLowerCase();
         args.country_select = cc.join("|");
         args.chunks["country_code"] = cc[0].toUpperCase();
         args.chunks["country_name"] = iati_codes.country[args.country.toUpperCase()];
+        if( args.chunks["country_code"] == 'GLOBAL-REGIONAL'){
+            args.chunks["country_code"] = "89,679,889,WW,-1,GLOBAL";
+            args.chunks["country_name"] = 'GLOBAL-REGIONAL';
+        }
         args.chunks["country_flag"] = "{art}flag/" + args.country + ".png";
         args.chunks['link_to_total_budget'] = "#view=donors";
         args.chunks['link_to_total_expense'] = "#view=sectors";
