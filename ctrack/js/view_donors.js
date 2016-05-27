@@ -87,9 +87,10 @@ view_donors.ajax=function(args)
 				if(v.b1=="0") { v.b1="-"; }
 				if(v.b2=="0") { v.b2="-"; }
 			}
-
-			v.donor=iati_codes.funder_names[v.funder] || iati_codes.publisher_names[v.funder] || iati_codes.country[v.funder] || v.funder;
-			s.push( plate.replace(args.plate || "{table_donors_row}",v) );
+			v.donor=iati_codes.un_publisher_names[v.reporting];
+			if(v.donor !== undefined){
+				s.push( plate.replace(args.plate || "{table_donors_row}",v) );
+			}
 		});
 		ctrack.chunk(args.chunk || "table_donors_rows",s.join(""));
 
@@ -102,9 +103,11 @@ view_donors.ajax=function(args)
 		return parseInt(s);
 	}
 		var cc=[];
-		cc[0]=["crs","donor","t"+(year-1),"t"+(year),"t"+(year+1),"b"+(year+1),"b"+(year+2)];
+		cc[0]=["donor","t"+(year-1),"t"+(year),"t"+(year+1),"b"+(year+1),"b"+(year+2)];
 		a.forEach(function(v){
-			cc[cc.length]=[p(v.crs),v.donor,p(v.t1),p(v.t2),p(v.t3),p(v.b1),p(v.b2)];
+			if(v.donor !== undefined){
+				cc[cc.length]=[v.donor,p(v.t1),p(v.t2),p(v.t3),p(v.b1),p(v.b2)];
+			}
 		});
 		ctrack.chunk("csv_data","data:text/csv;charset=UTF-8,"+encodeURIComponent(csvw.arrayToCSV(cc)));
  
@@ -144,7 +147,7 @@ view_donors.ajax=function(args)
 		var dat={
 				"from":"act,trans,country",
 				"limit":args.limit || -1,
-				"select":"funder_ref,"+ctrack.convert_str("sum_of_percent_of_trans"),
+				"select":"funder_ref,reporting_ref,"+ctrack.convert_str("sum_of_percent_of_trans"),
 				"funder_ref_not_null":"",
 				"groupby":"funder_ref",
 				"trans_code":"D|E",
@@ -156,15 +159,13 @@ view_donors.ajax=function(args)
 		fetch.ajax_dat_fix(dat,args);
 		if(!dat.reporting_ref){dat.flags=0;} // ignore double activities unless we are looking at a select publisher
 		fetch.ajax(dat,function(data){
-//			console.log("fetch transactions donors "+year);
-//			console.log(data);
-			
 			for(var i=0;i<data.rows.length;i++)
 			{
 				var v=data.rows[i];
 				var d={};
 				var num=ctrack.convert_num("sum_of_percent_of_trans",v);
 				d.funder=v.funder_ref;
+				d.reporting = v.reporting_ref;
 				d["t"+(2+y-year)]=commafy(""+Math.floor(num));
 				if(year==ctrack.year)
 				{
@@ -172,7 +173,6 @@ view_donors.ajax=function(args)
 				}
 				fadd(d);
 			}
-//			console.log(ctrack.donors_data);
 			
 			display();
 		});
@@ -184,7 +184,7 @@ view_donors.ajax=function(args)
 		var dat={
 				"from":"act,budget,country",
 				"limit":args.limit || -1,
-				"select":"funder_ref,"+ctrack.convert_str("sum_of_percent_of_budget"),
+				"select":"funder_ref,reporting_ref,"+ctrack.convert_str("sum_of_percent_of_budget"),
 				"budget_priority":1, // has passed some validation checks serverside
 				"funder_ref_not_null":"",
 				"groupby":"funder_ref",
@@ -197,18 +197,15 @@ view_donors.ajax=function(args)
 		if(!dat.reporting_ref){dat.flags=0;} // ignore double activities unless we are looking at a select publisher
 		fetch.ajax(dat,function(data){
 			
-//			console.log("fetch budget donors "+year);			
-//			console.log(data);
-			
 			for(var i=0;i<data.rows.length;i++)
 			{
 				var v=data.rows[i];
 				var d={};
 				d.funder=v.funder_ref;
+				d.reporting = v.reporting_ref;
 				d["b"+(y-year)]=commafy(""+Math.floor(ctrack.convert_num("sum_of_percent_of_budget",v)));
 				fadd(d);
 			}
-//			console.log(ctrack.donors_data);
 			
 			display();
 		});

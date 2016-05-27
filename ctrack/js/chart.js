@@ -10,6 +10,9 @@ var ctrack=require("./ctrack.js");
 var d3 = require("d3");
 
 chart.draw=function(sel,data,options,barColor){
+	function numberWithCommas(x) {
+		return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+	}
 	if(typeof data === "object"){
 		var parentWidth = $(sel).parent().width();
 		var barHeight = 30;
@@ -114,7 +117,7 @@ chart.draw=function(sel,data,options,barColor){
 				.style("font-size", "14px")
 				.style("font-weight", "bold")
 				.text(function(d) {
-					return "$"+d.num.toLocaleString();
+					return "$"+numberWithCommas(d.num);
 				});
 
 			valueText.append("tspan")

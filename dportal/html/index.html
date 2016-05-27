@@ -332,10 +332,12 @@
     var geojson = {geojson};
 
     $(function () {
-
-        $("#display-active-projects").text(active_projects.toLocaleString());
-        $("#display-un-agencies").text(un_agencies_in_iati.toLocaleString());
-        $("#total-un-agencies").text(total_un_agencies.toLocaleString());
+        function numberWithCommas(x) {
+            return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+        }
+        $("#display-active-projects").text(numberWithCommas(active_projects));
+        $("#display-un-agencies").text(numberWithCommas(un_agencies_in_iati));
+        $("#total-un-agencies").text(numberWithCommas(total_un_agencies));
         var reportings;
         var extraReporting;
         var countries;
@@ -369,7 +371,8 @@
 
             if (digits > 6) {
                 number = number / (1000000);
-                prettyNumber = Math.round(number).toLocaleString() + ' M';
+                var roundedNumber = Math.round(number);
+                prettyNumber = numberWithCommas(roundedNumber) + ' M';
             } else {
                 prettyNumber = new Number(number).toString();
             }
@@ -377,7 +380,7 @@
             return prettyNumber;
         }
 
-        $("#total_projects_shown").html(total_projects.toLocaleString());
+        $("#total_projects_shown").html(numberWithCommas(total_projects));
         $("#no_of_countries").html(countries.rows.length);
         $("#totalBudget").html("$" + changeToMillions(total_budget));
         $("#totalExpense").html("$" + changeToMillions(total_expenditure));

@@ -23,7 +23,9 @@ var commafy = function (s) {
         return $1 + $2.replace(/\d(?=(?:\d\d\d)+(?!\d))/g, "$&,");
     })
 };
-
+function numberWithCommas(x) {
+    return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+}
 // the chunk names this view will fill with new data
 view_publisher_countries.chunks = [
     "table_publisher_countries_rows",
@@ -132,11 +134,11 @@ view_publisher_countries.ajax = function (args) {
 
         for (var i = 0; i < a.length; i++) {
             if (a[i].country_code == 'global-regional') {
-                a[i].b1 = b.b1.toLocaleString();
-                a[i].b2 = b.b2.toLocaleString();
-                a[i].t1 = b.t1.toLocaleString();
-                a[i].t2 = b.t2.toLocaleString();
-                a[i].t3 = b.t3.toLocaleString();
+                a[i].b1 = numberWithCommas(b.b1);
+                a[i].b2 = numberWithCommas(b.b2);
+                a[i].t1 = numberWithCommas(b.t1);
+                a[i].t2 = numberWithCommas(b.t2);
+                a[i].t3 = numberWithCommas(b.t3);
             }
         }
 
@@ -182,17 +184,17 @@ view_publisher_countries.ajax = function (args) {
 
         ctrack.chunk("countries_count", a.length);//Object.keys(un_agencies_data['countries']).length);
 
-        //var p = function (s) {
-        //    s = s || "";
-        //    s = s.replace(/[,]/g, "");
-        //    return parseInt(s);
-        //}
+        var p = function (s) {
+            s = s || "";
+            s = s.replace(/[,]/g, "");
+            return parseInt(s);
+        }
         var cc = [];
         cc[0] = ["country", "t" + (year - 1), "t" + (year), "t" + (year + 1), "b" + (year + 1), "b" + (year + 2)];
 
-        //a.forEach(function (v) {
-        //    cc[cc.length] = [v.country_code, p(v.t1), p(v.t2), p(v.t3), p(v.b1), p(v.b2)];
-        //});
+        a.forEach(function (v) {
+            cc[cc.length] = [v.country_name, p(v.t1), p(v.t2), p(v.t3), p(v.b1), p(v.b2)];
+        });
         ctrack.chunk("csv_data", "data:text/csv;charset=UTF-8," + encodeURIComponent(csvw.arrayToCSV(cc)));
 
         ctrack.display();
