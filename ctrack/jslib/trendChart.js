@@ -11,7 +11,9 @@ $(function () {
         margin = {
             top: 20, right: 20, bottom: 20, left: 60
         };
-
+    function numberWithCommas(x) {
+        return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+    }
     var xScale = d3.scale.ordinal().rangeRoundBands([0, width - 30], 0);
     var yScale = d3.scale.linear()
         .range([height - margin.top, margin.bottom]);
@@ -112,7 +114,7 @@ $(function () {
                 .style("top", mousePos[1] - 60 + "px")
                 .select("#value")
                 .attr("text-anchor", 'middle')
-                .html(d.value.toLocaleString());
+                .html(numberWithCommas(d.value));
 
             d3.select("#mainTooltip").classed("hidden", false);
         })

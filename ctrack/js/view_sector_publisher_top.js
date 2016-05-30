@@ -46,7 +46,6 @@ view_sector_publisher_top.ajax = function (args) {
         dat.flags = 0;
     }
     fetch.ajax(dat, function (data) {
-        console.log(data);
         var list = [];
 
         for (var i = 0; i < data.rows.length; i++) {

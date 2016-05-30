@@ -23,7 +23,7 @@ dstore_undata.fetch = function () {
     overAllUNData['total_projects'] = 0;
     overAllUNData['active_projects'] = 0;
     overAllUNData['un_trends'] = {};
-    overAllUNData['un_current_trends']= {};
+    overAllUNData['un_current_trends'] = {};
 
     unOrganizations = unOrganizations['iati_un_publishers'];
     var codes = require('../json/un_org');
@@ -39,7 +39,7 @@ dstore_undata.fetch = function () {
         try {
             console.log("Fetching Start data for " + unOrganizations[key]);
             if (key == 41122) {
-                var cnt =0;
+                var cnt = 0;
                 for (var i = 1; i < 5; i++) {
                     var data = require("../un-json/datastore_" + key + i);
                     data = JSON.stringify(data);
@@ -56,7 +56,7 @@ dstore_undata.fetch = function () {
                         cnt++;
                     });
                 }
-                console.log('Total : ',cnt);
+                console.log('Total : ', cnt);
                 console.log("Fetching Finish data for " + unOrganizations[key]);
                 overAllUNData['countries'] = extend(overAllUNData['countries'], countries);
                 overAllUNData['sectors'] = extend(overAllUNData['sectors'], sectors);
@@ -75,11 +75,11 @@ dstore_undata.fetch = function () {
                     total_budget: totalBudget,
                     total_expenditure: totalExpenditure,
                     un_trends: projectTrends,
-                    un_current_trends:currentProjectTrend
+                    un_current_trends: currentProjectTrend
                 };
             } else if (key == 44000) {
-                for (var i = 1; i < 4; i++) {
-                    var data = require("../un-json/datastore_" + key + i);
+                for (var i = 1; i < 3; i++) {
+                    var data = require("../un-json/datastore_" + key + '-' + i);
                     data = JSON.stringify(data);
                     data = JSON.parse(data);
 
@@ -111,7 +111,7 @@ dstore_undata.fetch = function () {
                     total_budget: totalBudget,
                     total_expenditure: totalExpenditure,
                     un_trends: projectTrends,
-                    un_current_trends:currentProjectTrend
+                    un_current_trends: currentProjectTrend
                 };
 
             } else {
@@ -147,7 +147,7 @@ dstore_undata.fetch = function () {
                     total_budget: totalBudget,
                     total_expenditure: totalExpenditure,
                     un_trends: projectTrends,
-                    un_current_trends:currentProjectTrend
+                    un_current_trends: currentProjectTrend
                 };
             }
         } catch (e) {
@@ -178,7 +178,7 @@ function filterData(data, type) {
         }
     }
 
-    if(type === 'country') {
+    if (type === 'country') {
         data['global-regional'] = regional;
         console.log(data['global-regional']);
     }
@@ -223,17 +223,17 @@ function getProjectTrends(projectTrends, activityDates) {
 }
 
 // function to make an object of trending projects that persists in actual year
-function getCurrentTrends(currentProjectTrend, activityDates){
+function getCurrentTrends(currentProjectTrend, activityDates) {
     var yearly = getCurrentProject(activityDates);
     var year = 0;
-    if(yearly != 0){
+    if (yearly != 0) {
         var diff = yearly[1] - yearly[0];
-        for (var i = 0; i <= diff; i++){
+        for (var i = 0; i <= diff; i++) {
             year = parseInt(yearly[0]) + i;
-            if(year in currentProjectTrend){
+            if (year in currentProjectTrend) {
                 currentProjectTrend[year] = currentProjectTrend[year] + 1;
             }
-            else{
+            else {
                 currentProjectTrend[year] = 1;
             }
         }
@@ -336,10 +336,10 @@ function getActiveProjects(activityDates, type) {
 }
 
 //returns an array of the start date and end date of individual project, made by aayush
-function getCurrentProject(activityDates){
+function getCurrentProject(activityDates) {
     var dt = {};
     var mainDt = [];
-    if(typeof activityDates !== 'undefined' ) {
+    if (typeof activityDates !== 'undefined') {
         if (typeof activityDates.length != 'undefined') {
             activityDates.forEach(function (ad) {
                 if (typeof dt["startDate"] == 'undefined' && (ad.type === 'start-actual' || ad.type == 2)) {

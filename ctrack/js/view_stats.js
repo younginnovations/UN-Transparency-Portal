@@ -66,36 +66,25 @@ view_stats.ajax = function (args) {
 
     var dat = {
         "select": "budget",
-        "from": "act,budget"
+        "from": "act,budget",
+        "budget": "budget"
     };
 
     fetch.ajax_dat_fix(dat, args);
     fetch.ajax(dat, args.callback || function (data) {
-            //console.log("Fetching Budget");
-            //console.log(data);
 
             if (data.rows[0]) {
                 ctrack.chunk("total_budget", changeToMillions(data.rows[0]["TOTAL(budget_value)"], ctrack.convert_usd));
             }
-
             ctrack.display(); // every fetch.ajax must call display once
         });
-
 
     var dat = {
         "select": "stats",
         "from": "act",
-//			"country_code":(args.country || ctrack.args.country_select),
-//			"reporting_ref":(args.publisher || ctrack.args.publisher_select),
-//			"title_like":(args.search || ctrack.args.search),
     };
-//	if(dat.country_code) { dat.from+=",country"; }
     fetch.ajax_dat_fix(dat, args);
     fetch.ajax(dat, args.callback || function (data) {
-//		console.log("view_stats.numof_callback");
-//      console.log(data);
-//            console.log('biju',ctrack.convert_usd);
-//            console.log('biju',ctrack.display_usd);
 
             if (data.rows[0]) {
                 ctrack.chunk("total_projects", data.rows[0]["COUNT(DISTINCT aid)"]);
@@ -126,8 +115,6 @@ view_stats.ajax = function (args) {
     }
 
     fetch.ajax(dat, args.callback || function (data) {
-//		console.log("total_activities_with_location");
-//		console.log(data);
 
             if (data.rows[0]) {
                 ctrack.chunk("total_activities_with_location", data.rows[0]["COUNT(DISTINCT aid)"]);
@@ -145,6 +132,9 @@ view_stats.ajax = function (args) {
 }
 
 var changeToMillions = function (number, currencyVal) {
+    function numberWithCommas(x) {
+        return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+    }
     var prettyNumber = "?";
     number = Math.round(number * currencyVal);
 
@@ -152,7 +142,8 @@ var changeToMillions = function (number, currencyVal) {
 
     if (digits > 6) {
         number = number / (1000000);
-        prettyNumber = Math.round(number).toLocaleString() + ' M';
+        var roundedNumber = Math.round(number);
+        prettyNumber = numberWithCommas(roundedNumber) + ' M';
     } else {
         prettyNumber = new Number(number).toString();
     }

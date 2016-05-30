@@ -6,6 +6,9 @@ $(function(){
                 "value":total_expenditure,
                 "title":"Total Expenses"
 	}];
+	function numberWithCommas(x) {
+		return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+	}
 	var pie = d3.layout.pie();
     var margin = { top:5, right: 5, bottom: 5, left: 5};
 	var w = 110;
@@ -61,7 +64,7 @@ $(function(){
 					.style("top", mousePos[1] - 60 + "px")
 					.select("#value")
 					.attr("text-anchor", "middle")
-					.html("$" + Math.ceil(d.value).toLocaleString());
+					.html("$" + numberWithCommas(Math.ceil(d.value)));
 
 				d3.select("#mainTooltip").classed("hidden", false);
 			})
