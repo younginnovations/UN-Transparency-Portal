@@ -24,7 +24,6 @@ view_active.ajax=function(args)
 	
 	args=args || {};
 
-
 	args.q=args.q || {};
 	args.q.day_end_gteq = today + ( args.notnull?"":"|NULL" ); // if args.notnull then ignore nulls...
 	args.q.day_start_lteq = today;
@@ -49,7 +48,6 @@ view_active.ajax=function(args)
 		args.plate = args.plate || "{active_projects_data}";
 		args.chunk = args.chunk || "active_projects_datas";
 	}
-	
 	views.list_activities.ajax(args);
 }
 //
