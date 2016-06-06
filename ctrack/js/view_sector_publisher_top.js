@@ -69,15 +69,18 @@ view_sector_publisher_top.ajax = function (args) {
         var shown = 0;
         var top = list[0] && list[0].usd || 0;
         var dd = [];
+        var secondTotal = 0;
         list.forEach(function (v) {
             var d = {};
             d.num = v.usd;
+            d.prevPct = (secondTotal*100)/total;
+            secondTotal += v.usd;
             var initialPct = 100 * d.num / total;
             if (initialPct < 1) {
                 d.pct = "<1";
             }
             else {
-                d.pct = Math.round(initialPct);
+                d.pct = initialPct.toFixed(1);
             }
             if (d.num < 0) {
                 d.num = -d.num;

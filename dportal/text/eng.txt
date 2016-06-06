@@ -39,7 +39,7 @@ Countries UN operates in
 Un vs. other organizations in IATI
 
 #trend_of_activities
-Trend of UN activities published in IATI
+UN activities published in IATI
 
 #tagline_text
 Helping you understand development data.

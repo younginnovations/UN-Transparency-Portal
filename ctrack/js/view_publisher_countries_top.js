@@ -36,7 +36,6 @@ view_publisher_countries_top.ajax=function(args)
 
 	var year=args.year || parseInt(ctrack.hash.year) || ctrack.year;
 	ctrack.year_chunks(year);
-
 	var dat={
 			"from":"act,trans,country",
 			"limit":-1,

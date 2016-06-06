@@ -74,7 +74,7 @@ view_list_activities.ajax=function(args)
 		delete dat.orderby;
 		delete dat.groupby;
 	}
-
+	var eightyeight = 88;
 	fetch.ajax(dat,function(data){
 		if(args.output=="count")
 		{
@@ -123,7 +123,6 @@ view_list_activities.ajax=function(args)
 					if(d.pct<0){d.pct=0;}
 					if(d.pct>100){d.pct=100;}
 				}
-
 				a.push(d);
 				s.push( plate.replace(args.plate || "{list_activities_data}",d) );
 			}

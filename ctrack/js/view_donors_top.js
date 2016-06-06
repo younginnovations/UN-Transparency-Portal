@@ -30,7 +30,6 @@ view_donors_top.ajax=function(args)
 	var year=args.year || parseInt(ctrack.hash.year) || ctrack.year;
 	ctrack.year_chunks(year);
 
-
 	var dat={
 			"from":"act,trans,country",
 			"limit":-1,
@@ -43,7 +42,6 @@ view_donors_top.ajax=function(args)
 	fetch.ajax_dat_fix(dat,args);
 	if(!dat.reporting_ref){dat.flags=0;}
 	fetch.ajax(dat,function(data){
-		
 		var list=[];
 
 		for(var i=0;i<data.rows.length;i++)
@@ -63,18 +61,22 @@ view_donors_top.ajax=function(args)
 		var shown=0;
 		var top=list[0] && list[0].usd || 0;
 		var dd=[];
+		var secondTotal = 0;
 		list.forEach(function(v){
 			var d = {};
 			d.num = v.usd;
+			d.prevPct = (secondTotal*100)/total;
+			secondTotal += v.usd;
 			var initialPct = 100*d.num/total;
 			if(initialPct < 1){
 				d.pct = "<1";
 			}
 			else{
-				d.pct=Math.round(initialPct);
+				d.pct = initialPct.toFixed(1);
 			}
 			if(d.num < 0){d.num = -d.num; }
-			d.str_lab =iati_codes.funder_names[v.funder] || iati_codes.un_publisher_names[v.funder];
+			var regExp = /\(([^)]+)\)/;
+			d.str_lab =iati_codes.funder_names[v.funder] || (regExp.exec(iati_codes.un_publisher_names[v.funder]))[1];
 			dd.push(d);
 		});
 		

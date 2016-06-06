@@ -27,7 +27,6 @@ view_publisher.fixup=function()
 //
 view_publisher.view=function(args)
 {
-
 	views.main.chunks.forEach(function(n){ctrack.chunk(n,"{spinner}");});
 
 	views.planned.chunks.forEach(function(n){ctrack.chunk(n,"{spinner}");});
