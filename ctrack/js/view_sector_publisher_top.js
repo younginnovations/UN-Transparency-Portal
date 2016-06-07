@@ -85,7 +85,9 @@ view_sector_publisher_top.ajax = function (args) {
             if (d.num < 0) {
                 d.num = -d.num;
             }
-            d.str_lab = iati_codes.iati_un_publishers[v.funder] || iati_codes.funder_names[v.funder];
+            var regExp = /\(([^)]+)\)/;
+            d.str_lab =iati_codes.funder_names[v.funder] || (regExp.exec(iati_codes.un_publisher_names[v.funder]))[1];
+            //d.str_lab = iati_codes.iati_un_publishers[v.funder] || iati_codes.funder_names[v.funder];
             dd.push(d);
         });
         ctrack.chunk("data_chart_sector_publisher", dd);
