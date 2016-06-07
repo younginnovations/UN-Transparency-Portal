@@ -178,6 +178,17 @@ chart.draw=function(sel,data,options,barColor){
 						.attr("stroke","#fff")
 						.attr("stroke-width","2px")
 						.style("filter", "url(#drop-shadow)");
+					d3.select(this)
+						.transition()
+						.duration(500)
+						.ease('elastic')
+						.attr('transform',function(d){
+							var dist = 3;
+							d.midAngle = ((d.endAngle - d.startAngle)/2) + d.startAngle;
+							var x = Math.sin(d.midAngle) * dist;
+							var y = Math.cos(d.midAngle) * dist;
+							return 'translate(' + x + ',' + y + ')';
+						});
 					var mousePos = d3.mouse(divNode);
 					d3.select("#mainTooltip")
 						.style("left", mousePos[0] + "px")
@@ -188,10 +199,16 @@ chart.draw=function(sel,data,options,barColor){
 
 					d3.select("#mainTooltip").classed("hidden", false);
 				})
-				.on("mouseout", function(d){
+				.on("mouseout", function(){
 					d3.select(this)
 						.attr("stroke","none")
 						.style("filter","none");
+					d3.select(this)
+						.transition()
+						.duration(500)
+						.ease('bounce')
+						.attr('transform','translate(0,0)');
+
 					d3.select("#mainTooltip").classed("hidden", true);
 				});
 		}
