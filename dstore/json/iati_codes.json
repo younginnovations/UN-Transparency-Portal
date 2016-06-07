@@ -1474,7 +1474,8 @@
     "XM-DAC-30010": "UNITAID (UNITAID)",
     "XM-DAC-41140": "United Nations World Food Programme (WFP)",
     "44000": "The World Bank (WB)",
-    "411124": "United Nations Entity for Gender Equality and the Empowerment of Women (UN-Women)"
+    "411124": "United Nations Entity for Gender Equality and the Empowerment of Women (UN-Women)",
+    "XM-DAC-41302": "International Labour Organization (ILO)"
   },
   "un_publisher_names": {
     "41108": "International Fund for Agricultural Development (IFAD)",
@@ -1491,7 +1492,7 @@
     "44000": "The World Bank (WB)",
     "XM-OCHA-CERF": "United Nations Central Emergency Response Fund (CERF)",
     "XM-DAC-30010": "UNITAID (UNITAID)",
-    "ILO": "International Labour Organization (ILO)",
+    "XM-DAC-41302": "International Labour Organization (ILO)",
     "FAO": "Food and Agriculture Organization of the United Nations (FAO)",
     "ITC": "International Trade Centre (ITC)",
     "ITU": "International Telecommunications Union (ITU)",
@@ -1508,6 +1509,7 @@
     "WHO": "World Health Organisation (WHO)"
   },
   "publisher_names": {
+    "XM-DAC-41302": "International Labour Organization",
     "21020": "International HIV/AIDS Alliance",
     "21032": "Population Service International",
     "21033": "Transparency International Secretariat",
