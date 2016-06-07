@@ -129,7 +129,6 @@ dstore_undata.fetch = function () {
                     currentProjectTrend = getCurrentTrends(currentProjectTrend, activity['iati-activity']['activity-date']);
                 });
 
-
                 console.log("Fetching Finish data for " + unOrganizations[key]);
                 overAllUNData['countries'] = extend(overAllUNData['countries'], countries);
                 overAllUNData['sectors'] = extend(overAllUNData['sectors'], sectors);
@@ -249,11 +248,13 @@ function getProjectExpenditure(transactions) {
             transactions.forEach(function (transaction) {
                 if ((typeof transaction['transaction-type']) !== 'undefined' && (transaction['transaction-type'].code === 'E' || transaction['transaction-type'].code == 4)) {
                     expenses = expenses + parseFloat(transaction['value'].text);
+                } else if ((typeof transaction['transaction-type']) !== 'undefined' && (transaction['transaction-type'].code === 'D' || transaction['transaction-type'].code == 3)) {
+                    expenses = expenses + parseFloat(transaction['value'].text);
                 }
             });
         } else {
             if (typeof transactions === 'object') {
-                if (transactions['transaction-type'].code === 'E' || transactions['transaction-type'].code == 4)
+                if ((transactions['transaction-type'].code === 'E' || transactions['transaction-type'].code == 4))
                     expenses = transactions['value'].text;
             } else {
                 expenses = transactions['value'].text;
@@ -336,7 +337,7 @@ function getActiveProjects(activityDates, type) {
 }
 
 //returns an array of the start date and end date of individual project, made by aayush
-function getCurrentProject(activityDates) {
+function    getCurrentProject(activityDates) {
     var dt = {};
     var mainDt = [];
     if (typeof activityDates !== 'undefined') {

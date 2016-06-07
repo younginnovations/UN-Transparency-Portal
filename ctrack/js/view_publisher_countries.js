@@ -5,19 +5,20 @@
 var view_publisher_countries = exports;
 exports.name = "view_publisher_countries";
 
-var csvw = require("./csvw.js")
+var csvw = require("./csvw.js");
 
-var ctrack = require("./ctrack.js")
-var plate = require("./plate.js")
-var iati = require("./iati.js")
-var fetch = require("./fetch.js")
-var tables = require("./tables.js")
+var ctrack = require("./ctrack.js");
+var plate = require("./plate.js");
+var iati = require("./iati.js");
+var fetch = require("./fetch.js");
+var tables = require("./tables.js");
 
-var refry = require("../../dstore/js/refry.js")
-var iati_codes = require("../../dstore/json/iati_codes.json")
+var refry = require("../../dstore/js/refry.js");
+var iati_codes = require("../../dstore/json/iati_codes.json");
 var crs_year = require("../../dstore/json/crs_2013.json");
 var un_agencies_data = require("../../dstore/json/un_agencies_data.json");
 var view = 'publisher_countries';
+var showAllCountry = true;
 
 var commafy = function (s) {
     return s.replace(/(^|[^\w.])(\d{4,})/g, function ($0, $1, $2) {
@@ -119,27 +120,31 @@ view_publisher_countries.ajax = function (args) {
                 if (n in ctrack.publisher_countries_data) {
                     a.push(ctrack.publisher_countries_data[n]);
                 } else {
-                    ctrack.publisher_countries_data[n] = {};
-                    ctrack.publisher_countries_data[n]['b1'] = (n === 'global-regional') ? b['b1'] : 0;
-                    ctrack.publisher_countries_data[n]['b2'] = (n === 'global-regional') ? b['b2'] : 0;
-                    ctrack.publisher_countries_data[n]['country_code'] = n;
-                    ctrack.publisher_countries_data[n]['country_name'] = (n === 'global-regional') ? 'Regional and global' : un_agencies_data['countries'][n];
-                    ctrack.publisher_countries_data[n]['crs'] = (n === 'global-regional') ? b['crs'] : 0;
-                    ctrack.publisher_countries_data[n]['t1'] = (n === 'global-regional') ? b['t1'] : 0;
-                    ctrack.publisher_countries_data[n]['t2'] = (n === 'global-regional') ? b['t2'] : 0;
-                    ctrack.publisher_countries_data[n]['t3'] = (n === 'global-regional') ? b['t3'] : 0;
-                    a.push(ctrack.publisher_countries_data[n]);
-
+                    if (showAllCountry || (!showAllCountry && n === 'global-regional')) {
+                        ctrack.publisher_countries_data[n] = {};
+                        ctrack.publisher_countries_data[n]['b1'] = (n === 'global-regional') ? b['b1'] : 0;
+                        ctrack.publisher_countries_data[n]['b2'] = (n === 'global-regional') ? b['b2'] : 0;
+                        ctrack.publisher_countries_data[n]['country_code'] = n;
+                        ctrack.publisher_countries_data[n]['country_name'] = (n === 'global-regional') ? 'Regional and global' : un_agencies_data['countries'][n];
+                        ctrack.publisher_countries_data[n]['crs'] = (n === 'global-regional') ? b['crs'] : 0;
+                        ctrack.publisher_countries_data[n]['t1'] = (n === 'global-regional') ? b['t1'] : 0;
+                        ctrack.publisher_countries_data[n]['t2'] = (n === 'global-regional') ? b['t2'] : 0;
+                        ctrack.publisher_countries_data[n]['t3'] = (n === 'global-regional') ? b['t3'] : 0;
+                        a.push(ctrack.publisher_countries_data[n]);
+                    }
                 }
             }
 
-        for (var i = 0; i < a.length; i++) {
-            if (a[i].country_code == 'global-regional') {
-                a[i].b1 = numberWithCommas(b.b1);
-                a[i].b2 = numberWithCommas(b.b2);
-                a[i].t1 = numberWithCommas(b.t1);
-                a[i].t2 = numberWithCommas(b.t2);
-                a[i].t3 = numberWithCommas(b.t3);
+            for (var i = 0; i < a.length; i++) {
+                if (a[i].country_code == 'global-regional') {
+                    a[i].b1 = numberWithCommas(b.b1);
+                    a[i].b2 = numberWithCommas(b.b2);
+                    a[i].t1 = numberWithCommas(b.t1);
+                    a[i].t2 = numberWithCommas(b.t2);
+                    a[i].t3 = numberWithCommas(b.t3);
+                    if (a[i].b1 == 0 && a[i].b2 == 0 && a[i].t1 == 0 && a[i].t2 == 0 && a[i].t3 == 0) {
+                        a.splice(i,1);
+                    }
                 }
             }
         } else {
@@ -187,7 +192,6 @@ view_publisher_countries.ajax = function (args) {
             ctrack.chunk(args.chunk || "table_publisher_countries_rows", s.join(""));
             ctrack.chunk_clear("table_publisher_countries");
         }
-
         ctrack.chunk("countries_count", a.length);//Object.keys(un_agencies_data['countries']).length);
 
         var p = function (s) {
@@ -252,6 +256,7 @@ view_publisher_countries.ajax = function (args) {
         } // ignore double activities unless we are looking at a select publisher
 
         view = dat['view'];
+
         fetch.ajax(dat, function (data) {
 
 
@@ -287,6 +292,10 @@ view_publisher_countries.ajax = function (args) {
             "budget_day_start_lt": (parseInt(y) + 1) + "-" + ctrack.args.newyear,
         };
         fetch.ajax_dat_fix(dat, args);
+
+        if (dat.reporting_ref || dat.sector_ref || dat.sector_code) {
+            showAllCountry = false;
+        }
         if (!dat.reporting_ref) {
             dat.flags = 0;
         } // ignore double activities unless we are looking at a select publisher

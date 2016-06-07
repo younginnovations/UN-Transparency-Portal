@@ -73,6 +73,7 @@ view_sectors.ajax = function (args) {
         for (var n in ctrack.sectors_data) {
             a.push(ctrack.sectors_data[n]);
         }
+
         if (!sortby) {
             sortby = tables.sortby();
         }
@@ -97,7 +98,7 @@ view_sectors.ajax = function (args) {
             if (!v.b2) {
                 v.b2 = "0";
             }
-            if( iati_codes.sector[v.sector_code]){
+            if (iati_codes.sector[v.sector_code]) {
                 v.sector = iati_codes.sector[v.sector_code];
                 s.push(plate.replace("{table_sectors_row}", v));
             }
@@ -111,22 +112,22 @@ view_sectors.ajax = function (args) {
             s = s.replace(/[,]/g, "");
             return parseInt(s);
         };
-        //var cc = [];
-        //cc[0] = ["crs", "sector", "t" + (year - 1), "t" + year, "t" + (year + 1), "b" + (year + 1), "b" + (year + 2)];
-        //a.forEach(function (v) {
-        //    cc[cc.length] = [p(v.crs), v.group, p(v.t1), p(v.t2), p(v.t3), p(v.b1), p(v.b2)];
-        //});
-        //ctrack.chunk("csv_data", "data:text/csv;charset=UTF-8," + encodeURIComponent(csvw.arrayToCSV(cc)));
+        var cc = [];
+        cc[0] = ["sector", "t" + (year - 1), "t" + year, "t" + (year + 1), "b" + (year + 1), "b" + (year + 2)];
+        a.forEach(function (v) {
+            cc[cc.length] = [v.sector, p(v.t1), p(v.t2), p(v.t3), p(v.b1), p(v.b2)];
+        });
+        ctrack.chunk("csv_data", "data:text/csv;charset=UTF-8," + encodeURIComponent(csvw.arrayToCSV(cc)));
 
         ctrack.display();
     };
     view_sectors.display = display;
 
     var fadd = function (d) {
-        var it = ctrack.sectors_data[d.group];
+        var it = ctrack.sectors_data[d.sector_code];
         if (!it) {
             it = {};
-            ctrack.sectors_data[d.group] = it;
+            ctrack.sectors_data[d.sector_code] = it;
         }
         for (var n in d) {
             it[n] = d[n];

@@ -270,6 +270,8 @@ dstore_cache.import_xmlfile = function (xmlfile) {
     var acts = [];
     for (var i = 1; i < aa.length; i++) {
         var v = aa[i];
+        console.log('---------------------------');
+        console.log(v);
         var v = v.split(/<\/iati-activity>/gi)[0]; // trim the end
         acts.push("<iati-activity dstore:slug=\"" + xmlfilename + "\" dstore:idx=\"" + i + "\" " + v + "</iati-activity>"); // rebuild and add import filename
     }
@@ -291,7 +293,7 @@ dstore_cache.import_xmlfile = function (xmlfile) {
 //	wait.for(function(cb){
     require("./dstore_db").fill_acts(acts, xmlfilename, data, head);
 //		} );
-}
+};
 
 
 dstore_cache.datastore = function (argv) {
