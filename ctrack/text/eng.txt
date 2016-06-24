@@ -453,10 +453,10 @@ Original
 flag
 
 #map_info_text
-This is a heat map of all activities for {portal_name} that have been provided with precise locations.
+* The boundaries and names shown and the designations used on this map do not imply official endorsement or acceptance by the United Nations.
 
 #publisher_map_info_text
-This is a heat map of all activities for {portal_name} that have been provided with precise locations.
+* The boundaries and names shown and the designations used on this map do not imply official endorsement or acceptance by the United Nations.
 
 #map_view_text
 View all

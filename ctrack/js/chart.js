@@ -112,6 +112,7 @@ chart.draw=function(sel,data,options,barColor){
 					});
 				gum.append("svg:text")
 					.style("font-weight", "bold")
+					.attr("transform", "translate(0," + 3 + ")")
 					.html(function(d){
 						if(d.data.str_lab !== "Total"){
 							return d.data.pct + "%";
@@ -211,6 +212,25 @@ chart.draw=function(sel,data,options,barColor){
 
 					d3.select("#mainTooltip").classed("hidden", true);
 				});
+
+			var centerSvg = svg.append('circle')
+				.attr('fill','#F2F2F2')
+				.attr('r','77');
+
+			svg.append('text')
+				.style('fill', '#344')
+				.style("font-size", "64px")
+				.style("font-weight", "bold")
+				.attr("transform", "translate(0," + 10 + ")")
+				.attr("text-anchor", "middle")
+				.html(data.length);
+
+			svg.append("text")
+				.attr("text-anchor", "middle")
+				.style("fill","#344")
+				.attr("transform", "translate(0," + 35 + ")")
+				.style("font-size","18px")
+				.html("UN Agencies");
 		}
 		else{
 			var parentWidth = $(sel).parent().width();
