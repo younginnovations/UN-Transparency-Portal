@@ -4,128 +4,156 @@
 <html>
 <head>
     <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>{about_title_text}</title>
     <script src="{root}jslib/jquery.js"></script>
     <link href="{root}art/original/ctrack.css" rel="stylesheet" type="text/css">
     <link href="about.css" rel="stylesheet" type="text/css">
-
-
-
     <!--{ganal}-->
 </head>
 <body>
-<div class="about-page">
-
-    <nav>
-        <div class="menu-wrap">
-            <div class="img-wrap">
-                <a href="/"><img class="logo-img" src="{root}art/UNDG_logo.png" alt="UNDG logo"/></a>
-            </div>
-
-            <div class="menu-link-wrap">
-                <div class="menu">
-
+<div id="overlay" class="overlay about-wrapper">
+    <div class="menu-responsive">
+        <a id="menu" href="#">
+            <span></span>
+            <span></span>
+            <span></span>
+            <span></span>
+        </a>
+        <nav>
+            <ul class="nav">
+                <li>
                     <a href="about.html">
                         <span>{about_text}</span>
+                        <!--<span class="path_txt">{install_info_text}</span>-->
                     </a>
-                </div>
-
-                <div class="menu">
+                </li>
+                <li>
                     <a href="/ctrack.html#view=generator">
                         <span>{install_button_text}</span>
                     </a>
-                </div>
-                <div class="menu">
+                </li>
+                <li>
                     <a href="javascript:" id="sendFeedbackPopup">
                         <span>{develop_button_text}</span>
                     </a>
-                    <div id="myModal" class="modal">
-                        <div class="modal-content">
-                            <span class="close">×</span>
-                            <h2 class="modal-header">Send Feedback</h2>
-                            <div class="modal-body">
-                                <div id="emptyAlert"></div>
-                                <form id="feedbackForm" name="feedbackForms">
-                                    <input class="form-control" type="text" id="fullname" name="fullname" placeholder="YOUR NAME" required>
-                                    <input class="form-control" type="email" id="email" name="email" placeholder="YOUR EMAIL" required>
-                                    <textarea class="form-control" placeholder="YOUR MESSAGE" id="message" name="message" required></textarea>
-                                    <button class="form-button" type="button" id="sendFeedback">Send Message</button>
-                                </form>
-                                <div id="githubIssue">You can also post Github issues <a href="https://github.com/younginnovations/UN-Transparency-Portal/issues" target="_blank">here</a></div>
-                            </div>
-                        </div>
+                </li>
+            </ul>
+        </nav>
+    </div>
+    <div class="about-page">
+        <nav>
+            <div class="menu-wrap">
+                <div class="img-wrap">
+                    <a href="/"><img class="logo-img" src="{root}art/UNDG_logo.png" alt="UNDG logo"/></a>
+                </div>
+
+                <div class="menu-link-wrap">
+                    <div class="menu">
+
+                        <a href="about.html">
+                            <span>{about_text}</span>
+                        </a>
                     </div>
-                    <div id="myModalSuccess" class="modalSuccess">
-                        <div class="modal-content-success">
-                            <span class="close">×</span>
-                            <h2 class="modal-header">Send Feedback</h2>
-                            <div class="modal-body">
-                                <h2 class="successMessage">Your message has been successfully sent.</h2>
-                            </div>
+
+                    <div class="menu">
+                        <a href="/ctrack.html#view=generator">
+                            <span>{install_button_text}</span>
+                        </a>
+                    </div>
+                    <div class="menu">
+                        <a href="javascript:" id="sendFeedbackPopup">
+                            <span>{develop_button_text}</span>
+                        </a>
+                    </div>
+                    <!--<div class="tongue_wrap">{tongue_select}</div>-->
+                </div>
+                <div id="myModal" class="modal">
+                    <div class="modal-content">
+                        <span class="close">×</span>
+                        <h2 class="modal-header">Send Feedback</h2>
+                        <div class="modal-body">
+                            <div id="emptyAlert"></div>
+                            <form id="feedbackForm" name="feedbackForms">
+                                <input class="form-control" type="text" id="fullname" name="fullname" placeholder="YOUR NAME" required>
+                                <input class="form-control" type="email" id="email" name="email" placeholder="YOUR EMAIL" required>
+                                <textarea class="form-control" placeholder="YOUR MESSAGE" id="message" name="message" required></textarea>
+                                <button class="form-button" type="button" id="sendFeedback">Send Message</button>
+                            </form>
+                            <div id="githubIssue">You can also post Github issues <a href="https://github.com/younginnovations/UN-Transparency-Portal/issues" target="_blank">here</a></div>
                         </div>
                     </div>
                 </div>
-                <!--<div class="tongue_wrap">{tongue_select}</div>-->
+                <div id="myModalSuccess" class="modalSuccess">
+                    <div class="modal-content-success">
+                        <span class="close">×</span>
+                        <h2 class="modal-header">Send Feedback</h2>
+                        <div class="modal-body">
+                            <h2 class="successMessage">Your message has been successfully sent.</h2>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </nav>
+        <div class="crumb_wrap">
+            <div>
+                <a href="/" class="crumb first">Home</a> >
+                <span>about</span>
             </div>
         </div>
-    </nav>
-    <div class="crumb_wrap">
-        <div>
-            <a href="/" class="crumb first">Home</a> >
-            <span>about</span>
-        </div>
-    </div>
-    <h2 class="title">About UNDG Transparency Portal</h2>
+        <h2 class="title">About UNDG Transparency Portal</h2>
 
-    <div class="about-info">
-        <div>
-            <h3><strong>The United Nations commitment to transparency</strong></h3>
-            <p>
-                The UN development system works to meet the request by the UN Economic and Social Council through the Quadrennial Comprehensive Policy Review to strengthen the analytical quality of system-wide reporting on funding and performance and programme results for United Nations operational activities for development, including the coverage, timeliness, reliability, quality and comparability of system wide data, definitions and classifications.
-            </p>
+        <div class="about-info">
+            <div>
+                <h3><strong>The United Nations commitment to transparency</strong></h3>
+                <p>
+                    The UN development system works to meet the request by the UN Economic and Social Council through the Quadrennial Comprehensive Policy Review to strengthen the analytical quality of system-wide reporting on funding and performance and programme results for United Nations operational activities for development, including the coverage, timeliness, reliability, quality and comparability of system wide data, definitions and classifications.
+                </p>
 
-            <p>
-                As part of this commitment to transparency, in 2011, at the Fourth High Level Forum on Aid Effectiveness in Busan, Korea, the United Nations Development Group, endorsed the Busan Partnership for Effective Development Co-operation including a commitment to publish data according to IATI standard. An increasing number of UNDG members and observers are now publishing data and joining the International Aid Transparency Initiative (IATI) as members.
-            </p>
+                <p>
+                    As part of this commitment to transparency, in 2011, at the Fourth High Level Forum on Aid Effectiveness in Busan, Korea, the United Nations Development Group, endorsed the Busan Partnership for Effective Development Co-operation including a commitment to publish data according to IATI standard. An increasing number of UNDG members and observers are now publishing data and joining the International Aid Transparency Initiative (IATI) as members.
+                </p>
 
-            <h3><strong>IATI</strong></h3>
-            <p>
-                IATI is a voluntary, multi-stakeholder initiative that seeks to improve the transparency of aid, development, and humanitarian resources in order to increase their effectiveness in tackling poverty. It brings together donor and recipient countries, civil society organizations, and other experts in aid information who are committed to working together to increase the transparency and openness of aid. At the center of IATI is the IATI Standard, a format and framework for publishing data on development cooperation activities, intended to be used by all organizations in development, including government donors, private sector organizations, and national and international NGOs. It was designed in close consultation with key users of development cooperation data in developing countries, to ensure its relevance and utility for a variety of different data users.[1]
-            </p>
+                <h3><strong>IATI</strong></h3>
+                <p>
+                    IATI is a voluntary, multi-stakeholder initiative that seeks to improve the transparency of aid, development, and humanitarian resources in order to increase their effectiveness in tackling poverty. It brings together donor and recipient countries, civil society organizations, and other experts in aid information who are committed to working together to increase the transparency and openness of aid. At the center of IATI is the IATI Standard, a format and framework for publishing data on development cooperation activities, intended to be used by all organizations in development, including government donors, private sector organizations, and national and international NGOs. It was designed in close consultation with key users of development cooperation data in developing countries, to ensure its relevance and utility for a variety of different data users.[1]
+                </p>
 
-            <h3><strong>UNDG at country level</strong></h3>
-            <p>
-                The UNDG has approved the Standard Operating Procedures for countries adopting the delivering as one approach. These include the development of consolidated financial frameworks that are designed to increase transparency by providing governments, donors and other stakeholders with a simplified single overview of the funding situation.
-            </p>
-            <p>
-                With a view to consolidating these various efforts, the UNDG has developed this portal which draws together all the data published to IATI by UN entities. It promotes a common approach to the application of transparency standards amongst UNDG members through the publication of financial and activity data according to the IATI standard. The portal is overseen by the UNDG Data and transparency task team.
-            </p>
-            <p>Questions? Contact <a class="mail" href="mailto:kit.doco@undg.org">kit.doco@undg.org</a></p>
+                <h3><strong>UNDG at country level</strong></h3>
+                <p>
+                    The UNDG has approved the Standard Operating Procedures for countries adopting the delivering as one approach. These include the development of consolidated financial frameworks that are designed to increase transparency by providing governments, donors and other stakeholders with a simplified single overview of the funding situation.
+                </p>
+                <p>
+                    With a view to consolidating these various efforts, the UNDG has developed this portal which draws together all the data published to IATI by UN entities. It promotes a common approach to the application of transparency standards amongst UNDG members through the publication of financial and activity data according to the IATI standard. The portal is overseen by the UNDG Data and transparency task team.
+                </p>
+                <p>Questions? Contact <a class="mail" href="mailto:kit.doco@undg.org">kit.doco@undg.org</a></p>
 
-        </div>
-        <div>
-            <h3>How to use the portal?</h3>
-
-            <p>The portal displays data of all UNDG members that are currently publishing data as per the IATI standard.
-                The data is updated in real time by pulling data from the IATI registry
-                <a href="http://www.d-portal.org/">(http://www.d-portal.org/)</a>, the central data store gathering all
-                data published to the IATI standard. This portal is meant to be a way for our partners to see all UNDG
-                related data in one place. Data can be displayed by country, UN agency or sector.</p>
-        </div>
-    </div>
-    <div class="footer_wrap">
-        <div class="footer">
-            <div class="footer_link">
-                {footer1_text}<a href="http://undg.org/" title="{footer1_tip_text}">United Nations Development Group</a>
             </div>
-            <div class="footer_link top_about_wrap">
-                <div class="about">
-                    <a href="{tongue_root}about.html">{footer3_text}</a>
+            <div>
+                <h3>How to use the portal?</h3>
+
+                <p>The portal displays data of all UNDG members that are currently publishing data as per the IATI standard.
+                    The data is updated in real time by pulling data from the IATI registry
+                    <a href="http://www.d-portal.org/">(http://www.d-portal.org/)</a>, the central data store gathering all
+                    data published to the IATI standard. This portal is meant to be a way for our partners to see all UNDG
+                    related data in one place. Data can be displayed by country, UN agency or sector.</p>
+            </div>
+        </div>
+        <div class="footer_wrap">
+            <div class="footer">
+                <div class="footer_link">
+                    {footer1_text}<a href="http://undg.org/" title="{footer1_tip_text}">United Nations Development Group</a>
+                </div>
+                <div class="footer_link top_about_wrap">
+                    <div class="about">
+                        <a href="{tongue_root}about.html">{footer3_text}</a>
+                    </div>
                 </div>
             </div>
         </div>
-    </div>
 
+    </div>
 </div>
 <script>
     var modal = document.getElementById('myModal');
@@ -150,6 +178,7 @@
             $("body").css('overflow','visible');
         }
     }
+
     $("#sendFeedback").on('click',function(e){
         e.preventDefault();
         var name  = $('#fullname').val();
@@ -199,6 +228,16 @@
             }
         });
     });
+
+    $(document).ready(function(){
+        $("#menu").click(function () {
+            console.log('test');
+            $(".menu-responsive .nav").toggleClass('is-open');
+            $(".overlay").toggleClass('is-visible');
+            $(this).toggleClass('open');
+        });
+    });
+
 </script>
 </body>
 </html>

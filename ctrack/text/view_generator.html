@@ -12,7 +12,6 @@
 <!--{main_datainvestigators}-->
 {view_tail}a
 
-
 #generator_crs_error
 <div class="reminder_wrap top">
 Please select <b>ONE</b> recipient and <b>NO</b> publisher to generate content here <p>- or choose a different View.</p>
@@ -194,30 +193,30 @@ Please select <b>ONE</b> recipient and <b>NO</b> publisher to generate content h
 				<a href="javascript:" id="sendFeedbackPopup">
 					<span>{develop_button_text}</span>
 				</a>
-				<div id="myModal" class="modal">
-					<div class="modal-content">
-						<span class="close">×</span>
-						<h2 class="modal-header">Send Feedback</h2>
-						<div class="modal-body">
-							<div id="emptyAlert"></div>
-							<form id="feedbackForm" name="feedbackForms">
-								<input class="form-control" type="text" id="fullname" name="fullname" placeholder="YOUR NAME" required>
-								<input class="form-control" type="email" id="email" name="email" placeholder="YOUR EMAIL" required>
-								<textarea class="form-control" placeholder="YOUR MESSAGE" id="message" name="message" required></textarea>
-								<button class="form-button" type="button" id="sendFeedback">Send Message</button>
-							</form>
-							<div id="githubIssue">You can also post Github issues <a href="https://github.com/younginnovations/UN-Transparency-Portal/issues" target="_blank">here</a></div>
-						</div>
-					</div>
+			</div>
+		</div>
+		<div id="myModal" class="modal">
+			<div class="modal-content">
+				<span class="close">×</span>
+				<h2 class="modal-header">Send Feedback</h2>
+				<div class="modal-body">
+					<div id="emptyAlert"></div>
+					<form id="feedbackForm" name="feedbackForms">
+						<input class="form-control" type="text" id="fullname" name="fullname" placeholder="YOUR NAME" required>
+						<input class="form-control" type="email" id="email" name="email" placeholder="YOUR EMAIL" required>
+						<textarea class="form-control" placeholder="YOUR MESSAGE" id="message" name="message" required></textarea>
+						<button class="form-button" type="button" id="sendFeedback">Send Message</button>
+					</form>
+					<div id="githubIssue">You can also post Github issues <a href="https://github.com/younginnovations/UN-Transparency-Portal/issues" target="_blank">here</a></div>
 				</div>
-				<div id="myModalSuccess" class="modalSuccess">
-					<div class="modal-content-success">
-						<span class="close">×</span>
-						<h2 class="modal-header">Send Feedback</h2>
-						<div class="modal-body">
-							<h2 class="successMessage">Your message has been successfully sent.</h2>
-						</div>
-					</div>
+			</div>
+		</div>
+		<div id="myModalSuccess" class="modalSuccess">
+			<div class="modal-content-success">
+				<span class="close">×</span>
+				<h2 class="modal-header">Send Feedback</h2>
+				<div class="modal-body">
+					<h2 class="successMessage">Your message has been successfully sent.</h2>
 				</div>
 			</div>
 		</div>
@@ -297,6 +296,14 @@ Please select <b>ONE</b> recipient and <b>NO</b> publisher to generate content h
 			});
 		});
 	});
+	$(document).ready(function(){
+		$("#menu").click(function () {
+			console.log('test');
+			$(".menu-responsive .nav").toggleClass('is-open');
+			$(".overlay").toggleClass('is-visible');
+			$(this).toggleClass('open');
+		});
+	});
 </script>
 <div class="crumb_wrap">
 	<div>
@@ -354,33 +361,35 @@ A 2016 project by
 
 #css
 body				{font-size:16px;}
-textarea			{display:block; width:800px; height:110px; margin-top:5px;border: 2px solid #d8d8d8; border-radius: 6px;}
+textarea			{display:block; width:100%; height:110px; margin-top:25px;border: 2px solid #d8d8d8; border-radius: 6px; box-sizing: border-box;}
 
 form div			{padding:5px 0;}
-form div span.opt	{display:inline-block; min-width:100px; text-align:left; vertical-align:middle; margin-right:10px;}
+form div span.opt	{display:inline-block; vertical-align:middle; text-align: center;
+width: 100%; margin-bottom: 10px;}
 select				{border-radius:2px;}
- #frame				{margin:0 auto; width:960px; padding:20px 20px 0 20px; text-align:center;}
+ #frame				{margin:0 auto; max-width:960px; padding:20px 20px 0 20px; text-align:center;}
 a#frame_fix_size	{display:block; margin:0 auto; width:960px; border-radius:4px; padding:10px 0; text-align:center; background-color:#2573CD; color:#FFF; margin-top:10px; margin-bottom:10px;}
 a#frame_fix_size:hover	{background-color:#2F84E5;}
-.generator			{width:960px; margin:0 auto; padding:35px 0 60px;color: #333;border: 2px solid rgba(0, 103, 177, 0.1);border-radius: 6px;}
-.default			{width:960px; margin:0 auto; padding:0;}
-.mid_wrap			{display:inline-block; vertical-align:top; width:466px; max-width:466px;}
+.generator			{max-width:960px; margin:0 15px; padding:35px 0 60px;color: #333;border: 2px solid rgba(0, 103, 177, 0.1);border-radius: 6px;}
+.default			{max-width:960px; margin:0 auto; padding:0 15px;}
+.default:first-child			{text-align: center;}
+.mid_wrap			{display:inline-block; vertical-align:top;}
 .arrow				{width:0; height:0; border-top:15px solid #0067B1; border-left:15px solid transparent; border-right:15px solid transparent;}
-.instruct_wrap		{margin:15px auto 0; width:960px; padding:32px 0; background-color:#0067B1;border-radius:4px;}
-.instruct_head		{text-align:center; color:#FFF; font-size:32px;lineheight: 38px;}
-.instruct_info		{margin-top:15px;}
-.instruct_down		{margin-left:70px; padding:20px 0; font-size:14px; line-height:20px;}
+.instruct_wrap		{margin: 0 5px; max-width:960px; padding:20px 10px; background-color:#0067B1;border-radius:4px;}
+.instruct_head		{text-align:center; color:#FFF; font-size: 18px; line-height: 24px;}
+.instruct_info		{margin-top:15px; text-align: center;}
+.instruct_down		{padding:0 10px; font-size:14px; line-height:20px; text-align: center;}
 .instruct_col_wrap	{width:100%;}
-.instruct_col		{display:inline-block; vertical-align:top; width:231px; padding:30px 20px; border: 2px solid rgba(0, 103, 177, 0.1); margin:25px 6px 40px; box-sizing:border-box; border-radius:6px; max-height:280px; height:280px;}
+.instruct_col		{display:inline-block; vertical-align:top; width:100%; padding:30px 20px; border: 2px solid rgba(0, 103, 177, 0.1); margin:20px 0 0; box-sizing:border-box; border-radius:6px; max-height:280px; height:280px;}
 .instruct_col.first	{margin-left:0;}
-.instruct_col.last	{margin-right:0;}
+.instruct_col.last	{margin-right:0; margin-bottom: 20px;}
 .instruct_num		{text-align:center; color:#333; font-size:100px; font-weight: bold; line-height: 106px; margin-bottom:10px;}
 .instruct_text		{text-align:center; color:#333; font-size: 24px; line-height: 30px;}
 .instruct_sub		{text-align:center; color: rgba(51, 51, 51, 0.7); font-size: 14px; line-height: 20px; margin-top:10px;}
 .instruct_fix		{background-color:#333; color:#ccc; padding:15px 0; text-align:center;}
 .instruct_fix span	{color:#4CA0FF; font-weight:bold;}
-.chosen-container	{min-width:250px; max-width:535px; width: 535px !important;}
-.reminder_wrap		{font-size: 19px;line-height: 25px;max-width: 860px;margin: 50px auto;background: #0067B1;padding: 50px;border-radius: 4px;color: rgba(255, 255, 255, 0.7);}
+.chosen-container	{width: 100% !important;}
+.reminder_wrap		{font-size: 16px;line-height: 25px;max-width: 860px;margin: 25px 15px;background: #0067B1;padding: 20px;border-radius: 4px;color: rgba(255, 255, 255, 0.7);}
 .reminder_wrap b    {font-weight: normal}
 .reminder_wrap.top	{background-color:#2573CD; font-size:1.4em; color:#FFF; padding:30px 40px; margin-bottom:0;}
 .reminder_wrap p	{padding-top:15px; color:#ccc; display:list-item; list-style-position:inside;}
@@ -388,30 +397,33 @@ a#frame_fix_size:hover	{background-color:#2F84E5;}
 .reminder_wrap.top p{color:#FFF;}
 .view_info			{padding-bottom:10px; color:#FFF; font-size:0.9em; border-bottom:3px solid #666; margin-bottom:20px;}
 .view_info span		{display:inline-block; vertical-align:top; width:100px; color:#ccc;}
-.view_info span.see	{width:740px; text-align:right; color:#FFF;}
-.view_wrap			{display:none; vertical-align:top; margin-left:110px;}
-.view_links			{margin-bottom:20px;}
-a.view				{display:inline-block; vertical-align:top; width:210px; position:relative;}
-a.view img			{width: 100%;}
-a.view.mid			{margin:0 30px;}
+.view_info span.see	{width:740px; text-align:right; color:#FFF; display: none;}
+.view_wrap			{display:none; vertical-align:top;}
+.view_links			{margin-bottom:0; padding-bottom: 0;}
+a.view				{display:block; vertical-align:top; margin-bottom: 20px; position:relative;}
+a.view img			{max-width: 100%; object-fit: cover; width: 100%; height: 100%;}
+a.view.mid			{}
 a.view.mid.savi		{text-align:center;}
 a.view span.imgtxt	{display:block; margin-top:5px; color:#ccc; font-size:0.8em;}
 a.mail				{display:block; margin-top:15px; color:#4CA0FF; padding:5px 0;}
 a.mail:hover		{color:#74B5FF;}
 a.logo				{display:inline-block; vertical-align:bottom; width:250px;}
-a.toggle			{display:inline-block; vertical-align:middle; margin-left:20px; font-size:16px; color:#0067B1;}
+a.toggle			{display:inline-block; vertical-align:middle; margin:15px 0; font-size:16px; color:#0067B1; text-align: center; width: 100%;}
 a.toggle:hover		{color:#004373;}
  #generator_aid_div span.txt, #generator_limit_div span.txt, #generator_maxheight_div span.txt	{display:inline-block; vertical-align:middle; font-size:0.9em; color:#ccc; width:520px;
 margin-left:10px; line-height:1.5em;}
 
 span.overtxt		{display:none;}
-a.view:hover span.overtxt	{display:block; position:absolute; top:0; left:0; width:100%; height:119px; background-color:rgba(0,0,0,0.6); color:#FFF; text-align:center; line-height:6em;}
+a.view:hover span.overtxt	{display:block; position:absolute; top:0; left:0; width:100%; height:100%; background-color:rgba(0,0,0,0.6); color:#FFF; text-align:center; line-height:6em;}
 
-.instruct_side		{display:inline-block; vertical-align:middle; width:30px; font-size:100px; line-height: 106px; color:#333; font-weight: bold; padding-left: 30px; margin-right: 60px;}
-.instruct_more		{display:inline-block; vertical-align:middle; width: 800px;}
-.instruct_more.a	{width:415px;}
-.instruct_more.b	{width:200px; font-size:0.9em; color:#CCC; font-style:italic;}
-.instruct_chunk		{width:960px; margin:0 auto; padding-top:10px; border-top: 2px solid rgba(0, 103, 177, 0.1); margin-top:10px;}
+.instruct_side		{display:inline-block; vertical-align:middle; font-size:100px; line-height: 106px; color:#333; font-weight: bold; padding: 0 10px; text-align: center;
+box-sizing: border-box; width: 100%;}
+.instruct_more		{display:inline-block; vertical-align:middle;padding: 0 10px;width: 100%;
+box-sizing: border-box;}
+.instruct_more.a	{}
+.instruct_more.b	{font-size:0.9em; color:#CCC; font-style:italic;text-align: center;
+margin-bottom: 20px;}
+.instruct_chunk		{width:100%; margin:0 auto; padding-top:10px; border-top: 2px solid rgba(0, 103, 177, 0.1); margin-top:10px;}
 
 .instruct_rel		{position:relative;}
 span.drop_arrow		{display:block; width:20px; height:100%; background:url(/art/chosen-sprite.png) no-repeat 0 2px; text-align:right; position:absolute; left:595px; top:15px; z-index:999; pointer-events:none; display: none;}
@@ -428,21 +440,142 @@ nav {background: #0067B1;padding: 23px 32px;}
 .menu:last-child {margin-right: 0;}
 .menu-link-wrap {float: right;}
 .chosen-container-multi .chosen-choices{width: 100%;min-height: 50px !important;border: 2px solid #d8d8d8;border-radius: 4px;background-image: none;}
-.chosen-container-single .chosen-single {width: 100%;height: 50px !important;border: 2px solid #d8d8d8;border-radius: 4px;background-image: none;background: none;box-shadow: none;padding: 0}
-.chosen-container-single .chosen-single span {margin: 15px 0 10px;color: rgba(51, 51, 51, 0.4);display: inline-block;padding-left: 20px;font-size: 16px;width: auto !important;}
+.chosen-container-single .chosen-single {width: 100%;height: 50px !important;border: 2px solid #d8d8d8;border-radius: 4px;background-image: none;background: none;box-shadow: none;padding: 0;box-sizing: border-box;}
+.chosen-container-single .chosen-single span {margin: 12px 0;color: rgba(51, 51, 51, 0.4);display: inline-block;padding: 0 10px;display: block;font-size: 16px;text-align:center; width: auto;}
 .chosen-container-single .chosen-single div b {display: none;}
 .chosen-container-multi .chosen-choices li.search-field {width: 100%;}
-.chosen-container-multi .chosen-choices li.search-field input[type=text] {margin: 10px 0;color: rgba(51, 51, 51, 0.4);display: inline-block;padding-left: 20px;font-size: 16px;width: auto !important;}
-.instruct_more.a .chosen-container {width: 245px !important;}
+.chosen-container-multi .chosen-choices li.search-field input[type=text] {margin: 15px 0;color: rgba(51, 51, 51, 0.4);display: inline-block;padding: 0 10px;font-size: 16px;width: 100% !important; box-sizing: border-box;}
+.instruct_more.a .chosen-container {width: 100% !important;}
 .chosen-container-active .chosen-choices {box-shadow: none;}
 .chosen-container-active.chosen-with-drop .chosen-single {border: 2px solid #d8d8d8; background-image: none; box-shadow: none;}
 .chosen-container-single .chosen-single abbr {top: 20px;}
 
-@media screen
-and (min-width: 1400px) {
-.menu-wrap {
-	overflow: hidden;
-	max-width: 960px;
-	margin: 0 auto;
+@media screen and (min-width: 1400px) {
+	.menu-wrap {
+		overflow: hidden;
+		max-width: 960px;
+		margin: 0 auto;
+	}
+}
+
+@media screen and (min-width: 550px) {
+	.instruct_col {
+		width: 46%;
+		margin: 10px;
+	}
+	.instruct_col.first {
+		margin-left: 10px;
+	}
+	.instruct_col.last {
+		margin-right: auto;
+		margin-bottom: auto;
+	}
+	.generator {
+		margin-top: 20px;
+	}
+}
+
+@media screen and (min-width: 768px){
+	.instruct_col {
+		width: 47%;
+	}
+	.generator {
+		margin: 30px;
+	}
+	.reminder_wrap {
+		max-width: 860px;
+		margin: 25px 30px;
+	}
+}
+
+@media screen and (min-width: 960px){
+	.instruct_side {
+		width: 30px;
+		padding-left: 30px;
+		margin-right: 50px;
+	}
+	.instruct_more{
+		width: 800px;
+	}
+	form div span.opt{
+		min-width: 100px;
+		text-align: left;
+		margin-bottom: 0;
+		width: auto;
+		margin-right: 10px;
+	}
+	.chosen-container{
+		min-width: 250px;
+		width: 535px !important;
+	}
+
+	a.toggle {
+		width: auto;
+		margin-left: 15px;
+	}
+	.instruct_down {
+		padding: 20px 10px;
+	}
+	.instruct_more.a {
+		width: 415px;
+	}
+	.instruct_more.a .chosen-container {
+		width: 245px !important;
+	}
+	.instruct_more.b {
+		width: 200px;
+		text-align: left;
+	}
+	.instruct_info {
+		text-align: left;
+	}
+	.reminder_wrap {
+		margin-top: 30px;
+		margin-bottom: 50px;
+		padding: 50px;
+		font-size: 19px;
+		line-height: 25px;
+	}
+	.instruct_wrap{
+		margin: 15px auto 0;
+		padding: 32px 0;
+	}
+	.instruct_head {
+		font-size: 32px;
+		line-height: 38px;
+	}
+	.chosen-container-multi .chosen-choices li.search-field input[type=text]{
+		text-align: left;
+		padding-left: 20px;
+	}
+	.chosen-container-single .chosen-single span {
+		text-align: left;
+		padding-left: 20px;
+	}
+}
+
+@media screen and (min-width: 1040px){
+
+	.instruct_side {
+		margin-right: 70px;
+	}
+
+	.instruct_col {
+		width: 225px;
+	}
+
+	.instruct_col.first {
+		margin-left: 0;
+	}
+
+	.instruct_col.last {
+		margin-right: 0;
+	}
+	.generator {
+		margin: 30px auto;
+	}
+	.reminder_wrap {
+		max-width: 860px;
+		margin: 30px auto 50px;
 	}
 }

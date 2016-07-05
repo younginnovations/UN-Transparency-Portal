@@ -3,6 +3,8 @@
 <html>
 <head>
     <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>{welcome_text}</title>
     <script src="{root}jslib/d3.min.js"></script>
     <link href="{root}art/chosen.min.css" rel="stylesheet" type="text/css">
@@ -20,6 +22,34 @@
         <div id="overlay" class="overlay">
             <div id="mainTooltip" class="hidden">
                 <p><span id="value"></span></p>
+            </div>
+            <div class="menu-responsive">
+                <a id="menu" href="#">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </a>
+                <nav>
+                    <ul class="nav">
+                        <li>
+                            <a href="about.html">
+                                <span>{about_text}</span>
+                                <!--<span class="path_txt">{install_info_text}</span>-->
+                            </a>
+                        </li>
+                        <li>
+                            <a href="/ctrack.html#view=generator">
+                                <span>{install_button_text}</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="javascript:" id="sendFeedbackPopupResponsive">
+                                <span>{develop_button_text}</span>
+                            </a>
+                        </li>
+                    </ul>
+                </nav>
             </div>
             <div class="default index">
                 <nav>
@@ -44,45 +74,44 @@
                                 <a href="javascript:" id="sendFeedbackPopup">
                                     <span>{develop_button_text}</span>
                                 </a>
-
-                                <div id="myModal" class="modal">
-                                    <div class="modal-content">
-                                        <span class="close">×</span>
-
-                                        <h2 class="modal-header">Send Feedback</h2>
-
-                                        <div class="modal-body">
-                                            <div id="emptyAlert"></div>
-                                            <form id="feedbackForm" name="feedbackForms">
-                                                <input class="form-control" type="text" id="fullname" name="fullname"
-                                                       placeholder="YOUR NAME" required>
-                                                <input class="form-control" type="email" id="email" name="email"
-                                                       placeholder="YOUR EMAIL" required>
-                                                <textarea class="form-control" placeholder="YOUR MESSAGE" id="message"
-                                                          name="message" required></textarea>
-                                                <button class="form-button" type="button" id="sendFeedback">Send
-                                                    Message
-                                                </button>
-                                            </form>
-                                            <div id="githubIssue">You can also post Github issues <a
-                                                    href="https://github.com/younginnovations/UN-Transparency-Portal/issues"
-                                                    target="_blank">here</a></div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div id="myModalSuccess" class="modalSuccess">
-                                    <div class="modal-content-success">
-                                        <span class="close">×</span>
-
-                                        <h2 class="modal-header">Send Feedback</h2>
-
-                                        <div class="modal-body">
-                                            <h2 class="successMessage">Your message has been successfully sent.</h2>
-                                        </div>
-                                    </div>
-                                </div>
                             </div>
                             <!--<div class="tongue_wrap">{tongue_select}</div>-->
+                        </div>
+                        <div id="myModal" class="modal">
+                            <div class="modal-content">
+                                <span class="close">×</span>
+
+                                <h2 class="modal-header">Send Feedback</h2>
+
+                                <div class="modal-body">
+                                    <div id="emptyAlert"></div>
+                                    <form id="feedbackForm" name="feedbackForms">
+                                        <input class="form-control" type="text" id="fullname" name="fullname"
+                                               placeholder="YOUR NAME" required>
+                                        <input class="form-control" type="email" id="email" name="email"
+                                               placeholder="YOUR EMAIL" required>
+                                                <textarea class="form-control" placeholder="YOUR MESSAGE" id="message"
+                                                          name="message" required></textarea>
+                                        <button class="form-button" type="button" id="sendFeedback">Send
+                                            Message
+                                        </button>
+                                    </form>
+                                    <div id="githubIssue">You can also post Github issues <a
+                                            href="https://github.com/younginnovations/UN-Transparency-Portal/issues"
+                                            target="_blank">here</a></div>
+                                </div>
+                            </div>
+                        </div>
+                        <div id="myModalSuccess" class="modalSuccess">
+                            <div class="modal-content-success">
+                                <span class="close">×</span>
+
+                                <h2 class="modal-header">Send Feedback</h2>
+
+                                <div class="modal-body">
+                                    <h2 class="successMessage">Your message has been successfully sent.</h2>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </nav>
@@ -211,13 +240,17 @@
                     </div>
                 </div>
                 <div class="country_menu_list_wrap">
-                    <div id="country_dropmenu"></div>
-                    <div id="sector_dropmenu"></div>
-                    <div class="menu_list_wrap left">
-                        <ul id="country_menu_list" class="country_menu_list"></ul>
+                    <div class="country-menu-block">
+                        <div id="country_dropmenu"></div>
+                        <div class="menu_list_wrap left">
+                            <ul id="country_menu_list" class="country_menu_list"></ul>
+                        </div>
                     </div>
-                    <div class="menu_list_wrap">
-                        <ul id="sector_list" class="country_menu_list"></ul>
+                    <div class="sector-menu-block">
+                        <div id="sector_dropmenu"></div>
+                        <div class="menu_list_wrap">
+                            <ul id="sector_list" class="country_menu_list"></ul>
+                        </div>
                     </div>
                 </div>
                 <div class="sustainable_wrap">
@@ -314,7 +347,6 @@
 #jsmenu
 
 <script>
-
     var publisher_names = {publisher_names_json};
     var iati_un_publishers = {iati_un_publishers};
     var country_names = {country_names_json};
@@ -329,6 +361,16 @@
     var un_current_trends = {un_current_trends};
     var un_org = {un_org};
     var geojson = {geojson};
+
+    $(document).ready(function(){
+        $("#menu").click(function () {
+            console.log('test');
+            $(".menu-responsive .nav").toggleClass('is-open');
+            $(".overlay").toggleClass('is-visible');
+            $(this).toggleClass('open');
+        });
+    });
+
 
     $(function () {
         function numberWithCommas(x) {
@@ -573,14 +615,14 @@
         refresh();
         var modal = document.getElementById('myModal');
         var modalSuccess = document.getElementById('myModalSuccess');
-        var btn = document.getElementById("sendFeedbackPopup");
+        //var btn = document.getElementById("sendFeedbackPopup");
 
         var cross = document.getElementsByClassName("close")[0];
 
-        btn.onclick = function () {
+        $("#sendFeedbackPopup, #sendFeedbackPopupResponsive").click(function () {
             modal.style.display = "block";
             $("body").css('overflow', 'hidden');
-        };
+        });
 
         cross.onclick = function () {
             modal.style.display = "none";
@@ -675,8 +717,8 @@
         $window.resize(function () {
             var gridSize = getGridSize();
 
-            flexslider.vars.minItems = gridSize;
-            flexslider.vars.maxItems = gridSize;
+//            flexslider.vars.minItems = gridSize;
+//            flexslider.vars.maxItems = gridSize;
         });
 
         $("#slideshow > div:gt(0)").hide();
