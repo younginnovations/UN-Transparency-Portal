@@ -296,6 +296,7 @@ refry.tagval_en = function (json, name) {
                     l = l.toLowerCase();
                 }
                 if ((!ret_en) && ((l == "en") || (!l))) {
+                    //console.log(it);
                     ret = it;
                     ret_en = it
                 } // the first english tag we found
@@ -321,6 +322,17 @@ refry.tagval_en = function (json, name) {
     var t = ret;
     if (t && t[1] && t[1][0] && ( "string" == typeof t[1][0] )) // check
     {
+        if (t[0] === 'narrative' && t[1].length > 1 && t[1][0].trim() == '"') {
+            return (refry.getName(t[1]));
+        }
         return entities.decodeXML(t[1][0].trim());
     }
-}
+};
+
+refry.getName = function (narrative) {
+    var title = '';
+    for (var i = 0; i < narrative.length; i++) {
+        title = title + narrative[i];
+    }
+    return title;
+};
