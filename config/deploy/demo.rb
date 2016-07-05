@@ -1,4 +1,4 @@
-server '128.199.73.92', :user => 'dportal', :roles => %{web app}
+server '162.243.123.227', :user => 'undg', :roles => %{web app}
 
-  set :deploy_to, '/home/dportal/demo'
-  set :shared_path, '/home/dportal/demo/shared/'
+  set :deploy_to, '/home/undg/stage'
+  set :shared_path, '/home/undg/stage/shared/'

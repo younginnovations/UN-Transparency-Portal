@@ -132,7 +132,9 @@ iati_xml.get_code = function (it, name) {
 }
 
 iati_xml.get_aid = function (it) {
+    //identifier = ("organisation-identifier" !== identifier)?"iati-identifier":identifier;
     var id = refry.tagval(it, "iati-identifier") || refry.tagval(it, "organisation-identifier");
+    //var id = refry.tagval(it, "iati-identifier");
     if (id) {
         id = id.trim();
     }

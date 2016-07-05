@@ -184,8 +184,10 @@ refry.tag = function (json, name) {
 // return the enclosed value string of the first tag we find of the given name
 refry.tagval = function (json, name) {
     var t = refry.tag(json, name); // find
-
-    if ("iati-identifier" === name && t[1].length > 1) {
+    if (typeof t === 'undefined') {
+        return;
+    }
+    if (("iati-identifier" === name || "organisation-identifier" === name) && t[1].length > 1) {
         t[1][0] = refry.implode(t[1]);
     }
 

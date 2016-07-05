@@ -42,7 +42,7 @@ view_publisher_countries.view = function (args) {
     view_publisher_countries.chunks.forEach(function (n) {
         ctrack.chunk(n, "{spinner}");
     });
-    ctrack.setcrumb(1);
+    ctrack.setcrumb(2);
     ctrack.change_hash();
     view_publisher_countries.ajax(args);
 };

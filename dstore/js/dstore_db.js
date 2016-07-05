@@ -361,7 +361,6 @@ dstore_db.refresh_budget = function (db, it, act, act_json, priority) {
 
 
     t.jml = JSON.stringify(it);
-
     dstore_back.replace(db, "budget", t);
 };
 

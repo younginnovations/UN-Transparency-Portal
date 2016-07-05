@@ -5,7 +5,7 @@ lock '3.4.0'
 set :application,     'UNDG-Portal'
 set :branch,          ENV["branch"] || "master"
 set :user,            ENV["user"] || ENV["USER"] || "dportal"
-#set :default_env, {"PATH" => "PATH=$PATH:/home/dportal/.nvm/versions/node/v5.7.0/bin"}
+#set :default_env, {"PATH" => "PATH=$PATH:/home/undg/.nvm/versions/node/v5.7.0/bin"}
 set :default_env, {"PATH" => "PATH=$PATH:/home/undg/usr/bin/node"}
 set :port,            ENV["port"] || "1337"
 
@@ -68,7 +68,7 @@ namespace :app_build do
         task :build do
             on roles(:all) do
             within current_path do
-                execute :"./serv-server"
+                execute :"./serv"
             end
         end
     end
@@ -92,15 +92,18 @@ namespace :dportal do
             within release_path do
                execute :"ln -s #{shared_path}/cache #{release_path}/dstore/"
                execute :"ln -s #{shared_path}/db #{release_path}/dstore/"
+               execute :"ln -s #{shared_path}/ctrack/node_modules #{release_path}/ctrack/"
+               execute :"ln -s #{shared_path}/dstore/node_modules #{release_path}/dstore/"
+               execute :"ln -s #{shared_path}/dportal/node_modules #{release_path}/dportal/"
             end
         end
     end
 end
 
 namespace :deploy do
-    after :published, "dportal:create_symlink"
     after :published, "app_stop:stop"
-    after :published, "install_dependency:install"
+    after :published, "dportal:create_symlink"
+#    after :published, "install_dependency:install"
     after :published, "app_build:build"
-    after :published, "app_restart:start"
+#    after :published, "app_restart:start"
 end

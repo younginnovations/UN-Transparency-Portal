@@ -100,6 +100,19 @@ cmd.build = function () {
             }
             un_agencies_data['un_current_trends'] = currentProjectTrend;
         });
+
+        //fetch projects sector_group
+
+        sql = "Select Distinct sector_code from sector";
+        var sectorGroupList = {};
+        sipac.all(sql, function (err, data) {
+            for (var i in data) {
+                if (typeof json_iati_codes['sector'][data[i].sector_code] != 'undefined') {
+                    sectorGroupList[data[i].sector_code] = json_iati_codes['sector'][data[i].sector_code];
+                }
+            }
+            un_agencies_data['sectors'] = sectorGroupList;
+        });
     });
 
     var getYearFromTimeStamp = function (timeStamp) {
