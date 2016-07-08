@@ -16,11 +16,11 @@ body        {background-color: #FFFFFF;}
 .about-page{ -moz-box-sizing: border-box; -webkit-box-sizing: border-box; box-sizing: border-box; display: table; width: 100%; height: 100%;
 }
 .about-page h2.title{font-size: 32px; line-height: 38px; width: 960px; margin: 0 auto 30px; border-bottom: 12px solid #EFEFEF; padding-bottom: 10px;}
-.about-page nav {background: #0067B1;padding: 23px 32px;}
+.about-page nav {background: #0067B1;padding: 15px 32px;}
 .about-page .menu-wrap {overflow: hidden;}
 .about-page .img-wrap {float: left;}
-.about-page .logo-img {height: 47px;}
-.about-page .menu-link-wrap {float: right;}
+.about-page .logo-img {height: 61px;}
+.about-page .menu-link-wrap {float: right;margin-top: 10px;}
 .about-page .menu {display: inline-block;float: left;margin-right: 15px;}
 .about-page .tongue_wrap{float: left; margin-top: -4px;}
 .about-info {overflow: hidden;width: 960px; margin: 0 auto; padding-bottom: 30px;}

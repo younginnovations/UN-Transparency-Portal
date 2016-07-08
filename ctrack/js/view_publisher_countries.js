@@ -107,7 +107,7 @@ view_publisher_countries.ajax = function (args) {
 
         if (view !== 'frame') {
             for (var nt in ctrack.publisher_countries_data) {
-                if (!(nt in iati_codes['country'])) {
+                if (!(nt in iati_codes['country']) && nt !== 'global-regional') {
                     b['b1'] = (ctrack.publisher_countries_data[nt]['b1']) ? b['b1'] + p(ctrack.publisher_countries_data[nt]['b1']) : b['b1'];
                     b['b2'] = (ctrack.publisher_countries_data[nt]['b2']) ? b['b2'] + p(ctrack.publisher_countries_data[nt]['b2']) : b['b2'];
                     b['crs'] = (ctrack.publisher_countries_data[nt]['crs']) ? b['crs'] + p(ctrack.publisher_countries_data[nt]['crs']) : b['crs'];
@@ -142,8 +142,15 @@ view_publisher_countries.ajax = function (args) {
                     a[i].t1 = numberWithCommas(b.t1);
                     a[i].t2 = numberWithCommas(b.t2);
                     a[i].t3 = numberWithCommas(b.t3);
+
                     if (a[i].b1 == 0 && a[i].b2 == 0 && a[i].t1 == 0 && a[i].t2 == 0 && a[i].t3 == 0) {
-                        a.splice(i,1);
+                        a.splice(i, 1);
+                    }
+                }
+
+                if (a.length > 0) {
+                    if (a[i].b1 == 0 && a[i].b2 == 0 && a[i].t1 == 0 && a[i].t2 == 0 && a[i].t3 == 0) {
+                        a.splice(i, 1);
                     }
                 }
             }

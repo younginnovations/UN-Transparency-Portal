@@ -17,7 +17,7 @@
     "yargs": "*",
     "csv-parse": "*",
     "pm2": "*",
-    "d3": "*"
+    "d3": "3.0"
   },
   "scripts": {
     "build": "node js/bake.js && node node_modules/browserify/bin/cmd.js -r ./js/ctrack.js:ctrack -d -o jslib/ctrack.js && node node_modules/uglify-js/bin/uglifyjs jslib/ctrack.js -o jslib/ctrack.min.js"

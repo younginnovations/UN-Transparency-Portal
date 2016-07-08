@@ -13,7 +13,6 @@ var json_iati_codes = require("../../dstore/json/iati_codes.json");
 var un_agencies_data = require("../../dstore/json/un_agencies_data.json");
 var un_org = require('../../dstore/json/un_org.json');
 var geojson = require("../../dstore/json/countries.geo.json");
-var sendgrid = require('sendgrid')('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');
 
 var plate = require("../../ctrack/js/plate.js");
 

@@ -13,7 +13,7 @@
     <script src="{root}jslib/jquery.bxslider.js"></script>
     {ganal}
 </head>
-<body>
+<body ontouchstart="">
 {jsmenu}
 <div class="portal">
     <div class="main_wrap">
@@ -128,7 +128,10 @@
                     <div class="chart-item">
                         <span class="title">{total_budget_text}</span>
 
-                        <div id="totalBudget"></div>
+                          <div class="tooltip">
+                            <span id="totalBudget"></span>
+                            <span class="tooltiptext">Total UN budget includes all data ever published in IATI by all UN members and observers (including The World Bank).</span>
+                        </div>
                         <span class="title">Total Expenses</span>
 
                         <div id="totalExpense"></div>

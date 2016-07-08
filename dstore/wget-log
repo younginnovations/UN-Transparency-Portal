@@ -1,0 +1,14 @@
+--2016-10-28 10:27:55--  http://datastore.iatistandard.org/api/1/access/activity?reporting-org=41108&limit=110000
+Resolving datastore.iatistandard.org... 77.92.77.148
+Connecting to datastore.iatistandard.org|77.92.77.148|:80... connected.
+HTTP request sent, awaiting response... 200 'wget-log'
+Length: ignored [application/json]
+Saving to: 'un-json/datastore_41108.json'
+
+     0K .......... .......... .......... .......... .......... 99.0K
+    50K .......... .......... .......... .......... ..........  224K
+   100K .......... .......... .......... .......... ..........  261K
+   150K ..........                                              705K=0.9s
+
+2016-10-28 10:28:10 (172 KB/s) - 'un-json/datastore_41108.json' saved [164604]
+
