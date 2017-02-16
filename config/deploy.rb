@@ -95,6 +95,7 @@ namespace :dportal do
                execute :"ln -s #{shared_path}/ctrack/node_modules #{release_path}/ctrack/"
                execute :"ln -s #{shared_path}/dstore/node_modules #{release_path}/dstore/"
                execute :"ln -s #{shared_path}/dportal/node_modules #{release_path}/dportal/"
+               execute :"ln -s #{shared_path}/dportal/js/serv.js #{release_path}/dportal/js/"
             end
         end
     end
