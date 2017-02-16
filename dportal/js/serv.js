@@ -33,8 +33,6 @@ app.use(function(req, res, next) {
 
 app.use(express.static(__dirname+"/../static"));
 
-
-
 app.get('/feedback', function (req, res) {
 	try {
 		var name = req.query.name;

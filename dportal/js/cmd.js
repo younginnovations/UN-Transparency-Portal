@@ -40,7 +40,7 @@ cmd.run = function (argv) {
 cmd.build = function () {
     var chunkopts = {};
     var sqlite3 = require("sqlite3").verbose();
-    console.log("===============");
+    console.log("============================");
     var path = '../dstore/db/dstore.sqlite';
     var sipac = new sqlite3.Database(path);
 
@@ -50,6 +50,9 @@ cmd.build = function () {
         var month = parseInt(d.getMonth());
         var day = parseInt(d.getDate());
         var r = Date.UTC(year, month, day) / (1000 * 60 * 60 * 24);
+
+        un_agencies_data['total_un_agencies'] = Object.keys(json_iati_codes.un_publisher_names).length;
+        un_agencies_data['un_agencies_in_iati'] = Object.keys(json_iati_codes.iati_un_publishers).length;
 
         //fetch Total Budget
         sipac.get("SELECT TOTAL(budget_value) FROM act JOIN budget USING (aid) WHERE budget =?", ['budget'], function (err, row) {
@@ -111,6 +114,18 @@ cmd.build = function () {
                 }
             }
             un_agencies_data['sectors'] = sectorGroupList;
+        });
+
+        //Fetch Publishers project.
+
+        sql = "Select DISTINCT act.reporting_ref, count(aid) as count from act GROUP BY act.reporting_ref ";
+        un_org = {};
+        sipac.all(sql, function (err, data) {
+            for (var i in data) {
+                un_org[data[i]['reporting_ref']] = data[i]['count'];
+            }
+            // un_agencies_data['sectors'] = sectorGroupList;
+            console.log(un_org);
         });
     });
 
