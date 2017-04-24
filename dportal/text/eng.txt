@@ -33,7 +33,7 @@ Active Projects
 Total UN budget
 
 #un_agencies_in_iati_text
-UN agencies in IATI
+UN publishers in IATI
 
 #countries_un_operates
 Countries UN operates in

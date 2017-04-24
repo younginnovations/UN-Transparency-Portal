@@ -26,7 +26,7 @@ Active Projects chinese
 Total Budget chinese
 
 #un_agencies_in_iati_text
-UN agencies in IATI chinese
+UN publishers in IATI chinese
 
 #countries_un_operates
 Countries UN operates in chinese
