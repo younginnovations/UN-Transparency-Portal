@@ -14,6 +14,9 @@ here
 #top_text
 Top
 
+#data_visualization_contest
+Data Visualization Contest
+
 #about_text
 About
 

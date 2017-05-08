@@ -377,10 +377,8 @@
 	},
 	"total_budget": 545574537154.6392,
 	"total_expenditure": 282291990816.14996,
-	"un_agencies_in_iati": 15,
-	"total_un_agencies": 29,
 	"total_projects": 45339,
-	"active_projects": 16739,
+	"active_projects": 16719,
 	"un_trends": {
 		"1969": 1,
 		"1970": 3,
@@ -620,5 +618,7 @@
 		"2088": 1,
 		"2089": 1,
 		"2090": 1
-	}
+	},
+	"total_un_agencies": 29,
+	"un_agencies_in_iati": 16
 }

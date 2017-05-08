@@ -29,10 +29,13 @@
                         </div>
                         <div class="menu-link-wrap">
                             <div class="menu">
-
+                                <a style="font-weight:600; font-size:12px; color:gold;" href="https://undg.org/undg-data-visualization-contest/" target="_blank">
+                                    <span>{data_visualization_contest}</span>
+                                </a>
+                            </div>
+                            <div class="menu">
                                 <a href="about.html">
                                     <span>{about_text}</span>
-                                    <!--<span class="path_txt">{install_info_text}</span>-->
                                 </a>
                             </div>
                             <div class="menu">
@@ -393,7 +396,7 @@
         var un_org_total_projects_rows = un_org_total_project_each.rows;
         for (var defined_id in un_org) {
             var id = defined_id;
-            var un_total_projects = un_org[id]['total_projects'];
+            var un_total_projects = un_org[id];
             if (un_total_projects !== undefined)
                 un_org_total_projects_rows.push({id: id, total_projects: un_total_projects});
             else
