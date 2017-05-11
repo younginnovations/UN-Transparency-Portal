@@ -26,7 +26,7 @@ Active Projects  french
 Total Budget french
 
 #un_agencies_in_iati_text
-UN agencies in IATI french
+UN publishers in IATI french
 
 #countries_un_operates
 Countries UN operates in french

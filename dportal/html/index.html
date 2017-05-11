@@ -509,7 +509,9 @@
                     if (v.name && v.reporting_ref) {
                         un_publisher_list.append(
                                 "  <li><a class=\"country_code\" href=\"{root}ctrack.html?publisher=" + v.reporting_ref + "&tongue={tongue}\">  " +
-                                "<span class=\"publisher-logo\"><img src=\"{root}art/un_logos/" + v.reporting_ref + ".png\" alt=\"" + v.name.match(/\(([^)]+)\)/)[1] + "\"/></span>" +
+                                "<span class=\"publisher-logo\"><img src=\"{root}art/un_logos/" + v.reporting_ref + ((v.reporting_ref == '41111')?'.svg':'.png')+"\" alt=\"" +
+                                    v.name.match(/\(([^)]+)\)/)[1] +
+                                "\"/></span>" +
 
                                 "    </a></li>  ");
                     }
@@ -523,7 +525,7 @@
                     var v = reportings.rows[i];
                     if (v.name && v.reporting_ref) {
                         un_publisher_list.append(
-                                "  <li data-tooltip='Not an IATI Publisher'><a class=\"country_code noCursor fade-out\"> " +
+                                "  <li data-tooltip='Not yet publishing'><a class=\"country_code noCursor fade-out\"> " +
                                 "<span class=\"publisher-logo\"><img src=\"{root}art/un_logos/" + v.reporting_ref + ".png\" alt=\"" + v.name.match(/\(([^)]+)\)/)[1] + "\" /></span>" +
 
                                 " </a></li>  ");
