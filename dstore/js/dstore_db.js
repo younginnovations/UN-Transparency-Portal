@@ -581,7 +581,7 @@ dstore_db.refresh_act = function (db, aid, xml, head) {
         var sectors = [];
         var percents = [];
         refry.tags(act, "sector", function (it) {
-            if (it.vocabulary == "DAC" || it.vocabulary == "1" || it.vocabulary == "2") {
+            if (it.vocabulary == "DAC" || it.vocabulary == "1" || it.vocabulary == "2" || it.vocabulary == "DAC-3") {
                 sectors.push(it.code);
                 percents.push(it.percentage);
             }
