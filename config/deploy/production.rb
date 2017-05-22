@@ -1,3 +1,3 @@
-server '188.166.155.208', :user => 'undg', :roles => %{web app}
+server '35.184.19.196', :user => 'undg', :roles => %{web app}
 
-  set :deploy_to, '/home/undg/production'
+set :deploy_to, '/home/undg/production'

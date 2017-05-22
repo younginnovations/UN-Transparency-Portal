@@ -1,4 +1,4 @@
-lock '3.4.0'
+lock '3.8.1'
 
 # Application #
 #####################################################################################
@@ -18,7 +18,7 @@ set :repo_base_url,   :'https://github.com/younginnovations/UN-Transparency-Port
 
 # Multistage Deployment #
 #####################################################################################
-set :stages,              %w(demo stage prod)
+set :stages,              %w(demo stage production)
 set :default_stage,       "stage"
 
 # Other Options #
@@ -79,7 +79,7 @@ namespace :app_restart do
         task :start do
             on roles(:all) do
             within current_path do
-               execute :"nohup /home/dportal/.nvm/versions/node/v5.7.0/bin/node #{current_path}/dportal/js/serv.js --port=#{fetch(:port)} > #{current_path}/serve-log.log 2>&1 &"
+               execute :"nohup /home/undg/.nvm/versions/node/v5.2.0/bin/node #{current_path}/dportal/js/serv.js --port=#{fetch(:port)} > #{current_path}/serve-log.log  &"
             end
         end
     end
@@ -90,12 +90,12 @@ namespace :dportal do
         task :create_symlink do
             on roles(:all) do
             within release_path do
-               execute :"ln -s #{shared_path}/cache #{release_path}/dstore/"
+#               execute :"ln -s #{shared_path}/cache #{release_path}/dstore/"
                execute :"ln -s #{shared_path}/db #{release_path}/dstore/"
                execute :"ln -s #{shared_path}/ctrack/node_modules #{release_path}/ctrack/"
                execute :"ln -s #{shared_path}/dstore/node_modules #{release_path}/dstore/"
                execute :"ln -s #{shared_path}/dportal/node_modules #{release_path}/dportal/"
-               execute :"ln -s #{shared_path}/dportal/js/serv.js #{release_path}/dportal/js/"
+#               execute :"ln -s #{shared_path}/dportal/js/serv.js #{release_path}/dportal/js/"
             end
         end
     end
@@ -105,6 +105,6 @@ namespace :deploy do
     after :published, "app_stop:stop"
     after :published, "dportal:create_symlink"
 #    after :published, "install_dependency:install"
-    after :published, "app_build:build"
-#    after :published, "app_restart:start"
+#    after :published, "app_build:build"
+    after :published, "app_restart:start"
 end
