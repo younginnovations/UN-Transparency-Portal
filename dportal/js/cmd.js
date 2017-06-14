@@ -101,6 +101,7 @@ cmd.build = function () {
                 currentProjectTrend = getCurrentTrends(currentProjectTrend, [start_year, end_year]);
             }
             un_agencies_data['un_current_trends'] = currentProjectTrend;
+            console.log(currentProjectTrend);
         });
 
         //fetch projects sector_group
@@ -114,6 +115,7 @@ cmd.build = function () {
                 }
             }
             un_agencies_data['sectors'] = sectorGroupList;
+            console.log(sectorGroupList);
         });
 
         //Fetch Publishers project.

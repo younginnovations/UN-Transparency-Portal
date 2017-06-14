@@ -1463,7 +1463,7 @@
     "ZW": "Zimbabwe"
   },
   "iati_un_publishers": {
-    "41108": "International Fund for Agricultural Development (IFAD)",
+    "XM-DAC-41108": "International Fund for Agricultural Development (IFAD)",
     "41111": "United Nations Capital Development Fund (UNCDF)",
     "41119": "United Nations Population Fund (UNFPA)",
     "41120": "UN-Habitat (UNHABITAT)",
@@ -1479,10 +1479,11 @@
     "XM-DAC-411124": "United Nations Entity for Gender Equality and the Empowerment of Women (UN-Women)",
     "XM-DAC-41302": "International Labour Organization (ILO)",
     "XM-DAC-41110": "Joint United Nations Programme on HIV/AIDS (UNAIDS)",
-    "XM-DAC-41301": "Food and Agriculture Organization of the United Nations (FAO)"
+    "XM-DAC-41301": "Food and Agriculture Organization of the United Nations (FAO)",
+    "XM-DAC-928": "World Health Organisation (WHO)"
   },
   "un_publisher_names": {
-    "41108": "International Fund for Agricultural Development (IFAD)",
+    "XM-DAC-41108": "International Fund for Agricultural Development (IFAD)",
     "41127": "United Nations Office for the Coordination of Humanitarian Affairs (OCHA)",
     "41111": "United Nations Capital Development Fund (UNCDF)",
     "XM-DAC-41114": "United Nations Development Programme (UNDP)",
@@ -1510,7 +1511,7 @@
     "UNWTO": "United Nations World Tourism Organization (UNWTO)",
     "WMO": "World Meteorological Organization (WMO)",
     "UNV": "UN Volunteers (UNV)",
-    "WHO": "World Health Organisation (WHO)",
+    "XM-DAC-928": "World Health Organisation (WHO)",
     "IOM": "International Organisation for Migration (IOM)"
   },
   "publisher_names": {
@@ -1520,7 +1521,7 @@
     "21032": "Population Service International",
     "21033": "Transparency International Secretariat",
     "30001": "The Global Alliance for Improved Nutrition",
-    "41108": "International Fund for Agricultural Development",
+    "XM-DAC-41108": "International Fund for Agricultural Development",
     "41111": "United Nations Capital Development Fund",
     "41119": "United Nations Population Fund",
     "41120": "UN-Habitat",
@@ -1534,6 +1535,7 @@
     "47111": "Adaptation Fund",
     "47122": "GAVI Alliance",
     "47135": "Climate Investment Funds",
+    "XM-DAC-928": "World Health Organisation",
     "XM-DAC-411124": "UN Women",
     "NL-KVK-27264198": "ActionAid International",
     "NP-SWC-27693": "Aasaman Nepal",
