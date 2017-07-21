@@ -1,0 +1,9 @@
+{
+  "verbose": true,
+  "ignore": ["dportal", "ctrack/json", "node-modules", "ctrack/jslib", "dstore/json/un_agencies_data.json"],
+  "events": {
+    "restart": "osascript -e 'display notification \"App restarted due to:\n'$FILENAME'\" with title \"nodemon\"'"
+  },
+  "watch": ["ctrack", "dstore"],
+  "ext": "js json html"
+}
