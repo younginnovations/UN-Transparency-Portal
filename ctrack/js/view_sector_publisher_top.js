@@ -73,7 +73,7 @@ view_sector_publisher_top.ajax = function (args) {
         list.forEach(function (v) {
             var d = {};
             d.num = v.usd;
-            d.prevPct = (secondTotal*100)/total;
+            d.prevPct = (secondTotal * 100) / total;
             secondTotal += v.usd;
             var initialPct = 100 * d.num / total;
             if (initialPct < 1) {
@@ -86,8 +86,12 @@ view_sector_publisher_top.ajax = function (args) {
                 d.num = -d.num;
             }
             var regExp = /\(([^)]+)\)/;
-            d.str_lab =iati_codes.funder_names[v.funder] || (regExp.exec(iati_codes.un_publisher_names[v.funder]))[1];
-            //d.str_lab = iati_codes.iati_un_publishers[v.funder] || iati_codes.funder_names[v.funder];
+
+            try {
+                d.str_lab = iati_codes.funder_names[v.funder] || (regExp.exec(iati_codes.un_publisher_names[v.funder]))[1];
+            } catch (err) {
+                console.log(v.funder, err);
+            }
             dd.push(d);
         });
         ctrack.chunk("data_chart_sector_publisher", dd);
