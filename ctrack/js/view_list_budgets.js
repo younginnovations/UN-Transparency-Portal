@@ -14,10 +14,12 @@ var fetch=require("./fetch.js")
 
 var refry=require("../../dstore/js/refry.js")
 var iati_codes=require("../../dstore/json/iati_codes.json")
-var crs_year=require("../../dstore/json/crs_2013.json")
+var crs_year=require("../../dstore/json/crs.js").donors
 
 var commafy=function(s) { return (""+s).replace(/(^|[^\w.])(\d{4,})/g, function($0, $1, $2) {
 		return $1 + $2.replace(/\d(?=(?:\d\d\d)+(?!\d))/g, "$&,"); }) };
+
+function html_encode(value){ return $('<div/>').text(value).html(); }
 
 // the chunk names this view will fill with new data
 view_list_budgets.chunks=[
@@ -51,17 +53,7 @@ view_list_budgets.ajax=function(args)
 			"groupby":"aid",
 			"orderby":"1-",
 			"budget_priority":1, // has passed some validation checks serverside
-//			"country_code":(args.country || ctrack.args.country_select),
-//			"reporting_ref":(args.publisher || ctrack.args.publisher_select),
-//			"title_like":(args.search || ctrack.args.search),
 		};
-//	for(var n in ctrack.q) { dat[n]=ctrack.q[n]; }
-//	for(var n in ctrack.hash) { dat[n]=ctrack.hash[n]; }
-//	for(var n in args.q) { dat[n]=args.q[n]; }
-//	if(dat.sector_code||dat.sector_group) { dat.from+=",sector"; }
-//	if(dat.country_code) { dat.from+=",country"; }
-//	if(dat.location_latitude && dat.location_longitude) { dat.from+=",location"; }
-
 	
 	var year=dat.year || ctrack.hash.year;
 	if(year)
@@ -103,7 +95,7 @@ view_list_budgets.ajax=function(args)
 				d.num=i+1;
 				d.funder_ref=v.funder_ref;
 				d.aid=encodeURIComponent(v.aid);
-				d.title=v.title || v.aid;
+				d.title=html_encode(v.title || v.aid || "N/A");
 				d.reporting=iati_codes.publisher_names[v.reporting_ref] || v.reporting || v.reporting_ref;
 				total+=ctrack.convert_num("sum_of_percent_of_budget",v);
 				d.amount_num=Math.floor(ctrack.convert_num("sum_of_percent_of_budget",v));
@@ -122,9 +114,9 @@ view_list_budgets.ajax=function(args)
 				return parseInt(s);
 			}
 			var cc=[];
-			cc[0]=["aid","title","reporting","amount","currency"];
+			cc[0]=["activity-identifier","title","reporting-org","amount","currency","link"];
 			a.forEach(function(v){
-				cc[cc.length]=[v.aid,v.title,v.reporting,v.amount_num,v.currency];
+				cc[cc.length]=[v.aid,v.title,v.reporting,v.amount_num,v.currency,"http://d-portal.org/ctrack.html#view=act&aid="+v.aid];
 			});
 			ctrack.chunk((args.chunk || "list_budgets_datas")+"_csv","data:text/csv;charset=UTF-8,"+encodeURIComponent(csvw.arrayToCSV(cc)));
 

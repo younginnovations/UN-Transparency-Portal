@@ -5,78 +5,276 @@
 #crumbname_search
 {crumbname_search_text}
 
+<!-- EXPLORE	-->
 #view_search
 {view_head}
-<style>.crumb_wrap{display:none;}#background_image{url('/art/mexico_background_image.jpg')};{css}</style>
+<style>.crumb_wrap{display:none;}.description_wrap{background:transparent;}img{-webkit-filter:brightness(100%);filter:brightness(100%);}#background_image{url('/ctrack/art/mexico_background_image.jpg')};{css}</style>
 {beige}
-{main_head}
+{main_head_search} <!-- general.html LINE 105	-->
+{search_intro}
+{more_search_intro}
 {view_search_test}
+{explore_portals_search}
+{where_is_the_data_from}
 {view_tail}
 
+<!-- freetext search - alternative ui with filters below search bar	-->
+#view_freetext
+{view_head}
+<style>.crumb_wrap{display:none;}.description_wrap{background:transparent;}img{-webkit-filter:brightness(100%);filter:brightness(100%);}#background_image{url('/ctrack/art/mexico_background_image.jpg')};{css}</style>
+{beige}
+{main_head_search}
+{search_intro}
+{more_search_intro}
+{view_search2_test}
+{where_is_the_data_from}
+{view_tail}
+			
+
+<!-- EXPLORE	-->
+#search_intro
+<div class="search_intro_wrap">
+	Search IATI data on development and humanitarian activities on specific events or themes more easily.<br/>
+	<span onclick="$('#more_search_intro').toggle();">Find out more about updated features and how it works.</span>
+</div>
+
+<!-- EXPLORE	-->
+#more_search_intro
+<div id="more_search_intro" class="settings_search" style="display:none;">
+	<div onclick="$('#more_search_intro').toggle();" class="hide_search_intro">x</div>
+<table class="head">
+	<tr>
+		<td>
+			The updated <span class="discover">EXPLORE</span> feature helps find activities published to the IATI Standard using filters and keywords.
+			
+			<p>Updated features following development in the first half of 2017 include:</p>
+			
+			<div>
+				<ul>
+					<li>Choose <b>multiple options</b> on all filters to allow much more detailed and refined searches</li>
+
+					<li>IATI Activity <b>status</b> included as an option within filters</li>
+
+					<li>Search for an <b>individual activity ID</b> using the freetext box</li>
+
+					<li>New toggle button to sort filter dropdowns by <i>alphabetical</i> order <span class="underline"><b>or</b></span> by relevant <i>IATI/CRS code</i> <span class="accent">(e.g. by CRS sector numbers)</span></li>
+
+					<li>New EXPLORE section within the <b>FAQ</b> page specifically relating to the search function</li>
+				</ul>
+			</div>
+			
+			<p><b>Development is ongoing</b> - as always feedback (<a href="mailto:support@iatistandard.org">email</a> or <a href="https://github.com/devinit/D-Portal/issues">GitHub</a>) is very welcome.</p>
+		</td>
+	</tr>
+</table>
+</div>
+
+<!-- EXPLORE	-->
 #view_search_test
-
 <div id="view_search_test">
-
-	<div class="search_wrap">
-		<div class="search_label">
-			<img src="{flava}search_country.png" alt="Recipient icon" width="13" height="13"/>{search_recipient_txt}
-		</div>
-		<select id="view_search_select_country" class="chosen">
-			<option value></option>
-			{search_options_country}
-		</select>
-	</div><div class="search_wrap">
-		<div class="search_label">
-			<img src="{flava}search_funder.png" alt="Funder icon" width="13" height="13"/>{search_donor_txt}
-		</div>
-		<select id="view_search_select_funder" class="chosen">
-			<option value></option>
-			{search_options_funder}
-		</select>
-	</div><div class="search_wrap">
-		<div class="search_label">
-			<img src="{flava}search_sector.png" alt="Sector icon" width="13" height="13"/>{search_sector_txt}
-		</div>
-		<select id="view_search_select_sector" class="chosen">
-			<option value></option>
-			{search_options_sector}
-		</select>
-	</div><div class="search_wrap">
-		<div class="search_label">
-			<img src="{flava}search_category.png" alt="Sector Category icon" width="13" height="13"/>{search_sectorcategory_txt}
-		</div>
-		<select id="view_search_select_category" class="chosen">
-			<option value></option>
-			{search_options_category}
-		</select>
-	</div><div class="search_wrap">
-		<div class="search_label">
-			<img src="{flava}search_publisher.png" alt="Publisher icon" width="13" height="13"/>{search_publisher_txt}
-		</div>
-		<select id="view_search_select_publisher" class="chosen">
-			<option value></option>
-			{search_options_publisher}
-		</select>
-	</div><div class="search_wrap mini">
-		<div class="search_label">
-			<img src="{flava}search_year.png" alt="Year icon" width="13" height="13"/>{search_year_txt}
-		</div>
-		<select id="view_search_select_year_min" class="chosen">
-			<option value></option>
-			{search_options_year}
-		</select><select id="view_search_select_year_max" class="chosen">
-			<option value></option>
-			{search_options_year}
-		</select>
-	</div>
-
-	<div id="search_div"><span id="result_span"></span></div>
-
-	<input type="text" id="view_search_string" class="typeahead" placeholder="{search_placeholder_txt}"/>
+	
+	{view_search_filters_wrap}
 
 	<div id="search_div">
-		<div><span id="search_span"></span></div>
-		<div><a id="search_link" target="_blank">{search_button1_txt}<span>{search_button2_txt}</span></a></div>
+		<span id="addfilter_span"></span><span id="result_span"></span><a id="search_link" class="search_link_disable">{search_button1_txt}</a> <!--Update to button1, translations-->
+	</div>
+	
+	<div id="result_aid_div">
+		<span id="result_aid_link"></span>
+	</div>
+	
+	<div class="search_input_wrap">
+		<div class="search_icon">
+			<img src="/ctrack/art/original/search_icon.png" alt="A magnifying glass icon to indicate that a search request is nigh" width="30" height="30"/>
+		</div><input type="text" id="view_search_string" class="typeahead explore" placeholder="{search_placeholder_txt}" autocomplete="off"/>
+		<div class="press_enter"></div>
+		<script>
+			$('.typeahead.explore').keyup(function(event) {
+			
+			  $('.press_enter').text("Press Enter");
+			  
+			  if( $(this).val().length === 0 )
+				{
+					$('.press_enter').hide();
+				}
+			else
+				{
+					$('.press_enter').show();
+				}		 
+			});
+		</script>
 	</div>
 	
 </div>
+
+<!-- freetext search -->
+#view_search2_test
+<div id="view_search_test">
+	
+	<div class="search_input_wrap"><div class="search_icon"><img src="/ctrack/art/original/search_icon.png" alt="A magnifying glass icon to indicate that a search request is nigh" width="30" height="30"/></div><input type="text" id="view_search_string_only" class="typeahead" placeholder="{search2_placeholder_txt}"/></div>
+	
+	<div class="feedback_links_wrap">
+		<a onclick="$('.search_filter').toggle();" class="feedback_txt">Show Filters?</a>
+	</div>
+	
+	{view_search2_filters_wrap}
+	
+</div>
+
+<!-- freetext search -->
+#view_search2_filters_wrap
+<div class="search_filter" style="display:none; margin-top:40px;">
+	{filter_head_text}	
+	{view_search_filters}
+	<div id="search_div"><span id="addfilter_span"></span><span id="result_span"></span><a id="search_link" class="search_link_disable">{search_button1_txt}</a></div>
+</div>
+
+<!-- EXPLORE	-->
+#view_search_filters_wrap
+<div class="search_filter">
+	{filter_head_text}	
+	{view_search_filters}
+</div>
+
+<!-- EXPLORE	-->
+#view_search_filters
+<div class="search_wrap">
+	<div class="search_label">
+		<img src="{flava}search_country.png" alt="Recipient icon" width="13" height="13"/>{search_recipient_txt}
+	</div>
+	<select aria-label="Select a country from this dropdown" id="view_search_select_country" class="chosen" multiple>
+		<option value></option>
+		{search_options_country}
+	</select>
+</div><div class="search_wrap">
+	<div class="search_label">
+		<img src="{flava}search_sector.png" alt="Sector Group icon" width="13" height="13"/>{search_sectorgroup_txt}
+	</div>
+	<select aria-label="Select a sector group from this dropdown" id="view_search_select_category" class="chosen" multiple>
+		<option value></option>
+		{search_options_category}
+	</select>
+</div><div class="search_wrap">
+	<div class="search_label">
+		<img src="{flava}search_status.png" alt="Status icon" width="13" height="13"/>{search_status_txt}
+	</div>
+	<select aria-label="Select an activity status from this dropdown" id="view_search_select_status" class="chosen" multiple>
+		<option value></option>
+		{search_options_status}
+	</select>
+</div><div class="search_wrap">
+	<div class="search_label">
+		<img src="{flava}search_publisher.png" alt="Publisher icon" width="13" height="13"/>{search_publisher_txt}
+	</div>
+	<select aria-label="Select a publisher from this dropdown" id="view_search_select_publisher" class="chosen" multiple>
+		<option value></option>
+		{search_options_publisher}
+	</select>
+</div><div class="search_wrap">
+	<div class="search_label">
+		<img src="{flava}search_category.png" alt="Sector icon" width="13" height="13"/>{search_sector_txt}
+	</div>
+	<select aria-label="Select a sector from this dropdown" id="view_search_select_sector" class="chosen" multiple>
+		<option value></option>
+		{search_options_sector}
+	</select>
+</div><div class="search_wrap mini">
+	<div class="search_label">
+		<img src="{flava}search_year.png" alt="Year icon" width="13" height="13"/>{search_year_txt}
+	</div>
+	<select aria-label="Select a starting year from this dropdown" id="view_search_select_year_min" class="chosen">
+		<option value></option>
+		{search_options_year}
+	</select><select aria-label="Select an ending year from this dropdown" id="view_search_select_year_max" class="chosen">
+		<option value></option>
+		{search_options_year}
+	</select>
+</div>
+
+<!-- EXPLORE	-->
+#filter_head_text
+<div>
+	<div class="search_head">
+		EXPLORE <span>filters</span>
+	</div><div class="search_opts">
+		<a id="view_search_order" class="search_order">
+			<span class="order_1">ABC</span><div class="search_toggle_wrap"><div class="toggle_abc"></div><div class="toggle_123"></div></div><span class="order_2">123</span>
+		</a>
+	</div><div class="search_opts_clear">
+		<a id="view_search_clear" class="search_clear">
+			Clear all filters<span class="search_clear_close">x</span>
+		</a>
+	</div>
+</div>
+
+<!-- EXPLORE	-->
+#explore_portals_search
+<span id="explore"></span>
+<div class="country_menu_wrap">
+	<div class="country_menu_list_wrap">
+		<div class="menu_list_wrap left">
+			<ul id="country_menu_list" class="country_menu_list">{countries_country_select}</ul>
+		</div><div class="menu_list_wrap">
+			<ul id="publisher_menu_list" class="country_menu_list">{publishers_publisher_select}</ul>
+		</div>
+	</div>
+</div>
+
+
+#compare_buttons
+<div class="default">
+	<div class="compare_wrap">
+		<a class="path" href="/ctrack.html?tongue={tongue}#view=publisher_countries">
+			<span class="select_wrap full">{all_countries_text}</span>
+		</a></div><div class="compare_wrap pub">
+		<a class="path" href="/ctrack.html?tongue={tongue}#view=publishers">
+			<span class="select_wrap full">{all_publishers_text}</span>
+		</a>
+	</div>
+</div>
+
+
+#where_is_the_data_from
+<div class="description_splash">
+	<div class="description">
+		<span class="title">{index_title2_text}</span>
+		<p>{index_paragraph7_text}</p>
+		<p>{index_paragraph8_text}</p>
+	</div>
+</div>
+
+
+#search_country_select
+<li>
+	<a class="country_code" href="/ctrack.html?country={it.id}&tongue={tongue}">
+		<span class="select_wrap">
+			<img src="/ctrack/art/flag/{it.cc}.png" alt="{it.name} {flag_alt_text}"/>
+		</span><span class="select_wrap countryid">
+			{it.id}
+		</span><span class="select_wrap countryname">
+			{it.name}
+		</span>
+	</a>
+</li>
+
+
+#search_publisher_select
+<li class="publishercol">
+	<a class="country_code" href="/ctrack.html?publisher={it.id}&tongue={tongue}">
+		<span class="select_wrap publishername">{it.name}</span>
+		<span class="select_wrap publisherid">{it.id}</span>
+	</a>
+</li>
+
+
+<!--	UNUSED	-->
+#intro_generator
+<a href="/ctrack.html#view=generator" class="description_wrap bigbutton">
+	<span class="description">
+		<span class="title">{install_button_text}</span>
+		<p>{install_info_text}</p>
+	</span><span class="description">
+		<span class="screen_generator"></span>
+	</span>
+</a>
+

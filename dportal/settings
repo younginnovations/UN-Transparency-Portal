@@ -1,0 +1,17 @@
+
+# The root of the website on the website server
+
+#PLATED_ROOT=/d-portal.org
+PLATED_ROOT=
+
+
+
+# The directory to write output files into
+
+PLATED_OUTPUT=static
+
+
+# The directory to read input files from
+
+PLATED_SOURCE=source
+

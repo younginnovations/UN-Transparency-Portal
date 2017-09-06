@@ -1,9 +1,23 @@
 cd `dirname $0`
 cd ..
 
+source ~/D-Portal/bin/server-pg/env.sh
+
 bin/cron 2>&1 | tee dportal/production/cron.log
+( echo "Subject: d-portal update `date`"  ; uuencode dportal/production/cron.log dportal-cronlog.txt ) | sendmail krissd@gmail.com
 
-( echo "Subject: d-portal update `date`"  ; uuencode dportal/production/cron.log dportal-cronlog.txt ) | sendmail krissd@gmail.com,notshi@gmail.com,d-portal-logs@googlegroups.com
+cp dportal/production/cron.log dportal/production/D-Portal-Logs/cron.log
 
-# make sure the other server is back up
-/home/ctrack/ofid/serv.sh
+cd dportal/production/D-Portal-Logs/
+git pull
+cd ../../..
+
+dstore/dstore stats ../dportal/production/D-Portal-Logs/stats.json
+
+cd dportal/production/D-Portal-Logs/
+git add .
+git commit -m.
+git pull
+git push
+
+

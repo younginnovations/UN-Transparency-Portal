@@ -15,11 +15,7 @@ var ls=function(a) { console.log(util.inspect(a,{depth:null})); }
 
 // global.argv
 var argv=require('yargs').argv; global.argv=argv;
-
-argv.port=argv.port||1337;
-argv.database=argv.database||"../dstore/db/dstore.sqlite";
-argv.cache=argv.cache||"../dstore/cache";
-
+require("./argv").parse(argv);
 
 wait.launchFiber(function(){
 
@@ -46,7 +42,7 @@ wait.launchFiber(function(){
 	else
 	if( argv._[0]=="index" )
 	{
-		require("./dstore_db").create_indexes(); // add indexes to previously inserted data
+		require("./dstore_db").create_indexes(argv._[1]); // add indexes to previously inserted data
 		return;
 	}
 	else
@@ -58,6 +54,7 @@ wait.launchFiber(function(){
 	else
 	if( argv._[0]=="check" )
 	{
+		require("./dstore_db").create_tables({do_not_drop:true});
 		require("./dstore_db").check_tables();
 		return;
 	}
@@ -92,16 +89,10 @@ wait.launchFiber(function(){
 		return;		
 	}
 	else
-	if( argv._[0]=="undata" )
+	if( argv._[0]=="stats" )
 	{
-		require("./dstore_cache").import_from_un_data( argv._[1] );
-		return;
-	}
-	else
-	if( argv._[0]=="fetch-undata" )
-	{
-		require("./dstore_undata").fetch();
-		return;
+		require("./dstore_stats").cmd(argv);
+		return;		
 	}
 
 	// help text

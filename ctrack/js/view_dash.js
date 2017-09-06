@@ -68,7 +68,7 @@ view_dash.ajax2=function(args)
 	args=args || {};
 	var dat={
 			"country_code":(args.country),
-			"select":"count,reporting_ref,reporting",
+			"select":"count,reporting_ref,any_reporting",
 			"from":"act",//,country",
 			"groupby":"reporting_ref",
 			"orderby":"1-",
@@ -88,7 +88,7 @@ view_dash.ajax2=function(args)
 			d.num=i+1;
 			d.count=commafy(v.count);
 			d.reporting_ref=v.reporting_ref|| "N/A";
-			d.reporting=iati_codes.publisher_names[v.reporting_ref] || v.reporting || v.reporting_ref || "N/A";
+			d.reporting=iati_codes.publisher_names[v.reporting_ref] || v.any_reporting || v.reporting_ref || "N/A";
 
 			total+=d.count;
 			s.push( plate.replace(args.plate || "{dash_list_reporting_data}",d) );
@@ -175,7 +175,7 @@ view_dash.ajax3=function(args)
 			d.country_name=iati_codes.country[d.country_code] || "N/A";
 			d.country_valid=iati_codes.country[d.country_code] && "valid" || "invalid";
 
-			if(!iati_codes.country[d.country_code]) { bad+=d.count; }
+			if(!iati_codes.country[d.country_code]) { bad+=Number(d.count); }
 			total+=d.count;
 			s.push( plate.replace(args.plate || "{dash_listall_country_data}",d) );
 		}

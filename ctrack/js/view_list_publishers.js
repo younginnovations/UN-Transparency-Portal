@@ -14,7 +14,7 @@ var fetch=require("./fetch.js")
 
 var refry=require("../../dstore/js/refry.js")
 var iati_codes=require("../../dstore/json/iati_codes.json")
-var crs_year=require("../../dstore/json/crs_2013.json")
+var crs_year=require("../../dstore/json/crs.js").donors
 
 var commafy=function(s) { return (""+s).replace(/(^|[^\w.])(\d{4,})/g, function($0, $1, $2) {
 		return $1 + $2.replace(/\d(?=(?:\d\d\d)+(?!\d))/g, "$&,"); }) };
@@ -47,19 +47,10 @@ view_list_publishers.ajax=function(args)
 	var dat={
 			"from":"act",
 			"limit":args.limit || -1,
-			"select":"count,reporting_ref,reporting",
+			"select":"count,reporting_ref,any_reporting",
 			"groupby":"reporting_ref",
 			"orderby":"1-",
-//			"country_code":(args.country || ctrack.args.country_select),
-//			"reporting_ref":(args.publisher || ctrack.args.publisher_select),
-//			"title_like":(args.search || ctrack.args.search),
 		};
-//	for(var n in ctrack.q) { dat[n]=ctrack.q[n]; }
-//	for(var n in ctrack.hash) { dat[n]=ctrack.hash[n]; }
-//	for(var n in args.q) { dat[n]=args.q[n]; }
-//	if(dat.sector_code||dat.sector_group) { dat.from+=",sector"; }
-//	if(dat.country_code) { dat.from+=",country"; }
-//	if(dat.location_latitude && dat.location_longitude) { dat.from+=",location"; }
 	fetch.ajax_dat_fix(dat,args);
 	
 	if(args.output=="count") // just count please
@@ -90,23 +81,26 @@ view_list_publishers.ajax=function(args)
 			for(var i=0;i<data.rows.length;i++)
 			{
 				var v=data.rows[i];
-				var d={};
-				d.num=i+1;
+				if(v.reporting_ref) // ignore missing publisher data
+				{
+					var d={};
+					d.num=i+1;
 
-				d.reporting_ref=v.reporting_ref || "N/A";
-				d.reporting=iati_codes.publisher_names[v.reporting_ref] || v.reporting || v.reporting_ref || "N/A";
-				d.count_num=Math.floor(v.count||0);
-				d.count=commafy(""+d.count_num);
-				a.push(d);
-				s.push( plate.replace(args.plate || "{list_publishers_data}",d) );
+					d.reporting_ref=v.reporting_ref || "N/A";
+					d.reporting=iati_codes.publisher_names[v.reporting_ref] || v.reporting || v.reporting_ref || "N/A";
+					d.count_num=Math.floor(v.count||0);
+					d.count=commafy(""+d.count_num);
+					a.push(d);
+					s.push( plate.replace(args.plate || "{list_publishers_data}",d) );
+				}
 			}
 			ctrack.chunk(args.chunk || "list_publishers_datas",s.join(""));
 			ctrack.chunk("numof_publishers" , data.rows.length );
 
 			var cc=[];
-			cc[0]=["reporting_ref","reporting","count"];
+			cc[0]=["reporting_ref","reporting-org","count","link"];
 			a.forEach(function(v){
-				cc[cc.length]=[v.reporting_ref,v.reporting,v.count_num];
+				cc[cc.length]=[v.reporting_ref,v.reporting,v.count_num,"http://d-portal.org/ctrack.html?publisher="+v.reporting_ref];
 			});
 			ctrack.chunk((args.chunk || "list_publishers_datas")+"_csv","data:text/csv;charset=UTF-8,"+encodeURIComponent(csvw.arrayToCSV(cc)));
 

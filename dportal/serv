@@ -1,3 +1,6 @@
 cd `dirname $0`
-npm run serv
+
+node js/serv.js
+
+
 

@@ -37,12 +37,12 @@ view_sector_activities.view=function()
 	args.q={
 //		"sector_group":sector,
 //		"from":"act,country,sector",
-		"groupby":"aid",
+		"distincton":"aid",
 	};
 	
 	args.callback=function(data){
 		
-		ctrack.chunk("sector",iati_codes.sector_names[sector] );
+		ctrack.chunk("sector",iati_codes.sector_category[sector] );
 		
 	};
 	
