@@ -1,3 +1,4 @@
 cd `dirname $0`
 
+dportal/undg
 ctrack/watch 1>&2 | dportal/start

@@ -202,6 +202,23 @@ Total Expenditure
 #stats_missing_text
 Other Projects:
 
+#stats_active_table_text 
+Active<br/>Projects 
+ 
+#stats_ended_table_text 
+Ended<br/>Projects 
+ 
+#stats_total_table_text 
+Total<br/>Projects 
+ 
+#stats_planned_table_text 
+Planned<br/>Projects 
+ 
+#stats_publisher_table_text 
+IATI<br/>Publishers 
+ 
+#stats_missing_table_text 
+Other<br/>Projects 
 #stats_active_tip_text
 Total number of projects that are still active now
 
@@ -463,6 +480,9 @@ View all
 
 #map_no_info_text
 If a map isn't displayed here, then no location data has been provided by any of the publishers.
+
+#map_filter_info_text 
+Filter activities 
 
 #map_percent_text
 of activities have provided exact locations.

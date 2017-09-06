@@ -12,6 +12,8 @@ dportal/production/*
 ctrack/jslib/ctrack.*
 ctrack/json/*.json
 
+/log
+
 */.vagrant
 
 dstore/un-json/*
@@ -24,3 +26,11 @@ dstore/json/un_agencies_data copy.json
 dstore/json/un_org copy.json
 dstore/cache_old
 dstore/data/
+
+dportal/source/^.undg.txt
+npm-debug.log
+wget-log
+
+ctrack/package-lock.json
+dportal/package-lock.json
+dstore/package-lock.json

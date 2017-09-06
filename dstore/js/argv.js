@@ -29,7 +29,7 @@ else // normal server
 	// argv default settings which can be changed by environment and command line
 
 	//setting     = commandline   || environment                 || default                      ;
-	argv.port     = argv.port     || process.env.DSTORE_PORT     || 1408                         ;
+	argv.port     = argv.port     || process.env.DSTORE_PORT     || 1337                         ;
 	argv.database = argv.database || process.env.DSTORE_DATABASE || "../dstore/db/dstore.sqlite" ;
 	argv.cache    = argv.cache    || process.env.DSTORE_CACHE    || "../dstore/cache"            ;
 	argv.pg       = argv.pg       || process.env.DSTORE_PG       || undefined                    ;

@@ -2,11 +2,11 @@ cd `dirname $0`
 
 cd ../ctrack
 rm -rf node_modules
-npm install
+yarn
 
 cd ../dstore
 rm -rf node_modules
-npm install
+yarn
 #CC=gcc-5 CXX=g++-5 npm install
 
 cd ../dportal

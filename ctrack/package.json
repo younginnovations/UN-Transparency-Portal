@@ -7,17 +7,18 @@
     "url": "https://github.com/devinit/D-Portal.git"
   },
   "dependencies": {
-    "marked": "*",
-    "watchify": "*",
-    "uglify-js": "*",
     "browserify": "*",
-    "express": "*",
-    "morgan": "*",
-    "wait.for": "*",
-    "yargs": "*",
     "csv-parse": "*",
+    "d3": "3.0",
+    "express": "*",
+    "marked": "*",
+    "morgan": "*",
     "pm2": "*",
-    "d3": "3.0"
+    "uglify-js": "*",
+    "uglifyify": "^4.0.3",
+    "wait.for": "*",
+    "watchify": "*",
+    "yargs": "*"
   },
   "scripts": {
     "build": "node js/bake.js && node node_modules/browserify/bin/cmd.js -r ./js/ctrack.js:ctrack -d -o jslib/ctrack.js && node node_modules/uglify-js/bin/uglifyjs jslib/ctrack.js -o jslib/ctrack.min.js"

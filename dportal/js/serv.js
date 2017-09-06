@@ -8,13 +8,9 @@ var express_fileupload = require('express-fileupload');
 var app = express();
 
 
-<<<<<<< HEAD
-argv.port=argv.port||1337;
-argv.database=argv.database||"../dstore/db/dstore.sqlite";
-=======
 var argv=require('yargs').argv; global.argv=argv;
 require("../../dstore/js/argv").parse(argv);
->>>>>>> dportal
+argv.database=argv.database||"../dstore/db/dstore.sqlite";
 
 express.static.mime.define({'text/plain': ['']});
 
@@ -88,7 +84,7 @@ app.use(function(req, res, next) {
 
 // redirect any unknown page to main homepage
 app.get('*', function(req, res) {
-    res.redirect('/ctrack.html#view=search');
+    res.redirect('/');
 });
 
 
