@@ -1164,7 +1164,8 @@
     "WHO": "World Health Organisation",
     "UN-Habitat": "UN-Habitat",
     "UNESCO": "UNESCO",
-    "XM-DAC-41304": "UNESCO"
+    "XM-DAC-41304": "UNESCO",
+    "UNCDF":"UNCDF"
   },
   "crs_funders": {
     "AfDB": "AfDB",
