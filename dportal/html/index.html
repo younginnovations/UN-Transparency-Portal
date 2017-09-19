@@ -684,19 +684,6 @@
                     (window.innerWidth < 900) ? 3 : 4;
         }
 
-        $window.load(function () {
-            $('.spinner').hide();
-            $('.slider-wrap .country_menu_list li').show();
-            $('.bxslider').bxSlider({
-                minSlides: 5,
-                maxSlides: 5,
-                slideWidth: 192,
-                slideMargin: 10,
-                infiniteLoop: false,
-                hideControlOnEnd: true
-            });
-        });
-
         // check grid size on resize event
         $window.resize(function () {
             var gridSize = getGridSize();
