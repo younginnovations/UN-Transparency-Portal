@@ -11,6 +11,7 @@
     <script src="{root}jslib/jquery.js"></script>
     <script src="{root}jslib/chosen.jquery.min.js"></script>
     <script src="{root}jslib/jquery.bxslider.js"></script>
+    <script src="{root}jslib/imagesloaded.pkgd.min.js"></script>
     {ganal}
 </head>
 <body ontouchstart="">
@@ -536,6 +537,20 @@
                 }
 
             }
+
+            $('.slider-wrap').imagesLoaded(function () {
+                $('.spinner').hide();
+                $('.slider-wrap .country_menu_list li').show();
+                $('.bxslider').bxSlider({
+                    minSlides: 5,
+                    maxSlides: 5,
+                    slideWidth: 192,
+                    slideMargin: 10,
+                    infiniteLoop: false,
+                    hideControlOnEnd: true
+                });
+            });
+
             if (countries) {
                 var cl = $('#country_menu_list');
                 var aa = [];
