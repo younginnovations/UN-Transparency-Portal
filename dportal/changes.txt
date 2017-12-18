@@ -1,3 +1,109 @@
+Static site (2017-09-06 shi)
+==============================
+Added new blog post
+
+
+Static site (2017-09-02 shi)
+==============================
+Updated Explore information in About page
+Updated images in About page
+Added Database Logs section to About page
+Updated translations
+Updated footer links
+Updated Install section in About page
+Fixed scrollTop link
+
+
+Static site (2017-09-01 shi)
+==============================
+Updated FAQ with Explorer section
+Updated FAQ styles
+Updated FAQ Generator section with https info
+
+
+Static site (2017-06-22 shi)
+==============================
+Updated FAQ with gen13
+
+
+Static site (2017-06-16 shi)
+==============================
+Fix blog head border
+Start export to plated system
+
+
+Static site (2016-07-26 shi)
+==============================
+Update About page to include UNDG site
+Update About page with open source info
+Update octocat image
+Added translations for Discover
+Added translations for open source info
+Updated layout for install section
+Minor CSS fixes
+
+
+Static site (2016-06-23 shi)
+==============================
+Changed Search to Discover
+Replace search with discover on About
+Updated embed video layout fix for News
+Updated footer links sitewide, includes translations
+
+
+Static site (2016-06-22 shi)
+==============================
+Updated all email contacts to support@iatistandard.org sitewide
+Amended text for About
+Moved Compare buttons to below the fold
+Increase focus on Search fields on Index
+Minor CSS fixes
+Minor img fix for SAVilogo
+
+
+Static site (2016-06-17 shi)
+==============================
+Version 17.6
+Update layout for new version
+Remove tagline, and intro box
+Fix height for countries and publishers
+Added scrolling
+Include big button for Generator
+Remove img tag for logo
+Replaced BETA banner with BETA flag
+Updated Generator tagline
+Added Search section to About
+Added Search screenshot to About
+Added translations for Search section
+Updated Github section on About
+Added new blog post
+
+
+Static site (2016-06-16 shi)
+==============================
+Changed motto to link in footer
+Streamlined navigation bar for About, FAQ and News
+Added FAQ and News screenshots to About
+Added FAQ and News section in About
+Added translations for new sections
+Updated Q queries to include XML, JSON, CSV, HTML
+Added translations for updated queries
+
+
+Static site (2016-06-15 shi)
+==============================
+Replaced footer with new layout on index
+Updated new footer for About, Feedback
+Move new large footer chunk to general
+Deleted old wip publisher edition page
+Added translations for new footer
+Replaced install link with Generator on About
+Added new Generator section on about
+Trimmed install section
+Added Generator and Dash screenshots to About
+Contact email changed to queries@d-portal.org
+
+
 Static site (2016-01-28 shi)
 ==============================
 Fixed links to email address in FAQ

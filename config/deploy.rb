@@ -1,4 +1,4 @@
-lock '3.8.1'
+lock '3.9.0'
 
 # Application #
 #####################################################################################
@@ -34,6 +34,12 @@ set :use_set_permissions, true
 set :webserver_user,      "www-data"
 set :group,               "www-data"
 set :keep_releases,       5
+
+# Nvm #
+#####################################################################################
+set :nvm_type, :user
+set :nvm_node, 'v8.3.0'
+set :nvm_map_bins, %w{node npm yarn}
 
 # Create ver.txt #
 #######################################################################################
@@ -79,7 +85,7 @@ namespace :app_restart do
         task :start do
             on roles(:all) do
             within current_path do
-               execute :"nohup /home/undg/.nvm/versions/node/v5.2.0/bin/node #{current_path}/dportal/js/serv.js --port=#{fetch(:port)} > #{current_path}/serve-log.log  &"
+               execute :"nohup node #{current_path}/dportal/js/serv.js --port=#{fetch(:port)} > #{current_path}/serve-log.log  &"
             end
         end
     end
@@ -95,7 +101,6 @@ namespace :dportal do
                execute :"ln -s #{shared_path}/ctrack/node_modules #{release_path}/ctrack/"
                execute :"ln -s #{shared_path}/dstore/node_modules #{release_path}/dstore/"
                execute :"ln -s #{shared_path}/dportal/node_modules #{release_path}/dportal/"
-#               execute :"ln -s #{shared_path}/dportal/js/serv.js #{release_path}/dportal/js/"
             end
         end
     end

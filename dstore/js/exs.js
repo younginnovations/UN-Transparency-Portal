@@ -3,7 +3,8 @@
 
 var exs=exports;
 
-var csv_parse = require('csv-parse');
+var baby = require('babyparse');
+var csv_write = require('json2csv');
 var csv=undefined;//require('csv');
 var util=require('util');
 var wait=require('wait.for');
@@ -16,6 +17,7 @@ var years=require('../json/usd_year.json');
 var months=require('../json/xdr_month.json');
 
 // exchange at the given years rate into usd
+/*
 exs.exchange_year=function(year,ex,val)
 {
 	if("number"!=typeof val) { val=1; } // default of 1
@@ -35,6 +37,39 @@ exs.exchange_year=function(year,ex,val)
 			}
 		}
 	}
+	return ret;
+}
+*/
+
+// exchange at the given years rate from ex currency into exto currency
+exs.exchange_year=function(exto,yearmonth,ex,val)
+{
+
+	yearmonth=parseInt( (""+yearmonth).replace("-","").substring(0, 4) ,10); // turn into year
+	
+	if("number"!=typeof val) { val=1; } // default of 1
+	exto=exto.toUpperCase();
+	ex=ex.toUpperCase();
+	var ret;
+	var best=9999; // good for the next 8000 years
+	for(var ym in years)
+	{
+		var v=years[ym];
+		if(v[ex] && v[exto]) // both available
+		{
+			var ymi=parseInt( ym.replace("-","").substring(0, 4) ,10);
+			var test=Math.abs(ymi-yearmonth);
+			if(test<best)
+			{
+				ret=val*v[exto]/v[ex]; //these usd values are inverted compared to the xdr ones 
+				best=test;
+			}
+		}
+	}
+if(ret)
+{
+//console.log("*using*usd*year*exchange*values*",exto,yearmonth,ex,val,ret);
+}
 	return ret;
 }
 
@@ -59,6 +94,11 @@ exs.exchange_yearmonth=function(exto,yearmonth,ex,val)
 				best=test;
 			}
 		}
+	}
+
+	if((!ret)&&(val!=0)) // try the usd year table which may have more obscure but inaccurate values.
+	{
+		return exs.exchange_year(exto,yearmonth,ex,val)
 	}
 
 	return ret;
@@ -110,7 +150,8 @@ exs.create_csv = function(){
 
 	var x=wait.for(https_getbody,"https://docs.google.com/spreadsheets/d/1jpXHDNmJ1WPdrkidEle0Ig13zLlXw4eV6WkbSy6kWk4/pub?single=true&gid="+13+"&output=csv");
 //	var lines=wait.for( function(cb){ csv().from.string(x).to.array( function(d){ cb(null,d); } ); } ); // so complex, much wow, very node
-	var lines=wait.for(csv_parse,x);
+//	var lines=wait.for(csv_parse,x);
+	var lines=baby.parse(x).data;
 
 
 
@@ -197,12 +238,13 @@ exs.create_csv = function(){
 			
 			var csv_file=wait.for(http_getbody,"http://www.imf.org/external/np/fin/data/rms_mth.aspx?SelectDate="+year+"-"+month+"-01&reportType=SDRCV&tsvflag=Y");
 //			var csv_lines=wait.for( function(cb){ csv().from.string(csv_file,{delimiter:'\t'}).to.array( function(d){ cb(null,d); } ); } );
-			var csv_lines=wait.for(csv_parse,csv_file,{delimiter:'\t'});
-console.log(year + " " + month);
+//			var csv_lines=wait.for(csv_parse,csv_file,{delimiter:'\t'});
+			var csv_lines=baby.parse(csv_file,{delimiter:'\t'}).data;
+console.log(year + " " + month );
 		
 			var active=false;
 			csv_lines.forEach(function(line){
-				if(line[0]=="Currency")
+				if(line[0].toLowerCase()=="currency")
 				{
 					active=true;
 				}
@@ -212,6 +254,7 @@ console.log(year + " " + month);
 					var cid=xes_low[ line[0].toLowerCase() ];
 					if( cid )
 					{
+
 						var dm=dump_m[cid] || {count:0,total:0}; dump_m[cid]=dm;
 						var dy=dump_y[cid] || {count:0,total:0}; dump_y[cid]=dy;
 						
@@ -272,10 +315,12 @@ console.log(year + " " + month);
 // start with csv_ys (which we grabbed from google docs) and replace with our imf values
 // that way we have some values for everything we can and accurate values from the IMF
 
+
 	for(var year in dump_ys)
 	{
 		var v=dump_ys[year];
 		csv_ys[year]=csv_ys[year] || {}
+		
 		
 		for(var x in v)
 		{
@@ -286,9 +331,41 @@ console.log(year + " " + month);
 		}
 
 	}
-
 	fs.writeFileSync(__dirname+"/../json/usd_year.json",JSON.stringify(csv_ys,null,'\t'));
 
+// build a USD based exchange CSV, similar to the one found in google docs.
+	var head={};	
+	for(var year in csv_ys)
+	{
+		for(var x in csv_ys[year])
+		{
+			head[x]=true;
+		}
+	}
+	var fields=[];
+	for(var x in head)
+	{
+		fields.push(x);
+	}
+	fields.sort();
+	fields.unshift("year");
+
+	var years=[];
+	for(var year in csv_ys)
+	{
+		years.push(year);
+	}
+	years.sort();
+
+	var data=[]
+	for(var idx in years)
+	{
+		var year=years[idx];
+		var aa=csv_ys[year];
+		aa.year=year
+		data.push(aa);
+	}
+	fs.writeFileSync(__dirname+"/../json/usd_year.csv", wait.for( csv_write,{data:data,fields:fields} ) );
 
 }
 

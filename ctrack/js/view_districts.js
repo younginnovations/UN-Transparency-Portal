@@ -12,7 +12,7 @@ var fetch=require("./fetch.js")
 
 var refry=require("../../dstore/js/refry.js")
 var iati_codes=require("../../dstore/json/iati_codes.json")
-var crs_year=require("../../dstore/json/crs_2013.json")
+var crs_year=require("../../dstore/json/crs.js").donors
 
 var commafy=function(s) { return s.replace(/(^|[^\w.])(\d{4,})/g, function($0, $1, $2) {
 		return $1 + $2.replace(/\d(?=(?:\d\d\d)+(?!\d))/g, "$&,"); }) };
@@ -88,9 +88,6 @@ view_districts.ajax=function(args)
 				"location_code":"adm2",
 				"code":"D|E",
 				"day_gteq":y+"-"+ctrack.args.newyear,"day_lt":(parseInt(y)+1)+"-"+ctrack.args.newyear,
-//				"country_code":(args.country || ctrack.args.country_select),
-//				"reporting_ref":(args.publisher || ctrack.args.publisher_select),
-//				"title_like":(args.search || ctrack.args.search),
 			};
 		fetch.ajax_dat_fix(dat,args);
 		if(!dat.reporting_ref){dat.flags=0;} // ignore double activities unless we are looking at a select publisher
@@ -129,9 +126,6 @@ view_districts.ajax=function(args)
 				"priority":1, // has passed some validation checks serverside
 				"location_code":"adm2",
 				"day_end_gteq":y+"-"+ctrack.args.newyear,"day_end_lt":(parseInt(y)+1)+"-"+ctrack.args.newyear,
-//				"country_code":(args.country || ctrack.args.country_select),
-//				"reporting_ref":(args.publisher || ctrack.args.publisher_select),
-//				"title_like":(args.search || ctrack.args.search),
 			};
 		fetch.ajax_dat_fix(dat,args);
 		if(!dat.reporting_ref){dat.flags=0;} // ignore double activities unless we are looking at a select publisher

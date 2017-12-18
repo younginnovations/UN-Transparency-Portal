@@ -11,6 +11,7 @@ var wait=require('wait.for');
 var http=require('http');
 var https=require('https');
 var fs = require('fs');
+var baby = require('babyparse');
 
 var refry=require('./refry');
 var exs=require('./exs');
@@ -57,34 +58,42 @@ var https_getbody=function(url,cb)
 };
 
 iati_codes.fetch = function(){
-	console.log("iati_codes.fetch");
+
 	var codes=require('../json/iati_codes'); // merge with old
 	var publishers={};
 	var packages={};
 
 	var files=[
-			{
-				url:"http://iatistandard.org/201/codelists/downloads/clv2/json/en/Sector.json",
-				name:"sector",
-			},
-			{
-				url:"http://iatistandard.org/201/codelists/downloads/clv2/json/en/SectorCategory.json",
-				name:"sector_category",
-			},
+
+// old codes, do not change
 			{
 				url:"http://iatistandard.org/104/codelists/downloads/clv2/json/en/TransactionType.json",
 				name:"old_transaction_type",
 			},
+
+// new codes, these should be kept current
 			{
-				url:"http://iatistandard.org/201/codelists/downloads/clv2/json/en/TransactionType.json",
+				url:"http://iatistandard.org/202/codelists/downloads/clv3/json/en/Sector.json",
+				name:"sector",
+			},
+/* replaced with csv/sector_category.csv
+			{
+				url:"http://iatistandard.org/202/codelists/downloads/clv3/json/en/SectorCategory.json",
+				name:"sector_category",
+			},
+*/
+			{
+				url:"http://iatistandard.org/202/codelists/downloads/clv3/json/en/TransactionType.json",
 				name:"new_transaction_type",
 			},
 			{
-				url:"http://iatistandard.org/201/codelists/downloads/clv2/json/en/ActivityStatus.json",
+				url:"http://iatistandard.org/202/codelists/downloads/clv3/json/en/ActivityStatus.json",
 				name:"activity_status",
 			}
 		];
+	
 	files.forEach(function(opts){
+	
 		console.log("Fetching IATI "+opts.name)
 
 		var js=wait.for(http_getbody,opts.url);
@@ -94,6 +103,7 @@ iati_codes.fetch = function(){
 			o[ v.code ]=v.name;
 		});
 		codes[opts.name]=o;
+
 	});
 
 // merge old/new transaction types and build map
@@ -109,6 +119,7 @@ iati_codes.fetch = function(){
 		o[ n ]=codes["new_transaction_type"][n];
 	}
 	codes["transaction_type"]=o;
+
 // conversion from new code to old (we keep using old codes internally)
 	var n;
 	var t={};
@@ -128,6 +139,28 @@ iati_codes.fetch = function(){
 
 	codes["transaction_type_map"]=o; // map new codes to old codes and leave old codes as they are
 
+	
+	console.log("Parsing csv/sector_category.csv")
+	
+	
+	var x=fs.readFileSync(__dirname+"/../csv/sector_category.csv","utf8");
+	var lines=baby.parse( x ).data;
+	var o={};
+	for(var i=1;i<lines.length;i++)
+	{
+		var v=lines[i];
+		var a=(v[0]);
+		var b=v[1];
+		if(a && a.length>0 && b && b.length>0 )
+		{
+			o[a.trim()]=b.trim();
+		}
+	}
+	
+//	ls(o);
+	codes["sector_category"]=o;
+
+
 
 	console.log("Fetching country_codes")
 
@@ -137,6 +170,7 @@ iati_codes.fetch = function(){
 	var x=wait.for(https_getbody,"https://en.wikipedia.org/wiki/ISO_3166-1_alpha-2");
 	var j=refry.xml(x);
 	var o={};
+	
 	refry.tags(j,{0:"table",class:"wikitable"},function(it){
 		refry.tags(it,"td",function(it){
 			var name=it.title;
@@ -144,7 +178,7 @@ iati_codes.fetch = function(){
 //console.log(code+" : "+name);
 			if( name && code )
 			{
-				if(name!="unassigned" && name!="user-assigned")
+				if(name!="unassigned" && name!="user-assigned" && name!="Unassigned" && name!="User-assigned")
 				{
 					var aa=name.split(":");
 					if(aa[1])
@@ -162,11 +196,11 @@ iati_codes.fetch = function(){
 			}
 		});
 	});
-
+	
 //	ls(o);
 
 	o["XK"]="Kosovo" // yeah this is much better than having it in a list *rolls*eyes*
-
+	
 	codes["country"]=o;
 
 
@@ -180,57 +214,13 @@ iati_codes.fetch = function(){
 // local currency ->       https://docs.google.com/spreadsheet/pub?key=0AmauX4JNk0rJdHRWY1dRTkQ3dXJaeDk4RFZFWElaSHc&single=true&gid=8&output=csv
 
 
-	console.log("Fetching IATI sector IDS csv")
-
-	var x=wait.for(https_getbody,sheeturl(9));
-	var lines=wait.for(csv_parse,x);
-
-	var o={};
-
-	for(var i=1;i<lines.length;i++)
-	{
-		var v=lines[i];
-		var d=(v[0]);
-		var str=v[1];
-		if(d && str)
-		{
-			o[d.trim()]=str.trim();
-		}
-	}
-	codes["sector_names"]=o;
-
-	var rev_sector_names={};
-	for( var n in codes["sector_names"]   ) { rev_sector_names[   codes["sector_names"  ][n] ]=n }
-
-
-	console.log("Fetching IATI sector groups csv")
-
-	var x=wait.for(https_getbody,sheeturl(0));
-	var lines=wait.for(csv_parse,x);
-
-
-	var o={};
-
-	for(var i=1;i<lines.length;i++)
-	{
-		var v=lines[i];
-		var num=parseInt(v[0]);
-		var str=v[1];
-		if(num && str)
-		{
-			o[num]=rev_sector_names[str.trim()];
-		}
-	}
-//ls(lines)
-//ls(o);
-
-	codes["sector_group"]=o;
 
 
 	console.log("Fetching IATI funders csv")
 
 	var x=wait.for(https_getbody,sheeturl(2));
-	var lines=wait.for(csv_parse,x);
+//	var lines=wait.for(csv_parse,x);
+	var lines=baby.parse(x).data;
 
 
 	var o={};
@@ -244,7 +234,7 @@ iati_codes.fetch = function(){
 			o[a.trim()]=b.trim();
 		}
 	}
-
+	
 //	ls(o);
 	codes["iati_funders"]=o;
 
@@ -252,7 +242,8 @@ iati_codes.fetch = function(){
 	console.log("Fetching IATI currencies csv")
 
 	var x=wait.for(https_getbody,sheeturl(10));
-	var lines=wait.for(csv_parse,x);
+//	var lines=wait.for(csv_parse,x);
+	var lines=baby.parse(x).data;
 
 
 	var o=[];
@@ -266,11 +257,11 @@ iati_codes.fetch = function(){
 			o.push({id:a.trim(),name:b.trim()});
 		}
 	}
-
+	
 //	ls(o);
 	codes["iati_currencies"]=o;
-
-
+	
+	
 
 	console.log("Fetching local currency csv")
 
@@ -287,15 +278,16 @@ iati_codes.fetch = function(){
 			o[a.trim()]=b.trim();
 		}
 	}
-
+	
 //	ls(o);
 	codes["local_currency"]=o;
 
-
+	
 	console.log("Fetching CRS funders csv")
 
 	var x=wait.for(https_getbody,sheeturl(4));
-	var lines=wait.for(csv_parse,x);
+//	var lines=wait.for(csv_parse,x);
+	var lines=baby.parse(x).data;
 
 	var d={};
 	var o={};
@@ -307,22 +299,39 @@ iati_codes.fetch = function(){
 		var a=(v[1]);
 		var b=v[0];
 		var c=v[2];
+		var n=parseInt(v[4])||0;
 		var display_name=v[3];
 		if(a && a.length>0 && b && b.length>0 )
 		{
 			o[a.trim()]=b.trim();
 			r[b.trim()]=a.trim();
+
+			if(n) // number
+			{
+				o[a.trim()]=n;
+				r[n]=a.trim();
+			}
 		}
 		if(a && a.length>0 && c && c.length>0 )
 		{
 			d[a.trim()]=true;
+
+//			if(n) // number
+//			{
+//				d[n]=true;
+//			}
 		}
 		if(a && a.length>0 && display_name && display_name.length>0 )
 		{
 			funder_names[a.trim()]=display_name;
+
+			if(n) // number
+			{
+				funder_names[n]=display_name;
+			}
 		}
 	}
-
+	
 //	ls(o);
 	codes.funder_names=funder_names;
 	codes.crs_funders=o;
@@ -333,7 +342,8 @@ iati_codes.fetch = function(){
 	console.log("Fetching CRS countries csv")
 
 	var x=wait.for(https_getbody,sheeturl(7));
-	var lines=wait.for(csv_parse,x);
+//	var lines=wait.for(csv_parse,x);
+	var lines=baby.parse(x).data;
 
 	var o={};
 	var r={};
@@ -350,15 +360,16 @@ iati_codes.fetch = function(){
 	}
 	codes.crs_countries=o;
 	codes.rev_crs_countries=r;
-
-
-	console.log("Writing json/iati_codes.json")
+	
+		
+	console.log("Writing json/iati_codes.json")	
 //	fs.writeFileSync("json/iati_codes.js","exports.codes="+JSON.stringify(codes)+";\n");
 	fs.writeFileSync(__dirname+"/../json/iati_codes.json",JSON.stringify(codes,null,'\t'));
 
-
+	
 	var x=wait.for(https_getbody,sheeturl(3));
-	var lines=wait.for(csv_parse,x);
+//	var lines=wait.for(csv_parse,x);
+	var lines=baby.parse(x).data;
 
 	var o={};
 
@@ -369,7 +380,7 @@ iati_codes.fetch = function(){
 		head[i]=codes.rev_crs_funders[ v.trim() ];
 	}
 //	ls(head);
-
+	
 	for(var i=1;i<lines.length;i++)
 	{
 		var v=lines[i];
@@ -392,7 +403,7 @@ iati_codes.fetch = function(){
 			}
 		}
 	}
-
+	
 //	ls(o);
 
 	console.log("Writing json/crs_2012.json")
@@ -405,7 +416,8 @@ iati_codes.fetch = function(){
 //
 
 	var x=wait.for(https_getbody,sheeturl(11));
-	var lines=wait.for(csv_parse,x);
+//	var lines=wait.for(csv_parse,x);
+	var lines=baby.parse(x).data;
 
 	var o={};
 
@@ -416,7 +428,7 @@ iati_codes.fetch = function(){
 		head[i]=v.trim();
 	}
 //	ls(head);
-
+	
 	for(var i=1;i<lines.length;i++)
 	{
 		var v=lines[i];
@@ -439,7 +451,7 @@ iati_codes.fetch = function(){
 			}
 		}
 	}
-
+	
 //	ls(o);
 
 	console.log("Writing json/crs_2012_sectors.json")
@@ -448,7 +460,8 @@ iati_codes.fetch = function(){
 
 
 	var x=wait.for(https_getbody,sheeturl(14));
-	var lines=wait.for(csv_parse,x);
+//	var lines=wait.for(csv_parse,x);
+	var lines=baby.parse(x).data;
 
 	var o={};
 
@@ -459,7 +472,7 @@ iati_codes.fetch = function(){
 		head[i]=codes.rev_crs_funders[ v.trim() ];
 	}
 //	ls(head);
-
+	
 	for(var i=1;i<lines.length;i++)
 	{
 		var v=lines[i];
@@ -482,7 +495,7 @@ iati_codes.fetch = function(){
 			}
 		}
 	}
-
+	
 //	ls(o);
 
 	console.log("Writing json/crs_2013.json")
@@ -495,7 +508,8 @@ iati_codes.fetch = function(){
 //
 
 	var x=wait.for(https_getbody,sheeturl(15));
-	var lines=wait.for(csv_parse,x);
+//	var lines=wait.for(csv_parse,x);
+	var lines=baby.parse(x).data;
 
 	var o={};
 
@@ -506,6 +520,50 @@ iati_codes.fetch = function(){
 		head[i]=v.trim();
 	}
 //	ls(head);
+	
+	for(var i=1;i<lines.length;i++)
+	{
+		var v=lines[i];
+		var a=codes.rev_crs_countries[ v[0].trim() ];
+		if(a)
+		{
+			var t={};
+			o[a]=t;
+			for(var j=0;j<v.length;j++)
+			{
+				var h=head[j];
+				if(h)
+				{
+					var n=Number(v[j]);
+					if(n)
+					{
+						t[h]=Math.round(n*1000000); // convert to usd, from millions of usd
+					}
+				}
+			}
+		}
+	}
+	
+//	ls(o);
+
+	console.log("Writing json/crs_2013_sectors.json")
+//	fs.writeFileSync("json/crs_2012.js","exports.crs="+JSON.stringify(o)+";\n");
+	fs.writeFileSync(__dirname+"/../json/crs_2013_sectors.json",JSON.stringify(o,null,'\t'));
+
+
+
+	var x=wait.for(https_getbody,sheeturl(1794224901));
+//	var lines=wait.for(csv_parse,x);
+	var lines=baby.parse(x).data;
+
+	var o={};
+
+	var head=[];
+	for(var i=0;i<lines[0].length;i++)
+	{
+		var v=lines[0][i];
+		head[i]=codes.rev_crs_funders[ v.trim() ];
+	}
 
 	for(var i=1;i<lines.length;i++)
 	{
@@ -529,30 +587,160 @@ iati_codes.fetch = function(){
 			}
 		}
 	}
-
+	
 //	ls(o);
 
-	console.log("Writing json/crs_2013_sectors.json")
-//	fs.writeFileSync("json/crs_2012.js","exports.crs="+JSON.stringify(o)+";\n");
-	fs.writeFileSync(__dirname+"/../json/crs_2013_sectors.json",JSON.stringify(o,null,'\t'));
+	console.log("Writing json/crs_2014.json")
+	fs.writeFileSync(__dirname+"/../json/crs_2014.json",JSON.stringify(o,null,'\t'));
+
+	var x=wait.for(https_getbody,sheeturl(830372680));
+//	var lines=wait.for(csv_parse,x);
+	var lines=baby.parse(x).data;
+
+	var o={};
+
+	var head=[];
+	for(var i=0;i<lines[0].length;i++)
+	{
+		var v=lines[0][i];
+		head[i]=v.trim();
+	}
+//	ls(head);
+	
+	for(var i=1;i<lines.length;i++)
+	{
+		var v=lines[i];
+		var a=codes.rev_crs_countries[ v[0].trim() ];
+		if(a)
+		{
+			var t={};
+			o[a]=t;
+			for(var j=0;j<v.length;j++)
+			{
+				var h=head[j];
+				if(h)
+				{
+					var n=Number(v[j]);
+					if(n)
+					{
+						t[h]=Math.round(n*1000000); // convert to usd, from millions of usd
+					}
+				}
+			}
+		}
+	}
+
+	console.log("Writing json/crs_2014_sectors.json")
+	fs.writeFileSync(__dirname+"/../json/crs_2014_sectors.json",JSON.stringify(o,null,'\t'));
+
+
+
+
+
+
+
+	var x=wait.for(https_getbody,sheeturl(1661036011));
+	var lines=baby.parse(x).data;
+
+	var o={};
+
+	var head=[];
+	for(var i=0;i<lines[0].length;i++)
+	{
+		var v=lines[0][i];
+		head[i]=codes.rev_crs_funders[ v.trim() ];
+	}
+
+	for(var i=1;i<lines.length;i++)
+	{
+		var v=lines[i];
+		var a=codes.rev_crs_countries[ v[0].trim() ];
+		if(a)
+		{
+			var t={};
+			o[a]=t;
+			for(var j=0;j<v.length;j++)
+			{
+				var h=head[j];
+				if(h)
+				{
+					var n=Number(v[j]);
+					if(n)
+					{
+						t[h]=Math.round(n*1000000); // convert to usd, from millions of usd
+					}
+				}
+			}
+		}
+	}
+	console.log("Writing json/crs_2015.json")
+	fs.writeFileSync(__dirname+"/../json/crs_2015.json",JSON.stringify(o,null,'\t'));
+
+
+
+
+	var x=wait.for(https_getbody,sheeturl(2056313976));
+	var lines=baby.parse(x).data;
+
+	var o={};
+
+	var head=[];
+	for(var i=0;i<lines[0].length;i++)
+	{
+		var v=lines[0][i];
+		head[i]=v.trim();
+	}
+//	ls(head);
+	
+	for(var i=1;i<lines.length;i++)
+	{
+		var v=lines[i];
+		var a=codes.rev_crs_countries[ v[1].trim() ];
+		if(a)
+		{
+			var t={};
+			o[a]=t;
+			for(var j=2;j<v.length;j++)
+			{
+				var h=head[j];
+				if(h)
+				{
+					var n=Number(v[j]);
+					if(n)
+					{
+						t[h]=Math.round(n*1000000); // convert to usd, from millions of usd
+					}
+				}
+			}
+		}
+	}
+	console.log("Writing json/crs_2015_sectors.json")
+	fs.writeFileSync(__dirname+"/../json/crs_2015_sectors.json",JSON.stringify(o,null,'\t'));
+
+
+
+
+
+
 
 console.log("************************ This next bit takes a loooooong time to get every publisher id from iati...");
+console.log("************************ It's OK to CTRL+C and skip this last bit if you don't care.");
 if(true)
 {
 //	codes.publisher_ids={};
 	codes.publisher_names={};
 	codes.publisher_secondary={};
 
-	var js=wait.for(http_getbody,"http://iatiregistry.org/api/rest/group");
+	var js=wait.for(https_getbody,"https://iatiregistry.org/api/rest/group");
 	var j=JSON.parse(js);
 	j.forEach(function(v){
 		console.log("Fetching publisher info for "+v);
-		var jjs=wait.for(http_getbody,"http://iatiregistry.org/api/rest/group/"+v);
+		var jjs=wait.for(https_getbody,"https://iatiregistry.org/api/rest/group/"+v);
 		var jj=JSON.parse(jjs);
 		publishers[v]=jj
-
+		
 		if(jj.extras)
-		{
+		{			
 			var ids=jj.extras.publisher_iati_id.split("|");
 			for(var i=0;i<ids.length;i++)
 			{
@@ -565,12 +753,12 @@ if(true)
 					}
 					else
 					{
-console.log("unpublished "+id);
+console.log("unpublished "+id);				
 					}
 					if(jj.extras.publisher_source_type=="secondary_source")
 					{
 						codes.publisher_secondary[id]=jj.title;
-console.log("secondary "+id);
+console.log("secondary "+id);				
 					}
 				}
 			}
@@ -579,10 +767,11 @@ console.log("secondary "+id);
 
 // add a temp publisher id
 	codes.publisher_names["XI-IATI-OFID"]="The OPEC Fund for International Development"
-
+	codes.publisher_names["XI-IATI-WHS-NEPAL"]="Nepal Traceability Study 2016"
+	
 //	ls(publishers);
 
-	console.log("Writing json/iati_codes.json")
+	console.log("Writing json/iati_codes.json")	
 //	fs.writeFileSync("json/iati_codes.js","exports.codes="+JSON.stringify(codes)+";\n");
 	fs.writeFileSync(__dirname+"/../json/iati_codes.json",JSON.stringify(codes,null,'\t'));
 
@@ -619,6 +808,8 @@ console.log("secondary "+id);
 
 //	return;
 */
-}
+}	
 
 }
+
+

@@ -1,14 +1,18 @@
 {
-  "name": "dportal",
-  "description": "d-portal.org static website builder",
+  "private": true,
+  "name": "d-portal.org",
+  "description": "The static website hosted at d-portal.org is generated using plated.",
   "version": "0.0.1",
   "repository": {
     "type": "git",
-    "url": "https://github.com/IATI/IATI-Country-Tracker.git"
+    "url": "git@github.com:devinit/D-Portal.git"
   },
   "dependencies": {
+    "plated": "*",
+    "ecstatic": "*",
     "express": "*",
     "marked": "*",
+    "express-fileupload": "*",
     "morgan": "*",
     "pm2": "*",
     "sendgrid": "^2.0.0",

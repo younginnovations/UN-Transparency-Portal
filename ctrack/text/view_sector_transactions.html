@@ -8,13 +8,12 @@
 {main_head}
 {main_min}
 {about_data_links}
-{sectors_head}
+{sector_views_head}
 <div class="title_wrap">
 	<table class="title">
 		<tr>
 			<td class="icon"><img src="{flava}activity_icon.png" alt="{activity_icon_alt_text}" width="40" height="40"/></td>
-			<td>{view_sector_transactions_text}</td>
-			<td class="total_spend">= {total} ({USD})</td>
+			<td>{view_sector_transactions_text} = {total} ({USD})</td>
 		</tr>
 	</table>
 	<div class="table_wrap">
@@ -23,7 +22,7 @@
 			{table_header_amount}
 			{sector_transactions_datas}
 		</table>
-		<a download="dportal_sector_transactions.csv" href="{sector_transactions_datas_csv}" class="csv_download">{download_csv_text}</a>
+		<div class="download_wrap"><a download="dportal_sector_transactions.csv" href="{sector_transactions_datas_csv}" class="csv_download">{download_csv_text}</a></div>
 	</div>
 	<div class="center_wrap">
 		<a href="#view=sectors" class="button">{list_sector_back_text}</a>
@@ -47,7 +46,7 @@
 #sector_transactions_data
 <tr onclick="return ctrack.url('#view=act&aid={aid}');">
 	<td class="num">{num}.</td>
-	<td class="title" title="{project_title_tip_text}">
+	<td class="title">
 		<a>
 			{title}
 			<span>{reported_by_text}</span>

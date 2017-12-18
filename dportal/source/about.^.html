@@ -1,0 +1,386 @@
+#^html
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>{about_title_text}</title>
+    <script src="/jslib/jquery.js"></script>
+    <link href="/ctrack/art/original/ctrack.css" rel="stylesheet" type="text/css">
+    {ganal}
+</head>
+<body>
+<div class="about-page">
+
+    <nav>
+        <div class="menu-wrap">
+            <div class="img-wrap">
+                <a href="/"><img class="logo-img" src="/ctrack/art/UNDG_logo.png" alt="UNDG logo"/></a>
+            </div>
+
+            <div class="menu-link-wrap">
+                <div class="menu">
+                    <a style="font-weight:600; font-size:12px; color:gold;" href="https://undg.org/undg-data-visualization-contest/" target="_blank">
+                        <span>{data_visualization_contest}</span>
+                    </a>
+                </div>
+                <div class="menu">
+
+                    <a href="about.html">
+                        <span>{about_text}</span>
+                    </a>
+                </div>
+
+                <div class="menu">
+                    <a href="/ctrack.html#view=generator">
+                        <span>{install_button_text}</span>
+                    </a>
+                </div>
+                <div class="menu">
+                    <a href="javascript:" id="sendFeedbackPopup">
+                        <span>{develop_button_text}</span>
+                    </a>
+                    <div id="myModal" class="modal">
+                        <div class="modal-content">
+                            <span class="close">×</span>
+                            <h2 class="modal-header">Send Feedback</h2>
+                            <div class="modal-body">
+                                <div id="emptyAlert"></div>
+                                <form id="feedbackForm" name="feedbackForms">
+                                    <input class="form-control" type="text" id="fullname" name="fullname" placeholder="YOUR NAME" required>
+                                    <input class="form-control" type="email" id="email" name="email" placeholder="YOUR EMAIL" required>
+                                    <textarea class="form-control" placeholder="YOUR MESSAGE" id="message" name="message" required></textarea>
+                                    <button class="form-button" type="button" id="sendFeedback">Send Message</button>
+                                </form>
+                                <div id="githubIssue">You can also post Github issues <a href="https://github.com/younginnovations/UN-Transparency-Portal/issues" target="_blank">here</a></div>
+                            </div>
+                        </div>
+                    </div>
+                    <div id="myModalSuccess" class="modalSuccess">
+                        <div class="modal-content-success">
+                            <span class="close">×</span>
+                            <h2 class="modal-header">Send Feedback</h2>
+                            <div class="modal-body">
+                                <h2 class="successMessage">Your message has been successfully sent.</h2>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!--<div class="tongue_wrap">{tongue_select}</div>-->
+            </div>
+        </div>
+    </nav>
+    <div class="crumb_wrap">
+        <div>
+            <a href="/" class="crumb first">Home</a> >
+            <span>about</span>
+        </div>
+    </div>
+    <h2 class="title">About UNDG Transparency Portal</h2>
+
+    <div class="about-info">
+        <div>
+            <h3><strong>The United Nations commitment to transparency</strong></h3>
+            <p>
+                The UN development system works to meet the request by the UN Economic and Social Council through the Quadrennial Comprehensive Policy Review to strengthen the analytical quality of system-wide reporting on funding and performance and programme results for United Nations operational activities for development, including the coverage, timeliness, reliability, quality and comparability of system wide data, definitions and classifications.
+            </p>
+
+            <p>
+                As part of this commitment to transparency, in 2011, at the Fourth High Level Forum on Aid Effectiveness in Busan, Korea, the United Nations Development Group, endorsed the Busan Partnership for Effective Development Co-operation including a commitment to publish data according to IATI standard. An increasing number of UNDG members and observers are now publishing data and joining the International Aid Transparency Initiative (IATI) as members.
+            </p>
+
+            <h3><strong>IATI</strong></h3>
+            <p>
+                IATI is a voluntary, multi-stakeholder initiative that seeks to improve the transparency of aid, development, and humanitarian resources in order to increase their effectiveness in tackling poverty. It brings together donor and recipient countries, civil society organizations, and other experts in aid information who are committed to working together to increase the transparency and openness of aid. At the center of IATI is the IATI Standard, a format and framework for publishing data on development cooperation activities, intended to be used by all organizations in development, including government donors, private sector organizations, and national and international NGOs. It was designed in close consultation with key users of development cooperation data in developing countries, to ensure its relevance and utility for a variety of different data users.[1]
+            </p>
+
+            <h3><strong>UNDG at country level</strong></h3>
+            <p>
+                The UNDG has approved the Standard Operating Procedures for countries adopting the delivering as one approach. These include the development of consolidated financial frameworks that are designed to increase transparency by providing governments, donors and other stakeholders with a simplified single overview of the funding situation.
+            </p>
+            <p>
+                With a view to consolidating these various efforts, the UNDG has developed this portal which draws together all the data published to IATI by UN entities. It promotes a common approach to the application of transparency standards amongst UNDG members through the publication of financial and activity data according to the IATI standard. The portal is overseen by the UNDG Data and transparency task team.
+            </p>
+            <p>Questions? Contact <a class="mail" href="mailto:kit.doco@undg.org">kit.doco@undg.org</a></p>
+
+        </div>
+        <div>
+            <h3>How to use the portal?</h3>
+
+            <p>The portal displays data of all UNDG members that are currently publishing data as per the IATI standard.
+                The data is updated in real time by pulling data from the IATI registry
+                <a href="http://www.d-portal.org/">(http://www.d-portal.org/)</a>, the central data store gathering all
+                data published to the IATI standard. This portal is meant to be a way for our partners to see all UNDG
+                related data in one place. Data can be displayed by country, UN agency or sector.</p>
+        </div>
+    </div>
+    <div class="footer_wrap">
+        <div class="footer">
+            <div class="footer_link">
+                {footer1_text}<a href="http://undg.org/" title="{footer1_tip_text}">United Nations Development Group</a>
+            </div>
+            <div class="footer_link top_about_wrap">
+                <div class="about">
+                    <a href="{tongue_root}about.html">{footer3_text}</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>
+<script>
+    var modal = document.getElementById('myModal');
+
+    var btn = document.getElementById("sendFeedbackPopup");
+
+    var cross = document.getElementsByClassName("close")[0];
+
+    btn.onclick = function() {
+        modal.style.display = "block";
+        $("body").css('overflow','hidden');
+    }
+
+    cross.onclick = function() {
+        modal.style.display = "none";
+        $("body").css('overflow','visible');
+    }
+
+    window.onclick = function(event) {
+        if (event.target == modal) {
+            modal.style.display = "none";
+            $("body").css('overflow','visible');
+        }
+    }
+    $("#sendFeedback").on('click',function(e){
+        e.preventDefault();
+        var name  = $('#fullname').val();
+        var trimmedName = $.trim(name);
+        var email  = $('#email').val();
+        var message = $('#message').val();
+        var trimmedMessage = $.trim(message);
+        var atPos = email.indexOf("@");
+        var dotPos = email.lastIndexOf(".");
+        if(trimmedName == ""){
+            $("#emptyAlert").html("Please enter your name!");
+            $("#fullname").focus();
+            return false;
+        }
+        if(email == ""){
+            $("#emptyAlert").html("Please enter your email address!");
+            $("#email").focus();
+            return false;
+        }
+        if( atPos < 1 || dotPos < atPos+2 || dotPos+2>=email.length){
+            $("#emptyAlert").html("Please enter a valid email address!");
+            $("#email").css("border","1px solid #BB0303");
+            return false;
+        }
+        if(trimmedMessage == ""){
+            $("#emptyAlert").html("Please enter your message!");
+            $("#message").focus();
+            return false;
+        }
+        var data = {name: name, email: email,message:message};
+        $.ajax({
+            url : '/feedback',
+            data : data,
+            success : function(response){
+                $("#myModal").hide();
+                $("#emptyAlert").empty();
+                $('#fullname').val("");
+                $('#email').val("");
+                $("#email").css("border","1px solid #bbb");
+                $("#email").css("background","#fff");
+                $('#message').val("");
+                $("#myModalSuccess").show();
+                setInterval(function(){
+                    $("#myModalSuccess").hide();
+                    $("body").css('overflow','visible');
+                },3000);
+            }
+        });
+    });
+</script>
+</body>
+</html>
+
+#^main_head
+<div class="navi">
+    <table class="head">
+        <tr>
+            <td class="logo">
+                <a href="{tongue_root}" title="{mainback_tip_text}">
+                    <img src="/ctrack/art/original/UNDG_logo.png" alt="{dportal_logo_alt_text}" height="47px"/>
+                </a>
+            </td>
+            <td class="options">{tongue_select}</td>
+        </tr>
+
+    </table>
+</div>
+
+#^css same=append
+#background_image	{width:100%; height:100%; position:fixed; top:0; left:0; z-index:-1; background-image:url('/ctrack/art/backgroundimage.jpg'); background-repeat:no-repeat; background-position:center center; -webkit-background-size:cover; -moz-background-size:cover; -o-background-size:cover; background-size:cover;}
+.overlay			{width:100%; height:100%; background-color:rgba(19, 16, 1, 0.8);}	/* Overlay colour for background image */
+a					{-webkit-transition:all .2s ease-in-out; -moz-transition:all .2s ease-in-out; -o-transition:all .2s ease-in-out; -ms-transition:all .2s ease-in-out; transition:all .2s ease-in-out; cursor:pointer;}
+img					{-webkit-filter:brightness(100%); filter:brightness(100%);}
+
+/*	Blog posts images
+	============================================= */
+	
+img					{max-width:750px; height:inherit;}
+
+
+/*	Navigation
+	============================================= */
+
+table.head			{width:960px; margin:0 auto; position:relative;}
+table.head td.logo, table.head td.options	{padding-top:20px}
+table.head td.options	{color:#FFF; text-align:right; vertical-align:middle; font-size:0.9em;}
+table.head td.dplinks	{text-align:center;}
+.navi				{width:100%; background-color:rgba(42,42,42,0.8); padding-bottom:30px; position:fixed; z-index:100;}
+a.top				{display:block; color:#fff; font-size:18px; vertical-align:top; padding-top: 45px; border-top:5px solid rgba(0,0,0,0);}
+a.top.install:hover	{border-top:5px solid #2573CD;}
+a.top.savi:hover	{border-top:5px solid rgba(255,165,0,1);}
+a.top.hub:hover		{border-top:5px solid rgba(255,255,255,1);}
+a.top.news:hover	{border-top:5px solid #495BBE;}
+a.top.dash:hover	{border-top:5px solid #2DA620;}
+a.top.faq:hover		{border-top:5px solid #DEDEDE;}
+
+
+/*	Wrappers
+	============================================= */
+
+.mid_wrap			{display:inline-block; vertical-align:top; width:460px; max-width:460px;}
+.about_wrap			{width:100%; background-color:#2573CD; padding:140px 0 50px 0;}
+.about_wrap.more	{background-color:rgba(10, 14, 20, 0.35); padding:0 0 100px 0;}
+.about_wrap.moretxt	{font-size:1.1em; color:#fff; line-height:1.55em; margin-bottom:40px; background:none;}
+.about_wrap.sav		{background-color:#FFA500;}
+.about_wrap.install	{background-color:#2573CD; padding:0 0 40px 0;}
+.about_wrap.dash	{background-color:#2DA620; padding:0 0 40px 0;}
+.about_wrap.dq		{background-color:#724900; padding:0 0 50px 0;}
+.about_wrap.q		{background-color:#4F3200; padding:0 0 40px 0;}
+.about_wrap.sources	{background-color:rgba(10, 14, 20, 0.35); padding:120px 0;}
+.about_wrap.git		{background-color:#fff; padding:160px 0 120px 0;}
+
+
+/*	Text styles
+	============================================= */
+
+h1				{font-weight:bold; font-size:38px; display:block; padding-top:30px;}
+h2				{font-weight:bold; font-size:30px; display:block; padding-top:30px;}
+h3				{font-weight:bold; font-size:24px; display:block; padding-top:30px;}
+h4				{font-style:italic; font-size:16px; display:block; padding-top:30px; padding-bottom:10px; border-bottom:1px solid #fff; margin-bottom:20px;}
+p				{color:#fff; padding:15px 0;}
+.mid_wrap p		{color:#fff; padding:30px 0 5px;}
+.about_head		{color:#fff; line-height:1.25em; font-size:22px; padding:30px 0 0px 40px;}
+.about_info		{font-size:18px; line-height:1.4em; color:#E8F6FF; padding-top:10px;}
+.sources_head	{color:#fff; font-size:28px; padding-top:80px; margin-bottom:40px;}
+.sav_head		{color:#fff; line-height:1.25em; font-size:22px; padding:40px 0 40px 40px;}
+.sav_info		{font-size:18px; line-height:1.4em; padding-top:10px; color:#FFF0D4;}
+.dq_info		{font-size:18px; line-height:1.4em; padding:20px; color:#FFC761;}
+.footer_link.mit{font-size:13px; line-height:13px; color:#fff; text-align:right;}
+a.co			{color:#5E96DD;}
+a.co:hover		{text-decoration:underline;}
+a.country_portal{color:#031B35;}
+a.country_portal:hover	{text-decoration:underline;}
+a.dash_link		{color:#000;}
+a.dash_link:hover{text-decoration:underline;}
+a.how			{display:inline-block; padding:5px 10px; background-color:#2573CD; color:rgba(10, 14, 20, 1); border-radius:6px; font-size:0.8em; font-weight:bold; margin-right:5px;}
+a.how:hover		{background-color:#3794FF;}
+a.news_link		{display:list-item; list-style-type:decimal; font-style:italic; list-style-position:inside; font-style:italic;}
+
+
+/*	About dstore and q
+	============================================= */
+
+.l0			{width:470px; max-width:470px; border-right:10px solid #FFA500; height:100px; max-height:100px;}
+.l1			{display:inline-block; vertical-align:top; width:240px; max-width:240px; height:100px; max-height:100px;}
+.l2			{display:inline-block; vertical-align:top; width:230px; max-width:230px; border-left:10px solid #FFA500; border-top:10px solid #FFA500; height:90px; max-height:90px;}
+.l3			{display:inline-block; vertical-align:top; width:230px; max-width:230px; border-right:10px solid #FFA500; border-top:10px solid #FFA500; height:90px; max-height:90px;}
+.l4			{display:inline-block; vertical-align:top; width:240px; max-width:240px; height:100px; max-height:100px;}
+.dq_wrap	{display:inline-block; vertical-align:top; width:400px; max-width:400px; padding:40px;}
+.arrow		{width:0; height:0; border-top:30px solid #724900; border-left:30px solid transparent; border-right:30px solid transparent; margin-bottom:80px;}
+.arrow.more	{margin:0; border-top:30px solid #2573CD;}
+
+
+/*	q examples
+	============================================= */
+
+.qhead		{color:#FFA500; font-size:28px; margin-bottom:60px;}
+.qabt		{color:#B17300; font-size:16px; line-height:1.2em;}
+.qinfo		{color:#FFA500; font-size:18px; line-height:1.3em; padding:20px 0; margin-bottom:30px;}
+span.qdef	{display:inline-block; vertical-align:top; color:#FFBD44; font-size:16px; font-family:monospace;}
+a.qeg		{display:block; padding:10px 30px; background-color:#201500; margin-bottom:20px; color:#fff; font-size:18px; font-family:monospace;}
+a.qeg:hover	{background-color:#0E0900;}
+
+
+/*	Attribution and link to data sources
+	============================================= */
+	
+table.sources			{width:960px; margin:0 auto; color:#fff; table-layout:fixed;}
+table.sources th		{text-align:left; font-weight:bold; padding:20px 20px 20px 0;}
+table.sources th.col1	{width:25%;}
+table.sources th.col2	{width:40%;}
+table.sources th.col3	{width:35%;}
+table.sources td		{padding:10px 20px 10px 0; line-height:1.45em; border-bottom:1px solid #505050; vertical-align:bottom;}
+table.sources td:hover	{cursor:default;}
+table.sources td:first-child	{color:#D0DEF0;}
+table.sources td a		{color:#5E96DD;}
+table.sources td a:hover{color:#A5CDFF; text-decoration:underline;}
+
+
+/*	Github
+	============================================= */
+
+.gitcon		{display:inline-block; vertical-align:top; width:760px; max-width:760px;}
+.gitinfo	{padding:20px 100px 0 0; font-size:18px; line-height:1.3em;}
+.gitinfo p	{color:#444;}
+.octocat	{display:inline-block; vertical-align:top; width:200px; max-width:200px;}
+a.git		{display:block; font-size:38px; color:#444;}
+a.git.small	{font-size:inherit; display:inline-block;}
+a.git:hover	{color:#1E90FF; text-decoration:underline;}
+
+
+/*	FAQ page
+	============================================= */
+
+.faq_head				{font-size:38px; position:absolute; top:0; left:0; padding:40px 0 40px 100px; color:#FFF; width:860px;}
+.faq_head.a				{background-color:#2BF26C;}
+.faq_head.b				{background-color:#FF980A;}
+.faq_head.c				{background-color:#7BC2FF;}
+
+.navi.clear				{background-color:transparent; position:initial;}
+.about_wrap.faq			{background-color:transparent; padding:40px 0;}
+
+.faq_wrap				{width:960px; margin:0 auto; background-color:#FFF; padding:100px 40px 40px 40px; box-sizing:border-box; position:relative;}
+.faq_links_wrap			{padding:40px 0 60px 60px; counter-reset:section;}
+.faq_links_wrap a::before{counter-increment:section; content:counter(section) ". ";}
+.faq_links_wrap a		{display:block; padding-top:10px; color:#444; list-style-type:decimal; list-style-position:inside;}
+.faq_links_wrap a:hover	{text-decoration:underline;}
+
+ul.faq_list				{padding-left:60px;}
+ul.faq_list li			{font-size:1.2em; font-weight:bold; line-height:1.2em; padding-bottom:10px; list-style-type:decimal;}
+
+a.topics				{display:inline-block; padding:20px; color:#FFF; background-color:#2CE268; vertical-align:top; width:310px; box-sizing:border-box; text-align:center; border-radius:8px 8px 0 0; font-size:1.8em;}
+a.topics.a:hover		{background-color:#2BF26C;}
+a.topics.b				{margin-left:15px; margin-right:15px; background-color:#FF860E;}
+a.topics.b:hover		{background-color:#FF980A;}
+a.topics.c				{background-color:#53AEFF;}
+a.topics.c:hover		{background-color:#7BC2FF;}
+a.topics.a.on			{background-color:#2BF26C;}
+a.topics.b.on			{background-color:#FF980A;}
+a.topics.c.on			{background-color:#7BC2FF;}
+a.topics:hover			{-webkit-transition:all .2s ease-in-out; -moz-transition:all .2s ease-in-out; -o-transition:all .2s ease-in-out; -ms-transition:all .2s ease-in-out; transition:all .2s ease-in-out; cursor:pointer;}
+
+span.info				{display:block; color:#444; font-size:0.8em; line-height:1.4em; font-weight:normal; padding:10px 40px 40px 5px;}
+span.info ul			{padding-left:20px;}
+span.info li			{font-weight:normal; font-size:1.0em; list-style-type:lower-latin; padding:10px 0 0 0;}
+span.info a				{color:#2573CD;}
+span.info a:hover		{text-decoration:underline;}
+span.info p				{color:#444; padding:10px 0 0 0;}
+
+ul.faq_list li.on span.list	{background-color:#BEE1FF; padding:5px 10px;}
+
+a.faq_top				{display:block; position:fixed; right:100px; top:250px; padding:10px 10px 10px 20px; border-radius:0 4px 4px 0; background-color:#DEDEDE; color:#444; font-size:0.9em; font-weight:bold; width:60px; line-height:1.2em;}
+a.faq_top:hover			{background-color:#EBEBEB;}
+
+

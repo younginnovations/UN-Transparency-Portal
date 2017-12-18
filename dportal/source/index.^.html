@@ -1,0 +1,713 @@
+#^html
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>{welcome_text}</title>
+    <script src="jslib/d3.min.js"></script>
+    <link href="/ctrack/art/chosen.min.css" rel="stylesheet" type="text/css">
+    <link href="/ctrack/art/jquery.bxslider.css" rel="stylesheet" type="text/css">
+    <link href="/ctrack/art/index.css" rel="stylesheet" type="text/css">
+    <script src="jslib/jquery.js"></script>
+    <script src="jslib/chosen.jquery.min.js"></script>
+    <script src="jslib/jquery.bxslider.js"></script>
+    <script src="jslib/imagesloaded.pkgd.min.js"></script>
+    {ganal}
+</head>
+<body ontouchstart="">
+{jsmenu}
+<div class="portal">
+    <div class="main_wrap">
+        <div id="overlay" class="overlay">
+            <div id="mainTooltip" class="hidden">
+                <p><span id="value"></span></p>
+            </div>
+            <div class="default index">
+                <nav>
+                    <div class="menu-wrap">
+                        <div class="img-wrap">
+                            <a href="/"><img class="logo-img" src="/ctrack/art/UNDG_logo.png" alt="UNDG logo"/></a>
+                        </div>
+                        <div class="menu-link-wrap">
+                            <div class="menu">
+                                <a style="font-weight:600; font-size:12px; color:gold;" href="https://undg.org/undg-data-visualization-contest/" target="_blank">
+                                    <span>{data_visualization_contest}</span>
+                                </a>
+                            </div>
+                            <div class="menu">
+                                <a href="about.html">
+                                    <span>{about_text}</span>
+                                </a>
+                            </div>
+                            <div class="menu">
+                                <a href="/ctrack.html#view=generator">
+                                    <span>{install_button_text}</span>
+                                </a>
+                            </div>
+                            <div class="menu">
+                                <a href="javascript:" id="sendFeedbackPopup">
+                                    <span>{develop_button_text}</span>
+                                </a>
+
+                                <div id="myModal" class="modal">
+                                    <div class="modal-content">
+                                        <span class="close">×</span>
+
+                                        <h2 class="modal-header">Send Feedback</h2>
+
+                                        <div class="modal-body">
+                                            <div id="emptyAlert"></div>
+                                            <form id="feedbackForm" name="feedbackForms">
+                                                <input class="form-control" type="text" id="fullname" name="fullname"
+                                                       placeholder="YOUR NAME" required>
+                                                <input class="form-control" type="email" id="email" name="email"
+                                                       placeholder="YOUR EMAIL" required>
+                                                <textarea class="form-control" placeholder="YOUR MESSAGE" id="message"
+                                                          name="message" required></textarea>
+                                                <button class="form-button" type="button" id="sendFeedback">Send
+                                                    Message
+                                                </button>
+                                            </form>
+                                            <div id="githubIssue">You can also post Github issues <a
+                                                    href="https://github.com/younginnovations/UN-Transparency-Portal/issues"
+                                                    target="_blank">here</a></div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div id="myModalSuccess" class="modalSuccess">
+                                    <div class="modal-content-success">
+                                        <span class="close">×</span>
+
+                                        <h2 class="modal-header">Send Feedback</h2>
+
+                                        <div class="modal-body">
+                                            <h2 class="successMessage">Your message has been successfully sent.</h2>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <!--<div class="tongue_wrap">{tongue_select}</div>-->
+                        </div>
+                    </div>
+                </nav>
+
+                <div class="slideshow-wrap">
+                    <div class="tag">
+                        <div class="text-info">
+                            <h2>{explore_UNDG}</h2>
+                            <span>{portal_info}</span>
+                            <a href="about.html">{learn_more}</a>
+                        </div>
+                    </div>
+                    <div id="slideshow">
+                        <div>
+                            <img src="/ctrack/art/slideshow_img/1.jpg">
+                        </div>
+                        <div>
+                            <img src="/ctrack/art/slideshow_img/2.jpg">
+                        </div>
+                        <div>
+                            <img src="/ctrack/art/slideshow_img/4.jpg">
+                        </div>
+                        <div>
+                            <img src="/ctrack/art/slideshow_img/5.jpg">
+                        </div>
+                        <div>
+                            <img src="/ctrack/art/slideshow_img/6.jpg">
+                        </div>
+                    </div>
+                </div>
+                <div class="chart-wrap">
+                    <div class="chart-item">
+                        <span class="title">{total_projects_text}</span>
+
+                        <div id="total_projects_shown"></div>
+                        <div id="">{active_projects_text}</div>
+                        <div id="progressBox">
+                            <div id="progressBar"><span id="display-active-projects"></span></div>
+
+                        </div>
+
+                    </div>
+                    <div class="chart-item">
+                        <span class="title">{total_budget_text}</span>
+
+                          <div class="tooltip">
+                            <span id="totalBudget"></span>
+                            <span class="tooltiptext">Total UN budget includes all data ever published in IATI by all UN members and observers (including The World Bank).</span>
+                        </div>
+                        <span class="title">Total Expenses</span>
+
+                        <div id="totalExpense"></div>
+                        <div id="pie1">
+                            <span>top</span>
+                            <span>bottom</span>
+                        </div>
+                    </div>
+                    <div class="chart-item">
+                        <span class="title">{un_agencies_in_iati_text}</span>
+
+                        <div id="un_agencies_in_iati"></div>
+                        <div id="progressBox2">
+                            <div id="progressBar2"><span id="display-un-agencies"></span></div>
+                            <span id="total-un-agencies"></span>
+                        </div>
+
+                    </div>
+                    <div class="chart-item">
+                        <span class="title">{countries_un_operates}</span>
+
+                        <div id="no_of_countries"></div>
+                        <div id="worldMap"></div>
+                    </div>
+
+                    <div class="chart-item">
+                        <span class="title">{trend_of_activities}</span>
+
+                        <div id="linegraph"></div>
+                    </div>
+                </div>
+                <div class="description_wrap">
+                    <div class="description">
+                        <span class="title">{index_title_text}</span>
+
+                        <p><span class="bold">d-portal.org</span> {index_paragraph1_text}</p>
+
+                        <p>{index_paragraph2_text}</p>
+                    </div>
+                    <div class="description">
+                        <span class="title">{links_title_text}</span>
+                        <a href="{tongue_root}news/posts.html" class="read">&gt; {news_page_text}</a>
+                        <a href="{tongue_root}about.html" class="read">&gt; {read_more_text}</a>
+                        <span class="title">{explore_title_text}</span>
+
+                        <p><b>{explore_paragraph1_text}</b></p>
+
+                        <p>{explore_paragraph2_text}</p>
+                    </div>
+                </div>
+                <span id="explore"></span>
+            </div>
+            <div class="agencies_wrap">
+                <div class="agencies">
+                    <h2><a target="_blank"
+                           href="https://undg.org/home/about-undg/members/">{members_and_observers_text}</a></h2>
+
+                    <div class="slider-wrap">
+                        {loading}
+                        <ul id="un_publisher_list" class="country_menu_list bxslider"></ul>
+                    </div>
+                </div>
+            </div>
+            <div class="compare_detail_wrap">
+                <div class="compare_list">
+                    <div class="compare">
+                        <a class="path" href="ctrack.html?tongue={tongue}#view=publisher_countries">
+                            <span class="select_wrap full">{all_countries_text}</span>
+                        </a>
+                    </div>
+                    <div class="compare">
+                        <a class="path" href="ctrack.html?tongue={tongue}#view=publishers">
+                            <span class="select_wrap full">{all_agencies_text}</span>
+                        </a>
+                    </div>
+                    <div class="compare">
+                        <a class="path" href="ctrack.html?tongue={tongue}#view=publisher_sectors">
+                            <span class="select_wrap full">{all_sector_text}</span>
+                        </a>
+                    </div>
+                </div>
+                <div class="country_menu_list_wrap">
+                    <div id="country_dropmenu"></div>
+                    <div id="sector_dropmenu"></div>
+                    <div class="menu_list_wrap left">
+                        <ul id="country_menu_list" class="country_menu_list"></ul>
+                    </div>
+                    <div class="menu_list_wrap">
+                        <ul id="sector_list" class="country_menu_list"></ul>
+                    </div>
+                </div>
+                <div class="sustainable_wrap">
+                    <img src="/ctrack/art/ic_sustainable_goal.png" alt="">
+
+                    <div class="sustable_img">
+                        <img src="/ctrack/art/sustanable_img.png" alt="">
+                    </div>
+                </div>
+                <div class="data_description_wrap">
+
+                    <h2>
+                        Where is the data from?
+                    </h2>
+
+                    <p>
+                        Data in the dropdown menu is built from the database which updates everyday at GMT +0 with
+                        new data fetched from the IATI Registry.
+                    </p>
+
+                    <p>
+                        The list of publishers comes from published XML activities reported by UNDG members in the IATI Registry database.
+                    </p>
+
+                    <p>
+                        We list countries that are reported by publishers using ISO3166 Alpha-2.
+                    </p>
+                    <p>
+                        The dropdown list of sectors corresponds to OECD DAC 3 Digit sector codes.
+                    </p>
+                </div>
+            </div>
+            <div class="description_wrap">
+                <div class="description full">
+                    <span class="title">{index_title2_text}</span>
+
+                    <p>{index_paragraph3_text}</p>
+
+                    <p>{index_paragraph4_text}</p>
+
+                    <p>{index_paragraph5_text}</p>
+
+                    <p>{index_paragraph6_text}</p>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="footer_wrap">
+        <div class="footer">
+            <div class="footer_link">
+                {footer1_text}<a href="http://undg.org/" title="{footer1_tip_text}">United Nations Development Group</a>
+            </div>
+            <div class="footer_link top_about_wrap">
+                <div class="about">
+                    <a href="{tongue_root}about.html">{footer3_text}</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<script src="jslib/progressBar1.js"></script>
+<script src="jslib/progressBar2.js"></script>
+<script src="jslib/budgetPie.js"></script>
+<script src="jslib/unMap.js"></script>
+<script src="jslib/trendChart.js"></script>
+</body>
+</html>
+
+#^beige
+<div class="beigealert_wrap">
+    <div class="beigealert"><img src="/ctrack/art/alert_icon.png" alt="Alert icon" width="15" height="15"> d-portal.org is
+        currently in BETA.
+    </div>
+</div>
+
+#^country_select
+<li>
+    <a class="country_code" href="/ctrack.html?country={it.id}&tongue={tongue}">
+		<span class="select_wrap">
+			<img src="/ctrack/art/flag/{it.cc}.png" alt="{it.name} {flag_alt_text}"/>
+		</span><span class="select_wrap countryid">
+			{it.id}
+		</span><span class="select_wrap countryname">
+			{it.name}
+		</span>
+    </a>
+</li>
+
+#^loading
+<div class="spinner"></div>
+
+#^js_country_lookup
+"{it.cc}":"{it.name}",
+#^jsmenu
+
+<script>
+
+    var publisher_names = {publisher_names_json};
+    var iati_un_publishers = {iati_un_publishers};
+    var country_names = {country_names_json};
+    var crs_countries = {crs_countries_json};
+    var sector = {sector};
+    var total_projects = {total_projects};
+    var active_projects = {active_projects};
+    var total_budget = {total_budget};
+    var total_expenditure = {total_expenditure};
+    var total_un_agencies = {total_un_agencies};
+    var un_agencies_in_iati = {un_agencies_in_iati};
+    var un_current_trends = {un_current_trends};
+    var un_org = {un_org};
+    var geojson = {geojson};
+
+    $(function () {
+        function numberWithCommas(x) {
+            return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+        }
+        $("#display-active-projects").text(numberWithCommas(active_projects));
+        $("#display-un-agencies").text(numberWithCommas(un_agencies_in_iati));
+        $("#total-un-agencies").text(numberWithCommas(total_un_agencies));
+        var reportings;
+        var extraReporting;
+        var countries;
+        var sectors;
+
+// default data in page so can display without any ajax
+        countries = {rows: []};
+        var rows = countries.rows;
+        for (idx in crs_countries) {
+
+            var name = country_names[idx];
+
+            if (idx === 'global-regional') {
+                name = 'Regional and global';
+            }
+            if (name) {
+                rows.push({name: name, country_code: idx});
+            }
+        }
+        rows.sort(function (a, b) {
+            var ta = a.name.toUpperCase();
+            var tb = b.name.toUpperCase();
+            return (ta < tb) ? -1 : (ta > tb) ? 1 : 0;
+        });
+
+        var changeToMillions = function (number) {
+            var prettyNumber = "?";
+            number = Math.round(number);
+
+            var digits = new Number(number).toString().length;
+
+            if (digits > 6) {
+                number = number / (1000000);
+                var roundedNumber = Math.round(number);
+                prettyNumber = numberWithCommas(roundedNumber) + ' M';
+            } else {
+                prettyNumber = new Number(number).toString();
+            }
+
+            return prettyNumber;
+        }
+
+        $("#total_projects_shown").html(numberWithCommas(total_projects));
+        $("#no_of_countries").html(countries.rows.length);
+        $("#totalBudget").html("$" + changeToMillions(total_budget));
+        $("#totalExpense").html("$" + changeToMillions(total_expenditure));
+        $("#un_agencies_in_iati").html(un_agencies_in_iati);
+
+
+        var un_org_total_project_each = {rows: []};
+        var un_org_total_projects_rows = un_org_total_project_each.rows;
+        for (var defined_id in un_org) {
+            var id = defined_id;
+            var un_total_projects = un_org[id];
+            if (un_total_projects !== undefined)
+                un_org_total_projects_rows.push({id: id, total_projects: un_total_projects});
+            else
+                un_org_total_projects_rows.push({id: id, total_projects: 0});
+        }
+        var sorted_un_total_projects = un_org_total_projects_rows.sort(function (a, b) {
+            var ta = a.total_projects;
+            var tb = b.total_projects;
+            return (ta > tb) ? -1 : (ta < tb) ? 1 : 0;
+        });
+
+        var un_org_projects = {};
+        sorted_un_total_projects.forEach(function (b) {
+            un_org_projects[b.id] = parseInt(b.total_projects);
+        });
+        var arr = Object.keys(un_org_projects).sort(function (a, b) {
+            return (un_org_projects[a] > un_org_projects[b]) ? -1 : (un_org_projects[a] < un_org_projects[b]) ? 1 : 0;
+        });
+
+        extraReporting = {rows: []};
+
+        var extraReportRows = extraReporting.rows;
+
+        arr.forEach(function (k) {
+            var name = iati_un_publishers[k];
+            extraReportRows.push({name: name, reporting_ref: k});
+        });
+
+        reportings = {rows: []};
+
+        var reportingRows = reportings.rows;
+        for (idx in publisher_names) {
+            if (arr.indexOf(idx) === -1) {
+                var name = publisher_names[idx];
+                reportingRows.push({name: name, reporting_ref: idx});
+            }
+        }
+
+        console.log("publishers",extraReporting);
+        console.log("non-publishers",reportings);
+
+        sectors = {rows: []};
+        var rows = sectors.rows;
+        for (idx in sector) {
+            var name = sector[idx];
+            rows.push({name: name, sector_ref: idx});
+        }
+
+        var change = function () {
+
+            var name = "" + $("#sector_dropmenu select").val();
+            if (name && (name != "")) {
+                window.location.href = "/ctrack.html?sector_group=" + name + "&tongue={tongue}"
+            }
+
+            var name = "" + $("#country_dropmenu select").val();
+            if (name && (name != "")) {
+                window.location.href = "/ctrack.html?country=" + name + "&tongue={tongue}"
+            }
+
+        };
+
+// fill in lists
+        var refresh = function () {
+            if (sectors) {
+                var sectorList = $("#sector_list");
+                sectorList.empty();
+
+                var aa = [];
+                aa.push("<select>");
+                aa.push("<option value=''></option>");
+                for (var i = 0; i < sector.length; i++) {
+                    var v = sector[i];
+                    if (v.id && v.name) // must be real publisher
+                    {
+                        var t = v.name
+                        if (v.count) {
+                            t = t + " (" + v.count + ") ";
+                        }
+                        var s = "<option value='" + v.id + "'>" + t + "</option>";
+                        aa.push(s);
+                    }
+                }
+                aa.push("</select>");
+                $("#sector_dropmenu").html(aa.join(""));
+
+                $("#sector_dropmenu select").change(change);
+                $("#sector_dropmenu select").chosen({
+                    search_contains: true,
+                    "placeholder_text_single": "{publisher_dropmenu_text}"
+                });
+
+                for (var i = 0; i < sector.length; i++) {
+                    var v = sector[i];
+                    if (v.id && v.name) {
+                        sectorList.append(
+                                "	<li class=\"publishercol\">	" +
+                                "	<a class=\"country_code\" href=\"ctrack.html?sector_group=" + v.id + "&tongue={tongue}\"> " +
+                                "			<span class=\"select_wrap publishername\">" + toTitleCase(v.name) + "</span>	" +
+                                "	</a> " +
+                                "	</li>		"
+                        );
+
+                    }
+                }
+            }
+            if (extraReporting) {
+                var un_publisher_list = $("#un_publisher_list");
+                un_publisher_list.empty();
+
+                for (var i = 0; i < extraReporting.rows.length; i++) {
+                    var v = extraReporting.rows[i];
+                    if (v.name && v.reporting_ref) {
+                        un_publisher_list.append(
+                                "  <li><a class=\"country_code\" href=\"ctrack.html?publisher=" + v.reporting_ref + "&tongue={tongue}\">  " +
+                                "<span class=\"publisher-logo\"><img src=\"/ctrack/art/un_logos/" + v.reporting_ref + ((v.reporting_ref == '41111')?'.svg':'.png')+"\" alt=\"" +
+                                    v.name.match(/\(([^)]+)\)/)[1] +
+                                "\"/></span>" +
+
+                                "    </a></li>  ");
+                    }
+                }
+
+            }
+            if (reportings) {
+                var un_publisher_list = $("#un_publisher_list");
+
+                for (var i = 0; i < reportings.rows.length; i++) {
+                    var v = reportings.rows[i];
+                    if (v.name && v.reporting_ref) {
+                        un_publisher_list.append(
+                                "  <li data-tooltip='Not yet publishing'><a class=\"country_code noCursor fade-out\"> " +
+                                "<span class=\"publisher-logo\"><img src=\"/ctrack/art/un_logos/" + v.reporting_ref + ".png\" alt=\"" + v.name.match(/\(([^)]+)\)/)[1] + "\" /></span>" +
+
+                                " </a></li>  ");
+                    }
+                }
+
+            }
+
+            $('.slider-wrap').imagesLoaded(function () {
+                $('.spinner').hide();
+                $('.slider-wrap .country_menu_list li').show();
+                $('.bxslider').bxSlider({
+                    minSlides: 5,
+                    maxSlides: 5,
+                    slideWidth: 192,
+                    slideMargin: 10,
+                    infiniteLoop: false,
+                    hideControlOnEnd: true
+                });
+            });
+
+            if (countries) {
+                var cl = $('#country_menu_list');
+                var aa = [];
+                aa.push("<select>");
+                aa.push("<option value=''></option>");
+                for (var i = 0; i < countries.rows.length; i++) {
+                    var v = countries.rows[i];
+                    if (v.name) // must be real country
+                    {
+                        var cd = (v.country_code == 'global-regional') ? 'GR' : v.country_code;
+                        var t = (v.name || v.country_code )
+                        if (v.count) {
+                            t = t + " (" + v.count + ") ";
+                        }
+                        var s = "<option value='" + v.country_code + "'>" + t + "</option>";
+                        aa.push(s);
+                        cl.append('<li>' +
+                                '<a class="country_code" href="/ctrack.html?country=' + v.country_code + '&tongue={tongue}">' +
+                                '<span class="select_wrap">' +
+                                '<img src="/ctrack/art/flag/' + v.country_code.toLowerCase() + '.png" alt="' + v.name + '"/>' +
+                                '</span>' +
+                                '<span class="select_wrap countryid">' +
+                                cd +
+                                '</span>' +
+                                '<span class="select_wrap countryname">' +
+                                v.name +
+                                '</span>' +
+                                '</a>' +
+                                '</li>'
+                        );
+                    }
+                }
+                aa.push("</select>");
+                $("#country_dropmenu").html(aa.join(""));
+
+                $("#country_dropmenu select").change(change);
+                $("#country_dropmenu select").chosen({
+                    search_contains: true,
+                    "placeholder_text_single": "{country_dropmenu_text}"
+                });
+
+            }
+        };
+
+// initialise page
+        refresh();
+        var modal = document.getElementById('myModal');
+        var modalSuccess = document.getElementById('myModalSuccess');
+        var btn = document.getElementById("sendFeedbackPopup");
+
+        var cross = document.getElementsByClassName("close")[0];
+
+        btn.onclick = function () {
+            modal.style.display = "block";
+            $("body").css('overflow', 'hidden');
+        };
+
+        cross.onclick = function () {
+            modal.style.display = "none";
+            $("body").css('overflow', 'visible');
+        };
+
+        window.onclick = function (event) {
+            if (event.target == modal) {
+                modal.style.display = "none";
+                $("body").css('overflow', 'visible');
+            }
+        };
+
+        $("#sendFeedback").on('click', function (e) {
+            e.preventDefault();
+            var name = $('#fullname').val();
+            var trimmedName = $.trim(name);
+            var email = $('#email').val();
+            var message = $('#message').val();
+            var trimmedMessage = $.trim(message);
+            var atPos = email.indexOf("@");
+            var dotPos = email.lastIndexOf(".");
+            if (trimmedName == "") {
+                $("#emptyAlert").html("Please enter your name!");
+                $("#fullname").focus();
+                return false;
+            }
+            if (email == "") {
+                $("#emptyAlert").html("Please enter your email address!");
+                $("#email").focus();
+                return false;
+            }
+            if (atPos < 1 || dotPos < atPos + 2 || dotPos + 2 >= email.length) {
+                $("#emptyAlert").html("Please enter a valid email address!");
+                $("#email").css("border", "1px solid #BB0303");
+                return false;
+            }
+            if (trimmedMessage == "") {
+                $("#emptyAlert").html("Please enter your message!");
+                $("#message").focus();
+                return false;
+            }
+            var data = {name: name, email: email, message: message};
+            $.ajax({
+                url: '/feedback',
+                data: data,
+                success: function (response) {
+                    $("#myModal").hide();
+                    $("#emptyAlert").empty();
+                    $('#fullname').val("");
+                    $('#email').val("");
+                    $("#email").css("border", "1px solid #bbb");
+                    $("#email").css("background", "#fff");
+                    $('#message').val("");
+                    $("#myModalSuccess").show();
+                    setInterval(function () {
+                        $("#myModalSuccess").hide();
+                        $("body").css('overflow', 'visible');
+                    }, 3000);
+                }
+            });
+        });
+    });
+
+    //Flexslider
+    (function () {
+
+        // store the slider in a local variable
+        var $window = $(window),
+                flexslider;
+
+        // tiny helper function to add breakpoints
+        function getGridSize() {
+            return (window.innerWidth < 600) ? 2 :
+                    (window.innerWidth < 900) ? 3 : 4;
+        }
+
+        // check grid size on resize event
+        $window.resize(function () {
+            var gridSize = getGridSize();
+
+            flexslider.vars.minItems = gridSize;
+            flexslider.vars.maxItems = gridSize;
+        });
+
+        $("#slideshow > div:gt(0)").hide();
+
+        setInterval(function () {
+            $('#slideshow > div:first')
+                    .fadeOut(2000)
+                    .next()
+                    .fadeIn(2000)
+                    .end()
+                    .appendTo('#slideshow');
+        }, 5000);
+    }());
+
+    function toTitleCase(str) {
+        return str.replace(/\w\S*/g, function (txt) {
+            return txt.charAt(0).toUpperCase() + txt.substr(1).toLowerCase();
+        });
+    }
+
+</script>

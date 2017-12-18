@@ -4,9 +4,10 @@
 <xsl:template match="*">
 	<html>
 		<head>
-			<link rel="stylesheet" type="text/css" href="/art/original/activities.css" />
-			<script src="../jslib/jquery.js" />
-			<script src="../jslib/ctrack.js" />
+			<link rel="stylesheet" type="text/css" href="/ctrack/art/original/ctrack.css" />
+			<link rel="stylesheet" type="text/css" href="/ctrack/art/original/activities.css" />
+			<script src="/ctrack/jslib/jquery.js" />
+			<script src="/ctrack/jslib/ctrack.js" />
 			<script>
 				$(function(){
 					require("ctrack").savi_fixup();

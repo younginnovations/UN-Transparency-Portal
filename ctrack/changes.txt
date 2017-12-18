@@ -1,3 +1,435 @@
+Development Portal (2017-09-06 shi)
+==============================
+Tag element display in SAVi
+Updated data_quality link to FAQ gen#13
+Changed DONOR to PUBLISHER in table header
+Updated column sort icons to fit
+Updated Print-Friendly table
+Updated footer text
+Replace all instances of donor with publisher
+
+
+Development Portal (2017-09-04 shi)
+==============================
+Fixed typo in view_countries.js
+Fixed link colour for search
+Fixed percentage views in *_activities.html
+Updated chunks with generalised name
+Updated translations
+Updated csv download headers in view_list_activities.js
+Added activity-status-code query to view_list_activities csv downloads
+Added close button under fold on landing page
+
+
+Development Portal (2017-09-03 shi)
+==============================
+Added donor and sector types to views
+Removed hover titles from lists
+Flex document linksin SAVi
+Move EXPLORE to main landing page
+Update links, layout and styles
+
+
+Development Portal (2017-09-02 shi)
+==============================
+Added select aria-labels and img alt text
+Minor css fixes overall site and footer links
+Updated text on portal landing pages
+Updated figure views - remove display:none; when refactored
+Fix corresponding pages affected
+Added translations for updated views
+Updated footer links
+Fixed scrollTop link
+
+
+Development Portal (2017-09-01 shi)
+==============================
+Updated footer with D-Portal-Logs link
+Added https info and link to Generator page
+Updated translations for new footer link
+Fix settings link
+Updated search_view_text in translations
+Added 'press enter' search input box when typing
+Remove auto-suggestion in search input box
+Added text to replace "..." in search
+
+
+Development Portal (2017-08-31 shi)
+==============================
+Updated search2 intro and information text
+Added FAQ link to landing page
+Removed freetext search link
+
+
+Development Portal (2017-08-30 shi)
+==============================
+Fix search2 multiple choice stylings
+Update abc toggle
+Update overall search2 layout
+Update Print-friendly css
+Added pubpost/prelink to savi.js for publisher ref links
+Moved url in footer of general.html to #footer6 including translations
+
+
+Development Portal (2017-08-18 shi)
+==============================
+Fix search2 dropdown margin
+
+
+Development Portal (2017-08-16 shi)
+==============================
+Updated locations element in SAVi
+
+
+Development Portal (2017-08-03 shi)
+==============================
+Updated 'Inspire' template
+Updated 'Mustard' template
+Updated 'Grey' template
+Fixed text in footer including translations
+Fixed missing hover text in countries view
+Moved activity id result button above search box
+
+
+Development Portal (2017-08-01 shi)
+==============================
+Renamed 'Status' to 'Activity Status'
+Updated art/ to ctrack/art/ in Generator to fix image paths
+
+
+Development Portal (2017-07-31 shi)
+==============================
+Added back country and publisher list to Explore page
+Added translations for Status dropdown
+Added original and high icons for Status
+
+
+Development Portal (2017-07-28 shi)
+==============================
+Added font css for Google translate in SAVi
+Updated SAVi participating-org layout for version 2.02++ only
+Updated Print-friendly css
+Added support for location display in SAVi (ver. 2.02++)
+Added IATI Identifier search
+Updated css for identifier search button
+Updated crumbname for new search
+Updated all related translation text
+
+
+Development Portal (2017-06-19 shi)
+==============================
+Fixed input font color for generator
+Fixed margin bug for generator
+Fixed grey rgba css
+Fixed generator input bug for Firefox
+Fixed generator dropdown arrow
+
+
+Development Portal (2017-06-22 shi)
+==============================
+New generic names for variables
+New orange_teal theme using variables test
+
+
+Development Portal (2017-06-22 shi)
+==============================
+Streamline CSS variables for themes
+
+
+Development Portal (2017-06-16 shi)
+==============================
+Fix counter increment for 2 or more digits
+
+
+Development Portal (2017-06-13 shi)
+==============================
+Added SAVi chart and percentages for sector vocab 1
+Added FAQ link in toggle_settings section
+Fixed start/end dates border for SAVi
+CSS fixes for Print Friendly
+Display planned-disbursement element in SAVi
+Fix new element display for Print Friendly
+Update new element in /js for sorting
+Fixed counter increment display for lists
+
+
+Development Portal (2017-06-12 shi)
+==============================
+Changed korea background, minor css changes to participating-org in SAVi
+Fixed SAVi indicator-first margin top
+Fixed SAVi results padding for period-start and period-end
+Added updated overdue blog post about results
+Added current view of results data in SAVi
+
+
+Development Portal (2017-05-09 shi)
+==============================
+Add empty class to SAVi descriptions
+CSS fixes for Print friendly and SAVi
+
+
+Development Portal (2017-05-08 shi)
+==============================
+Fixed spacing after counter increments of participating-org list
+Fixed participating-org to not include narrative for headings
+Fixed start and end dates to accommodate v2.02 standard
+Moved reporting-org under project title in SAVi
+Fixed Print friendly version with new changes
+Comment out adding actual activity dates in savi.js
+
+
+Development Portal (2017-04-05 shi)
+==============================
+Add missing download_wrap div to csv download links in publisher tables
+
+
+Development Portal (2017-03-29 shi)
+==============================
+Add beige alert and translations
+
+
+Development Portal (2017-03-28 shi)
+==============================
+Update CSV download links on respective pages
+Update Print friendly with new changes
+Update title table for donor / sector budgets / transaction pages
+Remove total_spend td
+Added missing CSV download links for donor / sector activities
+Fixed font color for img alts
+
+
+Development Portal (2017-03-13 shi)
+==============================
+Update map view to include filters
+Update map view styles
+Update translations for map view
+
+
+Development Portal (2017-03-10 shi)
+==============================
+Fix timeline and visual indicators for dates in results data
+Update new css for Print Friendly version
+Move target value on the same line as baseline value
+Fixed Print Friendly elements with background colour
+Fixed border sizes for transaction and budget headers in SAVi
+Update headers for main money tables
+Update headers for summary stats table view
+Fix Print Friendly view for table views
+Update footer and amount header text for donor_activities view
+Fix padding for sector_activities in Print Friendly
+Update activity-website link style in Print Friendly
+
+
+Development Portal (2017-03-07 shi)
+==============================
+Added clear all filters option to search
+
+
+Development Portal (2017-03-06 shi)
+==============================
+Start on Explore section for revised search inputs
+Update new layout for search sections 
+Update css when confirmed
+Updated typehead for explore section
+
+
+Development Portal (2017-02-27 shi)
+==============================
+Fix roles placement for participating-org
+Fix blocks for period so they are table-cells
+Switch sector icons for search
+Renamed sector category to sector group
+
+
+Development Portal (2017-02-24 shi)
+==============================
+Fix roles for ver 2.02 codes
+
+
+Development Portal (2017-01-15 shi)
+==============================
+Results data
+
+
+Development Portal (2016-12-04 shi)
+==============================
+Update width columns for result table in SAVi
+Add css for 'flow-type' and 'finance-type' in SAVi
+
+
+Development Portal (2016-12-02 shi)
+==============================
+Update fixes for inspire template
+Update fixes for mustard template
+Minor SAVi css fixes
+Display 'budget type' element in SAVi
+
+
+Development Portal (2016-12-01 shi)
+==============================
+Fixed sort icons for publisher countries view with crs column
+Update alternative search view text
+
+
+Development Portal (2016-11-30 shi)
+==============================
+Alternative search view added
+Removed filters and country portals
+Removed compare buttons
+Updated css fixes
+Removed search button
+Updated translations
+Added filters as option for search2
+Begin on mobile-friendly fixes
+SAVi display update
+
+
+Development Portal (2016-11-29 shi)
+==============================
+Added search icon for DISCOVER
+Updated text for search boxes
+Remove {portal_name} for old instances
+
+
+Development Portal (2016-11-28 shi)
+==============================
+Updated BETA badge style
+Updated search button style
+Added welcome text section for new DISCOVER
+Updated welcome text section styles
+Removed Generator link
+Added DISCOVER filter header
+Minor css changes
+Cleaned up feedback link
+Changed Recipient to Recipient Country
+Add disabled state for search link
+Update bottom text on search view
+Updated hover state search_intro links
+Moved stats to the top
+Updated filter text
+Updated declare stats line-height
+
+
+Development Portal (2016-11-22 shi)
+==============================
+Added div for better alignment of iati-identifier in SAVi
+Added links to participating-org with activity-id in SAVi
+Updated Print-friendly with changes
+
+
+Development Portal (2016-11-18 shi)
+==============================
+Fixed identifier section in SAVi for longer ids
+Minor fixes for Firefox rendering
+Updated Print-friendly version for SAVi
+Added loading nanobar for Print-friendly
+
+
+Development Portal (2016-11-17 shi)
+==============================
+Added feedback links for search section
+Updated styles and font sizes for data descriptions
+Added translations for new sections
+Added dropmenu on search view
+Fixed dropmenu width issues
+Adjusted image brightness on search view
+Added Generator banner to search view
+Updated missing view header text
+Added sorting icons to publishers view
+Updated styles for data quality page
+
+
+Development Portal (2016-11-16 shi)
+==============================
+Fixed transaction links colours in all states for SAVi
+Updated style for reporting-org in SAVi
+Updated table styles for budgets and transactions in SAVi
+Fixed hover state for last column in money table
+Added sorting icons for money table
+Fixed money table colours
+Removed {table_declare} from money table views
+Adding index bits to search view
+
+
+Development Portal (2016-11-08 shi)
+==============================
+Colour change for reporting-org in SAVi
+Links colours update
+
+
+Development Portal (2016-10-29 shi)
+==============================
+Added depth to colour labels in SAVi
+
+
+Development Portal (2016-10-27 shi)
+==============================
+Updated styles for SAVi
+Layout and font size fixes for SAVi
+
+
+Development Portal (2016-10-26 shi)
+==============================
+Fixed margins for Search box
+Restyled Search page, layout and font stylings
+Fixed max and min main pages for Search
+Added icons to results page
+Added DISCOVER branding to main pages and results page
+Fixed translations for DISCOVER
+
+
+Development Portal (2016-09-01 shi)
+==============================
+Added maximum width for table titles (activity, list) for large numbers
+
+
+Development Portal (2016-06-23 shi)
+==============================
+Clean up Tips section
+Remove email contact
+Added vimeo video
+Minor CSS changes
+Changed text on Discover button
+Updated footer links sitewide, includes translations
+Updated hover states of graphs for publisher and recipient pages
+Height and line-height fix for graphs of different tallness
+
+
+Development Portal (2016-06-22 shi)
+==============================
+Updated all email contacts to support@iatistandard.org sitewide
+Minor CSS fix
+Isolate download buttons
+Remove max-width of navigation buttons for consistency
+Clean up overall layout and footer
+
+
+Development Portal (2016-06-16 shi)
+==============================
+Changed url to link in footer
+
+
+Development Portal (2016-06-15 shi)
+==============================
+Replace site footer with new layout, info and links
+Added translations for new footer
+Contact email changed site-wide to queries@d-portal.org
+
+
+Development Portal (2016-06-14 shi)
+==============================
+Fixed table CSS for Print-friendly
+Fixed portal name vertical align with flag (min)
+Search layout redesign
+
+
+Development Portal (2016-05-31 shi)
+==============================
+Change layout of Search button
+Updated text on search button
+Add translations for search button
+
+
 Development Portal (2016-01-30 shi)
 ==============================
 Added portal link on individual Dash profiles

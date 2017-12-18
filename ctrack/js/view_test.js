@@ -14,7 +14,7 @@ var fetch=require("./fetch.js")
 
 var refry=require("../../dstore/js/refry.js")
 var iati_codes=require("../../dstore/json/iati_codes.json")
-var crs_year=require("../../dstore/json/crs_2013.json")
+var crs_year=require("../../dstore/json/crs.js").donors
 
 var commafy=function(s) { return (""+s).replace(/(^|[^\w.])(\d{4,})/g, function($0, $1, $2) {
 		return $1 + $2.replace(/\d(?=(?:\d\d\d)+(?!\d))/g, "$&,"); }) };
@@ -54,6 +54,7 @@ view_test.ajax=function(args)
 	});
 
 	var total=0; list.forEach(function(it){total+=it.usd;});
+	var shownpct=0;
 	var shown=0;
 //	var top=list[0] && list[0].usd || 0;
 	var s=[];
@@ -74,7 +75,8 @@ view_test.ajax=function(args)
 			shown+=v.usd;
 			var d={};
 			d.num=v.usd;
-			d.pct=Math.floor(100*v.usd/total);
+			d.pct=Math.round(100*shown/total)-shownpct;
+			shownpct+=d.pct
 			d.str_num=commafy(d.num)+" "+ctrack.display_usd;
 			d.str_lab=iati_codes.funder_names[v.funder_ref] || iati_codes.publisher_names[v.funder_ref] || iati_codes.country[v.funder_ref] || v.funder_ref;
 			d.str="<b>"+d.str_num+"</b> ("+d.pct+"%)<br/>"+d.str_lab;

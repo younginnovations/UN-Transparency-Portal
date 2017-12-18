@@ -65,7 +65,7 @@ view_stats.ajax = function (args) {
     args = args || {};
 
     var dat = {
-        "select": "budget",
+        "select": "sum_budget_value",
         "from": "act,budget",
         "budget": "budget"
     };
@@ -77,7 +77,7 @@ view_stats.ajax = function (args) {
             //console.log(data);
 
             if (data.rows[0]) {
-                ctrack.chunk("total_budget", changeToMillions(data.rows[0]["TOTAL(budget_value)"], ctrack.convert_usd));
+                ctrack.chunk("total_budget", changeToMillions(data.rows[0]["sum_budget_value"], ctrack.convert_usd));
             }
             ctrack.display(); // every fetch.ajax must call display once
         });
@@ -88,11 +88,12 @@ view_stats.ajax = function (args) {
     };
     fetch.ajax_dat_fix(dat, args);
     fetch.ajax(dat, args.callback || function (data) {
+        debugger;
             if (data.rows[0]) {
-                ctrack.chunk("total_projects", data.rows[0]["COUNT(DISTINCT aid)"]);
-                ctrack.chunk("numof_publishers", data.rows[0]["COUNT(DISTINCT reporting_ref)"]);
-                //ctrack.chunk("total_budget", changeToMillions(data.rows[0]["TOTAL(budget_value)"], ctrack.convert_usd));
-                ctrack.chunk("total_expenditure", changeToMillions(data.rows[0]["TOTAL(spend)"], ctrack.convert_usd));
+                ctrack.chunk("total_projects", data.rows[0]["distinct_aid"]);
+                ctrack.chunk("numof_publishers", data.rows[0]["distinct_reporting_ref"]);
+                //ctrack.chunk("total_budget", changeToMillions(data.rows[0]["budget_value)"], ctrack.convert_usd));
+                ctrack.chunk("total_expenditure", changeToMillions(data.rows[0]["sum_spend"], ctrack.convert_usd));
             }
 
             view_stats.calc();
@@ -119,7 +120,7 @@ view_stats.ajax = function (args) {
     fetch.ajax(dat, args.callback || function (data) {
 
             if (data.rows[0]) {
-                ctrack.chunk("total_activities_with_location", data.rows[0]["COUNT(DISTINCT aid)"]);
+                ctrack.chunk("total_activities_with_location", data.rows[0]["distinct_aid"]);
             }
             view_stats.calc();
 

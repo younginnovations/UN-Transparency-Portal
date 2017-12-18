@@ -15,7 +15,7 @@ var tables=require("./tables.js")
 
 var refry=require("../../dstore/js/refry.js")
 var iati_codes=require("../../dstore/json/iati_codes.json")
-var crs_year=require("../../dstore/json/crs_2013.json")
+var crs_year=require("../../dstore/json/crs.js").donors
 
 var commafy=function(s) { return s.replace(/(^|[^\w.])(\d{4,})/g, function($0, $1, $2) {
 		return $1 + $2.replace(/\d(?=(?:\d\d\d)+(?!\d))/g, "$&,"); }) };
@@ -152,9 +152,6 @@ view_donors.ajax=function(args)
 				"groupby":"funder_ref",
 				"trans_code":"D|E",
 				"trans_day_gteq":y+"-"+ctrack.args.newyear,"trans_day_lt":(parseInt(y)+1)+"-"+ctrack.args.newyear,
-//				"country_code":(args.country || ctrack.args.country_select),
-//				"reporting_ref":(args.publisher || ctrack.args.publisher_select),
-//				"title_like":(args.search || ctrack.args.search),
 			};
 		fetch.ajax_dat_fix(dat,args);
 		if(!dat.reporting_ref){dat.flags=0;} // ignore double activities unless we are looking at a select publisher
@@ -190,9 +187,6 @@ view_donors.ajax=function(args)
 				"funder_ref_not_null":"",
 				"groupby":"funder_ref",
 				"budget_day_start_gteq":y+"-"+ctrack.args.newyear,"budget_day_start_lt":(parseInt(y)+1)+"-"+ctrack.args.newyear,
-//				"country_code":(args.country || ctrack.args.country_select),
-//				"reporting_ref":(args.publisher || ctrack.args.publisher_select),
-//				"title_like":(args.search || ctrack.args.search),
 			};
 		fetch.ajax_dat_fix(dat,args);
 		if(!dat.reporting_ref){dat.flags=0;} // ignore double activities unless we are looking at a select publisher

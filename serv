@@ -1,6 +1,4 @@
 cd `dirname $0`
-cd ctrack &&
-npm run build &&
-cd ../dportal &&
-npm run build &&
-node js/serv $*
+
+dportal/undg
+ctrack/watch 1>&2 | dportal/start
