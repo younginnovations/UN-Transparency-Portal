@@ -45,6 +45,7 @@ view_sector_publisher_top.ajax = function (args) {
     if (!dat.sector_ref) {
         dat.flags = 0;
     }
+    console.log(dat);
     fetch.ajax(dat, function (data) {
         var list = [];
 

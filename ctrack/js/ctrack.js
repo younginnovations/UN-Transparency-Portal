@@ -193,12 +193,14 @@ ctrack.setup = function (args) {
         args.chunks["sector_name"] = un_agencies_data.sectors[args.sector].charAt(0).toUpperCase() + un_agencies_data.sectors[args.sector].slice(1).toLowerCase() || args.sector;
         args.chunks['link_to_total_budget'] = "#view=donors";
         args.chunks['link_to_total_expense'] = "#view=publisher_sectors";
+        args.chunks["sector_flag"] = '';
     }
     else {
         args.chunks["main_sector"] = "";
         args.chunks["main_sectormin"] = "";
         args.chunks["sector_code"] = "";
         args.chunks["sector_name"] = "";
+        args.chunks["sector_flag"] = '';
     }
 
     //Sector group
@@ -213,7 +215,23 @@ ctrack.setup = function (args) {
         args.chunks["sector_name"] = iati_codes.sector_category[args.sector_group].charAt(0).toUpperCase() + iati_codes.sector_category[args.sector_group].slice(1).toLowerCase() || args.sector_group;
         args.chunks['link_to_total_budget'] = "#view=donors";
         args.chunks['link_to_total_expense'] = "#view=publisher_sectors";
+        args.chunks["sector_flag"] = '';
 
+    }
+
+    //Sustainable develoment_group
+    if (ctrack.q.sdg) {
+        var cc = ctrack.q.sdg.split(",");
+        if (cc.length == 1) {
+            ctrack.q.sdg.split("|");
+        }
+        args.sector_group = cc[0];
+        args.sector_select = cc.join("|");
+        args.chunks["sector_code"] = args.sector_group;
+        args.chunks["sector_name"] = iati_codes.sdg[args.sector_group]|| '';
+        args.chunks['link_to_total_budget'] = "#view=donors";
+        args.chunks['link_to_total_expense'] = "#view=publisher_sectors";
+        args.chunks["sector_flag"] = "<td class='sector-flag'><img src='{art}sdg/sdg_"+args.sector_group+".svg' alt='"+args.chunks["sector_name"]+"'/></td>";
     }
 
     if (ctrack.q.publisher) {
@@ -283,6 +301,14 @@ ctrack.setup = function (args) {
         var cc = ctrack.q.sector_group.split(",");
         if (cc.length == 1) {
             ctrack.q.sector_group.split("|");
+        }
+        args.sector_group = cc[0];
+        args.sector_group_select = cc.join("|");
+    }
+    if (ctrack.q.sdg) {
+        var cc = ctrack.q.sdg.split(",");
+        if (cc.length == 1) {
+            ctrack.q.sdg.split("|");
         }
         args.sector_group = cc[0];
         args.sector_group_select = cc.join("|");

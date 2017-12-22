@@ -124,6 +124,7 @@ dstore_db.tables={
 		{ name:"sector_group",					NOCASE:true , INDEX:true },	// sector group ( category )
 		{ name:"sector_code",					NOCASE:true , INDEX:true },
 		{ name:"sector_percent",				REAL:true , INDEX:true },
+		//{ name:"sector_vocabulary",				NOCASE:true , INDEX:true } // sector vocabulary to identify SDG
 	],
 	location:[
 		{ name:"aid",							TEXT:true , INDEX:true , HASH:true },
@@ -439,7 +440,7 @@ dstore_db.refresh_act = function(db,aid,xml,head){
 		var vocabs=[];
 		var sectors=[];
 		var percents=[];
-		refry.tags2(act,"iati-activity","sector",function(it){ if(it.vocabulary=="DAC" || it.vocabulary=="1" || it.vocabulary=="2" || (!it.vocabulary) ) { // 5 or 3 digit codes
+		refry.tags2(act,"iati-activity","sector",function(it){ if(it.vocabulary=="DAC" || it.vocabulary=="1" || it.vocabulary=="2" || it.vocabulary=="7" || it.vocabulary=="8" || it.vocabulary=="9" || (!it.vocabulary) ) { // 5 or 3 digit codes
 				sectors.push(it.code);
 				percents.push(it.percentage);
 				vocabs.push(it.vocabulary);
@@ -459,8 +460,8 @@ dstore_db.refresh_act = function(db,aid,xml,head){
 				}
 				if( vocabs[i]=="2" ) { sc=null; } // *forget* the 3 digit codes, it will have been remembered in the group.
 
-//console.log("",sc,group);
-				dstore_back.replace(db,"sector",{"aid":t.aid,"sector_group":group,"sector_code":sc,"sector_percent":pc});
+				//console.log("",sc,group);
+				dstore_back.replace(db,"sector",{"aid":t.aid,"sector_group":group,"sector_code":sc,"sector_percent":pc});//, "sector_vocabulary": vocabs[i]});
 			}
 		}
 

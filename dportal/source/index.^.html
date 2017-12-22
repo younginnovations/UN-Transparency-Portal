@@ -228,10 +228,10 @@
                     </div>
                 </div>
                 <div class="sustainable_wrap">
-                    <img src="/ctrack/art/ic_sustainable_goal.png" alt="">
+                    <img src="/ctrack/art/ic_sustainable_goal.svg" alt="">
 
-                    <div class="sustable_img">
-                        <img src="/ctrack/art/sustanable_img.png" alt="">
+                    <div class="sustainable_img">
+                        <!--<img src="/ctrack/art/sustanable_img.png" alt="">-->
                     </div>
                 </div>
                 <div class="data_description_wrap">
@@ -596,6 +596,10 @@
                 });
 
             }
+
+            for(var i = 1; i<=18; i++){
+                $('.sustainable_img').append('<a href="/ctrack.html?sdg='+i+'&tongue=eng"><img src="/ctrack/art/sdg/sdg_'+i+'.svg"></a>');
+            }
         };
 
 // initialise page
@@ -672,6 +676,7 @@
                 }
             });
         });
+
     });
 
     //Flexslider
