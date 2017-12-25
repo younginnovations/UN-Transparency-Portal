@@ -485,9 +485,9 @@ a.country_code {
 }
 
 a.country_code .select_wrap img {
-    height: 20px;
-    max-width: 30px;
-    width: 30px;
+    /*height: 20px;*/
+    max-width: 35px;
+    /*width: 30px;*/
 }
 
 /*	Select dropdowns
