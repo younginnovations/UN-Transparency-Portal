@@ -160,7 +160,7 @@ ctrack.setup = function (args) {
         args.country = cc[0].toLowerCase();
         args.country_select = cc.join("|");
         args.chunks["country_code"] = cc[0].toUpperCase();
-        args.chunks["country_name"] = iati_codes.country[args.country.toUpperCase()];
+        args.chunks["country_name"] = iati_codes.country[args.country.toUpperCase()] || iati_codes.region[args.country];
         if( args.chunks["country_code"] == 'GLOBAL-REGIONAL'){
             args.chunks["country_code"] = "89,679,889,WW,-1,GLOBAL";
             args.chunks["country_name"] = 'GLOBAL-REGIONAL';

@@ -357,8 +357,9 @@
             var name = country_names[idx];
 
             if (idx === 'global-regional') {
-                name = 'Regional and global';
+                name = 'zzzzRegional and global';
             }
+            name = (isNaN(idx))?name:'zzzz'+name;
             if (name) {
                 rows.push({name: name, country_code: idx});
             }
@@ -560,6 +561,7 @@
                     var v = countries.rows[i];
                     if (v.name) // must be real country
                     {
+                        v.name = v.name.replace('zzzz','');
                         var cd = (v.country_code == 'global-regional') ? 'GR' : v.country_code;
                         var t = (v.name || v.country_code )
                         if (v.count) {

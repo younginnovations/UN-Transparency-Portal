@@ -46,6 +46,8 @@ sipac.serialize(function () {
         for (var code in data) {
             if (json_iati_codes['country'].hasOwnProperty(data[code]['country_code'])) {
                 arr[data[code]['country_code']] = json_iati_codes['country'][data[code]['country_code']];
+            } else if (json_iati_codes['region'].hasOwnProperty(data[code]['country_code'])) {
+                arr[data[code]['country_code']] = json_iati_codes['region'][data[code]['country_code']];
             } else {
                 arr['global-regional'][data[code]['country_code']] = data[code]['country_code'];
             }
