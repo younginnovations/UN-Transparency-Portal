@@ -512,6 +512,7 @@
                 for (var i = 0; i < extraReporting.rows.length; i++) {
                     var v = extraReporting.rows[i];
                     if (v.name && v.reporting_ref) {
+                        console.log('=============', v.name);
                         un_publisher_list.append(
                                 "  <li><a class=\"country_code\" href=\"ctrack.html?publisher=" + v.reporting_ref + "&tongue={tongue}\">  " +
                                 "<span class=\"publisher-logo\"><img src=\"/ctrack/art/un_logos/" + v.reporting_ref + ((v.reporting_ref == '41111')?'.svg':'.png')+"\" alt=\"" +
