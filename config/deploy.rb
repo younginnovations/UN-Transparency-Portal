@@ -109,7 +109,7 @@ end
 namespace :deploy do
     after :published, "app_stop:stop"
     after :published, "dportal:create_symlink"
-#    after :published, "install_dependency:install"
+    after :published, "install_dependency:install"
 #    after :published, "app_build:build"
     after :published, "app_restart:start"
 end
