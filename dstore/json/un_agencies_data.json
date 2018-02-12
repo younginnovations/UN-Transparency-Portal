@@ -1,10 +1,10 @@
 {
-	"total_un_agencies": 32,
-	"un_agencies_in_iati": 20,
+	"total_un_agencies": 33,
+	"un_agencies_in_iati": 21,
 	"total_budget": 640306060550.7874,
 	"total_projects": 60266,
 	"total_expenditure": 351123272852.80286,
-	"active_projects": 15370,
+	"active_projects": 15239,
 	"countries": {
 		"89": "Europe, regional",
 		"679": "South Asia, regional",

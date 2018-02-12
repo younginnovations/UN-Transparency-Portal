@@ -98,7 +98,7 @@ ctrack.setup = function (args) {
         head.load(args.css);
     }
 
-    ctrack.year = parseInt(args.year || ctrack.q.year || 2016);
+    ctrack.year = parseInt(args.year || ctrack.q.year || 2017);
 
     ctrack.year_chunks = function (y) {
         ctrack.chunk("year", y);
