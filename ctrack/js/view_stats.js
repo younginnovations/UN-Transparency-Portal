@@ -63,18 +63,22 @@ view_stats.calc = function () {
 //
 view_stats.ajax = function (args) {
     args = args || {};
+    let y = Date.UTC(ctrack.args.selected_year, 1, 1) / (1000 * 60 * 60 * 24);
 
     var dat = {
         "select": "sum_budget_value",
         "from": "act,budget",
-        "budget": "budget"
+        "budget": "budget",
+        "between":[y,"budget_day_start","budget_day_end"],
+       
     };
 
     fetch.ajax_dat_fix(dat, args);
+    // console.log('==================dat==================',JSON.stringify(dat))
     fetch.ajax(dat, args.callback || function (data) {
-            //console.log("Fetching Budget");
-            //console.log(dat);
-            //console.log(data);
+            // console.log("Fetching Budget");
+            // console.log(dat);
+            // console.log(JSON.stringify(data));
 
             if (data.rows[0]) {
                 ctrack.chunk("total_budget", changeToMillions(data.rows[0]["sum_budget_value"], ctrack.convert_usd));
@@ -82,13 +86,13 @@ view_stats.ajax = function (args) {
             ctrack.display(); // every fetch.ajax must call display once
         });
 
-    var dat = {
+     var dat = {
         "select": "stats",
         "from": "act",
+        "between":[y,"day_start","day_end"],
     };
     fetch.ajax_dat_fix(dat, args);
     fetch.ajax(dat, args.callback || function (data) {
-        debugger;
             if (data.rows[0]) {
                 ctrack.chunk("total_projects", data.rows[0]["distinct_aid"]);
                 ctrack.chunk("numof_publishers", data.rows[0]["distinct_reporting_ref"]);
@@ -108,12 +112,9 @@ view_stats.ajax = function (args) {
         "limit": -1,
         "location_longitude_not_null": 1, // must have a location
         "location_latitude_not_null": 1, // must have a location
-//			"country_code":(args.country || ctrack.args.country_select),
-//			"reporting_ref":(args.publisher || ctrack.args.publisher_select),
-//			"title_like":(args.search || ctrack.args.search),
     };
     fetch.ajax_dat_fix(dat, args);
-    if (dat.country_code) { /*dat.from+=",country";*/
+    if (dat.country_code) { 
         dat.country_percent = 100;
     }
 
@@ -130,7 +131,7 @@ view_stats.ajax = function (args) {
     views.planned.ajax({output: "count"});
     views.active.ajax({output: "count"});
     views.ended.ajax({output: "count"});
-    views.missing.ajax({output: "count"});
+    views.missing.ajax({output: "count"}); 
 
 };
 

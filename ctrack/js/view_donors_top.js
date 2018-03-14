@@ -87,7 +87,7 @@ view_donors_top.ajax = function (args) {
             try {
                 d.str_lab = iati_codes.funder_names[v.funder] || (regExp.exec(iati_codes.un_publisher_names[v.funder]))[1];
             } catch (err) {
-                console.log(v.funder, err);
+                // console.log(v.funder, err);
             }
             dd.push(d);
         });

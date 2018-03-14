@@ -40,6 +40,9 @@ Total UN budget
 #^un_agencies_in_iati_text
 UN publishers in IATI
 
+#^un_sectors_in_iati_text
+Sectors UN operates in
+
 #^countries_un_operates
 Countries UN operates in
 
@@ -375,7 +378,7 @@ Source Name
 
 #^sources_header3_text
 Source URL
-
+ j
 #^sources_data1_text
 Currency
 
@@ -401,10 +404,13 @@ Public Google Spreadsheet
 Pixabay Public Domain only images
 
 #^publisher_dropmenu_text trim=ends
-Type or select to search for a sector
+Search for a UN publisher
+
+#^sector_dropmenu_text trim=ends
+Search for a sector
 
 #^country_dropmenu_text trim=ends
-Type or select to search for a recipient country
+Search for a recipient country
 
 #^all_countries_text
 Compare all countries

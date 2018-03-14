@@ -326,6 +326,16 @@ query.getsql_from=function(q,qv){
 	return "";
 };
 
+query.getsql_between = function(q,qv){
+	
+	if(q.between){
+		let data = q.between;
+		// console.log('======between======',"AND " + data[0] + " BETWEEN "+ data[1] +" AND " + data[2]);
+		return "AND " + data[0] + " BETWEEN "+ data[1] +" AND " + data[2]; 
+	}
+	return "";
+};
+
 query.getsql_where=function(q,qv){
 	var ss=[];
 	
@@ -344,7 +354,8 @@ query.getsql_where=function(q,qv){
 		"_like":"LIKE",
 		"_null":"NULL",
 		"_not_null":"NOT NULL",
-		"":"="
+		"":"=",
+		"_bt": "BETWEEN"
 	};
 
 	var niq=0;
@@ -355,6 +366,7 @@ query.getsql_where=function(q,qv){
 			var ty=ns[n];
 			var v=q[n+qe];
 			var eq=qemap[qe];
+		
 			if( v !== undefined ) // got a value
 			{
 				if( eq=="NOT NULL") { ss.push( " "+n+" IS NOT NULL " ); }
@@ -748,7 +760,7 @@ query.do_select_response=function(q,res,r){
 query.do_select=function(q,res,req){
 
 	query.getsql_build_column_names(q);
-
+	
 	var r={rows:[],count:0};
 	var qv={};	
 	r.qvals=qv
@@ -758,12 +770,12 @@ query.do_select=function(q,res,req){
 				query.getsql_select(q,qv) + 
 				query.getsql_from(q,qv) + 
 				query.getsql_where(q,qv) + 
+				query.getsql_between(q,qv) +
 				query.getsql_group_by(q,qv) + 
 				(q.distincton?" ) q ":"")+
 				query.getsql_order_by(q,qv) + 
 				query.getsql_limit(q,qv);
 
-//console.log(r.query);
 	return dstore_db.query_select(q,res,r,req);
 };
 

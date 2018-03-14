@@ -38,12 +38,18 @@
 
 #main_stats
 <div class="stats_wrap">
-	<table class="title key">
+	<div class="select-year">
+		<span>Showing data of</span>
+		<select id="choose-year" class="select-year-banner" name="state">
+			<!--<option value="ALL">All year</option>-->
+		</select>
+	</div>
+	<!-- <table class="title key">
 		<tr>
 			<td class="icon"><img src="{flava}ic_current.png" alt="{active_icon_alt_text}" width="40" height="40"/></td>
 			<td>{stats_title_text}</td>
 		</tr>
-	</table>
+	</table> -->
 	<table class="stats">
 		<tr>
 			<td rowspan="2" colspan="2" title="{stats_active_tip_text}">
@@ -82,6 +88,35 @@
 		</tr>
 	</table>
 	<div class="declare stats">{declare_stats_text}</div>
+	<input id="year-select" type="hidden" value={year} >
+	<script>
+		let currentYear = new Date().getFullYear();
+		$(document).ready(()=>{
+			let year = parseInt($('#year-select').val());
+		
+            $('#choose-year').empty();
+            for (let y = currentYear; y >= (currentYear - 5); y--) {
+				
+                if (y === year) {
+                    $('#choose-year').append($('<option></option>').attr('selected', 'selected').attr("value", y).text(y));
+                } else {
+                    $('#choose-year').append($('<option></option>').attr("value", y).text(y));
+                }
+            }
+
+            $('#choose-year').change((e) =>{
+                var loc = window.location.href;
+                loc += loc.indexOf("?") === -1 ? "?" : "&";
+				loc = loc.substring(0, loc.indexOf("#"));
+				if(loc.indexOf("&year") !== -1){
+					loc = loc.substring(0, loc.indexOf("&year"));
+				}
+				
+                window.location.replace(loc + '&year=' + e.target.value);
+
+            });
+		})
+	</script>
 </div>
 
 

@@ -1,14 +1,15 @@
-$(function(){
+function expendePieChart(year){
         var dataset = [{
-                "value":total_budget,
+                "value":total_budget[year],
                 "title":"Total Budget"
             },{
-                "value":total_expenditure,
+                "value":total_expenditure[year],
                 "title":"Total Expenses"
 	}];
 	function numberWithCommas(x) {
 		return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
 	}
+	d3.select('#pie1 svg').remove();
 	var pie = d3.layout.pie();
     var margin = { top:5, right: 5, bottom: 5, left: 5};
 	var w = 110;
@@ -76,4 +77,4 @@ $(function(){
 			.attr("fill","#3385C0")
 			.attr("d",arcOutter);
 
-});
+};

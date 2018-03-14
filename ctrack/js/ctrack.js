@@ -97,8 +97,8 @@ ctrack.setup = function (args) {
     if (args.css) {
         head.load(args.css);
     }
-
-    ctrack.year = parseInt(args.year || ctrack.q.year || 2017);
+    let currentYear = new Date().getFullYear();
+    ctrack.year = parseInt(args.year || ctrack.q.year || currentYear);
 
     ctrack.year_chunks = function (y) {
         ctrack.chunk("year", y);
@@ -156,9 +156,10 @@ ctrack.setup = function (args) {
         if (cc.length == 1) {
             ctrack.q.country.toLowerCase().split("|");
         }
-
         args.country = cc[0].toLowerCase();
         args.country_select = cc.join("|");
+        args.selected_year = ctrack.q.year || currentYear;
+        args.chunks["selected_year"] = ctrack.q.year || currentYear;
         args.chunks["country_code"] = cc[0].toUpperCase();
         args.chunks["country_name"] = iati_codes.country[args.country.toUpperCase()] || iati_codes.region[args.country];
         if( args.chunks["country_code"] == 'GLOBAL-REGIONAL'){
@@ -189,6 +190,8 @@ ctrack.setup = function (args) {
         }
         args.sector = cc[0];
         args.sector_select = cc.join("|");
+        args.selected_year = ctrack.q.year || currentYear;
+        args.chunks["selected_year"] = ctrack.q.year || currentYear;
         args.chunks["sector_code"] = args.sector;
         args.chunks["sector_name"] = un_agencies_data.sectors[args.sector].charAt(0).toUpperCase() + un_agencies_data.sectors[args.sector].slice(1).toLowerCase() || args.sector;
         args.chunks['link_to_total_budget'] = "#view=donors";
@@ -209,6 +212,8 @@ ctrack.setup = function (args) {
         }
         args.sector_group = cc[0];
         args.sector_select = cc.join("|");
+        args.selected_year = ctrack.q.year || currentYear;
+        args.chunks["selected_year"] = ctrack.q.year || currentYear;
         args.chunks["sector_code"] = args.sector_group;
         args.chunks["sector_name"] = iati_codes.sector_category[args.sector_group].charAt(0).toUpperCase() + iati_codes.sector_category[args.sector_group].slice(1).toLowerCase() || args.sector_group;
         args.chunks['link_to_total_budget'] = "#view=donors";
@@ -223,6 +228,8 @@ ctrack.setup = function (args) {
         }
         args.publisher = cc[0]; // case is important?
         args.publisher_select = cc.join("|");
+        args.selected_year = ctrack.q.year || currentYear;
+        args.chunks["selected_year"] = ctrack.q.year || currentYear;
         args.chunks["publisher_code"] = args.publisher;
         args.chunks["publisher_name"] = iati_codes.publisher_names[args.publisher] || args.publisher;
         // args.chunks["link_address"]=iati_codes.about_more_info[args.publisher] || args.publisher;
