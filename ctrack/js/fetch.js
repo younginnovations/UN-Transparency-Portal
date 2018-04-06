@@ -37,7 +37,8 @@ fetch.get_nday = function (n) {
 fetch.ajax = function (dat, callback) {
 // we may queue a bunch of requests, this makes us wait for the last one before updating the view
     ctrack.display_wait += 1;
-    //console.log(dat,"dat");
+    // console.log(JSON.stringify(ctrack.args.q));
+    // console.log('==============budget================');
     $.ajax({
         dataType: "json",
         url: ctrack.args.q + "?callback=?",
@@ -49,10 +50,12 @@ fetch.ajax = function (dat, callback) {
 //modify dat so it reflects the args or base settings (eg limit to a publisher)
 fetch.ajax_dat_fix = function (dat, args) {
 // possibly do not need...
+    
+
     dat["country_code"] = dat["country_code"] || args.country;
     dat["reporting_ref"] = dat["reporting_ref"] || args.publisher;
     dat["sector_ref"] = dat["sector_ref"] || args.sector;
-
+    
 // check for globals
     dat["country_code"] = dat["country_code"] || ctrack.args.country_select;
     dat["sector_ref"] = dat["sector_ref"] || ctrack.args.sector;
@@ -61,7 +64,8 @@ fetch.ajax_dat_fix = function (dat, args) {
     dat["sector_code"] = dat["sector_code"] || ctrack.args.sector_code_select || ctrack.args.sector;
     dat["sector_group"] = dat["sector_group"] || ctrack.args.sector_group_select;
     dat["funder_ref"] = dat["funder_ref"] || ctrack.args.funder_ref_select;
-
+    // dat["selected_year"] = dat["selected_year"] || ctrack.args.selected_year;
+   
 
     if (dat["country_code"] === 'global-regional') {
         dat["country_code"] = "89|679|889|ww|-1|global";
@@ -93,7 +97,6 @@ fetch.ajax_dat_fix = function (dat, args) {
         dat[n] = args.q[n];
     }
 
-
 // join any extra tables we might now need due to extra restrictions
     if (dat.sector_code || dat.sector_group) {
         if (dat.from.indexOf("sector") == -1) {
@@ -110,6 +113,6 @@ fetch.ajax_dat_fix = function (dat, args) {
             dat.from += ",location";
         }
     }
-
+//  console.log('==================dat==================',JSON.stringify(dat))
     return dat;
 }

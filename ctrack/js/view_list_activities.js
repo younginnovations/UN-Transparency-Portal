@@ -69,7 +69,9 @@ view_list_activities.ajax=function(args)
 	fetch.ajax_dat_fix(dat,args);
 	if(args.output=="count") // just count please
 	{
+		let y = Date.UTC(ctrack.args.selected_year, 1, 1) / (1000 * 60 * 60 * 24);
 		dat.select="count_aid";
+		dat.between = [y,"day_start","day_end"],
 		delete dat.limit;
 		delete dat.orderby;
 		delete dat.groupby;

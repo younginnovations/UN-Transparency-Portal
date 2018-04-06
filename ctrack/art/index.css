@@ -171,9 +171,9 @@ strong, b, .bold {
     position: relative;
 }
 
-.default.index {
-    padding-bottom: 40px;
-}
+/*.default.index {*/
+    /*padding-bottom: 40px;*/
+/*}*/
 
 .third {
     display: inline-block;
@@ -492,7 +492,7 @@ a.country_code .select_wrap img {
 
 /*	Select dropdowns
 	============================================= */
-#country_dropmenu, #sector_dropmenu,
+#country_dropmenu, #sector_dropmenu, #publisher_dropmenu,
 .compare_wrap {
     display: inline-block;
     vertical-align: top;
@@ -503,17 +503,19 @@ a.country_code .select_wrap img {
 
 #sector_dropmenu, .compare_wrap.r {
     margin-right: 0;
-    margin-left: 20px;
 }
 
 .compare_wrap {
     margin-top: 40px;
 }
 
-#country_dropmenu select, #sector_dropmenu select {
+#country_dropmenu select, #publisher_dropmenu select,  #sector_dropmenu select {
     min-width: 460px;
     max-width: 460px;
     width: 460px;
+}
+.chosen-container {
+    width: 304px !important;
 }
 
 .chosen-container-single .chosen-single span {
@@ -722,14 +724,14 @@ nav{
 }
 
 .text-info{
-    width: 770px;
+    /*width: 770px;*/
     margin: 0 auto;
     text-align: center;
-    padding-top: 80px;
+    padding-top: 20px;
 }
 
 .text-info h2 {
-    font-size: 32px;
+    font-size: 30px;
     color: #fff;
     margin-bottom: 12px;
     line-height: 38px;
@@ -758,20 +760,30 @@ nav{
 }
 
 .chart-wrap {
-    position: relative;
+    /*position: relative;*/
     z-index: 2;
     overflow: hidden;
     width: 960px;
-    margin: -110px auto 0;
+    /*margin: -400px auto 0;*/
+    position: absolute;
+    top: 80px;
+    left: 50%;
+    transform: translateX(-50%);
 }
 
 #total_projects_shown,
+#total_sectors,
 #un_agencies_in_iati {
     font-size: 60px;
-    margin: 10px -35px 25px;
     line-height: 86px;
     border-bottom: 1px solid rgba(255, 255, 255, 0.2);
-    padding: 0 30px 0 40px;
+}
+#display-active-projects,
+#totalExpense,
+#totalBudget {
+    display: block;
+    margin-top: 35px;
+    font-size: 40px;
 }
 
 #total_projects_shown ~ div,
@@ -782,20 +794,18 @@ nav{
     vertical-align: middle;
 }
 
-#totalBudget,
-#totalExpense,
 #no_of_countries {
     margin: 10px 0;
     font-size: 20px;
 }
 
-#totalBudget {
-    font-size: 30px;
+/* #totalBudget {
+    font-size: 40px;
 }
 
 #totalExpense {
-    font-size: 20px;
-}
+    font-size: 40px;
+} */
 
 #no_of_countries {
     display: inline-block;
@@ -816,19 +826,28 @@ nav{
     position: relative;
 }
 
-.chart-item:nth-of-type(5) {
-    width: 550px;
-}
+/*.chart-item:nth-of-type(5) {*/
+    /*width: 550px;*/
+/*}*/
 
 .chart-item:nth-of-type(2) span.title {
     font-size: 20px;
     color: rgba(255, 255, 255, 0.7);
+    margin-bottom: 10px;
 }
 
 .chart-item:nth-of-type(2) span.title:nth-of-type(2) {
     font-size: 16px;
     margin-top: 55px;
     display: inline-block;
+    margin-bottom: 22px;
+}
+
+.chart-item:nth-of-type(3) span.title:nth-of-type(3) {
+    font-size: 16px;
+    margin-top: 55px;
+    display: inline-block;
+    margin-bottom: 22px;
 }
 
 .chart-item:nth-of-type(4) span.title {
@@ -843,10 +862,10 @@ nav{
     color: rgba(255, 255, 255, 0.7);
 }
 
-.chart-item:nth-of-type(6) span.title {
-    font-size: 16px;
-    color: rgba(255, 255, 255, 0.7);
-}
+/*.chart-item:nth-of-type(6) span.title {*/
+    /*font-size: 16px;*/
+    /*color: rgba(255, 255, 255, 0.7);*/
+/*}*/
 
 .chart-item span.title {
     font-size: 20px;
@@ -865,7 +884,9 @@ nav{
     display: inline-block;
     position: absolute;
     bottom: 8px;
-    right: 15px;
+    left: 50%;
+    transform: translateX(-50%);
+    /*right: 15px;*/
 }
 
 #pie1 span:first-child {
@@ -994,7 +1015,7 @@ a.link-to-members {
 .compare_detail_wrap {
     background: #EEF3F6;
     position: relative;
-    padding: 100px 0 50px;
+    padding: 60px 0 50px;
 }
 
 .compare {
@@ -1026,11 +1047,11 @@ a.link-to-members {
     max-width: 960px;
     width: 960px;
     margin: auto;
-    overflow: hidden;
-    position: absolute;
-    left: 0;
-    right: 0;
-    top: -35px;
+    /* overflow: hidden; */
+    /*position: absolute;*/
+    /*left: 0;*/
+    /*right: 0;*/
+    /*top: -35px;*/
 }
 
 .sustainable_wrap {
@@ -1039,6 +1060,7 @@ a.link-to-members {
     margin: 0 auto;
     text-align: center;
     padding: 70px 0 50px;
+    clear: both;
 }
 
 .sustainable_wrap img {
@@ -1108,7 +1130,7 @@ a.link-to-members {
 }
 
 /*for progress bar in the summary stats*/
-#progressBox, #progressBox2 {
+#progressBox, #progressBox2, #sectorProgressBox {
     height: 30px;
     width: 130px;
     background: #3385C0;
@@ -1116,12 +1138,12 @@ a.link-to-members {
     overflow: visible;
 }
 
-#progressBox2 {
+#progressBox2, #sectorProgressBox {
     width: 240px;
     position: relative;
 }
 
-#progressBar, #progressBar2 {
+#progressBar, #progressBar2, #sectorProgressBar {
     height: 30px;
     background: #fff;
     border-radius: 5px 0 0 5px;
@@ -1130,14 +1152,18 @@ a.link-to-members {
 }
 
 #progressBar > span,
-#progressBar2 > #display-un-agencies {
+#progressBar2 > #display-un-agencies,
+#sectorProgressBar > #display-un-sectors
+{
     position: absolute;
     right: -8px;
     display: block;
     bottom: -18px;
     z-index: 999;
 }
-#progressBox2 > #total-un-agencies{
+#progressBox2 > #total-un-agencies,
+#sectorProgressBox > #total-sectors
+{
     position: absolute;
     right: 0;
     display: block;
@@ -1287,34 +1313,34 @@ a.link-to-members {
     line-height: 20px;
 }
 
-@media screen
-and (min-width: 1400px) {
-    .tag {
-        height: 600px;
-    }
-    .text-info {
-        width: 960px;
-        padding-top: 120px;
-    }
-    .text-info h2 {
-        font-size: 64px;
-        line-height: 70px;
-        padding: 0;
-    }
-    .text-info span {
-        font-size: 20px;
-        line-height: 26px;
-    }
-    .chart-wrap {
-        margin: -100px auto 0;
-    }
-    .menu-wrap {
-        overflow: hidden;
-        max-width: 960px;
-        width: 960px;
-        margin: 0 auto;
-    }
-}
+/*@media screen*/
+/*and (min-width: 1400px) {*/
+    /*.tag {*/
+        /*height: 600px;*/
+    /*}*/
+    /*.text-info {*/
+        /*width: 960px;*/
+        /*padding-top: 120px;*/
+    /*}*/
+    /*.text-info h2 {*/
+        /*font-size: 64px;*/
+        /*line-height: 70px;*/
+        /*padding: 0;*/
+    /*}*/
+    /*.text-info span {*/
+        /*font-size: 20px;*/
+        /*line-height: 26px;*/
+    /*}*/
+    /*.chart-wrap {*/
+        /*margin: -100px auto 0;*/
+    /*}*/
+    /*.menu-wrap {*/
+        /*overflow: hidden;*/
+        /*max-width: 960px;*/
+        /*width: 960px;*/
+        /*margin: 0 auto;*/
+    /*}*/
+/*}*/
 
 .slideshow-wrap{
     position: relative;
@@ -1326,10 +1352,27 @@ and (min-width: 1400px) {
     width: 100%;
 }
 
+.select-year{
+    margin: 0 0 10px 10px;
+}
+
+.select-year span:first-child{
+  color: #fff;
+    font-size: 14px;
+}
+
+.select-year select{
+    color: #fff;
+    background-color: #00406e;
+    border: none;
+    height: 28px;
+}
+
+
 #slideshow {
     position: relative;
     width: 100%;
-    height: 441px;
+    height: 700px;
     overflow: hidden;
     background: rgba(51,51,51,0.4);
 }
@@ -1351,6 +1394,7 @@ and (min-width: 1400px) {
     top:0;
     left:0;
     right:0;
+    bottom: 0;
 }
 
 #slideshow > div:first-child{
@@ -1360,14 +1404,15 @@ and (min-width: 1400px) {
 #slideshow img {
     display: block;
     width: 100%;
+    height: 100%;
     object-fit: cover;
 }
 
-@media screen and (min-width: 1400px){
-    #slideshow {
-        height: 600px;
-    }
-}
+/*@media screen and (min-width: 1400px){*/
+    /*#slideshow {*/
+        /*height: 600px;*/
+    /*}*/
+/*}*/
 
 /*design for modal*/
 .modal, .modalSuccess {

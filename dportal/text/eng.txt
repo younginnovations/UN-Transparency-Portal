@@ -35,6 +35,9 @@ Total UN budget
 #^un_agencies_in_iati_text
 UN publishers in IATI
 
+#^un_sectors_in_iati_text
+Sectors UN operates in
+
 #^countries_un_operates
 Countries UN operates in
 

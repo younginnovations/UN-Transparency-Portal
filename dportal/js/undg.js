@@ -7,7 +7,6 @@ var sipac = new sqlite3.Database(path);
 var chunkopts = {};
 var json_iati_codes = require("../../dstore/json/iati_codes.json");
 var un_agencies_data = require("../../dstore/json/un_agencies_data.json") || {};
-var un_org = require('../../dstore/json/un_org.json');
 var geojson = require("../../dstore/json/countries.geo.json");
 
 sipac.serialize(function () {
@@ -19,23 +18,56 @@ sipac.serialize(function () {
 
     un_agencies_data['total_un_agencies'] = Object.keys(json_iati_codes.un_publisher_names).length;
     un_agencies_data['un_agencies_in_iati'] = Object.keys(json_iati_codes.iati_un_publishers).length;
+    un_agencies_data['totalSectors'] = Object.keys(json_iati_codes.sector).length;
 
     //fetch Total Budget
+    let budget = {};
+    let project = {};
+    let expense = {};
+    let activeProject = {};
+
+    for (let y = year; y >= (year - 5); y--) {
+        let start = Date.UTC(y, 1, 1) / (1000 * 60 * 60 * 24);
+        let end = Date.UTC(y, 12, 31) / (1000 * 60 * 60 * 24);
+        sipac.get("SELECT TOTAL(budget_value) FROM act JOIN budget USING (aid) WHERE budget =? AND ? BETWEEN budget_day_start AND budget_day_end", ['budget', start], function (err, row) {
+            budget[y] = row["TOTAL(budget_value)"];
+            un_agencies_data['total_budget'] = budget;
+        });
+
+        //fetch Total activities and expenditure
+        var sql = "SELECT COUNT(DISTINCT aid) , TOTAL(spend) FROM act where reporting_ref NOTNULL AND ? BETWEEN day_start AND day_end";
+        sipac.get(sql, [start], function (err, data) {
+            project[y] = data['COUNT(DISTINCT aid)'];
+            expense[y] = data['TOTAL(spend)'];
+            un_agencies_data['total_projects'] = project;
+            un_agencies_data['total_expenditure'] = expense;
+        });
+
+        //fetch Total active activities
+        sql = "SELECT  COUNT(DISTINCT aid) AS count_aid FROM act  WHERE ? BETWEEN day_start AND day_end AND day_end >= ? AND day_length IS NOT NULL";
+        sipac.get(sql, [start, r], function (err, data) {
+            activeProject[y] = data['count_aid'];
+            un_agencies_data["active_projects"] = activeProject;
+        });
+    }
+
     sipac.get("SELECT TOTAL(budget_value) FROM act JOIN budget USING (aid) WHERE budget =?", ['budget'], function (err, row) {
-        un_agencies_data['total_budget'] = row["TOTAL(budget_value)"];
+        budget['all'] = row["TOTAL(budget_value)"];
+        un_agencies_data['total_budget'] = budget;
     });
 
-    //fetch Total activities and expenditure
-    var sql = "SELECT COUNT(DISTINCT aid) , TOTAL(spend) FROM act where reporting_ref NOTNULL";
+    var sql = "SELECT COUNT(DISTINCT aid) , TOTAL(spend) FROM act where reporting_ref NOT NULL";
     sipac.get(sql, function (err, data) {
-        un_agencies_data['total_projects'] = data['COUNT(DISTINCT aid)'];
-        un_agencies_data['total_expenditure'] = data['TOTAL(spend)'];
+        project['all'] = data['COUNT(DISTINCT aid)'];
+        expense['all'] = data['TOTAL(spend)'];
+        un_agencies_data['total_projects'] = project;
+        un_agencies_data['total_expenditure'] = expense;
     });
 
-    //fetch Total active activities
     sql = "SELECT  COUNT(DISTINCT aid) AS count_aid FROM act  WHERE day_start <= " + r + "  AND  ( day_end >= " + r + " OR day_end IS NULL )  AND  day_length IS NOT NULL";
     sipac.get(sql, function (err, data) {
-        un_agencies_data["active_projects"] = data['count_aid'];
+        activeProject['all'] = data['count_aid'];
+        un_agencies_data["active_projects"] = activeProject;
     });
 
     //fetch Total countries
@@ -78,18 +110,9 @@ sipac.serialize(function () {
             }
         }
         un_agencies_data['sectors'] = sectorGroupList;
+
     });
 
-    //Fetch Publishers project.
-
-    sql = "Select DISTINCT act.reporting_ref, count(aid) as count from act GROUP BY act.reporting_ref ";
-    un_org = {};
-    sipac.all(sql, function (err, data) {
-        for (var i in data) {
-            un_org[data[i]['reporting_ref']] = data[i]['count'];
-        }
-        // un_agencies_data['sectors'] = sectorGroupList;
-    });
 });
 
 var getYearFromTimeStamp = function (timeStamp) {
@@ -189,6 +212,7 @@ setTimeout(function generate() {
     });
 
     chunkopts["sector"] = JSON.stringify(sec);
+    chunkopts["sector_un_operates"] = JSON.stringify(Object.keys(un_agencies_data["sectors"]).length);
     chunkopts["publisher_names_json"] = JSON.stringify(json_iati_codes["un_publisher_names"]);
     chunkopts["iati_un_publishers"] = JSON.stringify(json_iati_codes["iati_un_publishers"]);
     chunkopts["country_names_json"] = JSON.stringify(un_agencies_data["countries"]);
@@ -199,7 +223,7 @@ setTimeout(function generate() {
     chunkopts["total_expenditure"] = JSON.stringify(un_agencies_data["total_expenditure"]);
     chunkopts["total_un_agencies"] = JSON.stringify(un_agencies_data["total_un_agencies"]);
     chunkopts["un_agencies_in_iati"] = JSON.stringify(un_agencies_data["un_agencies_in_iati"]);
-    chunkopts["un_org"] = JSON.stringify(un_org);
+    chunkopts["total_sector"] = JSON.stringify(un_agencies_data["totalSectors"]);
 
 
     var arr = Object.keys(un_agencies_data["un_current_trends"]).map(function (k) {
@@ -227,10 +251,10 @@ setTimeout(function generate() {
 function generateText(data) {
 
     let text = "";
-    for(var key in data) {
-        var value = data[key] instanceof Object?JSON.stringify(data[key]):data[key];
-        text+="#^"+key+"\n"+value+"\n\n";
+    for (var key in data) {
+        var value = data[key] instanceof Object ? JSON.stringify(data[key]) : data[key];
+        text += "#^" + key + "\n" + value + "\n\n";
     }
 
-    fs.writeFileSync(__dirname+"/../source/\^.undg.txt", text);
+    fs.writeFileSync(__dirname + "/../source/\^.undg.txt", text);
 }

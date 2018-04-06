@@ -66,6 +66,7 @@ view_dash.ajax_cronlog=function()
 view_dash.ajax2=function(args)
 {
 	args=args || {};
+
 	var dat={
 			"country_code":(args.country),
 			"select":"count,reporting_ref,any_reporting",
