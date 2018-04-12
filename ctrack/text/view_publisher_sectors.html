@@ -8,7 +8,7 @@
 {main_head}
 {main_min}
 {about_data_links}
-{publisher_sectors_head}
+<!--{publisher_sectors_head}-->
 {table_declare}
 {table_publisher_sectors}
 {publisher_sectors_data_description}
@@ -57,11 +57,142 @@
 #table_publisher_sectors
 <div class="table_wrap view">
 	<table class="money publishers">
+		<div class="compare-select">
+			<label>
+				<span>Country</span>
+				<select class="select2" name="country[]" id="country_list_new" style="width:20%" multiple="multiple">
+				</select>
+			</label>
+			<label>
+				<span>Agency</span>
+				<select class="select2" name="agency[]" id="agency_list_new" style="width:20%" multiple="multiple">
+				</select>
+			</label>
+			<label>
+				<span>Sector</span>
+				<select class="select2" name="sector[]" id="sector_list_new" style="width:20%" multiple="multiple">
+				</select>
+			</label>
+			<label style="width: 10% !important;padding: 7px;">
+				<button id="filter_search_button">Search</button>
+			</label>
+		</div>
 	{table_publisher_sectors_row_head}
 	{table_publisher_sectors_rows}
 	</table>
 	<a download="dportal_publisher_sectors.csv" href="{csv_data}" class="csv_download">{download_csv_text}</a>
 </div>
+<script>
+    var url_link = window.location.href;
+    url_link = url_link.replace("#", "&");
+    var url = new URL(url_link);
+
+    var paramCountry = url.searchParams.get("countryfilter");
+    var refFilter = url.searchParams.get("refFilter");
+    var sectFilter = url.searchParams.get("sectFilter");
+    var yearFilter = url.searchParams.get('year');
+    if(paramCountry === null)
+    {
+        paramCountry = '';
+    }
+    paramCountry = paramCountry.split(',');
+    if(refFilter === null)
+    {
+        refFilter = '';
+    }
+    refFilter = refFilter.split(',');
+    if(sectFilter === null)
+    {
+        sectFilter = '';
+    }
+    sectFilter = sectFilter.split(',');
+    if(yearFilter === null)
+    {
+        yearFilter = '';
+    }
+    //populate select2 sector_list_new
+    var country_list_new = document.getElementById('country_list_new');
+    var agency_list_new = document.getElementById('agency_list_new');
+    var sector_list_new = document.getElementById('sector_list_new');
+    ctrack.compare_countries_list.forEach(function(entry){
+        var option = document.createElement("option");
+        option.text = entry.country_name;
+        option.value = entry.country_code;
+        if(jQuery.inArray(entry.country_code, paramCountry) !== -1)
+        {
+            option.setAttribute('selected',true);
+        }
+        country_list_new.appendChild(option);
+    });
+    ctrack.compare_publishers_list.forEach(function(entry){
+        var option = document.createElement("option");
+        option.text = entry.publisher_name;
+        option.value = entry.reporting_ref;
+        if(jQuery.inArray(entry.reporting_ref, refFilter) !== -1)
+        {
+            option.setAttribute('selected',true);
+        }
+        agency_list_new.appendChild(option);
+    });
+    ctrack.compare_sectors_list.forEach(function(entry){
+        var option = document.createElement("option");
+        option.text = entry.sector_name;
+        option.value = entry.sector_code;
+        if(sectFilter.includes(String(entry.sector_code)))
+        {
+            option.setAttribute('selected',true);
+        }
+        sector_list_new.appendChild(option);
+    });
+
+    //jQuery('#country_list_new,#agency_list_new,#sector_list_new').change(function() {
+    jQuery('#filter_search_button').click(function() {
+        var val = jQuery('#country_list_new').val() || "";
+        var refFilter = jQuery('#agency_list_new').val() || "";
+        var sectFilter = jQuery('#sector_list_new').val() || "";
+
+        var ctrack_url = '#view=publisher_sectors&countryfilter='+val+'&refFilter='+refFilter+'&sectFilter='+sectFilter+'&year='+yearFilter;
+        return ctrack.url(ctrack_url);
+    });
+
+    function sectorYearFilter(yearFilter)
+    {
+        var val = jQuery('#country_list_new').val() || "";
+        var refFilter = jQuery('#agency_list_new').val() || "";
+        var sectFilter = jQuery('#sector_list_new').val() || "";
+        var ctrack_url = '#view=publisher_sectors&countryfilter='+val+'&refFilter='+refFilter+'&sectFilter='+sectFilter+'&year='+yearFilter;
+        //console.log(ctrack_url);
+        return ctrack.url(ctrack_url);
+    }
+
+    function list_transactions(year,country_code,sector_code)
+    {
+        var countryFilter = jQuery('#country_list_new').val() || "";
+        var refFilter = jQuery('#agency_list_new').val() || "";
+        var sectFilter = jQuery('#sector_list_new').val() || "";
+        if(countryFilter === "" && refFilter === "" && sectFilter === ""){
+            return ctrack.url('{mark_no_publisher}&sector='+sector_code+'#view=list_activities');
+		}
+        var ctrack_url = '{mark_no_publisher}&sector='+sector_code+'#view=list_activities&country_code='+countryFilter+'&refFilter='+refFilter+'&year='+year;
+        return ctrack.url(ctrack_url);
+    }
+
+    function list_budgets(year,country_code)
+    {
+        var countryFilter = jQuery('#country_list_new').val() || "";
+        var refFilter = jQuery('#agency_list_new').val() || "";
+        var sectFilter = jQuery('#sector_list_new').val() || "";
+        var ctrack_url = '#view=list_budgets&country_code='+countryFilter+'&refFilter='+refFilter+'&sectFilter='+sectFilter+'&year='+year;
+        return ctrack.url(ctrack_url);
+    }
+
+    jQuery(document).ready(function() {
+        jQuery('.select2').select2({
+            placeholder: "All",
+            allowClear: true
+        });
+    });
+</script>
 
 #table_publisher_sectors_rows
 {table_publisher_sectors_row}
@@ -69,8 +200,8 @@
 #table_publisher_sectors_row_head
 <tr class="row1">
 	<th class="col2" onclick="ctrack.dosort('sector');" title="{table_sector_tip_title_data_text}">{table_sector_title_sector_text}</th>
-	<th class="col3" colspan="3" title="{table_donor_tip_title_transaction_text}"><span onclick="ctrack.dosort('trans');">{table_sector_title_transaction_text}</span> <a href="#view=publisher_sectors&year={year1}" onclick="return ctrack.url('#view=publisher_sectors&year={year1}');" title="Previous Year" class="year prev">&lt;</a></th>
-	<th class="col4" colspan="2" title="{table_donor_tip_title_budget_text}"><span onclick="ctrack.dosort('budget');">{table_sector_title_budget_text}</span> <a href="#view=publisher_sectors&year={year3}" onclick="return ctrack.url('#view=publisher_sectors&year={year3}');" title="Next Year" class="year next">&gt;</a></th>
+	<th class="col3" colspan="3" title="{table_donor_tip_title_transaction_text}"><span onclick="ctrack.dosort('trans');">{table_sector_title_transaction_text}</span> <a href="#view=publisher_sectors&year={year1}" onClick="return sectorYearFilter('{year1}');" title="Previous Year" class="year prev">&lt;</a></th>
+	<th class="col4" colspan="2" title="{table_donor_tip_title_budget_text}"><span onclick="ctrack.dosort('budget');">{table_sector_title_budget_text}</span> <a href="#view=publisher_sectors&year={year3}" onClick="return sectorYearFilter('{year3}');" title="Next Year" class="year next">&gt;</a></th>
 </tr>
 <tr class="row2">
 	<td class="col2" title="{table_sort_text}"	onclick="ctrack.dosort('sector');" 	>{table_donor_subtitle_donor_text}</td>
@@ -82,17 +213,17 @@
 </tr>
 
 #table_publisher_sectors_row
-<tr class="rows">
+<tr class="rows" id="{sector_code}">
 	<td class="col2" title="{table_publisher_explore_tip_text}" onclick="return ctrack.compare_url('/ctrack.html?sector={sector_code}&tongue={tongue}');">
 		<a>{sector_name}</a></td>
-	<td class="col3" title="{table_sector_tip_t1_text}" onclick="switch($(this).children().first().html()){ case '0': case '-' : $('html, body').animate({scrollTop: $('.description').offset().top}, 300); return false; } return ctrack.url('#view=list_transactions&year={year1}&sector_code={sector_code}');">
+	<td class="col3" title="{table_sector_tip_t1_text}" onclick="switch($(this).children().first().html()){ case '0': case '-' : $('html, body').animate({scrollTop: $('.description').offset().top}, 300); return false; } return list_transactions('{year1}','{country_code}','{sector_code}');">
 		<a>{t1}</a></td>
-	<td class="col4" title="{table_sector_tip_t2_text}" onclick="switch($(this).children().first().html()){ case '0': case '-' : $('html, body').animate({scrollTop: $('.description').offset().top}, 300); return false; } return ctrack.url('#view=list_transactions&year={year2}&sector_code={sector_code}');">
+	<td class="col4" title="{table_sector_tip_t2_text}" onclick="switch($(this).children().first().html()){ case '0': case '-' : $('html, body').animate({scrollTop: $('.description').offset().top}, 300); return false; } return list_transactions('{year2}','{country_code}','{sector_code}');">
 		<a>{t2}</a></td>
-	<td class="col5" title="{table_sector_tip_t3_text}" onclick="switch($(this).children().first().html()){ case '0': case '-' : $('html, body').animate({scrollTop: $('.description').offset().top}, 300); return false; } return ctrack.url('#view=list_transactions&year={year3}&sector_code={sector_code}');">
+	<td class="col5" title="{table_sector_tip_t3_text}" onclick="switch($(this).children().first().html()){ case '0': case '-' : $('html, body').animate({scrollTop: $('.description').offset().top}, 300); return false; } return list_transactions('{year3}','{country_code}','{sector_code}');">
 		<a>{t3}</a></td>
-	<td class="col6" title="{table_sector_tip_b1_text}" onclick="switch($(this).children().first().html()){ case '0': case '-' : $('html, body').animate({scrollTop: $('.description').offset().top}, 300); return false; } return ctrack.url('#view=list_budgets&year={year3}&sector_code={sector_code}');">
+	<td class="col6" title="{table_sector_tip_b1_text}" onclick="switch($(this).children().first().html()){ case '0': case '-' : $('html, body').animate({scrollTop: $('.description').offset().top}, 300); return false; } return list_budgets('{year3}','{country_code}','{sector_code}');">
 		<a>{b1}</a></td>
-	<td class="col7" title="{table_sector_tip_b2_text}" onclick="switch($(this).children().first().html()){ case '0': case '-' : $('html, body').animate({scrollTop: $('.description').offset().top}, 300); return false; } return ctrack.url('#view=list_budgets&year={year4}&sector_code={sector_code}');">
+	<td class="col7" title="{table_sector_tip_b2_text}" onclick="switch($(this).children().first().html()){ case '0': case '-' : $('html, body').animate({scrollTop: $('.description').offset().top}, 300); return false; } return list_budgets('{year4}','{country_code}','{sector_code}');">
 		<a>{b2}</a></td>
 </tr>

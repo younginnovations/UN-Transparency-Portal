@@ -113,6 +113,6 @@ fetch.ajax_dat_fix = function (dat, args) {
             dat.from += ",location";
         }
     }
-//  console.log('==================dat==================',JSON.stringify(dat))
+//console.log('==================dat==================',JSON.stringify(dat))
     return dat;
 }

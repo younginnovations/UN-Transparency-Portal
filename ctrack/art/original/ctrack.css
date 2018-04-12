@@ -615,3 +615,37 @@ and (min-width: 1400px) {
     font-size: 14px;
     line-height: 20px;
 }
+
+.compare-select {
+    display: flex;
+    justify-content: space-between;
+    margin:20px 0;
+    width: 100%;
+    text-align: left;
+}
+
+.compare-select label {
+    display: inline-block;
+    width: 29%;
+}
+
+.compare-select label > span:first-of-type {
+    display: block;
+    margin-bottom: 6px;
+}
+
+.compare-select .select2-container {
+    width: 100%!important;
+}
+
+#filter_search_button {
+    margin-top: 14px;
+    width: 100%;
+    border: none;
+    background: #0067B1;
+    padding: 8px 0;
+    color: #fff;
+    font-size: 14px;
+    text-transform: uppercase;
+    border-radius:5px;
+}
