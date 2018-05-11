@@ -38,7 +38,7 @@ Active Projects
 Total UN budget
 
 #^un_agencies_in_iati_text
-UN publishers in IATI
+Publishers within the UNDG
 
 #^un_sectors_in_iati_text
 Sectors UN operates in
@@ -404,13 +404,13 @@ Public Google Spreadsheet
 Pixabay Public Domain only images
 
 #^publisher_dropmenu_text trim=ends
-Search for a UN publisher
+Search for a UN agency
 
 #^sector_dropmenu_text trim=ends
 Search for a sector
 
 #^country_dropmenu_text trim=ends
-Search for a recipient country
+Search for a country
 
 #^all_countries_text
 Compare all countries
@@ -434,3 +434,6 @@ This portal displays data from UNDG members that are currently publishing to the
 
 #^learn_more
 Learn more
+
+#^year
+Year

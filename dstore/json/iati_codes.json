@@ -884,8 +884,8 @@
     "41120": "UN-Habitat (UN-Habitat)",
     "41122": "United Nations Children's Fund (UNICEF)",
     "41AAA": "United Nations Office for Project Services (UNOPS)",
-    "XM-DAC-411124": "United Nations Entity for Gender Equality and the Empowerment of Women (UN-Women)",
-    "XM-DAC-41140": "United Nations World Food Programme (WFP)",
+    "XM-DAC-411124": "United Nations Entity for Gender Euality and the Empowerment of Women (UN-Women)",
+    "XM-DAC-41140": "United Nations World Food Programme (WFP)",     
     "44000": "The World Bank (WB)",
     "XM-OCHA-CERF": "United Nations Central Emergency Response Fund (CERF)",
     "XM-DAC-30010": "UNITAID (UNITAID)",
@@ -907,7 +907,14 @@
     "XM-DAC-47066": "International Organisation for Migration (IOM)",
     "XI-IATI-UNPF": "UN Pooled Funds (UNPF)",
     "XM-OCHA-FTS": "United Nations OCHA Financial Tracking Service (UN OCHA FTS)",
-    "XM-DAC-41116": "United Nations Environment Programme (UNEP)"
+    "XM-DAC-41116": "United Nations Environment Programme (UNEP)",
+    "UNDESA":"United Nations Department of Economic and Social Affairs (UNDESA)",
+    "UNECA":"United Nations Economic Commission for Africa (UNECA)",
+    "UNECE":"United Nations Economic and Social Council (UNECE)",
+    "UNESCAP":"United Nations Economic and Social Commission for Asia and the Pacific (UNESCAP)",
+    "UNESCWA":"United Nations Economic and Social Commission for Western Asia (UNESCWA)",
+    "UNOHRLLS":"United Nations Office of the High Representative for the Least Developed Countries, Landlocked Developing Countries and Small Island Developing States (UNOHRLLS)",
+    "UNCAC":"Office of the Special Representative of the Secretary-General for Children and Armed Conflict (UNCAC)"
   },
   "country": {
     "AC": "Ascension Island",
