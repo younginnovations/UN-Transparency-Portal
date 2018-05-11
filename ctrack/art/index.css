@@ -1357,8 +1357,8 @@ a.link-to-members {
 }
 
 .select-year span:first-child{
-  color: #fff;
-    font-size: 14px;
+    color: #fff;
+    font-size: 18px;
 }
 
 .select-year select{
@@ -1366,8 +1366,9 @@ a.link-to-members {
     background-color: #00406e;
     border: none;
     height: 28px;
+    font-size: 16px !important;
+    margin-left: 5px;
 }
-
 
 #slideshow {
     position: relative;
@@ -1563,7 +1564,7 @@ a.link-to-members {
 /* Tooltip container */
 .tooltip {
     position: relative;
-    cursor:pointer;
+    /* cursor:pointer; */
     /*border-bottom: 1px pdotted black; !* If you want dots under the hoverable text *!*/
 }
 
