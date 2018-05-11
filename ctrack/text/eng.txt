@@ -622,13 +622,13 @@ The data sources on this page are:
 Where does the money come from?
 
 #main_data_paragraph3_text
-IATI data for 2015 taken from the <a href="http://iatiregistry.org/">IATI Registry</a> each night.
+IATI data for {year} taken from the <a href="http://iatiregistry.org/">IATI Registry</a> each night.
 
 #main_data_paragraph4_text
 Where does the money go? (Sectors)
 
 #main_data_paragraph5_text
-IATI data for 2015 taken from the <a href="http://iatiregistry.org/">IATI Registry</a> each night.  Sector classification corresponds to OECD DAC CRS 5 Digit sector codes.
+IATI data for {year} taken from the <a href="http://iatiregistry.org/">IATI Registry</a> each night.  Sector classification corresponds to OECD DAC CRS 5 Digit sector codes.
 
 #main_data_paragraph6_text
 Heatmap

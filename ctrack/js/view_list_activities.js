@@ -77,8 +77,12 @@ view_list_activities.ajax = function(args) {
   if (args.output == "count") {
     // just count please
     let y = ctrack.args.selected_year; //Date.UTC(ctrack.args.selected_year, 1, 1) / (1000 * 60 * 60 * 24);
+   
     dat.select = "count_aid";
-    (dat.between = [y, "day_start", "day_end"]), delete dat.limit;
+    if(y !== 'all'){
+      dat.between = [y, "day_start", "day_end"];
+    }
+    delete dat.limit;
     delete dat.orderby;
     delete dat.groupby;
   }
