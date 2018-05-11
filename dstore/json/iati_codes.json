@@ -871,7 +871,8 @@
     "XM-DAC-928": "World Health Organisation (WHO)",
     "XI-IATI-UNPF": "UN Pooled Funds (UNPF)",
     "XM-OCHA-FTS": "United Nations OCHA Financial Tracking Service (UN OCHA FTS)",
-    "XM-DAC-41116": "United Nations Environment Programme (UNEP)"
+    "XM-DAC-41116": "United Nations Environment Programme (UNEP)",
+    "XM-DAC-47066": "International Organisation for Migration (IOM)"
   },
   "un_publisher_names": {
     "XM-DAC-41108": "International Fund for Agricultural Development (IFAD)",
@@ -903,7 +904,7 @@
     "WMO": "World Meteorological Organization (WMO)",
     "UNV": "UN Volunteers (UNV)",
     "XM-DAC-928": "World Health Organisation (WHO)",
-    "IOM": "International Organisation for Migration (IOM)",
+    "XM-DAC-47066": "International Organisation for Migration (IOM)",
     "XI-IATI-UNPF": "UN Pooled Funds (UNPF)",
     "XM-OCHA-FTS": "United Nations OCHA Financial Tracking Service (UN OCHA FTS)",
     "XM-DAC-41116": "United Nations Environment Programme (UNEP)"
@@ -1675,6 +1676,7 @@
     "XDR": "IMF special drawing rights"
   },
   "publisher_names": {
+    "XM-DAC-47066": "International Organisation for Migration",
     "21032": "Population Service International",
     "21033": "Transparency International Secretariat",
     "30001": "The Global Alliance for Improved Nutrition",
