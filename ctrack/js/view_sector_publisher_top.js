@@ -37,10 +37,14 @@ view_sector_publisher_top.ajax = function (args) {
         "funder_ref_not_null": "",
         "sector_code": ctrack.args.sector,
         "groupby": "funder_ref",
-        "trans_code": "D|E",
-        "trans_day_gteq": year + "-" + ctrack.args.newyear,
-        "trans_day_lt": (parseInt(year) + 1) + "-" + ctrack.args.newyear,
+        "trans_code": "D|E"
     };
+
+    if(year !== 'all years'){      
+		dat.trans_day_gteq = year + "-" + ctrack.args.newyear;
+		dat.trans_day_lt = (parseInt(year) + 1) + "-" + ctrack.args.newyear;        
+    }
+    
     fetch.ajax_dat_fix(dat, args);
     if (!dat.sector_ref) {
         dat.flags = 0;
@@ -88,7 +92,7 @@ view_sector_publisher_top.ajax = function (args) {
             var regExp = /\(([^)]+)\)/;
 
             try {
-                d.str_lab = iati_codes.funder_names[v.funder] || (regExp.exec(iati_codes.un_publisher_names[v.funder]))[1];
+                d.str_lab = iati_codes.funder_names[v.funder] || iati_codes.rev_crs_funders[v.funder] || (regExp.exec(iati_codes.un_publisher_names[v.funder]))[1];
             } catch (err) {
                 console.log(v.funder, err);
             }

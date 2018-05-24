@@ -98,8 +98,9 @@ ctrack.setup = function (args) {
         head.load(args.css);
     }
     let currentYear = new Date().getFullYear();
-    ctrack.year = parseInt(args.year || ctrack.q.year || currentYear);
-
+    
+    ctrack.year = (args.year || ctrack.q.year || currentYear); //removed parseInt to handle all year
+    ctrack.year = (ctrack.year === 'all')? 'all years': ctrack.year;
     ctrack.year_chunks = function (y) {
         ctrack.chunk("year", y);
         ctrack.chunk("year1", y - 1);

@@ -27,6 +27,7 @@ view_stats.chunks = [
 view_stats.calc = function() {
   var tot = ctrack.chunk("total_projects") || 0;
   var num = ctrack.chunk("total_activities_with_location") || 0;
+ 
   if (num < 1 || tot < 1) {
     ctrack.chunk("percent_of_activities_with_location", 0);
   } else {
@@ -61,13 +62,16 @@ view_stats.calc = function() {
 view_stats.ajax = function(args) {
   args = args || {};
   let y = ctrack.args.selected_year; //Date.UTC(ctrack.args.selected_year, 1, 1) / (1000 * 60 * 60 * 24);
-
+  
   var dat = {
     select: "sum_budget_value",
     from: "act,budget",
     budget: "budget",
-    between: [y, "budget_day_start", "budget_day_end"]
   };
+
+  if(y !== 'all'){
+    dat.between =  [y, "budget_day_start", "budget_day_end"];
+  }
 
   fetch.ajax_dat_fix(dat, args);
   // console.log('==================dat==================',JSON.stringify(dat))
@@ -94,9 +98,13 @@ view_stats.ajax = function(args) {
 
   var dat = {
     select: "stats",
-    from: "act",
-    between: [y, "day_start", "day_end"]
+    from: "act"
   };
+
+  if(y !== 'all'){
+    dat.between =  [y, "day_start", "day_end"];
+  }
+
   fetch.ajax_dat_fix(dat, args);
   fetch.ajax(
     dat,
@@ -137,6 +145,7 @@ view_stats.ajax = function(args) {
     dat,
     args.callback ||
       function(data) {
+        console.log('map location % is calculated in this page');
         if (data.rows[0]) {
           ctrack.chunk(
             "total_activities_with_location",

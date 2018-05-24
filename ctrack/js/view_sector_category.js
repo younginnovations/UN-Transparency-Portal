@@ -33,9 +33,14 @@ view_sector_category.ajax = function(args){
         "funder_ref_not_null":"",
         "sector_code":ctrack.args.sector,
         "groupby":"sector_code",
-        "trans_code":"D|E",
-        "trans_day_gteq":year+"-"+ctrack.args.newyear,"trans_day_lt":(parseInt(year)+1)+"-"+ctrack.args.newyear,
+        "trans_code":"D|E"
     };
+
+    if(year !== 'all years'){      
+        dat.trans_day_gteq = year + "-" + ctrack.args.newyear;
+        dat.trans_day_lt = (parseInt(year) + 1) + "-" + ctrack.args.newyear;        
+    }
+
     fetch.ajax_dat_fix(dat,args);
     if(!dat.sector_ref){dat.flags = 0;}
     fetch.ajax(dat,function(data){

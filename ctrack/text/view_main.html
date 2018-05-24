@@ -41,7 +41,7 @@
 	<div class="select-year">
 		<span>Showing data of</span>
 		<select id="choose-year" class="select-year-banner" name="state">
-			<!--<option value="ALL">All year</option>-->
+			<option value="all">All year</option>
 		</select>
 	</div>
 	<!-- <table class="title key">
@@ -94,7 +94,8 @@
 		$(document).ready(()=>{
 			let year = parseInt($('#year-select').val());
 		
-            $('#choose-year').empty();
+			$('#choose-year').empty();
+			$('#choose-year').append($('<option></option>').attr("value", 'all').text('All year'));
             for (let y = currentYear; y >= (currentYear - 5); y--) {
 				
                 if (y === year) {
@@ -112,7 +113,7 @@
 					loc = loc.substring(0, loc.indexOf("&year"));
 				}
 				
-                window.location.replace(loc + '&year=' + e.target.value);
+               ctrack.url(loc + '&year=' + e.target.value);
 
             });
 		})
