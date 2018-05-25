@@ -63,6 +63,65 @@ ctrack.dosort = function (s) {
     }
 };
 
+//Filters Countries based on the country code
+ctrack.filter_country_test = function(s){
+    if(s !== "null")
+    {
+        var elements = document.getElementsByClassName("rows");
+        for (var i = 0; i < elements.length; i++){
+            elements[i].style.display = 'none';
+        }
+        //show only the required country data
+        for (var i = 0; i < s.length; i++) {
+            var e = document.getElementById(s[i]);
+            if(e !== null)
+            {
+                e.style.display = '';
+            }
+        }
+    }
+};
+
+ctrack.filter_agency_test = function(s){
+    if(s !== "null")
+    {
+        var elements = document.getElementsByClassName("rows");
+        for (var i = 0; i < elements.length; i++){
+            elements[i].style.display = 'none';
+        }
+
+        //show only the required country data
+        for (var i = 0; i < s.length; i++) {
+            var e = document.getElementById(s[i]);
+            if(e !== null)
+            {
+                e.style.display = '';
+            }
+        }
+    }
+};
+
+ctrack.filter_sector_test = function(s){
+    if(s !== "null")
+    {
+        var elements = document.getElementsByClassName("rows");
+        for (var i = 0; i < elements.length; i++){
+            elements[i].style.display = 'none';
+        }
+
+        //show only the required country data
+        for (var i = 0; i < s.length; i++) {
+            var e = document.getElementById(s[i]);
+            if(e !== null)
+            {
+                e.style.display = '';
+            }
+        }
+    }
+};
+//added by @manibibek
+
+
 ctrack.setup = function (args) {
     ctrack.q = {};
     window.location.search.substring(1).split("&").forEach(function (n) {
@@ -86,7 +145,9 @@ ctrack.setup = function (args) {
             args.art + args.flava + "/activities.css",
             args.art + args.flava + "/ctrack.css",
             args.art + "chosen.min.css",
-            args.art + "typeahead.css"
+            args.art + "typeahead.css",
+            args.art + "css/select2.min.css",
+            args.art + "css/HoldOn.css",
         ];
         if (args.rgba) // only if given
         {
@@ -750,5 +811,103 @@ ctrack.setup = function (args) {
     }
     ctrack.check_hash();
     ctrack.display_hash();
+
+    //populate list for countries, publishers and sectors
+    if(typeof ctrack.compare_countries_list === "undefined")
+    {
+        var dat = {
+            from: "country",
+            select: "country_code",
+
+            limit: -1
+        };
+
+        fetch.ajax_dat_fix(dat, args);
+        fetch.ajax(dat, function(data) {
+            var flags = [],
+                output = [],
+                l = data.rows.length,
+                i;
+            for (i = 0; i < l; i++) {
+                if (data.rows[i].country_code === "") continue;
+                if (flags[data.rows[i].country_code]) continue;
+                flags[data.rows[i].country_code] = true;
+                var d = {};
+                d.country_code = data.rows[i].country_code;
+                d.country_name = iati_codes.country[d.country_code] || iati_codes.crs_countries[d.country_code];
+                output.push(d);
+                /*            if(data.rows[i].country_code === "AE")
+                            {
+                                var d = {};
+                                d.country_code = data.rows[i].country_code;
+                                d.country_name = iati_codes.country[d.country_code] || d.country_code;
+                                output.push(d);
+                                break;
+                            }*/
+            }
+            ctrack.compare_countries_list = output;
+            ctrack.display();
+        });
+    }
+
+    if(typeof ctrack.compare_sectors_list === "undefined")
+    {
+        var dat = {
+            from: "sector",
+            select: "sector_code",
+
+            limit: -1
+        };
+
+        fetch.ajax_dat_fix(dat, args);
+        fetch.ajax(dat, function(data) {
+            var flags = [],
+                output = [],
+                l = data.rows.length,
+                i;
+            for (i = 0; i < l; i++) {
+                if (data.rows[i].sector_code === "") continue;
+                if (flags[data.rows[i].sector_code]) continue;
+                flags[data.rows[i].sector_code] = true;
+                var d = {};
+                d.sector_code = data.rows[i].sector_code;
+                d.sector_name = iati_codes.sector[d.sector_code]+" ("+d.sector_code+")" || d.sector_code;
+                output.push(d);
+            }
+            ctrack.compare_sectors_list = output;
+            ctrack.display();
+        });
+    }
+
+    if(typeof ctrack.compare_publishers_list === "undefined")
+    {
+        var dat = {
+            from: "act",
+            select: "reporting_ref",
+
+            limit: -1
+        };
+
+        fetch.ajax_dat_fix(dat, args);
+        fetch.ajax(dat, function(data) {
+            var flags = [],
+                output = [],
+                l = data.rows.length,
+                i;
+            for (i = 0; i < l; i++) {
+                if (data.rows[i].reporting_ref === "") continue;
+                if (flags[data.rows[i].reporting_ref]) continue;
+                flags[data.rows[i].reporting_ref] = true;
+                var d = {};
+                d.reporting_ref = data.rows[i].reporting_ref;
+                d.publisher_name =
+                    iati_codes.iati_un_publishers[d.reporting_ref] || d.reporting_ref;
+                output.push(d);
+            }
+            ctrack.compare_publishers_list = output;
+
+            ctrack.display();
+        });
+    }
 
 }

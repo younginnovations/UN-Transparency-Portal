@@ -46,6 +46,12 @@ view_list_budgets.ajax=function(args)
 	args=args || {};
 	args.zerodata=args.zerodata||"{alert_no_data1}";
 
+    var url_link = window.location.href;
+    url_link = url_link.replace("#", "&");
+    var url = new URL(url_link);
+    var refFilter = url.searchParams.get("refFilter");
+    var sectFilter = url.searchParams.get("sectFilter");
+
 	var dat={
 			"from":"act,budget",
 			"limit":args.limit || -1,
@@ -53,6 +59,8 @@ view_list_budgets.ajax=function(args)
 			"groupby":"aid",
 			"orderby":"1-",
 			"budget_priority":1, // has passed some validation checks serverside
+			"reporting_ref":refFilter,
+			"sector_code" : sectFilter,
 		};
 	
 	var year=dat.year || ctrack.hash.year;

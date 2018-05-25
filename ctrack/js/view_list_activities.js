@@ -44,6 +44,50 @@ view_list_activities.view = function() {
 // Perform ajax call to get data
 //
 view_list_activities.ajax = function(args) {
+
+    var url_link = window.location.href;
+    url_link = url_link.replace("#", "?");
+    var url = new URL(url_link);
+
+    var refFilter = url.searchParams.get("refFilter");
+    var sectorFilter = url.searchParams.get("sectFilter");
+    var yearFilter = url.searchParams.get("year");
+    var country_code = url.searchParams.get("country_code");
+
+    var sectorCodeNames = "";
+    var reportingRefNames = "";
+    var countryCodeNames = "";
+
+    if(refFilter !== null && refFilter !== ""){
+         var reportingRefArray = refFilter.split(',');
+         refFilter = refFilter.split(',').join('|');
+         var reportingRefNamesArray = reportingRefArray.map(function(element){
+             return iati_codes.publisher_names[element];
+         });
+        reportingRefNames = reportingRefNamesArray.join();
+
+    }
+    if(sectorFilter !== null && sectorFilter !== ""){
+        var sectorFilterArray = sectorFilter.split(',');
+        sectorFilter = sectorFilter.split(',').join('|');
+        var sectorNamesArray = sectorFilterArray.map(function(element){
+            return iati_codes.sector[element];
+        });
+        sectorCodeNames = sectorNamesArray.join();
+
+    }
+    if(country_code !== null && country_code !== ""){
+        var countryCodeArray = country_code.split(',');
+        country_code = country_code.split(',').join('|');
+        var countryNamesArray = countryCodeArray.map(function(element){
+            return iati_codes.country[element];
+        });
+        countryCodeNames = countryNamesArray.join();
+    }
+
+    ctrack.chunk("sector_names",sectorCodeNames);
+    ctrack.chunk("country_names",countryCodeNames);
+
   args = args || {};
   args.zerodata = args.zerodata || "{alert_no_data1}";
 
@@ -57,7 +101,10 @@ view_list_activities.ajax = function(args) {
       ctrack.convert_str("spend") +
       ",reporting,reporting_ref,sector_ref,day_start,day_end",
     orderby: "4-",
-    groupby: "aid"
+    groupby: "aid",
+    country_code:country_code,
+      sector_code : sectorFilter,
+      reporting_ref : refFilter,
     //			"country_code":(args.country || ctrack.args.country_select),
     //			"reporting_ref":(args.publisher || ctrack.args.publisher_select),
     //			"title_like":(args.search || ctrack.args.search),

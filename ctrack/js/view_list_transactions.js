@@ -47,6 +47,50 @@ view_list_transactions.ajax = function (args) {
     args = args || {};
     args.zerodata = args.zerodata || "{alert_no_data1}";
 
+    var url_link = window.location.href;
+    url_link = url_link.replace("#", "?");
+    var url = new URL(url_link);
+
+    var refFilter = url.searchParams.get("refFilter");
+    var sectorFilter = url.searchParams.get("sectFilter");
+    var yearFilter = url.searchParams.get("year");
+    var country_code = url.searchParams.get("country_code");
+
+    var sectorCodeNames = "";
+    var reportingRefNames = "";
+    var countryCodeNames = "";
+
+    if(refFilter !== null && refFilter !== ""){
+        var reportingRefArray = refFilter.split(',');
+        refFilter = refFilter.split(',').join('|');
+        var reportingRefNamesArray = reportingRefArray.map(function(element){
+            return iati_codes.publisher_names[element];
+        });
+        reportingRefNames = reportingRefNamesArray.join();
+
+    }
+    if(sectorFilter !== null && sectorFilter !== ""){
+        var sectorFilterArray = sectorFilter.split(',');
+        sectorFilter = sectorFilter.split(',').join('|');
+        var sectorNamesArray = sectorFilterArray.map(function(element){
+            return iati_codes.sector[element];
+        });
+        sectorCodeNames = sectorNamesArray.join();
+
+    }
+    if(country_code !== null && country_code !== ""){
+        var countryCodeArray = country_code.split(',');
+        country_code = country_code.split(',').join('|');
+        var countryNamesArray = countryCodeArray.map(function(element){
+            return iati_codes.country[element];
+        });
+        countryCodeNames = countryNamesArray.join();
+    }
+
+    ctrack.chunk("sector_names",sectorCodeNames);
+    ctrack.chunk("country_names",countryCodeNames);
+    ctrack.chunk("reporting_refs_names",reportingRefNames);
+
     var dat = {
         "from": "act,trans",
         "limit": args.limit || -1,
@@ -57,6 +101,10 @@ view_list_transactions.ajax = function (args) {
 //			"country_code":(args.country || ctrack.args.country_select),
 //			"reporting_ref":(args.publisher || ctrack.args.publisher_select),
 //			"title_like":(args.search || ctrack.args.search),
+        "country_code":country_code,
+        "reporting_ref":refFilter,
+        "sector_code" : sectorFilter,
+        year:yearFilter
     };
 //	for(var n in ctrack.q) { dat[n]=ctrack.q[n]; }
 //	for(var n in ctrack.hash) { dat[n]=ctrack.hash[n]; }

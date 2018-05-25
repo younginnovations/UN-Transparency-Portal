@@ -1219,6 +1219,7 @@
     "ZW": "Zimbabwe"
   },
   "crs_countries": {
+    "89" : "Europe, regional",
     "189": "North & Central America, regional",
     "289": "South Asia, regional",
     "298": "Africa, regional",
