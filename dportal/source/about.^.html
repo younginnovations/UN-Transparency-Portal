@@ -133,22 +133,22 @@
 
     var cross = document.getElementsByClassName("close")[0];
 
-    btn.onclick = function() {
-        modal.style.display = "block";
-        $("body").css('overflow','hidden');
-    }
-
-    cross.onclick = function() {
-        modal.style.display = "none";
-        $("body").css('overflow','visible');
-    }
-
-    window.onclick = function(event) {
-        if (event.target == modal) {
-            modal.style.display = "none";
-            $("body").css('overflow','visible');
-        }
-    }
+    // btn.onclick = function() {
+    //     modal.style.display = "block";
+    //     $("body").css('overflow','hidden');
+    // }
+    //
+    // cross.onclick = function() {
+    //     modal.style.display = "none";
+    //     $("body").css('overflow','visible');
+    // }
+    //
+    // window.onclick = function(event) {
+    //     if (event.target == modal) {
+    //         modal.style.display = "none";
+    //         $("body").css('overflow','visible');
+    //     }
+    // }
     $("#sendFeedback").on('click',function(e){
         e.preventDefault();
         var name  = $('#fullname').val();

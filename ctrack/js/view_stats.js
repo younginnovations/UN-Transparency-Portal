@@ -140,6 +140,9 @@ view_stats.ajax = function(args) {
   if (dat.country_code) {
     dat.country_percent = 100;
   }
+    if(y !== 'all'){
+        dat.between = [y, "day_start", "day_end"];
+    }
 
   fetch.ajax(
     dat,

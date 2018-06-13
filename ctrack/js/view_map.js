@@ -292,8 +292,7 @@ view_map.ajax_heat=function(args)
 	fetch.ajax(dat,args.callback || function(data)
 	{
 //		console.log("fetch map heat");
-//		console.log(data);
-		
+// 		console.log(data);
 		var alat=0;
 		var alng=0;
 		var acnt=0;
