@@ -132,6 +132,12 @@ view_list_activities.ajax = function(args) {
     delete dat.limit;
     delete dat.orderby;
     delete dat.groupby;
+  } else {
+    //Show activities according the above counted data
+    let y = ctrack.args.selected_year; //Date.UTC(ctrack.args.selected_year, 1, 1) / (1000 * 60 * 60 * 24);
+    if(y !== 'all'){
+      dat.between = [y, "day_start", "day_end"];
+    }
   }
   var eightyeight = 88;
   fetch.ajax(dat, function(data) {
