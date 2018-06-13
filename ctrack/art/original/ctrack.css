@@ -79,7 +79,7 @@ td.options form			{display:inline-block;float: right; font-size: 12px;}
 .menu-link-wrap         {display: inline-block;padding:15px 0 0;}
 .menu-link-wrap .menu   {float: left; display: inline-block;margin-right: 15px;}
 .menu-link-wrap .menu:last-child   {margin-right: 0;}
-.menu-link-wrap .menu a   {font-size: 11px;text-transform: uppercase; color: #fff;}
+.menu-link-wrap .menu a   {font-size: 13px!important;text-transform: uppercase; color: #fff;}
 .menu-link-wrap .menu a:hover   {color: rgba(255, 255, 255, 0.7);}
 
 
