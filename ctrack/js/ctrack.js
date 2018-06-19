@@ -119,7 +119,6 @@ ctrack.filter_sector_test = function(s){
         }
     }
 };
-//added by @manibibek
 
 
 ctrack.setup = function (args) {
@@ -835,7 +834,9 @@ ctrack.setup = function (args) {
                 var d = {};
                 d.country_code = data.rows[i].country_code;
                 d.country_name = iati_codes.country[d.country_code] || iati_codes.crs_countries[d.country_code];
-                output.push(d);
+                if(d.country_name !== undefined){
+                    output.push(d);
+                }
                 /*            if(data.rows[i].country_code === "AE")
                             {
                                 var d = {};
@@ -872,7 +873,9 @@ ctrack.setup = function (args) {
                 var d = {};
                 d.sector_code = data.rows[i].sector_code;
                 d.sector_name = iati_codes.sector[d.sector_code]+" ("+d.sector_code+")" || d.sector_code;
-                output.push(d);
+                if(d.sector_code !== null){
+                    output.push(d);
+                }
             }
             ctrack.compare_sectors_list = output;
             ctrack.display();

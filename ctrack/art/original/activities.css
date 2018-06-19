@@ -61,6 +61,15 @@ activity-date[type="start-actual"]	{font-size:1.0em; display:table-cell; vertica
 activity-date[type="end-actual"]	{font-size:1.0em; display:table-cell; vertical-align:baseline; padding:10px 40px 30px; color:#333;}
 activity-date[type="start-actual"]:before{content:"START DATE"; font-size:14px; color:rgba(51,51,51,0.7); display:inline-block; vertical-align:baseline; padding-right:10px;}
 activity-date[type="end-actual"]:before	{content:"END DATE"; font-size:14px; color:rgba(51,51,51,0.7); display:inline-block; vertical-align:baseline; padding-right:10px;}
+/*fix for missing date values*/
+span.span_activity-date				{display:block; vertical-align:baseline; width:960px; border-bottom: solid 2px rgba(0, 103, 177, 0.1);}
+activity-date[type="2"]	{display:none;}
+activity-date[type="4"]	{display:none;}
+activity-date[type="2"]	{font-size:1.0em; display:table-cell; vertical-align:baseline; padding:10px 40px 30px; color:#333;}
+activity-date[type="4"]	{font-size:1.0em; display:table-cell; vertical-align:baseline; padding:10px 40px 30px; color:#333;}
+activity-date[type="2"]:before{content:"START DATE"; font-size:14px; color:rgba(51,51,51,0.7); display:inline-block; vertical-align:baseline; padding-right:10px;}
+activity-date[type="4"]:before	{content:"END DATE"; font-size:14px; color:rgba(51,51,51,0.7); display:inline-block; vertical-align:baseline; padding-right:10px;}
+
 
 
 /*	Who's invloved?

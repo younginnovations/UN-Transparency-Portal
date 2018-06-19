@@ -89,10 +89,16 @@ savi.fixup = function (args) {
         });
 
         if (!got_start) {
-            it.append("<activity-date type=\"start-actual\" />");
+            // it.append("<activity-date type=\"start-actual\" />");
+            //fix for start date and end date on activity-date type=number
+            var x = document.getElementsByTagName('activity-date');
+            var y = Array.from(x);
+            y.reverse().forEach(function(element){
+                $(".span_activity-date").append(element);
+            });
         }
         if (!got_end) {
-            it.append("<activity-date type=\"end-actual\" />");
+            // it.append("<activity-date type=\"end-actual\" />");
         }
 
     });
