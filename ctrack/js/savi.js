@@ -51,7 +51,7 @@ savi.fixup = function (args) {
             it.html(commafy(it.html()) + "<span>" + c + "</span>");
         }
     });
-
+    
     acts.each(function (i) {
         var it = $(this);
         var needed = ["title", "recipient-country", "participating-org", "reporting-org", "description", "activity-status"];
@@ -78,12 +78,15 @@ savi.fixup = function (args) {
         var ad = it.children("activity-date");
         var got_start = false;
         var got_end = false;
+        // console.log(ad);
         ad.each(function (i, a) {
+            // console.log(a);
             var t = $(a).attr("type");
-            if (t == "start-actual") {
+            // console.log(t);
+            if (t == "start-actual" || t == '1') {
                 got_start = true;
             }
-            if (t == "end-actual") {
+            if (t == "end-actual" || t == '3') {
                 got_end = true;
             }
         });
@@ -383,11 +386,11 @@ savi.fixup = function (args) {
             if ((ret === 0) && (aname == "activity-date")) {
                 var at = a.getAttribute("type");
                 var bt = b.getAttribute("type");
-                if (at < bt) {
+                /* if (at < bt) {
                     ret = 1;
                 } else if (at > bt) {
                     ret = -1;
-                }
+                } */
             }
 
             if ((ret === 0) && (aname == "sector")) {

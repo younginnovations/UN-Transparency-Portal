@@ -1557,7 +1557,7 @@ a.link-to-members {
 
 
  #totalBudget:after{
-     content: "*";
+     /* content: "*"; */
 
  }
 
