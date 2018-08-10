@@ -51,7 +51,7 @@ savi.fixup = function (args) {
             it.html(commafy(it.html()) + "<span>" + c + "</span>");
         }
     });
-
+    
     acts.each(function (i) {
         var it = $(this);
         var needed = ["title", "recipient-country", "participating-org", "reporting-org", "description", "activity-status"];
@@ -78,21 +78,38 @@ savi.fixup = function (args) {
         var ad = it.children("activity-date");
         var got_start = false;
         var got_end = false;
+        var got_start_date = "";
+        var got_end_date = "";
+
         ad.each(function (i, a) {
             var t = $(a).attr("type");
-            if (t == "start-actual") {
+            var iso_date = $(a).attr("iso-date");
+
+            if (t == "start-actual" || t == '2') {
                 got_start = true;
+                if(iso_date !== null) {
+                    start_date = true;
+                }
+            } 
+            if (t == "start-planned" || t == '1') {
+                got_start_date = iso_date;
             }
-            if (t == "end-actual") {
+            if (t == "end-actual" || t == '4') {
                 got_end = true;
+                if(iso_date !== null) {
+                    end_date = true;
+                }
+            } 
+            if (t == "end-planned" || t == '3') {
+                got_end_date = iso_date;
             }
         });
 
         if (!got_start) {
-            it.append("<activity-date type=\"start-actual\" />");
+            it.append("<activity-date type=\"start-actual\" >" + got_start_date + "</activity-date>");
         }
         if (!got_end) {
-            it.append("<activity-date type=\"end-actual\" />");
+            it.append("<activity-date type=\"end-actual\" >" + got_end_date + "</activity-date>");
         }
 
     });
@@ -383,11 +400,11 @@ savi.fixup = function (args) {
             if ((ret === 0) && (aname == "activity-date")) {
                 var at = a.getAttribute("type");
                 var bt = b.getAttribute("type");
-                if (at < bt) {
+                /* if (at < bt) {
                     ret = 1;
                 } else if (at > bt) {
                     ret = -1;
-                }
+                } */
             }
 
             if ((ret === 0) && (aname == "sector")) {
