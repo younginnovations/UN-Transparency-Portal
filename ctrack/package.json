@@ -15,10 +15,10 @@
     "morgan": "*",
     "pm2": "*",
     "uglify-js": "*",
-    "uglifyify": "^4.0.3",
     "wait.for": "*",
-    "watchify": "*",
-    "yargs": "*"
+    "yargs": "*",
+    "uglifyify": "*",
+    "watchify": "*"
   },
   "scripts": {
     "build": "node js/bake.js && node node_modules/browserify/bin/cmd.js -r ./js/ctrack.js:ctrack -d -o jslib/ctrack.js && node node_modules/uglify-js/bin/uglifyjs jslib/ctrack.js -o jslib/ctrack.min.js"

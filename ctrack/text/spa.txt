@@ -64,6 +64,9 @@ Icono de alerta
 #info_icon_alt_text 
 Icono de la información 
 
+#about_registry_text
+Sobre IATI editor
+
 #about_this_data_text 
 Sobre estos datos 
 
@@ -88,8 +91,11 @@ Volver a la Portal de Desarrollo: Editorial edición
 #back_text
 Volver a la {portal_name}
 
+#new_tab_text
+Abre una nueva pestaña
+
 #crumbname_main_text 
-{portal_name} Casa 
+Casa 
 
 #crumbname_donors_text 
 Lista de Donantes 
@@ -262,11 +268,14 @@ Fecha de finalización
 #amount_text
 Cantidad
 
+#view_activities_amount_text
+Compromisos salientes
+
 #donor_activities_spend_text
-Compromisos totales
+Compromisos salientes
 
 #donor_activities_percentage_tip_text 
-Porcentaje del total de compromisos pasados
+Porcentaje del total de compromisos salientes
 
 #view_donor_budgets_text
 Presupuesto total para {donor} en {year}
@@ -374,7 +383,7 @@ Haga clic para explorar actividades para el {year4}
 Fecha final 
 
 #table_ended_date_tip_text 
-Fecha terminado
+Fecha final
 
 #list_publishers_text 
 Haga clic para explorar todos los proyectos notificados por este editor 
@@ -431,7 +440,10 @@ Español
 Modo de Alta Visibilidad 
 
 #flava_original_text 
-Original flava
+Original
+
+#flava_choose_text
+Elige un tema
 
 #flag_alt_text 
 Bandera
@@ -459,6 +471,57 @@ Principio de la página
 
 #footer_about_text 
 Acerca de d-portal.org
+
+#footer6_text
+<a href="http://d-portal.org/">d-portal.org</a>
+
+#footer7_text
+ayuda a explorar los datos de la IATI.
+
+#footer8_text
+Proporciona información por país o por el editor en las actividades de desarrollo y los presupuestos publicados hasta la IATI.
+
+#footer9_text
+Actualmente estamos en etapa beta. Mientras d-portal está disponible al público, no se considera terminado. Puede experimentar errores o ausencia de funcionalidades, pero es por eso que necesitamos su colaboración y apoyo.
+
+#footer10_text
+Si tiene alguna pregunta sobre cómo se muestran los datos en d-portal, o sobre la actualización de los datos, consulte las preguntas frecuentes o póngase en contacto con el servicio de asistencia técnica de IATI.
+
+#footer11_text
+support@iatistandard.org
+
+#footer12_text
+Herramientas & amp; actualizaciones
+
+#footer13_text
+Últimos mensajes de noticias
+
+#footer14_text
+Dash - Estadísticas Publishers
+
+#footer15_text
+Generator - Reproductores de su sitio web
+
+#footer16_text
+Información
+
+#footer17_text
+Preguntas más frecuentes
+
+#footer18_text
+Atribución y Fuentes
+
+#footer19_text
+Foro de sugerencias Github
+
+#footer20_text
+Registros de la base de datos
+
+#footer21_text
+Si tiene alguna consulta relacionada con los datos, que es propiedad del editor,
+
+#footer22_text
+por favor contáctalos aquí.
 
 #read_more_text
 Leer más
@@ -695,6 +758,9 @@ Esperamos que nuestra presentación de los datos - y las lagunas - ofrece un pan
 #download_csv_text
 Descargar tabla en formato CSV
 
+#table_alert_text
+¿No ve ningún dato? Trate de cambiar los años haciendo clic en las <b>&lt;</b> flechas <b>&gt</b>
+
 #table_publisher_title_publisher_text
 EDITOR
 
@@ -737,11 +803,8 @@ Presupuesto de archivo de la organización del editor
 #title_publisher_countries_text 
 El dinero va a {countries_count} países. 
 
-#title_publisher_sectors_text 
-El dinero va a {sectors_count} sectores.
-
-#title_publisher_countries_table_text 
-El dinero va a {countries_count} países. 
+#title_countries_table_text 
+El dinero va a {countries_count} países<br/>({year1}-{year3})
 
 #title_publisher_sectors_table_text 
 El dinero va a {sectors_count} sectores.
@@ -849,7 +912,7 @@ Año comienza el
 Temas
 
 #change_settings_text
-Cambiar Ajustes
+Ajustes
 
 #search_recipient_txt
 Beneficiario
@@ -869,8 +932,14 @@ Editor
 #search_year_txt
 Año
 
+#search_policy_txt
+Marcador de política
+
 #search_view_txt
-Ha buscado:
+EXPLORE <span>filtros</span>
+
+#search_refine_txt
+Refinar busqueda
 
 #search_text_txt
 Búsqueda de texto

@@ -120,12 +120,21 @@ view_map.fixup=function(forced)
 						{
 							case "active":
 								show=( (v.day_end>=today) && (v.day_start<=today) );
+								var q="&day_end_gteq="+today+"&day_start_lteq="+today
+								$("#view_map_csv_url").attr("href",ctrack.chunk("map_csv_url")+q);
 							break;
 							case "planned":
 								show=(v.day_start>today);
+								var q="&day_start_gt="+today
+								$("#view_map_csv_url").attr("href",ctrack.chunk("map_csv_url")+q);
 							break;
 							case "ended":
 								show=(v.day_end<today);
+								var q="&day_end_lt="+today
+								$("#view_map_csv_url").attr("href",ctrack.chunk("map_csv_url")+q);
+							break;
+							case "all":
+								$("#view_map_csv_url").attr("href",ctrack.chunk("map_csv_url")); // reset
 							break;
 						}
 						
@@ -280,7 +289,7 @@ view_map.ajax_heat=function(args)
 	if(dat.country_code)
 	{
 		dat.country_percent=100;
-		dat.reporting_ref_nteq="US-GOV-1"; // ignore bad data for now
+//		dat.reporting_ref_nteq="US-GOV-1"; // ignore bad data for now
 	}
 
 
@@ -359,6 +368,14 @@ view_map.ajax_pins=function(args)
 		};
 	fetch.ajax_dat_fix(dat,args);
 	if(dat.country_code) { /*dat.from+=",country";*/ dat.country_percent=100; }
+
+	var datcsv={} ; for(var n in dat) { if(dat[n]) { datcsv[n]=dat[n] } }
+	datcsv.select="*"
+	datcsv.form="csv"
+	datcsv.human=""
+	var csvurl=fetch.tourl(datcsv)
+	console.log(csvurl)
+	ctrack.chunk("map_csv_url",csvurl)
 		
 	fetch.ajax(dat,args.callback || function(data)
 	{

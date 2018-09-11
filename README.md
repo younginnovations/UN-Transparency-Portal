@@ -1,6 +1,6 @@
 Issues
 ===================
-Please be aware that we use Github Issues for **discussion** and not every issue represent a bug.  
+Please be aware that we use Github Issues for **discussion** and not every issue represents a bug.  
 If you have any questions about d-portal, please raise an [*issue*](https://github.com/devinit/D-Portal/issues/new). We very much welcome comments and feedback!
 
 
@@ -17,7 +17,7 @@ Features
 ===================
 
 - Explore IATI data for both countries and publishers.
-- Updates everyday GMT +0 with new data from the IATI Registry.
+- **Updates everyday GMT +0 with new data from the IATI Registry.**
 - [DStore](https://github.com/devinit/D-Portal/tree/master/dstore) is an
  optimized nodejs + PostgreSQL + SQLite database for use in real time queries.
 - [Q](https://github.com/devinit/D-Portal/blob/master/documents/dstore_q.md) allows queries via simple but complex filters.
@@ -71,4 +71,4 @@ Database Logs
 We are tracking the nightly imports of IATI data being 
 published to d-portal.org [here](https://github.com/xriss/D-Portal-Logs).
 
-
+Service status on [Uptime Robot](https://stats.uptimerobot.com/8MWyWsgj7).

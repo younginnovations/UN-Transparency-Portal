@@ -138,6 +138,12 @@ ctrack.setup = function (args) {
     args.flava = args.flava || ctrack.q.flava || "original";
     args.rgba = args.rgba || ctrack.q.rgba;
     args.newyear = args.newyear || ctrack.q.newyear || "01-01";
+	args.policy=args.policy || ctrack.q.policy ;
+
+    if(args.policy)
+	{
+		args.policy=args.policy.split(",").join("|") // convert , to |
+	}
 
     if (!args.css) // can totally override with args
     {
@@ -175,35 +181,49 @@ ctrack.setup = function (args) {
     ctrack.display_usd = "USD";
     ctrack.convert_usd = 1;
     ctrack.convert_have = {"CAD": true, "EUR": true, "GBP": true};
-    ctrack.convert_str = function (n) {
-        if (ctrack.convert_have[ctrack.display_usd]) {
-            return n + "_" + ctrack.display_usd.toLowerCase();
-        }
-        else {
-            if ((n == "spend") || (n == "commitment")) // special USD case
-            {
-                return n;
-            }
-            else {
-                return n + "_usd";
-            }
-        }
-    };
-    ctrack.convert_num = function (n, v) {
+    ctrack.convert_str=function(n){
+		if(n=="sum_of_percent_of_trans") { n="sum_trans" }
+		else
+		if(n=="sum_of_percent_of_budget") { n="sum_budget" }
+		
+		if(ctrack.convert_have[ctrack.display_usd])
+		{
+			return n+"_"+ctrack.display_usd.toLowerCase();
+		}
+		else
+		{
+			if(n=="spend"||n=="commitment") { return n; }
+			return n+"_usd";
+		}
+	};
+    ctrack.convert_num=function(n,v){
+		
+		if(n=="spend/commitment")
+		{
+			var a=ctrack.convert_num("spend",v)
+			var b=ctrack.convert_num("commitment",v)
+			if( b && b!=0 ) { return a/b }
+			else { return 0 }
+		}
 
-        if (ctrack.convert_have[ctrack.display_usd]) {
-            return v[n + "_" + ctrack.display_usd.toLowerCase()];
-        }
-        else {
-            if ((n == "spend") || (n == "commitment"))
-            {
-                return v[n] * ctrack.convert_usd;
-            }
-            else {
-                return v[n + "_usd"] * ctrack.convert_usd;
-            }
-        }
-    };
+		if(n=="sum_of_percent_of_trans") { n="sum_trans" }
+		else
+		if(n=="sum_of_percent_of_budget") { n="sum_budget" }
+
+		if(ctrack.convert_have[ctrack.display_usd])
+		{
+			return  v[n+"_"+ctrack.display_usd.toLowerCase()];
+		}
+		else
+		{
+			if(n=="spend"||n=="commitment") { return v[n]*ctrack.convert_usd; }
+			return  v[n+"_usd"]*ctrack.convert_usd;
+		}
+	};
+	ctrack.convert_not_zero=function(n,v){
+		var t=ctrack.convert_num(n,v)
+		return ( (t) && (t!=0) )
+	};
 
     if (ctrack.q.usd) {
         var usd = ctrack.q.usd.toUpperCase();
@@ -376,6 +396,7 @@ ctrack.setup = function (args) {
         if (ctrack.q.search != "") {
             ctrack.args.search = "%" + ctrack.q.search + "%";
         }
+
 // always show search headers and hide publisher/country headers even if the searchstring is empty
         ctrack.args.showsearch = true;
     }

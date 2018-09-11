@@ -91,6 +91,15 @@
 			{footer_about_text}</a>
 		</div>
 	</div>
+</div>
+
+#view_tail_pub
+		</div>
+	</div>
+	<div class="footer_wrap">
+		<div class="footer">
+			{large_footer_pub}
+		</div>
 	</div>
 </div>
 
@@ -147,9 +156,14 @@
 		<td class="options">
 			<form action="">
 			<span class="settings_info">{settings_themes_text} </span>
-			<select id="flava_select" name="flava" class="">
-				<option value="original">{flava_original_text}</option>
-				<option value="high">{flava_high_visibility_text}</option>
+			<select aria-label="Select a colour theme from this dropdown" id="flava_select" name="flava" class="">
+				<option value="flava=original">{flava_choose_text}</option> 
+				<option value="flava=original">{flava_original_text}</option> 
+				<option value="flava=high">{flava_high_visibility_text}</option>
+				<option value="rgba=mustard">Mustard</option>
+				<option value="rgba=inspire">Inspire</option>
+				<option value="rgba=grey">Grey</option>
+				<option value="rgba=orange_teal">Orange Teal</option>
 			</select>
 			</form>
 		</td>
@@ -314,7 +328,7 @@
 		});
 		$('#flava_select').bind('change', function ()
 		{
-			var url = "{mark_no_flava}&flava="+$(this).val()+"{hash}";
+			var url = "{mark_no_flava}&"+$(this).val()+"{hash}";
 			window.location = url; // redirect
 			return false;
 		});
@@ -495,7 +509,7 @@
 
 #alert_no_iati
 <tr>
-	<td colspan="3" class="alert_no_iati" title="{alert_no_iati_tip_text}">{alert_no_iati_text}</td>
+	<td colspan="10" class="alert_no_iati" title="{alert_no_iati_tip_text}">{alert_no_iati_text}</td>
 </tr>
 
 #alerts_quality

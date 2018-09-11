@@ -64,6 +64,9 @@ t哪里的钱从何而来？ (IATI{year})
 #info_icon_alt_text 
 信息图标 
 
+#about_registry_text
+关于IATI 上的发布者
+
 #about_this_data_text 
 关于这个数据 
 
@@ -88,8 +91,11 @@ d-portal.org还处于非常早期的开发中，预计Alpha版本四月中旬。
 #back_text
 返回{portal_name}
 
+#new_tab_text
+打开新标签
+
 #crumbname_main_text
-{portal_name}首页
+首页
 
 #crumbname_donors_text
 捐款人名单
@@ -434,7 +440,10 @@ Español
 高能见度模式 
 
 #flava_original_text 
-原来的主题
+原版的
+
+#flava_choose_text
+选择一个主题
 
 #flag_alt_text
 旗
@@ -462,6 +471,57 @@ Español
 
 #footer_about_text
 关于d-portal.org
+
+#footer6_text
+<a href="http://d-portal.org/">d-portal.org</a>
+
+#footer7_text
+可以帮助你探索IATI数据。
+
+#footer8_text
+它提供了按国家或通过发布到IATI开发活动和预算出版商信息。
+
+#footer9_text
+我们目前正处于测试阶段。而D-门户是公开的，它不被视为成品。您可能会遇到错误和缺失的功能，但是这就是为什么我们需要您的反馈和支持。
+
+#footer10_text
+如果您对数据在d-portal中的显示方式有任何疑问，或者如何了解最新数据，请参阅常见问题或联系IATI支持服务台
+
+#footer11_text
+support@iatistandard.org
+
+#footer12_text
+工具更新
+
+#footer13_text
+最新消息职位
+
+#footer14_text
+Dash - 发布的统计数据
+
+#footer15_text
+Generator - 小工具为您的网站
+
+#footer16_text
+信息
+
+#footer17_text
+常问问题
+
+#footer18_text
+署名和来源
+
+#footer19_text
+Github的反馈论坛
+
+#footer20_text
+数据库日志
+
+#footer21_text
+如果您有任何关于数据本身的问题（由发布者拥有）
+
+#footer22_text
+请在这里与他们联系。
 
 #read_more_text
 阅读全文
@@ -696,6 +756,9 @@ d-portal展示了一些主要的发展伙伴的最佳实践。许多IATI出版�
 #download_csv_text
 下载表格为CSV
 
+#table_alert_text
+没有看到任何数据？ 尝试通过点击<b>&lt;</b> 箭头 <b>&gt</b>
+
 #table_publisher_title_publisher_text
 出版者
 
@@ -738,11 +801,8 @@ d-portal展示了一些主要的发展伙伴的最佳实践。许多IATI出版�
 #title_publisher_countries_text 
 这笔钱去{countries_count}国家。 
 
-#title_publisher_sectors_text 
-这笔钱去{sectors_count}行业。
-
-#title_publisher_countries_table_text 
-这笔钱去{countries_count}国家。 
+#title_countries_table_text 
+这笔钱去{countries_count}国家<br/>({year1}-{year3})
 
 #title_publisher_sectors_table_text 
 这笔钱去{sectors_count}行业。
@@ -850,7 +910,7 @@ IATI出版社
 主题
 
 #change_settings_text
-更改设置
+设置
 
 #search_recipient_txt
 接受者
@@ -870,8 +930,14 @@ IATI出版社
 #search_year_txt
 年
 
+#search_policy_txt
+政策标记
+
 #search_view_txt
-您搜索：
+EXPLORE <span>筛选</span>
+
+#search_refine_txt
+细化搜索
 
 #search_text_txt
 文本搜索

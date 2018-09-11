@@ -64,6 +64,9 @@
 #info_icon_alt_text 
 情報アイコン 
 
+#about_registry_text
+IATIレジストリの出版社について
+
 #about_this_data_text 
 このデータについて 
 
@@ -88,8 +91,11 @@ d-portal.orgは現在ベータ版です。
 #back_text
 戻る{portal_name}
 
+#new_tab_text
+新しいタブを開きます
+
 #crumbname_main_text
-{portal_name}  ホーム
+ホーム
 
 #crumbname_donors_text
 ドナー リスト
@@ -434,7 +440,10 @@ Español
 視認性の高いモード 
 
 #flava_original_text 
-元のテーマ
+元の
+
+#flava_choose_text
+テーマを選択
 
 #flag_alt_text
 フラグ
@@ -462,6 +471,57 @@ Español
 
 #footer_about_text
 d-portal.org について
+
+#footer6_text
+<a href="http://d-portal.org/">d-portal.org</a>
+
+#footer7_text
+あなたはIATIデータを探索するのに役立ちます。
+
+#footer8_text
+それは、国別またはIATIに公開された開発活動や予算上の発行者による情報を提供します。
+
+#footer9_text
+私たちは現在ベータ版です。 D-ポータルが公開されているが、それが終了したとみなされません。あなたはバグと欠けている機能を体験することができるが、我々はあなたのフィードバックやサポートを必要とする理由です。
+
+#footer10_text
+データがd-portalにどのように表示されているか、データが最新であるかについての問い合わせがある場合は、よくある質問を参照するか、IATIサポートヘルプデスクにお問い合わせください
+
+#footer11_text
+support@iatistandard.org
+
+#footer12_text
+ツール＆アップデート
+
+#footer13_text
+最新のニュース記事
+
+#footer14_text
+Dash - 出版社の統計を
+
+#footer15_text
+Generator - あなたのウェブサイトのためのウィジェット
+
+#footer16_text
+情報
+
+#footer17_text
+よくある質問
+
+#footer18_text
+アトリビューションとソース
+
+#footer19_text
+Githubのフィードバックフォーラム
+
+#footer20_text
+データベースログ
+
+#footer21_text
+サイト運営者が所有するデータ自体に関するクエリがある場合は、
+
+#footer22_text
+ここに連絡してください。
 
 #read_more_text
 続きを読む
@@ -698,6 +758,9 @@ d-portalは、主要な開発パートナーの数のベストプラクティス
 #download_csv_text
 CSVとして表をダウンロード
 
+#table_alert_text
+データは表示されませんか？ 矢印をクリックして年を変えてみてください。
+
 #table_publisher_title_publisher_text
 出版社
 
@@ -740,11 +803,8 @@ CSVとして表をダウンロード
 #title_publisher_countries_text 
 お金は{countries_count}国に行く。 
 
-#title_publisher_sectors_text 
-お金は{sectors_count}セクタに行く。
-
-#title_publisher_countries_table_text 
-お金は{countries_count}国に行く。 
+#title_countries_table_text 
+お金は{countries_count}国に行く<br/>({year1}-{year3})
 
 #title_publisher_sectors_table_text 
 お金は{sectors_count}セクタに行く。
@@ -852,7 +912,7 @@ IATI出版
 テーマ
 
 #change_settings_text
-設定の変更
+設定
 
 #search_recipient_txt
 受信者
@@ -872,8 +932,14 @@ IATI出版
 #search_year_txt
 年
 
+#search_policy_txt
+ポリシーマーカー
+
 #search_view_txt
-検索結果：
+EXPLORE <span>フィルタ</span>
+
+#search_refine_txt
+絞り込み検索
 
 #search_text_txt
 テキスト検索

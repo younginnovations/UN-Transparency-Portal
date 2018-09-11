@@ -3,7 +3,10 @@
 * 					{color:#000; font-family:Arial,Helvetica,sans-serif; word-wrap:break-word;}
 body,html			{background-color:#fff; color:#000; font-family:sans-serif;}
 a 					{text-decoration:none; color:#000;}
-a:hover 			{color:#000;}
+a:link				{text-decoration:none; color:#000;}
+a:visited			{text-decoration:none; color:#000;}
+a:hover				{text-decoration:none; color:#000;}
+a:active			{text-decoration:none; color:#000;}
 
 ok					{display:none;}
 query				{display:none;}
@@ -15,7 +18,7 @@ iati-activity:after {content:"Data is sourced from IATI for D-Portal. If you fin
 
 /*	Play nice with Google Translate font tags
 	============================================= */
-font					{display:inline;}
+font				{display:inline;}
 
 
 /*	Hacks to display injected elements
@@ -25,21 +28,27 @@ iati-activity a 	{display:block;}
 iati-activity a:hover {text-decoration:underline;}
 iati-activity img	{display:block; -webkit-filter:brightness(100%); filter:brightness(100%); filter: url("data:image/svg+xml;utf8,<svg xmlns=\'http://www.w3.org/2000/svg\'><filter id=\'grayscale\'><feColorMatrix type=\'matrix\' values=\'0.3333 0.3333 0.3333 0 0 0.3333 0.3333 0.3333 0 0 0.3333 0.3333 0.3333 0 0 0 0 0 1 0\'/></filter></svg>#grayscale"); /* Firefox 10+, Firefox on Android */
 filter: grayscale(100%);
--moz-filter:contrast(400%)grayscale(100%);
--ms-filter:contrast(400%)grayscale(100%);
--o-filter:contrast(400%)grayscale(100%);
+-moz-filter:contrast(100%)grayscale(100%);
+-ms-filter:contrast(100%)grayscale(100%);
+-o-filter:contrast(100%)grayscale(100%);
 filter: gray; /* IE6-9 */
--webkit-filter:contrast(400%)grayscale(100%);
--webkit-filter:contrast(5)grayscale(1);}
+-webkit-filter:contrast(100%)grayscale(100%);
+-webkit-filter:contrast(1)grayscale(1);}
 
 narrative {display:inline-block; color:inherit; font-family:inherit; word-wrap:inherit;}
 
 
+/*	Display when humanitarian
+	============================================= */
+iati-activity[humanitarian="1"]:before	{content:"HUMANITARIAN"; padding:10px 40px 7px 40px; font-size:14px; color:#000; width:490px; text-align:right; background-color:#FFF; border:1px solid #000; margin-left:-1px;}
+
+
+
 /*	Project title
 	============================================= */
-span.span_span-title span-title			{display:block; font-size:42px; width:880px; padding:40px; margin:0 auto; color:#000; line-height:1.1em;}
-span.span_span-title span-title:before	{content:"PROJECT TITLE"; font-size:14px; color:#000; display:block; border-bottom:1px solid #000; padding-bottom:10px; margin-bottom:20px;}
-span.span_span-title narrative:nth-of-type(n+2)	{display:block; padding:10px 0 0 0; font-style:italic;}
+span.span_span-title span-title			{display:block; font-size:42px; width:880px; padding:40px; margin:0 auto; color:#000; line-height:1.2em;}
+span.span_span-title span-title:before	{content:"PROJECT TITLE"; font-size:14px; color:#000; display:block; margin-bottom:20px;}
+span.span_span-title narrative:nth-of-type(n+2)	{display:block; padding:10px 0 0 0; font-style:italic; font-size:34px; line-height:1.25em;}
 
 
 /*	IATI Identifier
@@ -54,13 +63,19 @@ iati-identifier a:visited	{color:#000;}
 iati-identifier a:hover		{color:#000;}
 iati-identifier a:active	{color:#000;}
 a.a_iati-identifier		{width:958px; margin:0 auto; vertical-align:baseline;}
-a.a_xml_iati-identifier	{display:inline-block; vertical-align:baseline; color:#000; width:50%;}
+a.a_xml_iati-identifier	{display:inline-block; vertical-align:baseline; color:#000; width:33.33%;}
 a.a_xml_iati-identifier:before	{content:"VIEW SOURCE"; font-size:14px; color:#000; display:inline-block; vertical-align:baseline; padding-right:10px; min-width:120px;}
 a.a_xml_iati-identifier:link	{color:#000;}
 a.a_xml_iati-identifier:visited	{color:#000;}
 a.a_xml_iati-identifier:hover	{color:#000; text-decoration:underline;}
 a.a_xml_iati-identifier:active	{color:#000;}
-a.a_slug				{display:inline-block; vertical-align:baseline; width:50%; text-align:right;}
+a.a_logs				{display:inline-block; vertical-align:baseline; width:33.33%; text-align:center;}
+a.a_logs:before			{content:"VIEW DATASET"; font-size:14px; color:#000; display:inline-block; vertical-align:baseline; padding-right:10px; min-width:120px;}
+a.a_logs:link			{color:#000;}
+a.a_logs:visited		{color:#000;}
+a.a_logs:hover			{color:#000; text-decoration:underline;}
+a.a_logs:active			{color:#000;}
+a.a_slug				{display:inline-block; vertical-align:baseline; width:33.33%; text-align:right;}
 a.a_slug:before			{content:"VIEW IATI REGISTRY"; font-size:14px; color:#000; display:inline-block; vertical-align:baseline; padding-right:10px; min-width:120px;}
 a.a_slug:link			{color:#000;}
 a.a_slug:visited		{color:#000;}
@@ -70,19 +85,26 @@ a.a_slug:active			{color:#000;}
 
 /*	Recipient countries
 	============================================= */
-transaction recipient-country		{display:none;}
-span.span_recipient-country			{display:block; vertical-align:top; width:960px; padding:40px; box-sizing:border-box;}
-recipient-country 					{display:block; vertical-align:top; padding:20px 0;}
-span.span_recipient-country:before 	{content:"RECIPIENT COUNTRY"; font-size:14px; color:#000; border-bottom:1px solid #000; padding-bottom:10px; margin-bottom:20px; display:block;}
-recipient-country span				{font-size:48px; color:#000;}
-recipient-country:nth-of-type(1) 	{padding-top:0;}
-recipient-country span:nth-of-type(2)	{font-size:20px; color:#000; padding-top:10px;}
+transaction recipient-country			{display:none;}
+span.span_recipient-country				{display:block; width:960px; padding:30px 40px; box-sizing:border-box; position:relative;}
+recipient-country 						{display:block;}
+recipient-country span					{font-size:1.0em; line-height:1.5em; color:#000; display:inline;}
+recipient-country span:nth-of-type(2)	{color:#000; font-size:14px; line-height:24px; margin-left:10px;}
+
+span.span_recipient-country recipient-country span:nth-of-type(2):before	{content:"( ";}
+span.span_recipient-country recipient-country span:nth-of-type(2):after	{content:" )";}
+
+span.country_img:before {content:"Recipient Country"; font-size:20px; color:#000; display:block; padding:30px 40px 10px 40px; width:879px;}
+span.country_img		{position:relative;}
+img.country_pie			{padding:39px; background-color:#FFF;}
+
+span.span_recipient-country span.hide	{top:20px;}
 
 
 /*	Start and End dates (Planned and Actual)
 	============================================= */
-span.span_activity-date		{display:block; vertical-align:bottom; width:958px; border-top:1px solid #000; border-bottom:1px solid #000; background-color:#000; position:relative; height:81px;}
-activity-date				{box-sizing:border-box; height:40px; background-color:#fff;}
+span.span_activity-date		{display:block; vertical-align:bottom; width:958px; border-top:1px solid #000; border-bottom:1px solid #000; background-color:#EEE; position:relative; height:91px;}
+activity-date				{box-sizing:border-box; height:45px; background-color:#fff;}
 activity-date[type="1"], activity-date[type="3"], activity-date[type="start-planned"],
 activity-date[type="end-planned"]	{font-size:20px; display:block; padding:10px 40px; color:#000; width:477px;}
 activity-date[type="2"], activity-date[type="4"], activity-date[type="start-actual"],
@@ -100,53 +122,59 @@ activity-date[type="4"], activity-date[type="end-actual"]		{position:absolute; b
 /*	Who's invloved?
 	============================================= */
 span.span_participating-org			{display:block; width:880px; padding:40px; font-size:18px; color:#000; counter-reset:section;}
-span.span_participating-org:before 	{content:"WHO'S INVOLVED?"; font-size:14px; color:#000; display:block; border-bottom:1px solid #000; padding-bottom:10px;  margin-bottom:20px;}
-participating-org 					{display:block; padding:10px 0 0 0; position:relative; line-height:24px;}
-participating-org::before			{counter-increment:section; content:counter(section) ". "; line-height:inherit;}
-participating-org narrative			{display:inline;}
+span.span_participating-org:before 	{content:"WHO'S INVOLVED?"; font-size:14px; color:#000; display:block; margin-bottom:15px;}
+participating-org 					{display:block; padding:0 0 5px 0; position:relative; line-height:24px;}
+participating-org::before			{counter-increment:section; content:counter(section) ". "; line-height:inherit; margin-right:-30px;}
+participating-org narrative			{display:block; padding-left:24px;}
+participating-org span-lang			{display:inline-block; vertical-align:top;}
+participating-org span-lang narrative	{display:block; padding-left:34px;}
 participating-org a					{display:initial;}
+participating-org a:link span-lang,
 participating-org a:link			{color:#000;}
-participating-org a:visited			{color:#000; text-decoration:underline;}
-participating-org a:hover			{color:#000;}
+participating-org a:visited span-lang,
+participating-org a:visited			{color:#000;}
+participating-org a:hover span-lang,
+participating-org a:hover			{color:#000; text-decoration:underline;}
+participating-org a:active span-lang,
 participating-org a:active			{color:#000;}
-participating-org[role="1"] narrative:nth-of-type(1):after,
-participating-org[role="funding"] narrative:nth-of-type(1):after		{content:"FUNDING ROLE"; font-size:14px; color:#000; display:inline; padding:0; padding-left:10px;}
-participating-org[role="2"] narrative:nth-of-type(1):after,
-participating-org[role="accountable"] narrative:nth-of-type(1):after	{content:"ACCOUNTABLE ROLE"; font-size:14px; color:#000; display:inline; padding:0; padding-left:10px;}
-participating-org[role="3"] narrative:nth-of-type(1):after,
-participating-org[role="extending"] narrative:nth-of-type(1):after		{content:"EXTENDING ROLE"; font-size:14px; color:#000; display:inline; padding:0; padding-left:10px;}
-participating-org[role="4"] narrative:nth-of-type(1):after,
-participating-org[role="implementing"] narrative:nth-of-type(1):after	{content:"IMPLEMENTING ROLE"; font-size:14px; color:#000; display:inline; padding:0; padding-left:10px;}
 
-span-narrative.participating-role	{font-size:14px; color:#ccc; display:inline-block; padding:0; padding-left:10px; text-transform:uppercase; line-height:initial;}
+span.span_participating-org narrative:nth-of-type(n+2)	{display:block; padding:0 0 0 24px; font-style:italic; font-size:16px; line-height:inherit;}
+span.span_participating-org narrative:nth-of-type(n+2):last-of-type		{padding-bottom:10px;}
 
-span.span_participating-org narrative:nth-of-type(n+2)			{display:block; padding:5px 0 0 20px; font-style:italic; font-size:16px; line-height:inherit;}
+span-narrative.org-role, span-narrative.org-type		{display:inline; font-size:13px; line-height:24px; color:#000; margin-left:10px; border:1px solid #000; border-radius:4px; padding:4px 4px 2px 4px;}
 
 
 /*	Location (version 2.02++)
 	============================================= */
-span.span_location			{display:block; width:880px; padding:0 40px 40px 40px; font-size:18px; color:#000; counter-reset:section;}
-span.span_location:before 	{content:"LOCATIONS"; font-size:14px; color:#000; display:block; padding-bottom:10px; margin-bottom:20px; border-bottom:1px solid #000;}
+span.span_location			{display:block; width:880px; padding:40px; font-size:18px; color:#000; counter-reset:section; border-top:1px solid #000;}
+span.span_location:before 	{content:"LOCATIONS"; font-size:14px; color:#000; display:block; margin-bottom:15px;}
 span.span_location location 		{display:block; padding:10px 0 0 0; position:relative; line-height:24px;}
+span.span_location location:nth-of-type(1)	{padding:0;}
 span.span_location location::before	{counter-increment:section; content:counter(section) ". "; line-height:inherit;}
 span.span_location location name	{display:inline;}
 span.span_location location point	{display:inline;}
 span.span_location location point > *	{display:inline; color:#000; font-size:16px;}
 span.span_location location pos:before	{content:" [ ";}
 span.span_location location pos:after	{content:" ]";}
+span.span_location location description {display:inline; margin-left:10px; font-size:14px; color:#000;}
 
 
 /*	Reported by
 	============================================= */
-reporting-org 					{display:block; width:880px; padding:20px 40px 40px 40px; font-size:18px; font-weight:bold; color:#000; line-height:1.45em;}
-reporting-org:before 			{content:"Reported by"; display:inline-block; padding-right:5px; color:#000; font-size:18px; font-weight:normal;}
+reporting-org 					{display:block; width:880px; padding:20px 40px 40px 40px; font-size:18px; color:#000; line-height:26px;}
+reporting-org:before 			{content:"Reported by"; display:inline-block; padding-right:5px; color:#000; font-size:18px; line-height:26px; font-weight:normal;}
 reporting-org:nth-of-type(1)	{padding-top:0px;}
+reporting-org a					{display:inline;}
+reporting-org a:link			{color:#000;}
+reporting-org a:visited			{color:#000;}
+reporting-org a:hover			{color:#000; text-decoration:underline;}
+reporting-org a:active			{color:#000;}
 
 
 /*	Description of project (shared with Transaction table)
 	============================================= */
 span.span_description description {font-size:1.0em; word-spacing:0.05em; line-height:1.5em; display:block; width:880px; padding:40px; padding-bottom:0; color:#000; white-space:pre-line; unicode-bidi:embed;}
-span.span_description description:before			{padding-bottom:10px;}
+span.span_description description:before			{margin-bottom:15px;}
 span.span_description description:nth-of-type(1):before {content:"DESCRIPTION"; font-size:14px; color:#000; display:block;}
 span.span_description description[type="1"]:before	{content:"GENERAL"; font-size:14px; color:#000; display:block;}
 span.span_description description[type="2"]:before	{content:"OBJECTIVES"; font-size:14px; color:#000; display:block;}
@@ -154,178 +182,264 @@ span.span_description description[type="3"]:before	{content:"TARGET GROUPS"; fon
 span.span_description description:last-of-type		{padding-bottom:40px; border-top:0;}
 span.span_description description:nth-child(1)		{border-top:1px solid #000;}
 
-span.span_description description.empty				{display:none;}	/*	Hides container if empty	*/
+span.span_description description.empty,
+span.span_description description narrative.empty	{display:none;}	/*	Hides container if empty	*/
 
 
 /*	Result and description
 	============================================= */
-result						{display:block; padding:20px 0 40px 0;}
-result:nth-child(1)			{padding-top:0;}
-result:nth-child(odd)		{border:1px solid #000; border-right:0; border-left:0;}
-result description			{display:block; padding:10px 40px; white-space:pre-line; unicode-bidi:embed; line-height:22px;}
+span.span_result			{counter-reset:section;}
+result						{counter-reset:subsection; display:block; padding:20px 0; position:relative; border-top:1px solid #000;}
+result:nth-child(1)			{padding-top:0; border:0;}
+result description			{display:block; padding:0px 40px 10px 40px; white-space:pre-line; unicode-bidi:embed; line-height:22px;}
 result description narrative{line-height:24px; word-spacing:0.05em; color:#000;}
-result span-title			{display:block; font-size:30px; width:880px; line-height:1.25em; margin:0 auto; color:#000;}
-result span-title narrative	{display:block; padding:10px 0;}
-result:nth-of-type(1):before{content:"RESULTS"; font-size:26px; color:#000; display:block; padding:20px 40px; margin-bottom:25px; width:880px; border-bottom:1px solid #000;}
-result span-title:before	{content:"RESULTS"; font-size:14px; color:#000; display:block; margin-bottom:15px;}
-result[type="1"] span-title:before	{content:"OUTPUT";}
-result[type="2"] span-title:before	{content:"OUTCOME";}
-result[type="3"] span-title:before	{content:"IMPACT";}
-result[type="9"] span-title:before	{content:"OTHER";}
+result span-title			{display:block; font-size:20px; width:880px; line-height:1.25em; margin:0 auto; color:#000; padding-bottom:5px;}
+result span-title narrative	{display:block;}
+span.span_result:before		{content:"Results"; font-size:20px; color:#000; display:block; padding:40px 40px 20px 40px; margin-bottom:25px; width:879px; border-top:1px solid #000;}
+result:before				{content:counter(section) ". RESULTS"; counter-increment:section;font-size:14px; color:#000; display:block; padding-bottom:10px; margin-bottom:10px; border-bottom:1px solid #000; margin-left:40px; margin-right:40px;}
+result[type="1"]:before		{content:counter(section) ". OUTPUT";}
+result[type="2"]:before		{content:counter(section) ". OUTCOME ";}
+result[type="3"]:before		{content:counter(section) ". IMPACT";}
+result[type="9"]:before		{content:counter(section) ". OTHER";}
 
-result indicator			{display:block; margin:auto; margin-top:30px; margin-bottom:40px; width:880px;}
-result indicator:first-of-type	{margin-top:20px;}
-result indicator:before		{content:"INDICATOR"; font-size:14px; color:#000; display:block; margin:auto; margin-bottom:15px; border-bottom:1px solid #000; padding:10px 0;}
-result indicator[measure="1"]:before	{content:"INDICATOR UNIT";}
-result indicator[measure="2"]:before	{content:"INDICATOR PERCENTAGE";}
+result a.a_document-link			{margin-left:40px;}
+result document-link span-title		{width:initial; padding:0;}
+result document-link description	{display:none;}
 
-result indicator span-title	{font-size:20px; padding-bottom:10px;}
+result indicator			{display:block; margin:auto; margin-top:10px; margin-bottom:0px; width:880px; position:relative;}
+result indicator:nth-of-type(1)	{margin-top:20px;}
+result indicator:before		{content:"INDICATOR"; font-size:14px; color:#000; display:block; margin:auto; margin-bottom:10px; border-bottom:1px solid #000; padding:10px 0;}
+
+result indicator[measure="2"] period baseline span-narrative:after,
+result indicator[measure="2"] period target span-narrative:after,
+result indicator[measure="2"] period actual span-narrative:after	{content:" %";}
+
+result indicator span-title	{display:inline-block; width:100%; vertical-align:top; font-size:16px; line-height:22px; padding:0 30px 0 0; box-sizing:border-box;}
 result indicator span-title:before {content:" "; margin:0; border:0;}
 result[type="1"] indicator span-title:before {content:" "; margin:0; border:0; padding:0;}
 result[type="2"] indicator span-title:before {content:" "; margin:0; border:0; padding:0;}
 result[type="3"] indicator span-title:before {content:" "; margin:0; border:0; padding:0;}
 result[type="9"] indicator span-title:before {content:" "; margin:0; border:0; padding:0;}
 
-result indicator description{font-size:16px; color:#000; padding:10px 0;}
+result indicator description{display:inline-block; width:100%; vertical-align:top; box-sizing:border-box; padding:0 30px 0 0; font-size:14px; color:#000;}
+result indicator description narrative	{line-height:20px;}
 
-result indicator period		{display:block; position:relative; padding-top:10px; width:880px; margin:auto;}
-result indicator period period-start:before	{content:"START"; font-size:14px; color:#000; display:block; padding-bottom:10px;}
-result indicator period period-end:before	{content:"END"; font-size:14px; color:#000; display:block; padding-bottom:10px;}
-result indicator period target:before	{content:"TARGET"; font-size:14px; color:#000; display:block; padding-bottom:10px;}
-result indicator period actual:before	{content:"ACTUAL"; font-size:14px; color:#000; display:block; padding-bottom:10px;}
+result indicator period		{display:inline-block; position:relative; width:530px; margin:auto; vertical-align:top;}
+result indicator period:nth-of-type(n+2) {display:block; padding-top:20px; margin-left:40%;}
+result indicator period period-start:before	{content:"START DATE"; font-size:14px; color:#000; display:block; position:absolute; left:3px; top:8px;}
+result indicator period period-end:before	{content:"END DATE"; font-size:14px; color:#000; display:block; position:absolute; left:3px; top:8px;}
+result indicator period target:before		{content:"TARGET"; font-size:14px; color:#000; display:block; padding-bottom:10px;}
+result indicator period actual:before		{content:"ACTUAL"; font-size:14px; color:#000; display:block; padding-bottom:10px;}
 
-result indicator period period-start, result indicator period period-end,
+result indicator[measure="1"] period target:before	{content:"TARGET UNIT"; font-size:14px; color:#000; display:block; padding-bottom:10px;}
+result indicator[measure="2"] period target:before	{content:"TARGET %"; font-size:14px; color:#000; display:block; padding-bottom:10px;}
+result indicator[measure="1"] period actual:before	{content:"ACTUAL UNIT"; font-size:14px; color:#000; display:block; padding-bottom:10px;}
+result indicator[measure="2"] period actual:before	{content:"ACTUAL %"; font-size:14px; color:#000; display:block; padding-bottom:10px;}
+
 result indicator period target, result indicator period actual	{display:inline-block; vertical-align:top; width:440px;}
 
-result indicator period period-start{width:180px; padding:20px; padding-left:0; font-size:34px;}
-result indicator period period-end	{width:660px; padding:20px; padding-right:0; font-size:34px; text-align:right;}		
+result indicator period period-start,
+result indicator period period-end	{display:block; width:100%; padding:0 0 10px 0; min-height:38px; box-sizing:border-box; font-size:22px; line-height:28px; text-align:right; position:relative;}
+result indicator period period-start{margin-bottom:10px;}	
 
 result indicator period target > *	{display:block;}
 result indicator period actual > *	{display:block;}
 
+result indicator period target location, result indicator period actual location	{padding-top:5px;}
 result indicator period actual comment narrative	{display:block; padding:10px 0;}
 
 result indicator period baseline	{display:inline-block; vertical-align:top;}
-span-narrative.baseline-value	{display:block;}
-span-narrative.baseline-year	{display:inline-block; vertical-align:top; font-size:14px; line-height:14px;}
-result indicator period baseline:before	{content:"BASELINE"; font-size:14px; color:#000;  display:inline-block; vertical-align:top; padding-right:10px; padding-bottom:10px;}
+span-narrative.baseline-value		{display:block;}
+span-narrative.baseline-year		{display:block; font-size:14px; line-height:14px; color:#000; padding-top:10px;}
+result indicator period baseline:before	{content:"BASELINE " attr(year); font-size:14px; color:#000;  display:inline-block; vertical-align:top; padding-right:10px; padding-bottom:10px;}
 result indicator > baseline comment	{display:block; color:#000; padding:10px 0; line-height:1.25em;}
 
+result indicator period location,
+result indicator period dimension			{display:block;}
+result indicator period location:before		{content:attr(ref); display:block; text-transform:capitalize; font-size:14px; line-height:20px;}
+result indicator period dimension:before	{content:attr(name) " : " attr(value); display:block; font-size:14px; line-height:20px;}
+
+result indicator period location:nth-of-type(1),
+result indicator period dimension:nth-of-type(1)	{padding-top:5px;}
+
 span.span_result narrative:nth-of-type(2)	{display:block; padding:20px 0 0 0; font-style:italic;}
-span-narrative						{font-size:34px; line-height:40px;}
+span-narrative								{font-size:24px; line-height:30px;}
 
-span-narrative.dimension-name		{display:inline-block; vertical-align:top; text-transform:capitalize; font-size:20px; line-height:24px; padding-top:10px;}
-span-narrative.dimension-name:after {content:" :";}
-span-narrative.dimension-value		{display:inline-block; vertical-align:top; padding-left:10px; text-transform:capitalize; font-size:20px; line-height:24px; padding-top:10px;}
+result indicator comment					{display:block; font-size:14px; font-style:italic; line-height:20px;}
+result indicator period comment narrative	{padding-top:10px;}
+target comment narrative,
+actual comment narrative,
+target comment span-narrative,
+actual comment span-narrative				{display:block; font-size:14px; line-height:1.25em;}
 
-span-narrative.location-ref			{display:inline-block; vertical-align:top; text-transform:capitalize; font-size:20px; line-height:24px; padding-top:10px;}
+result indicator period comment narrative.empty,
+result indicator period location[ref=""],
+result indicator period dimension[name=""],
+result indicator period dimension[value=""] {display:none;}
 
-result indicator comment			{padding:10px 0; font-style:italic; line-height:20px;}
-target comment narrative, actual comment narrative, target comment span-narrative, actual comment span-narrative	{display:block; font-size:16px; line-height:1.25em;}
+result indicator period baseline, result indicator period target, result indicator period actual	{min-height:60px; display:table-cell; border-top:1px solid;}
+result indicator period baseline	{width:180px; max-width:180px; padding:20px 20px 20px 0; position:relative;}
+result indicator period target		{width:175px; max-width:175px; padding:20px;}
+result indicator period actual		{width:175px; max-width:175px; padding:20px;}
 
-result indicator period baseline, result indicator period target, result indicator period actual	{min-height:60px; display:table-cell;}
-result indicator period baseline	{width:180px; max-width:180px; padding:20px; border:1px solid #000; border-right:0;}
-result indicator period target		{width:290px; max-width:290px; padding:20px; border:1px solid #000;}
-result indicator period actual		{width:290px; max-width:290px; padding:20px; border:1px solid #000; border-left:0;}
+span-result-reference				{display:block; padding:0px 40px 20px 40px;}
+span-result-reference:before		{content:"REFERENCES"; font-size:14px; color:#000; display:block; margin:auto; margin-top:20px; margin-bottom:10px;}
+result span-result-reference reference			{display:block; font-size:14px; line-height:20px;}
+result span-result-reference reference:after	{content:" ( " attr(code) " ) "; display:inline; font-size:14px; line-height:20px; color:#000;}
 
-result indicator reference			{display:block; padding:20px; border:1px solid #000; margin-top:20px; margin-bottom:20px;}
-result indicator reference:before	{content:"REFERENCE"; font-size:14px; color:#000; display:block; margin:auto; margin-bottom:15px; padding-bottom:10px;}
-result indicator reference a:hover	{cursor:pointer;}
-result indicator reference a.a_reference	{display:list-item; list-style-type:circle; list-style-position:inside; margin-bottom:10px;}
+span-reference						{display:block;}
+span-reference:before				{content:"REFERENCES"; font-size:14px; color:#000; display:block; margin:auto; margin-top:30px; margin-bottom:10px;}
+result indicator reference			{display:block; font-size:14px; line-height:20px;}
+result indicator reference:after	{content:" ( " attr(code) " ) "; display:inline; font-size:14px; line-height:20px; color:#000;}
 
-result indicator .empty				{display:none;}
+span-document						{display:block;}
+span-document:before				{content:"DOCUMENTS"; font-size:14px; color:#000; display:block; margin:auto; margin-top:30px; margin-bottom:10px;}
+result span-document a.a_document-link	{margin-left:0; width:initial; padding:10px;}
+result span-document a.a_document-link:before	{display:none;}
+result span-document document-link				{padding:0;}
+result span-document document-link span-title	{padding:0;}
+result span-document document-link description	{display:none;}
 
-.timeline		{display:block; position:absolute; width:878px; height:5px; background-color:#fff; top:102px; left:0; border-radius:20px; border:1px solid #000;}
-.time			{display:block; position:relative; height:5px; width:660px; background-color:#000; border-radius:20px 0 0 20px;}
+result indicator description.empty	{display:none;}
+
+.timeline		{display:block; position:absolute; width:100%; height:5px; background-color:#FFF; top:34px; left:0; border-radius:3px 3px 0 0; border-bottom:1px solid #000;}
+result indicator period:nth-of-type(n+2) .timeline	{top:54px;}
+.time			{display:block; position:relative; height:5px; width:100%; border-radius:3px 0 0 0; background-color:#000;}
 result indicator .time span		{display:block; position:absolute; height:10px; width:2px; background-color:#000; top:-2px; right:0;}
 result indicator .time.time-percent100 span	{display:none;}
 
+result indicator span-result	{display:inline-block; vertical-align:top; width:320px; margin-right:30px;}
 
 
 /*	Sectors (also turned into graph: sector_pie)
 	============================================= */
 sector *		{display:none;}
+span.sector_img:before {content:"Sector"; font-size:20px; color:#000; display:block; border-top:1px solid #000; line-height:1.35em; padding:30px 40px 10px 40px;}
+span.span_sector	   {padding:30px 40px; position:relative;}
 span.span_sector sector[vocabulary="DAC"],
-span.span_sector sector[vocabulary="1"]			{font-size:1.0em; color:#000; width:239px; display:inline-block; vertical-align:top; padding:30px 40px 40px 40px; max-height:80px; min-height:80px;}
-span.span_sector sector:nth-child(even)			{background-color:#e9e9e9;}
-span.span_sector sector[vocabulary="DAC"]:before,
-span.span_sector sector[vocabulary="1"]:before	{content:"SECTOR"; font-size:14px; color:#000; width:240px; display:block; padding-bottom:5px;}
-span.span_sector sector span					{color:#000; padding-top:5px;}
-span.span_sector sector span:nth-of-type(1)		{line-height:1.2em;}
-span.span_sector sector span:nth-of-type(2)		{color:#000;}
-span.span_sector sector span:nth-of-type(2):after{content:"allocated"; padding-left:5px; display:inline-block;}
+span.span_sector sector[vocabulary="1"],
+span.span_sector sector[vocabulary="2"]			{font-size:1.0em; color:#000; display:block; line-height:1.5em;}
+span.span_sector sector[vocabulary="2"]:nth-of-type(1):before	{content:"SECTOR GROUP"; font-size:14px; color:#000; display:block; margin-bottom:5px;}
+span.span_sector sector span					{color:#000; display:inline;}
+span.span_sector sector span:nth-of-type(1)		{margin-right:10px;}
+span.span_sector sector span:nth-of-type(2)		{color:#000; font-size:14px;}
+span.span_sector sector span:nth-of-type(2):before	{content:"( ";}
+span.span_sector sector span:nth-of-type(2):after	{content:" )";}
 img.sector_pie	{padding:40px 20px;}
+span.sector_img	{position:relative;}
+
+span.span_sector span.hide	{top:20px;}
 
 
 /*	Budget table
 	============================================= */
 budget				  {display:block; width:958px; border-top:1px solid #000; padding:15px 0 5px 0; border-bottom:0;}
-budget:last-of-type	  {border-bottom:0px solid #000;}
-budget:nth-of-type(1) {margin-top:0px; padding-top:0;}
-budget:nth-of-type(1):before {content:"Budgets"; font-size:26px; color:#000; border-bottom:1px solid #000; display:block; padding:20px 40px; margin-bottom:25px;}
-budget:nth-of-type(1) period-start:before 	{content:"START DATE"; font-size:14px; color:#000; width:289px; display:block; padding-bottom:10px; border-bottom:1px solid #000; margin-bottom:15px; line-height:1.35em;}
-budget:nth-of-type(1) period-end:before	  	{content:"END DATE"; font-size:14px; color:#000; width:289px; display:block; padding-bottom:10px; border-bottom:1px solid #000; margin-bottom:15px; line-height:1.35em;}
-budget:nth-of-type(1) value:before		  	{content:"VALUE"; font-size:14px; color:#000; width:300px; display:block; padding-bottom:10px; border-bottom:1px solid #000; margin-bottom:15px; line-height:1.35em;}
-budget:nth-of-type(1) period-end:after		{content:"BUDGET TYPE"; display:inline-block; position:absolute; top:-1px; right:-60px;}
-budget[type="1"] value:after				{content:"Original"; position:absolute; left:-55px; top:-2px;}
-budget[type="2"] value:after				{content:"Revised"; position:absolute; left:-55px; top:-2px;}
-budget[type="1"]:nth-of-type(1) value:after, budget[type="2"]:nth-of-type(1) value:after	{top:42px;}
-budget period-start 	{display:inline-block; vertical-align:top; color:#000; font-size:1.0em; width:289px; max-width:289px; padding-left:40px; line-height:1.35em;}
-budget period-end	 	{display:inline-block; vertical-align:top; color:#000; font-size:1.0em; width:289px; max-width:289px; line-height:1.35em; position:relative;}
-budget value 			{display:inline-block; vertical-align:top; color:#000; font-size:1.0em; width:300px; max-width:300px; padding-right:40px; line-height:1.35em; position:relative;}
+budget:last-of-type	  {border-bottom:0px solid #000; margin-bottom:20px;}
+budget:nth-of-type(1) {margin-top:0px; padding-top:0; border:0;}
+
+span.span_budget:before						{content:"Budgets"; font-size:20px; color:#000; display:block; padding:40px 40px 20px 40px; margin-bottom:25px; border-top:1px solid #000;}
+budget:nth-of-type(1) period-start:before,
+budget:nth-of-type(1) period-end:before,
+budget:nth-of-type(1) span-budget-type:before,
+budget:nth-of-type(1) span-budget-status:before,
+budget:nth-of-type(1) value:before			{content:""; display:block; padding-bottom:10px; border-bottom:1px solid #000; margin-bottom:15px; font-size:14px; color:#000; line-height:1.35em;}
+
+budget:nth-of-type(1) period-start:before 	{content:"START DATE"; width:110px;}
+budget:nth-of-type(1) period-end:before		{content:"END DATE"; width:120px;}
+budget:nth-of-type(1) span-budget-type:before	{content:"TYPE"; width:260px;}
+budget:nth-of-type(1) span-budget-status:before	{content:"STATUS"; width:140px;}
+budget:nth-of-type(1) value:before			{content:"VALUE"; width:238px;}
+
+budget period-start,
+budget period-end,
+budget span-budget-type,
+budget span-budget-status,
+budget value		 	{display:inline-block; vertical-align:top; color:#000; font-size:1.0em; line-height:1.35em;}
+budget period-start 	{width:110px; max-width:110px; padding-left:40px;}
+budget period-end	 	{width:120px; max-width:120px;}
+budget span-budget-type	{width:260px; max-width:260px;}
+budget span-budget-status{width:140px; max-width:140px;}
+budget value 			{width:238px; max-width:238px;}
 
 
 /*	Planned Disbursement table
 	============================================= */
-planned-disbursement				{display:block; width:958px; border-top:1px solid #000; padding:15px 0 5px 0; border-bottom:0;}
-planned-disbursement:last-of-type	{border-bottom:0px solid #000;}
-planned-disbursement:nth-of-type(1) {margin-top:0px; padding-top:0;}
-planned-disbursement:nth-of-type(1):before {content:"Planned Disbursements"; font-size:26px; color:#000; border-bottom:1px solid #000; display:block; padding:20px 40px; margin-bottom:25px;}
-planned-disbursement:nth-of-type(1) period-start:before {content:"START DATE"; font-size:14px; color:#000; width:289px; display:block; padding-bottom:10px; border-bottom:1px solid #000; margin-bottom:15px; line-height:1.35em;}
-planned-disbursement:nth-of-type(1) period-end:before	{content:"END DATE"; font-size:14px; color:#000; width:289px; display:block; padding-bottom:10px; border-bottom:1px solid #000; margin-bottom:15px; line-height:1.35em;}
-planned-disbursement:nth-of-type(1) value:before		{content:"VALUE"; font-size:14px; color:#000; width:300px; display:block; padding-bottom:10px; border-bottom:1px solid #000; margin-bottom:15px; line-height:1.35em;}
-planned-disbursement period-start 	{display:inline-block; vertical-align:top; color:#000; font-size:1.0em; width:289px; max-width:289px; padding-left:40px; line-height:1.35em;}
-planned-disbursement period-end	 	{display:inline-block; vertical-align:top; color:#000; font-size:1.0em; width:289px; max-width:289px; line-height:1.35em; position:relative;}
-planned-disbursement value 			{display:inline-block; vertical-align:top; color:#000; font-size:1.0em; width:300px; max-width:300px; padding-right:40px; line-height:1.35em; position:relative;}
+planned-disbursement				{display:block; width:958px; border-top:1px solid #000; padding:15px 0 5px 0; border-bottom:0; position:relative;}
+planned-disbursement a				{color:#000;}
+planned-disbursement a:hover		{color:#000;}
+planned-disbursement:last-of-type	{border-bottom:0px solid #000; margin-bottom:20px;}
+planned-disbursement:nth-of-type(1) {margin-top:0px; padding-top:0; border:0;}
+
+span.span_planned-disbursement:before{content:"Planned Disbursements"; font-size:20px; color:#000; display:block; padding:40px 40px 20px 40px; margin-bottom:25px; border-top:1px solid #000;}
+planned-disbursement:nth-of-type(1) period-start:before,
+planned-disbursement:nth-of-type(1) period-end:before,
+planned-disbursement:nth-of-type(1) value:before,
+planned-disbursement:nth-of-type(1) provider-org:before,
+planned-disbursement:nth-of-type(1) receiver-org:before	{content:""; display:block; padding-bottom:10px; border-bottom:1px solid #000; margin-bottom:15px; font-size:14px; color:#000; line-height:1.35em;}
+planned-disbursement:nth-of-type(1) period-end:after	{content:"TYPE"; font-size:14px; color:#000; display:block; position:absolute; top:0px; right:-45px; line-height:1.35em;}
+planned-disbursement:nth-of-type(1) period-start:before {content:"START DATE"; width:110px;}
+planned-disbursement:nth-of-type(1) period-end:before	{content:"END DATE"; width:110px;}
+planned-disbursement:nth-of-type(1) value:before		{content:"VALUE"; width:658px;}
+planned-disbursement:nth-of-type(1) provider-org:before	{content:"PROVIDER"; width:190px;}
+planned-disbursement:nth-of-type(1) receiver-org:before	{content:"RECEIVER"; width:190px;}
+planned-disbursement[type="1"] value:after				{content:"Original"; position:absolute; left:10px; top:0px;}
+planned-disbursement[type="2"] value:after				{content:"Revised";  position:absolute; left:10px; top:0px;}
+
+planned-disbursement[type="1"]:nth-of-type(1) value:after, planned-disbursement[type="2"]:nth-of-type(1) value:after	{top:42px;}
+planned-disbursement period-start,
+planned-disbursement period-end,
+planned-disbursement value		 	{display:inline-block; vertical-align:top; color:#000; font-size:1.0em; line-height:1.35em;}
+planned-disbursement period-start 	{width:110px; max-width:110px; padding-left:40px;}
+planned-disbursement period-end	 	{width:110px; max-width:110px; position:relative;}
+planned-disbursement value 			{width:658px; max-width:658px; padding-right:40px; position:relative;}
+planned-disbursement provider-org,
+planned-disbursement receiver-org	{display:block; color:#000; font-size:1.0em; line-height:1.35em; padding-right:20px;}
+planned-disbursement provider-org 	{width:130px; max-width:130px; position:absolute; top:0; left:530px;}
+planned-disbursement receiver-org 	{width:130px; max-width:130px; position:absolute; top:0; left:680px;}
+
+planned-disbursement:nth-of-type(n+2) provider-org,
+planned-disbursement:nth-of-type(n+2) receiver-org	{top:15px;}
+
 
 
 /*	Transaction table
 	============================================= */
-transaction							{display:block; width:958px; border-top:1px solid #000; padding:15px 0 5px 0; border-bottom:0;}
+transaction							{display:block; width:958px; border-top:1px solid #000; padding:10px 0; border-bottom:0;}
 transaction a						{color:#000;}
 transaction a:hover					{color:#000;}
-transaction:nth-of-type(1)			{margin-top:0px; padding-top:0;}
-transaction:nth-of-type(1):before	{content:"Transactions"; font-size:26px; color:#000; border-bottom:1px solid #000; display:block; padding:20px 40px; margin-bottom:25px;}
+transaction:last-of-type			{margin-bottom:40px;}
+transaction:nth-of-type(1)			{margin-top:0px; padding-top:0; border:0;}
 
+span.span_transaction:before						{content:"Transactions"; font-size:20px; color:#000; display:block; padding:40px 40px 20px 40px; margin-bottom:25px; border-top:1px solid #000;}
 transaction:nth-of-type(1) transaction-date:before	{content:"DATE"; font-size:14px; color:#000; width:105px; display:block; padding-bottom:10px; border-bottom:1px solid #000; margin-bottom:15px; line-height:1.35em;}
-transaction:nth-of-type(1) transaction-type:before	{content:"TYPE"; font-size:14px; color:#000; width:144px; display:block; padding-bottom:10px; border-bottom:1px solid #000; margin-bottom:15px; line-height:1.35em;}
-transaction:nth-of-type(1) provider-org:before		{content:"PROVIDER"; font-size:14px; color:#000; width:144px; display:block; padding-bottom:10px; border-bottom:1px solid #000; margin-bottom:15px; line-height:1.35em;}
+transaction:nth-of-type(1) transaction-type:before	{content:"TYPE"; font-size:14px; color:#000; width:125px; display:block; padding-bottom:10px; border-bottom:1px solid #000; margin-bottom:15px; line-height:1.35em;}
+transaction:nth-of-type(1) provider-org:before		{content:"PROVIDER"; font-size:14px; color:#000; width:145px; display:block; padding-bottom:10px; border-bottom:1px solid #000; margin-bottom:15px; line-height:1.35em;}
 transaction:nth-of-type(1) receiver-org:before		{content:"RECEIVER"; font-size:14px; color:#000; width:130px; display:block; padding-bottom:10px; border-bottom:1px solid #000; margin-bottom:15px; line-height:1.35em;}
-transaction:nth-of-type(1) value:before				{content:"VALUE"; font-size:14px; color:#000; width:120px; display:block; padding-bottom:10px; border-bottom:1px solid #000; margin-bottom:15px; line-height:1.35em;}
-span.span_transaction transaction:nth-of-type(1) description:nth-of-type(1):before {content:"DESCRIPTION"; font-size:14px; color:#000; width:235px; display:block; padding-bottom:10px; border-bottom:1px solid #000; margin-bottom:15px; line-height:1.35em;}
+transaction:nth-of-type(1) value:before				{content:"VALUE"; font-size:14px; color:#000; width:110px; display:block; padding-bottom:10px; border-bottom:1px solid #000; margin-bottom:15px; line-height:1.35em;}
+span.span_transaction transaction:nth-of-type(1) description:nth-of-type(1):before {content:"DESCRIPTION"; font-size:14px; color:#000; width:260px; display:block; padding-bottom:10px; border-bottom:1px solid #000; margin-bottom:15px; line-height:1.35em;}
+transaction:nth-of-type(1) description:before {content:"DESCRIPTION"; font-size:14px; color:#000; width:260px; display:block; padding-bottom:10px; border-bottom:1px solid #000; margin-bottom:15px; line-height:1.35em;}
+span.span_transaction transaction description {display:inline-block; vertical-align:top; padding:0px; width:240px; max-width:240px; padding-right:20px; text-align:left; color:#000; font-size:1.0em; line-height:1.35em; border:0; background-color:transparent;}
 
 transaction-date	{display:inline-block; vertical-align:top; color:#000; font-size:1.0em; width:100px; max-width:100px; padding-left:40px; padding-right:5px; line-height:1.35em;}
-transaction-type	{display:inline-block; vertical-align:top; color:#000; font-size:1.0em; width:130px; max-width:130px; padding-right:14px; line-height:1.35em;}
-span.span_transaction transaction description:nth-of-type(1) {display:inline-block; vertical-align:top; padding:0px; width:220px; max-width:220px; padding-right:15px; text-align:left; color:#000; font-size:1.0em; line-height:1.35em; border:0; background-color:transparent;}
-provider-org		{display:inline-block; vertical-align:top; color:#000; font-size:1.0em; width:130px; max-width:130px; padding-right:14px; line-height:1.35em;}
+transaction-type	{display:inline-block; vertical-align:top; color:#000; font-size:1.0em; width:110px; max-width:110px; padding-right:15px; line-height:1.35em;}
+span.span_transaction transaction description:nth-of-type(1) {display:inline-block; vertical-align:top; padding:0px; width:240px; max-width:240px; padding-right:20px; text-align:left; color:#000; font-size:1.0em; line-height:1.35em; border:0; background-color:transparent;}
+provider-org		{display:inline-block; vertical-align:top; color:#000; font-size:1.0em; width:130px; max-width:130px; padding-right:15px; line-height:1.35em;}
 receiver-org		{display:inline-block; vertical-align:top; color:#000; font-size:1.0em; width:130px; max-width:130px; padding-right:0px; line-height:1.35em;}
-value				{display:inline-block; vertical-align:top; color:#000; font-size:1.0em; width:120px; max-width:120px; padding-right:40px; line-height:1.35em; text-align:right;}
+value				{display:inline-block; vertical-align:top; color:#000; font-size:1.0em; width:110px; max-width:110px; padding-right:40px; line-height:1.35em; text-align:right;}
 value span			{font-size:12px; color:#000;}
 
-transaction:nth-of-type(1) description:before {content:"DESCRIPTION"; font-size:14px; color:#000; width:235px; display:block; padding-bottom:10px; border-bottom:1px solid #000; margin-bottom:15px; line-height:1.35em;}
-span.span_transaction transaction description {display:inline-block; vertical-align:top; padding:0px; width:220px; max-width:220px; padding-right:15px; text-align:left; color:#000; font-size:1.0em; line-height:1.35em; border:0; background-color:transparent;}
 /*span.span_transaction transaction description:nth-of-type(n+1):before		{display:none;}*/
 
 
 /*	Contact info for Publisher
 	============================================= */
 contact-info	{display:block; width:880px; padding:10px 40px; font-size:18px; line-height:1.5em;}
-contact-info *	{display:block; padding:5px 0; color:#000;}
+contact-info *	{display:block; padding:2px 0 0 0; color:#000;}
 contact-info:nth-of-type(1):before	{content:"CONTACT INFO"; font-size:14px; color:#000; display:block; margin-bottom:10px;}
 contact-info:nth-of-type(1)			{padding-top:40px;}
 contact-info:last-of-type			{padding-bottom:40px;}
 
-span.span_contact-info {border-top:1px solid #000; border-bottom:1px solid #000; margin:auto; margin:40px 0;}
+span.span_contact-info {border-top:1px solid #000; border-bottom:1px solid #000; margin:auto; margin:40px 0 0 0;}
 
 contact-info *.empty	{display:none;}	/*	Hides container if empty	*/
 
@@ -346,38 +460,132 @@ activity-status:before		{content:"ACTIVITY STATUS:"; font-size:14px; color:#000;
 
 /*	Related documents list
 	============================================= */
-span.span_document-link							{width:880px; padding:0 40px; margin:0 auto; counter-reset:section;}
-span.span_document-link:before					{content:"RELATED DOCUMENTS"; font-size:14px; color:#000; display:block; padding:40px 0 10px 0; margin-bottom:20px; border-bottom:1px solid #000;}
-a.a_document-link::before						{display:inline-block; counter-increment:section; content:counter(section) ". "; line-height:20px; font-size:18px;}
-a.a_document-link								{display:flex; width:860px; padding:10px 0; font-size:1.0em; line-height:1.25em; position:relative; color:#000;}
-a.a_document-link:last-of-type					{padding-bottom:40px;}
-a.a_document-link document-link span-title		{color:#000; padding:0;}
-a.a_document-link document-link span-title:hover{color:#000;}
-document-link									{display:inline; padding-left:5px;}
+span.span_document-link							{width:880px; padding:0 40px; margin:0 auto;  margin-bottom:40px;}
+span.span_document-link:before					{content:"RELATED DOCUMENTS"; font-size:14px; color:#000; display:block; padding:40px 0 10px 0; margin-bottom:10px;}
+a.a_document-link::before						{display:inline-block; vertical-align:top; content:"☰"; border:1px solid #000; padding:2px; color:#000; margin-right:-24px;}
+a.a_document-link								{display:block; width:840px; padding:15px 20px; font-size:12px; line-height:1.5em; position:relative; color:#000; border:1px solid #000; border-bottom:0;}
+a.a_document-link:last-of-type					{border-bottom:1px solid #000;}
+a.a_document-link:hover							{background-color:#EEE;}
+document-link									{display:inline-block; vertical-align:top; padding-left:34px;}
 document-link span								{font-size:1.0em; display:block; color:#000;}
-document-link span-title						{display:inline;}
+document-link span-title						{display:block;}
 document-link span-title:nth-of-type(n+1):before{display:none;}
-document-link span-title:nth-of-type(n+1)		{font-size:18px;}
+document-link span-title:nth-of-type(n+1)		{font-size:16px;}
 document-link span-title narrative				{display:inline;}
+document-link span-title narrative:nth-of-type(2){padding-left:5px; font-style:italic;}
+
+a.a_document-link span-title:after				{content:"LINK"; margin-left:10px; color:#000; font-size:12px; vertical-align:top; border:1px solid #000; border-radius:4px; padding:4px 4px 1px 4px;}
+span-narrative.doc-cat,
+span-doc_date									{display:inline-block; margin-top:5px; margin-right:5px;  color:#000; font-size:13px; vertical-align:top; border:1px solid #000; border-radius:4px; padding:1px 4px 0px 4px; line-height:1.5em;}
+
+
+/*	Add i to be case-insensitive */
+
+a[href$=".doc" i].a_document-link span-title:after	{content:"DOC";}
+a[href$=".docx" i].a_document-link span-title:after	{content:"DOCX";}
+a[href$=".pdf" i].a_document-link span-title:after	{content:"PDF";}
+a[href$=".pdf " i].a_document-link span-title:after	{content:"PDF";}
+a[href$=".txt" i].a_document-link span-title:after	{content:"TXT";}
+a[href$=".html" i].a_document-link span-title:after	{content:"HTML";}
+a[href$=".odt" i].a_document-link span-title:after	{content:"ODT";}
+a[href$=".xls" i].a_document-link span-title:after	{content:"XLS";}
+a[href$=".xlsx" i].a_document-link span-title:after	{content:"XLSX";}
+a[href$=".jpg" i].a_document-link span-title:after,
+a[href$=".jpeg" i].a_document-link span-title:after,
+a[href$=".png" i].a_document-link span-title:after,
+a[href$=".bmp" i].a_document-link span-title:after,
+a[href$=".gif" i].a_document-link span-title:after,
+a[href$=".svg" i].a_document-link span-title:after,
+a[href$=".tiff" i].a_document-link span-title:after	{content:"IMAGE";}
 
 
 /*	Family Tree list
 	============================================= */
-span.span_related-activity			{width:880px; padding:0 40px; margin:0 auto; counter-reset:section;}
-span.span_related-activity:before	{content:"FAMILY TREE"; font-size:14px; color:#000; display:block; padding:40px 0 10px 0; margin-bottom:20px; border-bottom:1px solid #000;}
+span.span_related-activity			{width:880px; padding:0; margin:0 auto; counter-reset:section;}
+span.span_related-activity:before	{content:"FAMILY TREE"; font-size:14px; color:#000; display:block; padding:40px 0 10px 0; margin-bottom:20px;}
 a.a_related-activity::before		{counter-increment:section; content:counter(section) ". ";}
-a.a_related-activity	{display:list-item; width:875px; padding:10px 0 10px 5px; font-size:1.0em; line-height:1.25em; list-style-type:decimal; list-style-position:inside; color:#000;}
+a.a_related-activity				{display:inline-block; width:875px; padding:0 0 5px 5px; font-size:1.0em; line-height:1.25em; color:#000;}
 a.a_related-activity:last-of-type								{padding-bottom:40px;}
 iati-activity  > a.a_related-activity ~ a.a_related-activity	{padding-top:10px;}
-related-activity		{display:inline; color:#000;}
-related-activity:hover	{color:#000;}
-related-activity:before	{display:inline-block; padding-right:5px; color:#000; font-size:1.0em; line-height:1.25em;}
-related-activity[type="1"]:before	{content:"Child of ";}
-related-activity[type="2"]:before	{content:"Parent of ";}
-related-activity[type="3"]:before	{content:"Sibling of ";}
-related-activity[type="4"]:before	{content:"Multifunded ";}
+related-activity					{display:inline; color:#000;}
+related-activity:hover				{color:#000;}
+related-activity:before				{display:inline-block; padding-right:5px; color:#000; font-size:1.0em; line-height:1.25em;}
+related-activity[type="1"]:before	{content:"Parent ";}
+related-activity[type="2"]:before	{content:"Child ";}
+related-activity[type="3"]:before	{content:"Sibling ";}
+related-activity[type="4"]:before	{content:"Co-funded ";}
+related-activity[type="5"]:before	{content:"Third Party ";}
+
+
+/*	Policy marker
+	============================================= */
+span.span_policy-marker			{width:880px; padding:0; margin:0 auto; counter-reset:section; color:#000;}
+span.span_policy-marker:before	{content:"POLICY MARKER"; font-size:14px; color:#000; display:block; padding:40px 0 10px 0; margin-bottom:20px;}
+policy-marker:before			{counter-increment:section; content:counter(section) ". ";}
+policy-marker					{display:inline-block; vertical-align:top; width:875px; padding:0 0 5px 5px; font-size:1.0em; line-height:1.25em; color:#000;}
+policy-marker narrative			{vertical-align:initial;}
+policy-marker narrative:nth-of-type(n+2) {display:inline-block; font-style:italic; font-size:14px; line-height:inherit; text-indent:10px; color:#000;}
+policy-marker narrative:last-of-type:after	{display:block;}
+span-narrative.policy_vocab,
+span-narrative.policy_code,
+span-narrative.policy_sig		{display:inline-block; margin-left:5px; color:#000; font-size:13px; border:1px solid #000; border-radius:4px; padding:1px 4px 0px 4px; line-height:1.5em;}
+span-narrative.policies			{display:inline-block; font-size:initial; line-height:initial;}
+policy-marker:last-of-type		{padding-bottom:40px;}
 
 
 /*	Tag
 	============================================= */
-tag		{display:block; font-size:14px; color:#000;}
+span.span_span-openag			{width:880px; padding:0 40px 10px 40px; margin:0 auto; counter-reset:section; border-top:1px solid #000;}
+span.span_span-openag:before	{content:"Secondary Classification - AGROVOC"; font-size:20px; color:#000; display:block; padding:40px 40px 20px 40px; margin-bottom:10px; margin-left:-50px;}
+
+span-openag::before				{display:inline; counter-increment:section; content:counter(section) ". "; line-height:20px; font-size:18px;}
+span-openag						{display:block; width:860px; padding:10px 0; font-size:1.0em; line-height:1.25em; position:relative; color:#000; text-transform:capitalize;}
+span-openag:last-of-type		{padding-bottom:30px;}
+
+a.a_openag						{color:#000; font-size:18px; display:inline;}
+a.a_openag:link					{color:#000;}
+a.a_openag:visited				{color:#000;}
+a.a_openag:hover				{color:#000;}
+a.a_openag:active				{color:#000;}
+
+
+/*	Hide and expand buttons
+	============================================= */
+span.span_document-link,
+span.span_participating-org,
+span.span_transaction,
+span.span_budget,
+span.span_planned-disbursement,
+span.span_result,
+span.span_related-activity,
+span.span_recipient-country,
+span.span_policy-marker,
+span.span_location	{position:relative;}	
+span.hide		 	{display:block; position:absolute; top:35px; right:40px; font-size:12px; color:#000; line-height:24px; letter-spacing:1px;}
+span.hide:hover	 	{cursor:pointer; color:#000;}
+
+span.span_transaction span.hide,
+span.span_planned-disbursement span.hide,
+span.span_budget span.hide,
+span.span_result span.hide,
+span.span_result result span.hide 				{top:15px;}
+span.span_result result:nth-child(1) span.hide	{top:-5px;}
+span.span_related-activity span.hide,
+span.span_policy-marker span.hide				{right:0;}
+
+
+/*	Count
+	============================================= */
+span.length {position:absolute; top:39px; left:200px; font-size:14px; line-height:16px; color:#000;}
+span.span_document-link span.length			{left:210px;}
+span.span_participating-org span.length		{left:180px;}
+span.span_participating-org span.length		{left:180px;}
+span.span_budget span.length				{top:41px; left:120px;}
+span.span_transaction span.length			{top:41px; left:160px;}
+span.span_planned-disbursement span.length	{top:41px; left:260px;}
+span.span_result span.length				{top:41px; left:120px;}
+span.span_related-activity span.length		{left:110px;}
+span.span_policy-marker span.length			{left:135px;}
+span.span_location span.length				{left:135px;}
+span.sector_img span.length					{top:38px; left:105px;}
+span.country_img span.length				{top:30px; left:205px;}

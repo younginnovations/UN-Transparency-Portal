@@ -47,41 +47,47 @@ fetch.ajax = function (dat, callback) {
     });
 }
 
+fetch.tourl=function(dat)
+{
+	return ctrack.args.q + "?"  + $.param(dat)
+}
+
 //modify dat so it reflects the args or base settings (eg limit to a publisher)
-fetch.ajax_dat_fix = function (dat, args) {
-// possibly do not need...
-    
+fetch.ajax_dat_fix=function(dat,args,flag)
+{
+	dat["reporting_ref"]	=	dat["reporting_ref"]	||	args.publisher || ctrack.hash.publisher ;
 
-    dat["country_code"] = dat["country_code"] || args.country;
-    dat["reporting_ref"] = dat["reporting_ref"] || args.publisher;
-    dat["sector_ref"] = dat["sector_ref"] || args.sector;
-    
-// check for globals
-    dat["country_code"] = dat["country_code"] || ctrack.args.country_select;
-    dat["sector_ref"] = dat["sector_ref"] || ctrack.args.sector;
-    dat["reporting_ref"] = dat["reporting_ref"] || ctrack.args.publisher_select;
-    dat["title_like"] = dat["title_like"] || ctrack.args.search;
-    dat["sector_code"] = dat["sector_code"] || ctrack.args.sector_code_select || ctrack.args.sector;
-    dat["sector_group"] = dat["sector_group"] || ctrack.args.sector_group_select;
-    dat["funder_ref"] = dat["funder_ref"] || ctrack.args.funder_ref_select;
-    // dat["selected_year"] = dat["selected_year"] || ctrack.args.selected_year;
-   
+	if(flag=="trans")
+	{
+		dat["trans_country"]		=	dat["country_code"]		||	ctrack.args.country_select;
+		dat["trans_sector"]			=	dat["sector_code"]		||	ctrack.args.sector_code_select;
+		dat["trans_sector_group"]	=	dat["sector_group"]		||	ctrack.args.sector_group_select;
+	}
+	else
+	if(flag=="budget")
+	{
+		dat["budget_country"]		=	dat["country_code"]		||	ctrack.args.country_select;
+		dat["budget_sector"]		=	dat["sector_code"]		||	ctrack.args.sector_code_select;
+		dat["budget_sector_group"]	=	dat["sector_group"]		||	ctrack.args.sector_group_select;
+	}
+	else
+	{
+		dat["country_code"]		=	dat["country_code"]		||	args.country || ctrack.hash.country ;
 
-    if (dat["country_code"] === 'global-regional') {
-        dat["country_code"] = "89|679|889|ww|-1|global";
-    }
+		dat["country_code"]		=	dat["country_code"]		||	ctrack.args.country_select;
+		dat["sector_code"]		=	dat["sector_code"]		||	ctrack.args.sector_code_select;
+		dat["sector_group"]		=	dat["sector_group"]		||	ctrack.args.sector_group_select;
+	}
 
-    if (!dat["day_start_lteq"]) {
-        if (ctrack.args.year_max) {
-            dat["day_start_lteq"] = (ctrack.args.year_max + 1) + "-01-01"
-        }
-    }
+	dat["reporting_ref"]	=	dat["reporting_ref"]	||	ctrack.args.publisher_select;
+	dat["funder_ref"]		=	dat["funder_ref"]		||	ctrack.args.funder_ref_select;
+	dat["status_code"]		=	dat["status_code"]		||	ctrack.args.status_code_select;
 
-    if (!dat["day_end_gt"]) {
-        if (ctrack.args.year_min) {
-            dat["day_end_gt"] = (ctrack.args.year_min) + "-01-01"
-        }
-    }
+	dat["text_search"]		=	dat["text_search"]		||	ctrack.args.search;
+
+	dat["policy_code"]		=	dat["policy_code"]		||	ctrack.args.policy_code ; // this policy explode the data
+
+	dat["filter_policy_code"]	=	dat["policy"]		||	ctrack.args.policy || ctrack.hash.policy ; // this policy does not
 
 
 //	dat["day_start_lt"]		=	dat["day_start_lt"]		||	(args.date_max 		|| ctrack.args.date_max);
@@ -98,21 +104,34 @@ fetch.ajax_dat_fix = function (dat, args) {
     }
 
 // join any extra tables we might now need due to extra restrictions
-    if (dat.sector_code || dat.sector_group) {
-        if (dat.from.indexOf("sector") == -1) {
-            dat.from += ",sector";
-        }
-    }
-    if (dat.country_code) {
-        if (dat.from.indexOf("country") == -1) {
-            dat.from += ",country";
-        }
-    }
-    if (dat.location_latitude || dat.location_longitude) {
-        if (dat.from.indexOf("location") == -1) {
-            dat.from += ",location";
-        }
-    }
-//console.log('==================dat==================',JSON.stringify(dat))
-    return dat;
+	if(dat.from)
+	{
+		if( dat.funder_ref || dat.reporting_ref || dat.status_code )
+		{
+			if(dat.from.indexOf("act")==-1) { dat.from+=",act"; }
+		}
+		if( dat.sector_code || dat.sector_group )
+		{
+			if(dat.from.indexOf("sector")==-1) { dat.from+=",sector"; }
+		}
+		if(dat.country_code)
+		{
+			if(dat.from.indexOf("country")==-1) { dat.from+=",country"; }
+		}
+		if(
+			dat.location_latitude || dat.location_longitude ||
+			dat.location_latitude_lt || dat.location_longitude_lt ||
+			dat.location_latitude_gt || dat.location_longitude_gt )
+		{
+			if(dat.from.indexOf("location")==-1) { dat.from+=",location"; }
+		}
+		if(dat.policy_code)
+		{
+			if(dat.from.indexOf("policy")==-1) { dat.from+=",policy"; }
+		}
+	}
+
+//console.log(dat)
+
+	return dat;
 }

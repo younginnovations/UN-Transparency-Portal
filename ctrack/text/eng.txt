@@ -64,6 +64,9 @@ Alert icon
 #info_icon_alt_text
 Information icon
 
+#about_registry_text
+About IATI Publisher
+
 #about_this_data_text
 About this data
 
@@ -90,6 +93,9 @@ Back to {portal_name}
 
 #crumbname_sector_text
 {portal_name}
+
+#new_tab_text
+Opens new tab
 
 #crumbname_main_text
 {portal_name}
@@ -297,6 +303,15 @@ Total commitments
 #donor_activities_percentage_tip_text
 Percentage of total commitments spent
 
+#view_activities_amount_text
+Outgoing commitments and % used
+
+#activities_spend_text
+Outgoing Commitments
+
+#activities_percentage_tip_text
+Percentage of outgoing commitments spent
+
 #view_donor_budgets_text
 Total budget for {donor} in {year}
 
@@ -401,10 +416,10 @@ Click to explore IATI budget data in this sector for {year3}
 Click to explore IATI budget data in this sector for {year4}
 
 #table_active_date_tip_text
-Date ending
+End Date
 
 #table_ended_date_tip_text
-Date ended
+End Date
 
 #list_publishers_text
 Click to explore all projects reported by this publisher
@@ -466,6 +481,9 @@ Print-Friendly
 #flava_original_text
 Original
 
+#flava_choose_text
+Please choose a theme
+
 #flag_alt_text
 flag
 
@@ -495,6 +513,12 @@ Top of page
 
 #footer_about_text
 About UNDG Transparency Portal
+
+#footer21_text
+If you have any queries relating to the data itself, which is owned by the publisher,
+
+#footer22_text
+please contact them here.
 
 #read_more_text
 About data quality and why it matters
@@ -544,7 +568,7 @@ Total activity-level budgets for this and next year reported to IATI. Clicking o
 How is the data calculated?
 
 #donor_activities_data_description_text
-Spend is calculated by adding disbursements and expenditures. This list shows you total commitments for each activity and the percentage spent so far, sorted by biggest at the top. Black bars may signify data quality issues where published data is missing commitment and/or transaction information.
+Spend is calculated by adding disbursements and expenditures. This list shows you outgoing commitments for each activity and the percentage spent so far, sorted by biggest at the top. Full black bars may signify data quality issues where published data is missing commitment and/or transaction information.
 
 #donor_transactions_data_description_title_text
 How is the data calculated?
@@ -592,7 +616,7 @@ Total activity-level budgets for this and next year reported to IATI. Clicking o
 How is the data calculated?
 
 #sector_activities_data_description_text
-Spend is calculated by adding disbursements and expenditures. This list shows you total commitments for each activity and the percentage spent so far, sorted by largest at the top. Black bars may signify data quality issues where published data is missing commitment and/or transaction information.
+Spend is calculated by adding disbursements and expenditures. This list shows you outgoing commitments for each activity and the percentage spent so far, sorted by largest at the top. Black bars may signify data quality issues where published data is missing commitment and/or transaction information.
 
 #sector_transactions_data_description_title_text
 How is the data calculated?
@@ -667,19 +691,19 @@ Projects with invalid date ranges for {portal_name}
 How is the data calculated?
 
 #active_data_description_text
-For each project, there is a start and end date. An active project is one that has started and not ended yet by {today}.
+For each project, there is a start and end date. An active project is one that has started and not ended yet by {today}.<br/><br/>This list shows you outgoing commitments for each activity and the percentage spent so far, sorted by the most recent at the top. Full black bars may signify data quality issues where published data is missing commitment and/or transaction information.
 
 #ended_data_description_title_text
 How is the data calculated?
 
 #ended_data_description_text
-For each project, there is a start and end date. An ended project is one that has ended by {today}.
+For each project, there is a start and end date.<br/>An ended project is one that has ended by {today}.<br/><br/>This list shows you outgoing commitments for each activity and the percentage spent so far, sorted by the most recent at the top. Full black bars may signify data quality issues where published data is missing commitment and/or transaction information.
 
 #planned_data_description_title_text
 How is the data calculated?
 
 #planned_data_description_text
-For each project, there is a start and end date. A planned project is one that has not started yet by {today}.
+For each project, there is a start and end date. A planned project is one that has not started yet by {today}.<br/><br/>This list shows you outgoing commitments for each activity and the percentage spent so far, sorted by the most recent at the top. Full black bars may signify data quality issues where published data is missing commitment and/or transaction information.
 
 #list_activities_data_description_title_text
 How is the data calculated?
@@ -697,13 +721,13 @@ This is a list of all publishers found within this dataset.
 How is the data calculated?
 
 #missing_data_description_text
-For each project, there is a start and end date. An 'Other' project is one with invalid dates; ie, missing either start or both start and end dates.
+For each project, there is a start and end date. An 'Other' project is one with invalid dates; ie, missing either a start date or both start and end dates.<br/><br/>This list shows you outgoing commitments for each activity and the percentage spent so far. Full black bars may signify data quality issues where published data is missing commitment and/or transaction information.
 
 #map_data_description_title_text
 How is the data calculated?
 
 #map_data_description_text
-Only activities that provide locations are displayed on the map. Activities are also limited within the boundaries of {portal_name}.
+Only activities that provide locations are displayed on the map. Locations are longitude and latitude data.<br/><br/>Filter activities by selecting your preference using the dropdown. You may download these filtered activities by clicking on the CSV download button.<br/><br/><b>NB.</b><br/>Each set of coordinates reported in an activity occupies a row in the downloaded data. For activities with multiple locations the total spend IS NOT distributed across the locations but is reported in full on each row.
 
 #data_title_text
 Why data quality matters
@@ -725,6 +749,9 @@ We hope that our presentation of the data - and the current gaps - provides a us
 
 #download_csv_text
 Download Table as CSV
+
+#table_alert_text
+Don't see any data? Try changing the years by clicking on the <b>&lt;</b> arrows <b>&gt</b>
 
 #table_publisher_title_publisher_text
 PUBLISHER
@@ -900,8 +927,15 @@ Publisher
 #search_year_txt
 Year Range
 
+#search_policy_txt
+Policy Marker
+
 #search_view_txt
 You searched:
+EXPLORE <span>filters</span>
+
+#search_refine_txt
+Refine Search
 
 #search_text_txt
 Text Search

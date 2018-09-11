@@ -80,6 +80,7 @@ a.crumb:hover			{color:var(--base15);}
 a.about_data			{color:var(--base14);}
 a.about_data:hover		{color:var(--base15);}
 a.about_data.quality	{border-left:1px solid var(--base11);}
+a.about_data.registry_link	{border-right:1px solid var(--base11);}
 
 
 /*	Header styles
@@ -152,10 +153,9 @@ a.stats_link.missing span	{color:var(--base11);}
 /*	Data Description styles
 	============================================= */
 .description_wrap		{background:linear-gradient(to bottom, var(--base05_00) 0%,var(--base05_70) 60%,var(--base05) 100%); background:-prefix-linear-gradient(to bottom, var(--base05_00) 0%,var(--base05_70) 50%,var(--base05) 100%);}
-.description			{background-color:var(--base15_10);}
-.description span.title	{color:var(--base15); border-top:1px solid var(--base15); border-bottom:1px solid var(--base15);}
+.description.data_quality_wrap	{background-color:var(--base15_10);}
+.description span.title	{color:var(--base15); border-bottom:1px solid var(--base15);}
 .description p			{color:var(--base15);}
-.description p.about_data	{border-top:1px solid var(--base15);}
 .description a			{color:var(--base14);}
 .description a:hover	{color:var(--base15);}
 a.read					{color:var(--base14);}
@@ -169,7 +169,7 @@ a.read:hover			{color:var(--base15);}
 .list_stats_title			{color:var(--base15);}
 .list_stats_num				{color:var(--base15);}
 a.button					{background-color:var(--base11); color:var(--base15);}
-a.button:hover				{background-color:var(--base12);}
+a.button:hover				{background-color:var(--base01);}
 a.csv_download				{background-color:var(--base); color:var(--base15);}
 a.csv_download:hover		{background-color:var(--base04_70); color:var(--base15);}
 
@@ -191,9 +191,11 @@ a.csv_download:hover		{background-color:var(--base04_70); color:var(--base15);}
 .sectors_head_title			{color:var(--base15);}
 
 
-/*	For url #view=search - Discover styles
+/*	For url #view=search
 	============================================= */
-.search_cont				{background-color:var(--base04_70);}
+.search_title				{color:var(--base);}
+.search_cont				{background-color:var(--base05_70); border:1px solid var(--base03);}
+.search_cont a:hover		{color:var(--base15);}
 a.search_head				{color:var(--base);}
 .search_query				{color:var(--base15);}
 .search_query span			{color:var(--base14);}
@@ -201,6 +203,16 @@ a.search_head				{color:var(--base);}
 .search_clear				{color:var(--base14);}
 .search_clear:hover			{color:var(--base15);}
 .search_clear span			{background-color:var(--base14); color:var(--base04);}
+
+a.search_refine				{border:1px solid var(--base); text-shadow:initial; background:none;}
+a.search_refine:hover		{border:1px solid var(--base); text-shadow:initial; background:none;}
+
+
+/*	For url #view=list_activities	*
+	============================================= */
+.activities_spend			{color:var(--base14);}
+.activities_percent			{background-color:var(--base11);}
+.activities_percent_max		{background-color:var(--base05); border:1px solid var(--base05);}
 
 
 /*	Table header styles
@@ -229,13 +241,14 @@ table.title td.sort		{color:var(--base14);}
 /*	Table for Active / Ended projects
 	============================================= */
 table.list td			{color:var(--base14);}
-table.list td span		{color:var(--base12);}
+table.list td span		{color:var(--base14);}
 table.list a			{color:var(--base14);}
 table.list a:focus		{color:var(--base15);}
 table.list a:link  		{color:var(--base14);}
 table.list a:visited	{color:var(--base14);}
 table.list a:hover		{color:var(--base15);}
 table.list a:active		{color:var(--base14);}
+table.list td.alert_no_iati	{color:var(--base14);}
 
 
 /*	Table for Money list (Donors / Sectors)
@@ -291,7 +304,7 @@ table.money.publishers th.col2	{border-top:1px solid var(--base02);}
 /*	Table for Activities list (Donors / Sectors)
 	============================================= */
 table.activity td		{color:var(--base14); border-bottom:1px solid var(--base03);}
-table.activity td span	{color:var(--base12);}
+table.activity td span	{color:var(--base14);}
 table.activity a		{color:var(--base14);}
 table.activity a:focus	{color:var(--base15);}
 table.activity a:link  	{color:var(--base14);}
@@ -319,12 +332,12 @@ a.data_invest:hover		{color:var(--base15); background-color:var(--base);}
 /*	Footer
 	============================================= */
 .footer_wrap			{background-color:var(--base05);}
-.footer_link a			{color:var(--base12);}
+.footer_link a			{color:var(--base11);}
 .footer_link a:focus	{color:var(--base15);}
-.footer_link a:link  	{color:var(--base12);}
-.footer_link a:visited	{color:var(--base12);}
+.footer_link a:link  	{color:var(--base11);}
+.footer_link a:visited	{color:var(--base11);}
 .footer_link a:hover	{color:var(--base15);}
-.footer_link a:active	{color:var(--base12);}
+.footer_link a:active	{color:var(--base11);}
 
 
 /*	SAVi CSS
@@ -333,23 +346,33 @@ iati-activity			{background-color:var(--base04_70);}
 iati-activity:after 	{color:var(--base14);}
 
 
+/*	Display when humanitarian
+	============================================= */
+iati-activity[humanitarian="1"]:before	{background-color:var(--base03); color:var(--base15);}
+
+
 /*	Project title
 	============================================= */
 span.span_span-title span-title		 	{color:var(--base15);}
-span.span_span-title span-title:before 	{color:var(--base14);}
+span.span_span-title span-title:before 	{color:var(--base14); border-bottom:1px solid var(--base03);}
 
 
 /*	IATI Identifier
 	============================================= */
-iati-identifier 				{background-color: var(--base04_70); color:var(--base11);}
+iati-identifier 				{background-color:var(--base03_40); color:var(--base11);}
 iati-identifier:before			{color:var(--base14);}
 iati-identifier:hover			{color:var(--base15);}
 a.a_xml_iati-identifier:before	{color:var(--base14);}
+a.a_logs:before					{color:var(--base14);}
 a.a_slug:before					{color:var(--base14);}
 a.a_xml_iati-identifier:link	{color:var(--base11);}
 a.a_xml_iati-identifier:visited	{color:var(--base11);}
 a.a_xml_iati-identifier:hover	{color:var(--base15);}
 a.a_xml_iati-identifier:active	{color:var(--base11);}
+a.a_logs:link					{color:var(--base11);}
+a.a_logs:visited				{color:var(--base11);}
+a.a_logs:hover					{color:var(--base15);}
+a.a_logs:active					{color:var(--base11);}
 a.a_slug:link					{color:var(--base11);}
 a.a_slug:visited				{color:var(--base11);}
 a.a_slug:hover					{color:var(--base15);}
@@ -358,16 +381,16 @@ a.a_slug:active					{color:var(--base11);}
 
 /*	Recipient countries
 	============================================= */
-span.span_recipient-country				{background-color:var(--base03_40);}
-span.span_recipient-country:before 		{color:var(--base15);}
+span.span_recipient-country:before 		{color:var(--base15); border-bottom:1px solid var(--base03);}
 recipient-country span					{color:var(--base15);}
-recipient-country span:nth-of-type(2)	{color:var(--base15);}
+recipient-country span:nth-of-type(2)	{color:var(--base14);}
+
+span.country_img:before	{color:var(--base14); background-color:var(--base03);}
+img.country_pie			{background-color:var(--base15);}
 
 
 /*	Start and End dates
 	============================================= */
-span.span_activity-date						{background-color:var(--base03);}
-
 activity-date[type="1"], activity-date[type="3"], activity-date[type="start-planned"],
 activity-date[type="end-planned"]			{color:var(--base15);background-color:var(--base);}
 
@@ -377,48 +400,75 @@ activity-date[type="end-actual"]			{color:var(--base15); background-color:var(--
 activity-date[type="1"]:before, activity-date[type="3"]:before, activity-date[type="start-planned"]:before,
 activity-date[type="end-planned"]:before, activity-date[type="2"]:before,
 activity-date[type="4"]:before, activity-date[type="start-actual"]:before,
-activity-date[type="end-actual"]:before		{color:var(--base14);}
+activity-date[type="end-actual"]:before		{color:var(--base15);}
 
 
 /*	Who's invloved?
 	============================================= */
-span.span_participating-org 					{color:var(--base15); background-color:var(--base03_40);}
-span.span_participating-org:before 				{color:var(--base15); border-bottom:1px solid var(--base15);}
-participating-org								{color:var(--base15);}
-participating-org[role="funding"]:after			{color:var(--base14);}
-participating-org[role="implementing"]:after	{color:var(--base14);}
-participating-org[role="extending"]:after		{color:var(--base14);}
-participating-org[role="accountable"]:after		{color:var(--base14);}
+span.span_participating-org 					{color:var(--base15);}
+span.span_participating-org:before 				{color:var(--base15); border-bottom:1px solid var(--base03);}
+
+participating-org,
+span-narrative.participating-role				{color:var(--base15);}
+
+participating-org a:link span-lang,
+participating-org a:link		{color:var(--base11);}
+participating-org a:visited span-lang,
+participating-org a:visited		{color:var(--base11);}
+participating-org a:hover span-lang,
+participating-org a:hover		{color:var(--base15);}
+participating-org a:active span-lang,
+participating-org a:active		{color:var(--base11);}
+
+span-narrative.org-role,
+span-narrative.org-type			{color:var(--base15); background-color:var(--base02_40);}
 
 
+/*	Location (version 2.02++)
+	============================================= */
+span.span_location			{color:var(--base15);}
+span.span_location:before	{color:var(--base15); border-bottom:1px solid var(--base03);}
+span.span_location location point > *	{color:var(--base13);}
+span.span_location location description	{color:var(--base13);}
+	
+	
 /*	Reported by
 	============================================= */
-reporting-org 					{color:var(--base15);}
-reporting-org:before 			{color:var(--base14);}
+reporting-org 				{color:var(--base15);}
+reporting-org:before 		{color:var(--base14);}
+reporting-org a:link		{color:var(--base11);}
+reporting-org a:visited		{color:var(--base11);}
+reporting-org a:hover		{color:var(--base15);}
+reporting-org a:active		{color:var(--base11);}
 
 
 /*	Description of project (shared with Transaction table)
 	============================================= */
 span.span_description description 						{color:var(--base15);}
-span.span_description description:nth-of-type(1):before	{color:var(--base14);}
-span.span_description description[type="1"]:before		{color:var(--base14);}
-span.span_description description[type="2"]:before		{color:var(--base14);}
-span.span_description description[type="3"]:before		{color:var(--base14);}
+span.span_description description:nth-of-type(1):before	{color:var(--base14); border-bottom:1px solid var(--base03);}
+span.span_description description[type="1"]:before		{color:var(--base14); border-bottom:1px solid var(--base03);}
+span.span_description description[type="2"]:before		{color:var(--base14); border-bottom:1px solid var(--base03);}
+span.span_description description[type="3"]:before		{color:var(--base14); border-bottom:1px solid var(--base03);}
 
 
 /*	Result and description
 	============================================= */
-result:nth-child(odd)		{background-color:var(--base03_40);}
-result:nth-of-type(1):before{color:var(--base15); background-color:var(--base03);}
+result:nth-child(even)		{background-color:var(--base03_40);}
+span.span_result:before		{color:var(--base15); background-color:var(--base03);}
+span-reference:before		{color:var(--base15);}
+result:before				{color:var(--base14); border-bottom:1px solid var(--base03);}
 result description			{color:var(--base15);}
-result description:before	{color:var(--base14);}
+result description:before	{color:var(--base14); border-bottom:1px solid var(--base03);}
 result span-title			{color:var(--base15);}
-result span-title:before	{color:var(--base14);}
+result span-title:before	{color:var(--base14); border-bottom:1px solid var(--base03);}
 
-result indicator period period-start, result indicator period period-end, result indicator period target, result indicator period actual,
-result indicator description			{color:var(--base15);}
-result indicator period period-start:before, result indicator period period-end:before, result indicator period target:before,
-result indicator period actual:before	{color:var(--base14);}
+result indicator:before		{color:var(--base14); border-bottom:1px solid var(--base03);}
+result indicator period period-start, result indicator period period-end,
+result indicator period target, result indicator period actual, result indicator description			{color:var(--base15);}
+result indicator period period-start:before, result indicator period period-end:before,
+result indicator period baseline:before, result indicator period target:before, result indicator period actual:before,
+result indicator[measure="1"] period target:before, result indicator[measure="2"] period target:before,
+result indicator[measure="1"] period actual:before, result indicator[measure="2"] period actual:before	{color:var(--base15);}
 
 result indicator period baseline				{background-color:var(--base03);}
 result indicator period target					{background-color:var(--base01);}
@@ -426,67 +476,102 @@ result indicator period actual					{background-color:var(--base);}
 result indicator period actual.value-higher		{background-color:var(--base11);}
 result indicator period actual.value-lower		{background-color:var(--base02);}
 
+span-narrative.baseline-year,
+result indicator[measure="1"] period target:after,
+result indicator[measure="1"] period actual:after,
+result indicator[measure="2"] period target:after,
+result indicator[measure="2"] period actual:after	{color:var(--base15);}
+
 result indicator > baseline comment	{color:var(--base15);}
 
-result indicator reference			{border:1px solid var(--base);}
 result indicator reference:before	{color:var(--base13);}
+result a.a_reference reference,
+result a.a_reference reference:after		{color:var(--base11);}
+result a.a_reference:hover reference,
+result a.a_reference:hover reference:after	{color:var(--base15);}
 
-.timeline		{background-color:var(--base04); border-bottom:1px solid var(--base);}
-.time			{background-color:var(--base13);}
+.timeline		{background-color:var(--base04);}
+.time			{background-color:var(--base02);}
+.time.time-percent100	{background-color:var(--base03);}
 result indicator .time span		{background-color:var(--base);}
 
 
 /*	Sectors (also turned into graph: sector_pie)
 	============================================= */
+span.sector_img:before {color:var(--base14); background-color:var(--base03);}
+
 span.span_sector sector[vocabulary="DAC"],
 span.span_sector sector[vocabulary="1"]	{color:var(--base15);}
 
 span.span_sector sector[vocabulary="DAC"]:before,
-span.span_sector sector[vocabulary="1"]:before	{color:var(--base14);}
+span.span_sector sector[vocabulary="1"]:before,
+span.span_sector sector[vocabulary="2"]:before	{color:var(--base14);}
 
-span.span_sector sector:nth-child(even) {background-color:var(--base04_70);}
 span.span_sector span					{color:var(--base15);}
+span.span_sector sector span:nth-of-type(2),
 span.span_sector span:nth-of-type(2)	{color:var(--base14);}
 img.sector_pie			{background-color:var(--base15);}
 
 
 /*	Budget table
 	============================================= */
-budget					{border-top:1px solid var(--base01);}
+budget					{border-top:1px solid var(--base02);}
 budget:last-of-type	 	{border-bottom:0px solid var(--base01);}
-budget:nth-of-type(1):before				{color:var(--base15); background-color:var(--base03);}
-budget:nth-of-type(1) period-start:before 	{color:var(--base15); border-bottom:2px solid var(--base03);}
-budget:nth-of-type(1) period-end:before	  	{color:var(--base15); border-bottom:2px solid var(--base03);}
+span.span_budget:before						{color:var(--base15); background-color:var(--base03);}
+budget:nth-of-type(1) period-start:before,
+budget:nth-of-type(1) period-end:before,
+budget:nth-of-type(1) span-budget-type:before,
+budget:nth-of-type(1) span-budget-status:before,
 budget:nth-of-type(1) value:before		  	{color:var(--base15); border-bottom:2px solid var(--base03);}
-period-start 			{color:var(--base15);}
-period-end	 			{color:var(--base15);}
-budget value 			{color:var(--base15);}
+
+budget period-start,
+budget period-end,
+budget span-budget-type,
+budget span-budget-status,
+budget value			{color:var(--base15);}
 
 
 /*	Planned Disbursement table
 	============================================= */
-planned-disbursement				{border-top:1px solid var(--base01);}
-planned-disbursement:last-of-type	{border-bottom:0px solid var(--base01);}
-planned-disbursement:nth-of-type(1):before				{color:var(--base15); background-color:var(--base03);}
-planned-disbursement:nth-of-type(1) period-start:before {color:var(--base15); border-bottom:2px solid var(--base03);}
-planned-disbursement:nth-of-type(1) period-end:before	{color:var(--base15); border-bottom:2px solid var(--base03);}
-planned-disbursement:nth-of-type(1) value:before		{color:var(--base15); border-bottom:2px solid var(--base03);}
-period-start 			{color:var(--base15);}
-period-end	 			{color:var(--base15);}
-planned-disbursement value 			{color:var(--base15);}
+planned-disbursement					{border-top:1px solid var(--base02);}
+planned-disbursement a					{font-weight:bold; color:var(--base11);}
+planned-disbursement a					{color:var(--base11);}
+planned-disbursement a:link				{color:var(--base11);}
+planned-disbursement a:visited			{color:var(--base11);}
+planned-disbursement a:hover			{color:var(--base11);}
+planned-disbursement a:active			{color:var(--base11);}
+planned-disbursement:last-of-type		{border-bottom:0px solid var(--base01);}
+span.span_planned-disbursement:before	{color:var(--base15); background-color:var(--base03);}
+
+planned-disbursement:nth-of-type(1) period-start:before,
+planned-disbursement:nth-of-type(1) period-end:before,
+planned-disbursement:nth-of-type(1) value:before,
+planned-disbursement:nth-of-type(1) provider-org:before,
+planned-disbursement:nth-of-type(1) receiver-org:before	{color:var(--base15); border-bottom:2px solid var(--base03);}
+
+planned-disbursement:nth-of-type(1) period-end:after,
+planned-disbursement[type="1"] value:after,
+planned-disbursement[type="2"] value:after,
+planned-disbursement[type="1"]:nth-of-type(1) value:after,
+planned-disbursement[type="2"]:nth-of-type(1) value:after,
+planned-disbursement period-start,
+planned-disbursement period-end,
+planned-disbursement value,
+planned-disbursement provider-org,
+planned-disbursement receiver-org 	{color:var(--base15);}
 
 
 /*	Transaction table
 	============================================= */
-transaction							{border-top:1px solid var(--base01);}
-transaction a						{font-weight:bold; color:var(--base11);}
-transaction a						{color:var(--base11);}
-transaction a:link					{color:var(--base11);}
-transaction a:visited				{color:var(--base11);}
-transaction a:hover					{color:var(--base11);}
-transaction a:active				{color:var(--base11);}
-transaction:last-of-type			{border-bottom:0px solid var(--base01);}
-transaction:nth-of-type(1):before	{color:var(--base15); background-color:var(--base03);}
+transaction						{border-top:1px solid var(--base02);}
+transaction a					{font-weight:bold; color:var(--base11);}
+transaction a					{color:var(--base11);}
+transaction a:link				{color:var(--base11);}
+transaction a:visited			{color:var(--base11);}
+transaction a:hover				{color:var(--base11);}
+transaction a:active			{color:var(--base11);}
+transaction:last-of-type		{border-bottom:0px solid var(--base01);}
+span.span_transaction:before	{color:var(--base15); background-color:var(--base03);}
 
 transaction:nth-of-type(1) transaction-date:before	{color:var(--base15); border-bottom:2px solid var(--base03);}
 transaction:nth-of-type(1) transaction-type:before	{color:var(--base15); border-bottom:2px solid var(--base03);}
@@ -532,18 +617,42 @@ activity-status:before		{color:var(--base15);}
 
 /*	Related documents list
 	============================================= */
-span.span_document-link:before				{color:var(--base15); border-bottom:1px solid var(--base15);}
-a.a_document-link							{color:var(--base14);}
-a.a_document-link document-link span-title			{color:var(--base15);}
-a.a_document-link document-link span-title:hover	{color:var(--base11);}
+span.span_document-link:before				{color:var(--base15);}
+a.a_document-link							{color:var(--base14); background-color:var(--base03_20); border:1px solid var(--base03); border-bottom:0;}
+a.a_document-link:last-of-type				{border-bottom:1px solid var(--base03);}
+a.a_document-link:hover						{background-color:var(--base03_40);}
+a.a_document-link document-link span-title	{color:var(--base15);}
 document-link span							{color:var(--base14);}
+a.a_document-link span-title:after			{background-color:var(--base04_70);}
+span-narrative.doc-cat						{color:var(--base15); background-color:var(--base02_40);}
+span-doc_date								{color:var(--base15); background-color:var(--base02);}
 
 
 /*	Family Tree list
 	============================================= */
-span.span_related-activity:before	{color:var(--base15); border-bottom:1px solid var(--base15);}
+span.span_related-activity:before	{color:var(--base15); border-bottom:1px solid var(--base03);}
 span.span_related-activity			{color:var(--base15);}
 a.a_related-activity				{color:var(--base15);}
 related-activity					{color:var(--base11);}
 related-activity:hover				{color:var(--base11);}
 related-activity:before				{color:var(--base15);}
+
+
+/*	Policy marker
+	============================================= */
+span.span_policy-marker:before		{color:var(--base15); border-bottom:1px solid var(--base03);}
+policy-marker						{color:var(--base15);}
+span-narrative.policy_vocab,
+span-narrative.policy_code,
+span-narrative.policy_sig			{color:var(--base15); background-color:var(--base03);}
+
+
+/*	Hide and expand buttons
+	============================================= */
+span.hide 		 {color:var(--base14);}
+span.hide:hover	 {color:var(--base15);}
+
+
+/*	Count
+	============================================= */
+span.length		{color:var(--base15);}

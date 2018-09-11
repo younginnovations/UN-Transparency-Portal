@@ -12,6 +12,7 @@ var http=require('http');
 var https=require('https');
 var fs = require('fs');
 var baby = require('babyparse');
+var json_stringify = require('json-stable-stringify')
 
 var refry=require('./refry');
 var exs=require('./exs');
@@ -67,29 +68,69 @@ iati_codes.fetch = function(){
 
 // old codes, do not change
 			{
-				url:"http://iatistandard.org/104/codelists/downloads/clv2/json/en/TransactionType.json",
+				url:"http://reference.iatistandard.org/104/codelists/downloads/clv2/json/en/TransactionType.json",
 				name:"old_transaction_type",
 			},
 
 // new codes, these should be kept current
 			{
-				url:"http://iatistandard.org/202/codelists/downloads/clv3/json/en/Sector.json",
+				url:"http://reference.iatistandard.org/203/codelists/downloads/clv3/json/en/Sector.json",
 				name:"sector",
 			},
 /* replaced with csv/sector_category.csv
 			{
-				url:"http://iatistandard.org/202/codelists/downloads/clv3/json/en/SectorCategory.json",
+				url:"http://reference.iatistandard.org/203/codelists/downloads/clv3/json/en/SectorCategory.json",
 				name:"sector_category",
 			},
 */
 			{
-				url:"http://iatistandard.org/202/codelists/downloads/clv3/json/en/TransactionType.json",
+				url:"http://reference.iatistandard.org/203/codelists/downloads/clv3/json/en/TransactionType.json",
 				name:"new_transaction_type",
 			},
 			{
-				url:"http://iatistandard.org/202/codelists/downloads/clv3/json/en/ActivityStatus.json",
+				url:"http://reference.iatistandard.org/203/codelists/downloads/clv3/json/en/ActivityStatus.json",
 				name:"activity_status",
-			}
+			},
+			{
+				url:"http://reference.iatistandard.org/203/codelists/downloads/clv3/json/en/OrganisationType.json",
+				name:"org_type",
+			},
+			{
+				url:"http://reference.iatistandard.org/203/codelists/downloads/clv3/json/en/OrganisationRole.json",
+				name:"org_role",
+			},
+			{
+				url:"http://reference.iatistandard.org/203/codelists/downloads/clv3/json/en/DocumentCategory.json",
+				name:"doc_cat",
+			},
+			{
+				url:"http://reference.iatistandard.org/203/codelists/downloads/clv3/json/en/IndicatorVocabulary.json",
+				name:"indicator_vocab",
+			},
+			{
+				url:"http://reference.iatistandard.org/203/codelists/downloads/clv3/json/en/ResultVocabulary.json",
+				name:"result_vocab",
+			},
+			{
+				url:"http://reference.iatistandard.org/203/codelists/downloads/clv3/json/en/PolicyMarkerVocabulary.json",
+				name:"policy_vocab",
+			},
+			{
+				url:"http://reference.iatistandard.org/203/codelists/downloads/clv3/json/en/PolicyMarker.json",
+				name:"policy_code",
+			},
+			{
+				url:"http://reference.iatistandard.org/203/codelists/downloads/clv3/json/en/PolicySignificance.json",
+				name:"policy_sig",
+			},
+			{
+				url:"http://reference.iatistandard.org/203/codelists/downloads/clv3/json/en/BudgetType.json",
+				name:"budget_type",
+			},
+			{
+				url:"http://reference.iatistandard.org/203/codelists/downloads/clv3/json/en/BudgetStatus.json",
+				name:"budget_status",
+			},
 		];
 	
 	files.forEach(function(opts){
@@ -120,108 +161,31 @@ iati_codes.fetch = function(){
 	}
 	codes["transaction_type"]=o;
 
+
 // conversion from new code to old (we keep using old codes internally)
-	var n;
-	var t={};
-	for(n in codes["old_transaction_type"])
-	{
-		t[ codes["old_transaction_type"][n] ]=n;
+// This used to fail for C and IR as the wording changed so is now explicitly mapped
+	var t={
+		"1": "IF",
+		"2": "C",
+		"3": "D",
+		"4": "E",
+		"5": "IR",
+		"6": "LR",
+		"7": "R",
+		"8": "QP",
+		"9": "QS",
+		"10": "CG",
 	}
-	var o={};
-	for(n in codes["old_transaction_type"])
-	{
-		o[ n ]=n;
-	}
-	for(n in codes["new_transaction_type"])
-	{
-		o[ n ]=t[ codes["new_transaction_type"][n] ] || n;
-	}
+	var o={}
+	for(n in codes["old_transaction_type"])	{ o[n]=n; } // copy
+	for(n in codes["new_transaction_type"]) { o[n]=n; } // copy
+	for(n in t) { o[n]=t[n]; } // map
 
-	codes["transaction_type_map"]=o; // map new codes to old codes and leave old codes as they are
+	codes["transaction_type_map"]=o; // map new codes to old codes where we can and leave old codes as they are
 
 	
-	console.log("Parsing csv/sector_category.csv")
-	
-	
-	var x=fs.readFileSync(__dirname+"/../csv/sector_category.csv","utf8");
-	var lines=baby.parse( x ).data;
-	var o={};
-	for(var i=1;i<lines.length;i++)
-	{
-		var v=lines[i];
-		var a=(v[0]);
-		var b=v[1];
-		if(a && a.length>0 && b && b.length>0 )
-		{
-			o[a.trim()]=b.trim();
-		}
-	}
-	
-//	ls(o);
-	codes["sector_category"]=o;
-
-
-
-	console.log("Fetching country_codes")
-
-// it turns out wikipedia is the best source, since the iso website has decided to hide its most precious data behind a paywall
-// so now we will scrape wikipedia
-
-	var x=wait.for(https_getbody,"https://en.wikipedia.org/wiki/ISO_3166-1_alpha-2");
-	var j=refry.xml(x);
-	var o={};
-	
-	refry.tags(j,{0:"table",class:"wikitable"},function(it){
-		refry.tags(it,"td",function(it){
-			var name=it.title;
-			var code=refry.tagval_trim(it,"span");
-//console.log(code+" : "+name);
-			if( name && code )
-			{
-				if(name!="unassigned" && name!="user-assigned" && name!="Unassigned" && name!="User-assigned")
-				{
-					var aa=name.split(":");
-					if(aa[1])
-					{
-						if(aa[0]!="not used at present stage") // ignore names that must never be used
-						{
-							o[code]=aa[1].trim();
-						}
-					}
-					else
-					{
-						o[code]=name;
-					}
-				}
-			}
-		});
-	});
-	
-//	ls(o);
-
-	o["XK"]="Kosovo" // yeah this is much better than having it in a list *rolls*eyes*
-	
-	codes["country"]=o;
-
-
-// sector groups -> https://docs.google.com/spreadsheet/pub?key=0AmauX4JNk0rJdHRWY1dRTkQ3dXJaeDk4RFZFWElaSHc&single=true&gid=9&output=csv
-
-// IATI sectors ->   https://docs.google.com/spreadsheet/pub?key=0AmauX4JNk0rJdHRWY1dRTkQ3dXJaeDk4RFZFWElaSHc&single=true&gid=0&output=csv
-// IATI funders ->   https://docs.google.com/spreadsheet/pub?key=0AmauX4JNk0rJdHRWY1dRTkQ3dXJaeDk4RFZFWElaSHc&single=true&gid=2&output=csv
-// CRS funders ->    https://docs.google.com/spreadsheet/pub?key=0AmauX4JNk0rJdHRWY1dRTkQ3dXJaeDk4RFZFWElaSHc&single=true&gid=4&output=csv
-// CRS countries ->  https://docs.google.com/spreadsheet/pub?key=0AmauX4JNk0rJdHRWY1dRTkQ3dXJaeDk4RFZFWElaSHc&single=true&gid=7&output=csv
-// CRS 2012 ->       https://docs.google.com/spreadsheet/pub?key=0AmauX4JNk0rJdHRWY1dRTkQ3dXJaeDk4RFZFWElaSHc&single=true&gid=3&output=csv
-// local currency ->       https://docs.google.com/spreadsheet/pub?key=0AmauX4JNk0rJdHRWY1dRTkQ3dXJaeDk4RFZFWElaSHc&single=true&gid=8&output=csv
-
-
-
-
-	console.log("Fetching IATI funders csv")
-
-	var x=wait.for(https_getbody,sheeturl(2));
-//	var lines=wait.for(csv_parse,x);
-	var lines=baby.parse(x).data;
-
+	console.log("Parsing csv/iati_funders.csv")	
+	var lines=baby.parse( fs.readFileSync(__dirname+"/../csv/iati_funders.csv",{encoding:"utf8"}) ).data;
 
 	var o={};
 	for(var i=1;i<lines.length;i++)
@@ -239,11 +203,8 @@ iati_codes.fetch = function(){
 	codes["iati_funders"]=o;
 
 
-	console.log("Fetching IATI currencies csv")
-
-	var x=wait.for(https_getbody,sheeturl(10));
-//	var lines=wait.for(csv_parse,x);
-	var lines=baby.parse(x).data;
+	console.log("Parsing csv/imf_currencies.csv")
+	var lines=baby.parse( fs.readFileSync(__dirname+"/../csv/imf_currencies.csv",{encoding:"utf8"}) ).data;
 
 
 	var o=[];
@@ -263,9 +224,8 @@ iati_codes.fetch = function(){
 	
 	
 
-	console.log("Fetching local currency csv")
-
-	var x=wait.for(https_getbody,sheeturl(8));
+	console.log("Parsing csv/local_currency.csv")
+	var lines=baby.parse( fs.readFileSync(__dirname+"/../csv/local_currency.csv",{encoding:"utf8"}) ).data;
 
 	var o={};
 	for(var i=1;i<lines.length;i++)
@@ -283,11 +243,9 @@ iati_codes.fetch = function(){
 	codes["local_currency"]=o;
 
 	
-	console.log("Fetching CRS funders csv")
+	console.log("Parsing csv/crs_funders.csv")
 
-	var x=wait.for(https_getbody,sheeturl(4));
-//	var lines=wait.for(csv_parse,x);
-	var lines=baby.parse(x).data;
+	var lines=baby.parse( fs.readFileSync(__dirname+"/../csv/crs_funders.csv",{encoding:"utf8"}) ).data;
 
 	var d={};
 	var o={};
@@ -339,11 +297,9 @@ iati_codes.fetch = function(){
 	codes.crs_no_iati=d;
 
 
-	console.log("Fetching CRS countries csv")
+	console.log("Parsing csv/crs_countries.csv")
 
-	var x=wait.for(https_getbody,sheeturl(7));
-//	var lines=wait.for(csv_parse,x);
-	var lines=baby.parse(x).data;
+	var lines=baby.parse( fs.readFileSync(__dirname+"/../csv/crs_countries.csv",{encoding:"utf8"}) ).data;
 
 	var o={};
 	var r={};
@@ -362,365 +318,270 @@ iati_codes.fetch = function(){
 	codes.rev_crs_countries=r;
 	
 		
-	console.log("Writing json/iati_codes.json")	
-//	fs.writeFileSync("json/iati_codes.js","exports.codes="+JSON.stringify(codes)+";\n");
-	fs.writeFileSync(__dirname+"/../json/iati_codes.json",JSON.stringify(codes,null,'\t'));
 
-	
-	var x=wait.for(https_getbody,sheeturl(3));
-//	var lines=wait.for(csv_parse,x);
-	var lines=baby.parse(x).data;
-
-	var o={};
-
-	var head=[];
-	for(var i=0;i<lines[0].length;i++)
+	for(var year=2015;year<=2016;year++)
 	{
-		var v=lines[0][i];
-		head[i]=codes.rev_crs_funders[ v.trim() ];
-	}
-//	ls(head);
-	
-	for(var i=1;i<lines.length;i++)
-	{
-		var v=lines[i];
-		var a=codes.rev_crs_countries[ v[0].trim() ];
-		if(a)
+			
+		console.log("Parsing csv/crs_"+year+".csv")
+		console.log(__dirname+"/../csv/crs_"+year+".csv")
+
+		var lines=baby.parse( fs.readFileSync(__dirname+"/../csv/crs_"+year+".csv",{encoding:"utf8"}) ).data;
+
+		var o={};
+
+		var head=[];
+		for(var i=0;i<lines[0].length;i++)
 		{
-			var t={};
-			o[a]=t;
-			for(var j=0;j<v.length;j++)
+			var v=lines[0][i];
+			head[i]=codes.rev_crs_funders[ v.trim() ];
+		}
+
+		for(var i=1;i<lines.length;i++)
+		{
+			var v=lines[i];
+			var a=codes.rev_crs_countries[ v[0].trim() ];
+			if(a)
 			{
-				var h=head[j];
-				if(h)
+				var t={};
+				o[a]=t;
+				for(var j=0;j<v.length;j++)
 				{
-					var n=Number(v[j]);
-					if(n)
+					var h=head[j];
+					if(h)
 					{
-						t[h]=Math.round(n*1000000); // convert to usd, from millions of usd
+						var n=Number(v[j]);
+						if(n)
+						{
+							t[h]=Math.round(n*1000000); // convert to usd, from millions of usd
+						}
 					}
 				}
 			}
+		}
+		console.log("Writing json/crs_"+year+".json")
+		fs.writeFileSync(__dirname+"/../json/crs_"+year+".json",json_stringify(o,{ space: ' ' }));
+
+
+
+		console.log("Parsing csv/crs_"+year+"_sectors.csv")
+
+		var lines=baby.parse( fs.readFileSync(__dirname+"/../csv/crs_"+year+"_sectors.csv",{encoding:"utf8"}) ).data;
+
+		var o={};
+
+		var head=[];
+		for(var i=0;i<lines[0].length;i++)
+		{
+			var v=lines[0][i];
+			head[i]=v.trim();
+		}
+	//	ls(head);
+		
+		for(var i=1;i<lines.length;i++)
+		{
+			var v=lines[i];
+			var a=v[1]||"" ; a=codes.rev_crs_countries[ a.trim() ];
+			if(a)
+			{
+				var t={};
+				o[a]=t;
+				for(var j=2;j<v.length;j++)
+				{
+					var h=head[j];
+					if(h)
+					{
+						var n=Number(v[j]);
+						if(n)
+						{
+							t[h]=Math.round(n*1000000); // convert to usd, from millions of usd
+						}
+					}
+				}
+			}
+		}
+		console.log("Writing json/crs_"+year+"_sectors.json")
+		fs.writeFileSync(__dirname+"/../json/crs_"+year+"_sectors.json",json_stringify(o,{ space: ' ' }));
+	}
+
+
+
+	console.log("Parsing csv/sector_category.csv")
+	
+	
+	var x=fs.readFileSync(__dirname+"/../csv/sector_category.csv","utf8");
+	var lines=baby.parse( x ).data;
+	var o={};
+	for(var i=1;i<lines.length;i++)
+	{
+		var v=lines[i];
+		var a=(v[0]);
+		var b=v[1];
+		if(a && a.length>0 && b && b.length>0 )
+		{
+			o[a.trim()]=b.trim();
 		}
 	}
 	
 //	ls(o);
-
-	console.log("Writing json/crs_2012.json")
-//	fs.writeFileSync("json/crs_2012.js","exports.crs="+JSON.stringify(o)+";\n");
-	fs.writeFileSync(__dirname+"/../json/crs_2012.json",JSON.stringify(o,null,'\t'));
-
-//	codes["local_currency"]=o;
+	codes["sector_category"]=o;
 
 
-//
 
-	var x=wait.for(https_getbody,sheeturl(11));
-//	var lines=wait.for(csv_parse,x);
-	var lines=baby.parse(x).data;
+	console.log("Fetching country_codes")
 
+// it turns out wikipedia is the best source, since the iso website has decided to hide its most precious data behind a paywall
+// so now we will scrape wikipedia
+
+	var x=wait.for(https_getbody,"https://en.wikipedia.org/wiki/ISO_3166-1_alpha-2");
+	var j=refry.xml(x);
 	var o={};
-
-	var head=[];
-	for(var i=0;i<lines[0].length;i++)
-	{
-		var v=lines[0][i];
-		head[i]=v.trim();
-	}
-//	ls(head);
 	
-	for(var i=1;i<lines.length;i++)
-	{
-		var v=lines[i];
-		var a=codes.rev_crs_countries[ v[0].trim() ];
-		if(a)
-		{
-			var t={};
-			o[a]=t;
-			for(var j=0;j<v.length;j++)
+	refry.tags(j,{0:"table",class:"wikitable"},function(it){
+		refry.tags(it,"td",function(it){
+			var name=it.title;
+			var code=refry.tagval_trim(it,"span");
+			if( name && code )
 			{
-				var h=head[j];
-				if(h)
+				if(name!="unassigned" && name!="user-assigned" && name!="Unassigned" && name!="User-assigned")
 				{
-					var n=Number(v[j]);
-					if(n)
+					name = name.split(" (formerly:")[0];
+					var aa=name.split(":");
+// Just ignore anything with a colon that wasnt a (formerly:
+					if(!aa[1])
 					{
-						t[h]=Math.round(n*1000000); // convert to usd, from millions of usd
+						o[code]=name;
 					}
 				}
 			}
-		}
-	}
+		});
+	});
 	
 //	ls(o);
 
-	console.log("Writing json/crs_2012_sectors.json")
-//	fs.writeFileSync("json/crs_2012.js","exports.crs="+JSON.stringify(o)+";\n");
-	fs.writeFileSync(__dirname+"/../json/crs_2012_sectors.json",JSON.stringify(o,null,'\t'));
-
-
-	var x=wait.for(https_getbody,sheeturl(14));
-//	var lines=wait.for(csv_parse,x);
-	var lines=baby.parse(x).data;
-
-	var o={};
-
-	var head=[];
-	for(var i=0;i<lines[0].length;i++)
-	{
-		var v=lines[0][i];
-		head[i]=codes.rev_crs_funders[ v.trim() ];
-	}
-//	ls(head);
+	o["XK"]="Kosovo" // yeah this is much better than having it in a list *rolls*eyes*
 	
-	for(var i=1;i<lines.length;i++)
-	{
-		var v=lines[i];
-		var a=codes.rev_crs_countries[ v[0].trim() ];
-		if(a)
+	codes["country"]=o;
+
+
+// sector groups -> https://docs.google.com/spreadsheet/pub?key=0AmauX4JNk0rJdHRWY1dRTkQ3dXJaeDk4RFZFWElaSHc&single=true&gid=9&output=csv
+
+// IATI sectors ->   https://docs.google.com/spreadsheet/pub?key=0AmauX4JNk0rJdHRWY1dRTkQ3dXJaeDk4RFZFWElaSHc&single=true&gid=0&output=csv
+// IATI funders ->   https://docs.google.com/spreadsheet/pub?key=0AmauX4JNk0rJdHRWY1dRTkQ3dXJaeDk4RFZFWElaSHc&single=true&gid=2&output=csv
+// CRS funders ->    https://docs.google.com/spreadsheet/pub?key=0AmauX4JNk0rJdHRWY1dRTkQ3dXJaeDk4RFZFWElaSHc&single=true&gid=4&output=csv
+// CRS countries ->  https://docs.google.com/spreadsheet/pub?key=0AmauX4JNk0rJdHRWY1dRTkQ3dXJaeDk4RFZFWElaSHc&single=true&gid=7&output=csv
+// CRS 2012 ->       https://docs.google.com/spreadsheet/pub?key=0AmauX4JNk0rJdHRWY1dRTkQ3dXJaeDk4RFZFWElaSHc&single=true&gid=3&output=csv
+// local currency ->       https://docs.google.com/spreadsheet/pub?key=0AmauX4JNk0rJdHRWY1dRTkQ3dXJaeDk4RFZFWElaSHc&single=true&gid=8&output=csv
+
+
+
+
+
+
+// ignore these keys in the package data as they cache values and just change all the time without being useful
+	var ignoreresourcekeys=[
+		"created",
+		"hash",
+		"id",
+		"last_modified",
+		"mimetype",
+		"package_id",
+		"revision_id",
+		"size",
+	]
+
+	var ignoreextras=[
+		"data_updated",
+	]
+
+	var ignorethis=[
+		"revision_id",
+		"isopen",
+	]
+
+	var start=0;
+	var done=false;
+	var packages={};
+	while(!done)
+	{	
+		console.log( "iatiregistry query for packages "+(start+1)+" to "+(start+1000) );
+		var js=wait.for(https_getbody,"https://iatiregistry.org/api/3/action/package_search?rows=1000&start="+start);
+
+		var j=JSON.parse(js.toString('utf8'));
+		var rs=j.result.results;
+		done=true;
+		for(var i=0;i<rs.length;i++)
 		{
-			var t={};
-			o[a]=t;
-			for(var j=0;j<v.length;j++)
+			done=false;
+			var v=rs[i];
+// clean out some key bumf to reduce pointless updates
+			v.metadata_modified=undefined // seems to change everynight no matter what so ignore
+			if(v.extras)
 			{
-				var h=head[j];
-				if(h)
+ 				for(var ki=v.extras.length-1;ki>=0;ki--) // backwards as we will be removing
 				{
-					var n=Number(v[j]);
-					if(n)
+					var kv=v.extras[ki]
+					if(kv && kv.key && kv.key.startsWith("issue_")) // these are auto errors that get added by the registry, IGNORE
 					{
-						t[h]=Math.round(n*1000000); // convert to usd, from millions of usd
+						v.extras.splice(ki,1) // forget
+					}
+					else
+					if(kv && kv.key)
+					{
+						for( var ni in ignoreextras) { var n=ignoreextras[ni]
+							if(kv.key==n)
+							{
+								v.extras.splice(ki,1) // forget
+								break;
+							}
+						}
 					}
 				}
 			}
-		}
-	}
-	
-//	ls(o);
-
-	console.log("Writing json/crs_2013.json")
-//	fs.writeFileSync("json/crs_2012.js","exports.crs="+JSON.stringify(o)+";\n");
-	fs.writeFileSync(__dirname+"/../json/crs_2013.json",JSON.stringify(o,null,'\t'));
-
-//	codes["local_currency"]=o;
-
-
-//
-
-	var x=wait.for(https_getbody,sheeturl(15));
-//	var lines=wait.for(csv_parse,x);
-	var lines=baby.parse(x).data;
-
-	var o={};
-
-	var head=[];
-	for(var i=0;i<lines[0].length;i++)
-	{
-		var v=lines[0][i];
-		head[i]=v.trim();
-	}
-//	ls(head);
-	
-	for(var i=1;i<lines.length;i++)
-	{
-		var v=lines[i];
-		var a=codes.rev_crs_countries[ v[0].trim() ];
-		if(a)
-		{
-			var t={};
-			o[a]=t;
-			for(var j=0;j<v.length;j++)
+			if(v.resources)
 			{
-				var h=head[j];
-				if(h)
+ 				for(var ki in v.resources)
 				{
-					var n=Number(v[j]);
-					if(n)
-					{
-						t[h]=Math.round(n*1000000); // convert to usd, from millions of usd
-					}
+					var kv=v.resources[ki]
+					for(var ni in ignoreresourcekeys) { var n=ignoreresourcekeys[ni]
+						 kv[n]=undefined } // forget
 				}
 			}
+
+			for( var ni in ignorethis) { var n=ignorethis[ni]
+				 v[n]=undefined // forget
+			}
+
+			packages[v.name]=v;
 		}
+		start+=1000;
 	}
-	
-//	ls(o);
-
-	console.log("Writing json/crs_2013_sectors.json")
-//	fs.writeFileSync("json/crs_2012.js","exports.crs="+JSON.stringify(o)+";\n");
-	fs.writeFileSync(__dirname+"/../json/crs_2013_sectors.json",JSON.stringify(o,null,'\t'));
-
-
-
-	var x=wait.for(https_getbody,sheeturl(1794224901));
-//	var lines=wait.for(csv_parse,x);
-	var lines=baby.parse(x).data;
-
-	var o={};
-
-	var head=[];
-	for(var i=0;i<lines[0].length;i++)
+	if(start>2000) // sanity, just in case of total registry failure
 	{
-		var v=lines[0][i];
-		head[i]=codes.rev_crs_funders[ v.trim() ];
-	}
+		console.log("Writing json/packages.json")
+		fs.writeFileSync(__dirname+"/../json/packages.json",json_stringify(packages,{ space: ' ' }));
 
-	for(var i=1;i<lines.length;i++)
-	{
-		var v=lines[i];
-		var a=codes.rev_crs_countries[ v[0].trim() ];
-		if(a)
+		console.log("Writing json/download.txt")
+
+		var cc=[]
+		
+		for( var slug in packages)
 		{
-			var t={};
-			o[a]=t;
-			for(var j=0;j<v.length;j++)
+			var package=packages[slug]
+			slug=slug.replace(/[^0-9a-zA-Z\-_]/g, '_') // sanitize the slug just in case
+			var url=package.resources && package.resources[0] && package.resources[0].url
+			if(url)
 			{
-				var h=head[j];
-				if(h)
-				{
-					var n=Number(v[j]);
-					if(n)
-					{
-						t[h]=Math.round(n*1000000); // convert to usd, from millions of usd
-					}
-				}
+				url=url.split(" ").join("%20") // spaces in urls breaks curl
+				cc.push("curl -k -L -o "+slug+".xml \""+url+"\" \n")
 			}
 		}
-	}
-	
-//	ls(o);
-
-	console.log("Writing json/crs_2014.json")
-	fs.writeFileSync(__dirname+"/../json/crs_2014.json",JSON.stringify(o,null,'\t'));
-
-	var x=wait.for(https_getbody,sheeturl(830372680));
-//	var lines=wait.for(csv_parse,x);
-	var lines=baby.parse(x).data;
-
-	var o={};
-
-	var head=[];
-	for(var i=0;i<lines[0].length;i++)
-	{
-		var v=lines[0][i];
-		head[i]=v.trim();
-	}
-//	ls(head);
-	
-	for(var i=1;i<lines.length;i++)
-	{
-		var v=lines[i];
-		var a=codes.rev_crs_countries[ v[0].trim() ];
-		if(a)
-		{
-			var t={};
-			o[a]=t;
-			for(var j=0;j<v.length;j++)
-			{
-				var h=head[j];
-				if(h)
-				{
-					var n=Number(v[j]);
-					if(n)
-					{
-						t[h]=Math.round(n*1000000); // convert to usd, from millions of usd
-					}
-				}
-			}
-		}
+		
+		fs.writeFileSync(__dirname+"/../json/curl.txt",cc.join(""));
 	}
 
-	console.log("Writing json/crs_2014_sectors.json")
-	fs.writeFileSync(__dirname+"/../json/crs_2014_sectors.json",JSON.stringify(o,null,'\t'));
 
-
-
-
-
-
-
-	var x=wait.for(https_getbody,sheeturl(1661036011));
-	var lines=baby.parse(x).data;
-
-	var o={};
-
-	var head=[];
-	for(var i=0;i<lines[0].length;i++)
-	{
-		var v=lines[0][i];
-		head[i]=codes.rev_crs_funders[ v.trim() ];
-	}
-
-	for(var i=1;i<lines.length;i++)
-	{
-		var v=lines[i];
-		var a=codes.rev_crs_countries[ v[0].trim() ];
-		if(a)
-		{
-			var t={};
-			o[a]=t;
-			for(var j=0;j<v.length;j++)
-			{
-				var h=head[j];
-				if(h)
-				{
-					var n=Number(v[j]);
-					if(n)
-					{
-						t[h]=Math.round(n*1000000); // convert to usd, from millions of usd
-					}
-				}
-			}
-		}
-	}
-	console.log("Writing json/crs_2015.json")
-	fs.writeFileSync(__dirname+"/../json/crs_2015.json",JSON.stringify(o,null,'\t'));
-
-
-
-
-	var x=wait.for(https_getbody,sheeturl(2056313976));
-	var lines=baby.parse(x).data;
-
-	var o={};
-
-	var head=[];
-	for(var i=0;i<lines[0].length;i++)
-	{
-		var v=lines[0][i];
-		head[i]=v.trim();
-	}
-//	ls(head);
-	
-	for(var i=1;i<lines.length;i++)
-	{
-		var v=lines[i];
-		var a=codes.rev_crs_countries[ v[1].trim() ];
-		if(a)
-		{
-			var t={};
-			o[a]=t;
-			for(var j=2;j<v.length;j++)
-			{
-				var h=head[j];
-				if(h)
-				{
-					var n=Number(v[j]);
-					if(n)
-					{
-						t[h]=Math.round(n*1000000); // convert to usd, from millions of usd
-					}
-				}
-			}
-		}
-	}
-	console.log("Writing json/crs_2015_sectors.json")
-	fs.writeFileSync(__dirname+"/../json/crs_2015_sectors.json",JSON.stringify(o,null,'\t'));
-
-
-
-
-
+	console.log("Writing json/iati_codes.json for the first time")	
+	fs.writeFileSync(__dirname+"/../json/iati_codes.json",json_stringify(codes,{ space: ' ' }));
 
 
 console.log("************************ This next bit takes a loooooong time to get every publisher id from iati...");
@@ -728,41 +589,41 @@ console.log("************************ It's OK to CTRL+C and skip this last bit i
 if(true)
 {
 //	codes.publisher_ids={};
+	codes.publisher_slugs={};
 	codes.publisher_names={};
 	codes.publisher_secondary={};
 
-	var js=wait.for(https_getbody,"https://iatiregistry.org/api/rest/group");
-	var j=JSON.parse(js);
+	var js=wait.for(https_getbody,"https://iatiregistry.org/api/3/action/group_list");
+	var j=JSON.parse(js).result;
 	j.forEach(function(v){
 		console.log("Fetching publisher info for "+v);
-		var jjs=wait.for(https_getbody,"https://iatiregistry.org/api/rest/group/"+v);
-		var jj=JSON.parse(jjs);
+		var jjs=wait.for(https_getbody,"https://iatiregistry.org/api/3/action/group_show?id="+v);
+		var jj=JSON.parse(jjs).result;
 		publishers[v]=jj
 		
-		if(jj.extras)
-		{			
-			var ids=jj.extras.publisher_iati_id.split("|");
-			for(var i=0;i<ids.length;i++)
+		var ids=jj.publisher_iati_id.split("|");
+		for(var i=0;i<ids.length;i++)
+		{
+			var id=ids[i].trim();
+			if(id!="")
 			{
-				var id=ids[i].trim();
-				if(id!="")
+				if(jj.package_count>0) // ignore unpublished publishers with 0 packages
 				{
-					if(jj.packages.length>0) // ignore unpublished publishers with 0 packages
-					{
-						codes.publisher_names[ id ]=jj.title;
-					}
-					else
-					{
+					codes.publisher_names[ id ]=jj.title.trim();
+					codes.publisher_slugs[ id ]=v; // so we can link to registry
+				}
+				else
+				{
 console.log("unpublished "+id);				
-					}
-					if(jj.extras.publisher_source_type=="secondary_source")
-					{
-						codes.publisher_secondary[id]=jj.title;
+				}
+				if(jj.publisher_source_type=="secondary_source")
+				{
+					codes.publisher_secondary[id]=jj.title.trim();
 console.log("secondary "+id);				
-					}
 				}
 			}
 		}
+
 	});
 
 // add a temp publisher id
@@ -771,45 +632,12 @@ console.log("secondary "+id);
 	
 //	ls(publishers);
 
-	console.log("Writing json/iati_codes.json")	
-//	fs.writeFileSync("json/iati_codes.js","exports.codes="+JSON.stringify(codes)+";\n");
-	fs.writeFileSync(__dirname+"/../json/iati_codes.json",JSON.stringify(codes,null,'\t'));
+	console.log("Writing json/iati_codes.json for the last time")	
+	fs.writeFileSync(__dirname+"/../json/iati_codes.json",json_stringify(codes,{ space: ' ' }));
 
 	console.log("Writing json/publishers.json")
-	fs.writeFileSync(__dirname+"/../json/publishers.json",JSON.stringify(publishers,null,'\t'));
+	fs.writeFileSync(__dirname+"/../json/publishers.json",json_stringify(publishers,{ space: ' ' }));
 
-//
-// use the following query
-//
-// http://iatiregistry.org/api/search/dataset?fl=name,download_url,metadata_modified,groups,id,data_updated&offset=0&limit=99999
-// actually that does not work
-// try
-// http://iatiregistry.org/api/search/dataset?fl=name,res_url&offset=0&limit=99999
-//
-
-// get download urls of each xml file ?
-/*
-	for(var pname in publishers)
-	{
-		var p=publishers[pname];
-		for(var i=0;i<p.packages.length;i++)
-		{
-			var name=p.packages[i];
-			console.log("Fetching package info for "+name);
-			var js=wait.for(http_getbody,"http://iatiregistry.org/api/rest/dataset/"+name);
-			var j=JSON.parse(js);
-			packages[name]=j.download_url; // the only useful value...
-		}
-	}
-
-// list of urls if we want to do our own scan...
-	console.log("Writing json/packages.json")
-	fs.writeFileSync(__dirname+"/../json/packages.json",JSON.stringify(packages,null,'\t'));
-
-//	return;
-*/
 }	
 
 }
-
-

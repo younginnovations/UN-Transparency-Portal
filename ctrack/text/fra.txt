@@ -64,6 +64,9 @@ Icône d'alerte
 #info_icon_alt_text 
 Icône d'information 
 
+#about_registry_text
+À propos de l'IATI éditeur
+
 #about_this_data_text 
 À propos de ces données 
 
@@ -88,8 +91,11 @@ Retour à Portail de Développement: Éditeur Edition
 #back_text 
 Retour à {portal_name}
 
+#new_tab_text
+Ouvre un nouvel onglet
+
 #crumbname_main_text 
-{portal_name} Maison 
+Maison 
 
 #crumbname_donors_text 
 Liste des Donateurs 
@@ -262,11 +268,14 @@ Date de fin
 #amount_text
 Somme
 
+#view_activities_amount_text
+Engagements sortants
+
 #donor_activities_spend_text
-Total des engagements
+Engagements sortants
 
 #donor_activities_percentage_tip_text 
-Pourcentage du total des engagements passés
+Pourcentage des engagements sortants dépensés
 
 #view_donor_budgets_text 
 Budget total pour {donor} en {year}
@@ -371,7 +380,7 @@ Cliquez pour découvrir les activités de secteur pour {year3}
 Cliquez pour découvrir les activités de secteur pour {year4}
 
 #table_active_date_tip_text 
-Date de fin 
+Date de fin
 
 #table_ended_date_tip_text 
 Date de fin
@@ -434,7 +443,10 @@ Español
 Mode Haute Visibilité 
 
 #flava_original_text 
-Original flava
+Original
+
+#flava_choose_text
+Choisissez un thème
 
 #flag_alt_text 
 Drapeau
@@ -462,6 +474,57 @@ Haut de la page
 
 #footer_about_text 
 A propos de d-portal.org
+
+#footer6_text
+<a href="http://d-portal.org/">d-portal.org</a>
+
+#footer7_text
+vous aide à explorer les données de IATI.
+
+#footer8_text
+Il fournit des informations par pays ou par l'éditeur sur les activités de développement et les budgets publiés à IATI.
+
+#footer9_text
+Nous sommes actuellement en BETA. Alors que d-portail est accessible au public, il est pas considéré comme terminé. Vous pouvez rencontrer des bugs et fonctionnalités manquantes, mais qui est la raison pour laquelle nous avons besoin de vos commentaires et de soutien.
+
+#footer10_text
+Si vous avez des questions sur la façon dont les données sont affichées dans d-portal, ou sur la mise à jour des données, consultez la FAQ ou contactez le service d'assistance de l'IATI
+
+#footer11_text
+support@iatistandard.org
+
+#footer12_text
+Outils &amp; Mises à jour
+
+#footer13_text
+Dernières actualités messages
+
+#footer14_text
+Dash - Editeurs statistiques
+
+#footer15_text
+Generator - Widgets pour votre site web
+
+#footer16_text
+Information
+
+#footer17_text
+FAQ
+
+#footer18_text
+Attribution et Sources
+
+#footer19_text
+Feedback Forum Github
+
+#footer20_text
+Journal des données
+
+#footer21_text
+Si vous avez des questions concernant les données elles-mêmes, qui appartiennent à l'éditeur,
+
+#footer22_text
+veuillez les contacter ici.
 
 #read_more_text
 Lire la suite
@@ -511,7 +574,7 @@ Total des budgets au niveau de l'activité de cette décision et l'année procha
 Comment les données sont -elle calculée?
 
 #donor_activities_data_description_text
-Dépenses est calculée en ajoutant les décaissements et les dépenses. Ce tableau vous indique le total des engagements pour chaque activité et le pourcentage dépensé jusqu'ici, classés par le plus grand en haut. Des barres noires signifient les problèmes de qualité de données où les données publiées est manquant engagement et / ou des informations de transaction.
+Dépenses est calculée en ajoutant les décaissements et les dépenses. Ce tableau vous indique le engagements sortants pour chaque activité et le pourcentage dépensé jusqu'ici, classés par le plus grand en haut. Des barres noires signifient les problèmes de qualité de données où les données publiées est manquant engagement et / ou des informations de transaction.
 
 #donor_transactions_data_description_title_text
 Comment les données sont -elle calculée?
@@ -559,7 +622,7 @@ Total des budgets au niveau de l'activité pour l'année prochaine et ce signal�
 Comment les données sont -elle calculée?
 
 #sector_activities_data_description_text
-Dépenses est calculée en ajoutant les décaissements et les dépenses. Ce tableau vous indique le total des engagements pour chaque activité et le pourcentage dépensé jusqu'ici, classés par le plus grand en haut. Des barres noires signifient les problèmes de qualité de données où les données publiées est manquant engagement et / ou des informations de transaction.
+Dépenses est calculée en ajoutant les décaissements et les dépenses. Ce tableau vous indique le engagements sortants pour chaque activité et le pourcentage dépensé jusqu'ici, classés par le plus grand en haut. Des barres noires signifient les problèmes de qualité de données où les données publiées est manquant engagement et / ou des informations de transaction.
 
 #sector_transactions_data_description_title_text
 Comment les données sont -elle calculée?
@@ -698,6 +761,9 @@ Nous espérons que notre présentation des données - et les lacunes - fournit u
 #download_csv_text
 Télécharger le tableau au format CSV
 
+#table_alert_text
+Vous ne trouvez pas de données? Essayez de changer les années en cliquant sur les <b>&lt;</b> flèches <b>&gt</b>
+
 #table_publisher_title_publisher_text
 ÉDITEUR
 
@@ -740,11 +806,8 @@ Budget du dossier de l'organisation de l'éditeur
 #title_publisher_countries_text 
 L'argent va à {countries_count} pays. 
 
-#title_publisher_sectors_text 
-L'argent va à {sectors_count} secteurs.
-
-#title_publisher_countries_table_text 
-L'argent va à {countries_count} pays. 
+#title_countries_table_text 
+L'argent va à {countries_count} pays<br/>({year1}-{year3})
 
 #title_publisher_sectors_table_text 
 L'argent va à {sectors_count} secteurs.
@@ -852,7 +915,7 @@ Année commence
 Thèmes
 
 #change_settings_text
-Modifier Les Paramètres
+Paramètres
 
 #search_recipient_txt
 Destinataire
@@ -872,8 +935,14 @@ Editeur
 #search_year_txt
 An
 
+#search_policy_txt
+Marqueur de politique
+
 #search_view_txt
-Vous avez cherché:
+EXPLORE <span>filtres</span>
+
+#search_refine_txt
+Affiner la recherche
 
 #search_text_txt
 Recherche texte

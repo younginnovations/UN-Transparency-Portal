@@ -245,7 +245,7 @@ view_publishers.ajax=function(args)
 	years.forEach(function(y)
 	{
 		var dat={
-				"from":"act,budget,country",
+				"from":"act,budget",
 				"limit":args.limit || -1,
 				"select":"reporting_ref,"+ctrack.convert_str("sum_of_percent_of_budget"),
 				"budget_priority":1, // has passed some validation checks serverside
@@ -258,7 +258,7 @@ view_publishers.ajax=function(args)
 //				"reporting_ref":(args.publisher || ctrack.args.publisher_select),
 //				"title_like":(args.search || ctrack.args.search),
 			};
-		fetch.ajax_dat_fix(dat,args);
+		fetch.ajax_dat_fix(dat,args,"budget");
 		if(!dat.reporting_ref){dat.flags=0;} // ignore double activities unless we are looking at a select publisher
 		fetch.ajax(dat,function(data){
 

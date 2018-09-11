@@ -1,3 +1,395 @@
+Development Portal (2018-08-24 shi)
+==============================
+Fix alert colspan
+Display humanitarian flag in SAVi
+Update all themes
+Don't display empty comments/location/dimension in results for SAVi
+Update print-friendly css
+Update policy-marker code to show even if vocab is not set
+
+
+Development Portal (2018-08-21 shi)
+==============================
+Fix word-break in sector / donor tables for long names in columns
+Update sector/donor tables width and layout
+Update print-friendly css
+
+
+Development Portal (2018-08-16 shi)
+==============================
+Dsiplay document-date for document-link in SAVi
+Updated print-friendly css
+Updated all themes with new displays
+Sort document-link by date
+
+
+Development Portal (2018-07-03 shi)
+==============================
+Fix activity list header in Generator
+Display new policy marker search dropdown
+Update translations and typeahead css
+
+
+Development Portal (2018-06-25 shi - full)
+==============================
+Display location description narrative in SAVi
+Display budget status in SAVi
+Display participating-org type in SAVi
+Update all themes with new displays
+
+
+Development Portal (2018-06-11 shi)
+==============================
+Remove indicator numbers for results in SAVi
+
+
+Development Portal (2018-05-25 shi)
+==============================
+Fix table (list and activity) word break
+
+
+Development Portal (2018-05-16 shi)
+==============================
+Updated 'outgoing commitments' text in table headers and footer
+Updated translation
+Add policy-marker css to all themes
+Update css for activity table headers
+Update missing view
+Update print-friendly css
+
+
+Development Portal (2018-04-26 shi)
+==============================
+Added target and actual default text for result in SAVi
+Added empty_flag for non-CRS country portals
+Added policy-marker vocab, code, significance codelist
+Display policy-marker in SAVi
+Updated footer text about IATI
+
+
+Development Portal (2018-04-06 shi)
+==============================
+Update landing page design
+Update hover state for buttons
+Clean up view_search
+Update table hover states
+Minor css fixes
+Update all themes css
+
+
+Development Portal (2018-04-03 shi)
+==============================
+Updated IATI Publisher link text
+Added title hover state for link
+Update 'Home' text for all profiles
+Update all translations
+
+
+Development Portal (2018-03-19 shi)
+==============================
+Update stats css
+Update registry link into chunk
+Fix all theme background colours for data_quality page
+
+
+Development Portal (2018-03-18 shi)
+==============================
+Update Dash css
+Added arrow to registry link
+
+
+Development Portal (2018-03-17 shi)
+==============================
+Cleanup Dash data quality tables
+Added IATI Registry links to Dash
+
+
+Development Portal (2018-03-16 shi)
+==============================
+Add publisher link to IATI Registry on all pages
+Updated footer with new email text and information
+Updated all translations for updated email text
+Fix table error messages to expand across colspan
+Fix activity tables layout
+Updated Print-friendly css
+Updated all themes css
+Updated footer email with subject
+Updated site-wide emails with subject
+Publisher link opens in new window
+
+
+Development Portal (2018-03-15 shi)
+==============================
+Fixed result period dates to display even when there is no data
+Added % to baseline in original theme
+Updated 100percent time bar
+Fixed new database logs link in Savi
+Updated Print-friendly css
+Updated slug_logs and slugs view on Dash
+Set up FAQ spreadsheet / word doc for translation
+
+
+Development Portal (2018-03-14 shi)
+==============================
+Fixed word-break for datasets in Dash
+Fixed word-break for countries table in Dash
+
+
+Development Portal (2018-03-12 shi)
+==============================
+Added result_vocab codelist
+Fixed result reference outside indicator
+
+
+Development Portal (2018-03-06 shi)
+==============================
+Update result attr values layout
+Update support for multiple references in result element
+Add document-links in result element for 2.03
+Minor css fixes to accomodate savi changes
+Update Print-friendly css
+Update link support for result reference vocab
+Translate vocab numbers to standard descriptions from Registry
+Update related-activity terms
+Added more info for CSV download on map views
+Added additional notes to map view footer
+
+
+Development Portal (2018-02-27 shi)
+==============================
+Fixed activity list with long numbers
+
+
+Development Portal (2018-02-10 shi)
+==============================
+Update related-activity codelist to 202
+Change background-color of ended result
+Update result date, span-narrative and indicator value font size
+Update search group and category icons in search dropdown
+
+
+Development Portal (2017-12-25 shi)
+==============================
+Update DASH css
+Update dash_quality css
+
+
+Development Portal (2017-12-19 shi)
+==============================
+Minor css fixes
+Added refine search button
+Updated translations
+Updated themes
+
+
+Development Portal (2017-12-15 shi)
+==============================
+Updated currency span to one line
+
+
+Development Portal (2017-12-06 shi)
+==============================
+Fix sector/country counts when there are more activities on a SAVi page
+
+
+Development Portal (2017-11-28 shi)
+==============================
+Update font alignment for titles in table
+
+
+Development Portal (2017-11-21 shi)
+==============================
+Display comments for baseline in SAVi
+Add collapse buttons for each result chunk
+Add counter increments for result and indicator
+Fixed Print-friendly css for transaction tables
+Updated Print-friendly css
+Add new columns for table views (projects, list/donor/sector activities)
+Updated footer text
+Updated main css
+Updated table headers and titles
+Add table header to main tables (active/ended)
+Fix column number for alert in tables
+
+
+Development Portal (2017-11-18 shi)
+==============================
+Updated indicator subtitle in SAVi
+
+
+Development Portal (2017-11-14 shi)
+==============================
+Fixed baseline clone in SAVi result
+Display indicator measure type code in SAVi result
+Minor fix transaction table
+Update all themes
+Display percentage sign for measure type
+
+
+Development Portal (2017-11-07 shi)
+==============================
+Fixed percentage in results (UTC months)
+
+
+Development Portal (2017-11-03 shi)
+==============================
+Fix many multiple sectors in SAVi
+Update all themes
+Fix many multiple countries in SAVi
+Add collapse buttons 
+
+
+Development Portal (2017-11-01 shi)
+==============================
+Fix @ref conversion for participating, provider, receiver orgs
+
+
+Development Portal (2017-10-27 shi)
+==============================
+Update csv headers for list(activities, budget, transactions)
+
+
+Development Portal (2017-10-26 shi)
+==============================
+Fix n+2 titles in document-link
+Add category codes for document-link
+Add element count
+Add check for counting only dac sectors
+Add css attribute selector for spaces in links (pdf)
+Update all themes
+Disable link if participating-org is not publisher
+Disable link if receiver/provider-org is not publisher
+
+
+Development Portal (2017-10-24 shi)
+==============================
+Display participating-org regardless of case for all themes
+
+
+Development Portal (2017-10-23 shi)
+==============================
+Lookup participating-org@ref
+Display provider-org and receiver-org in planned-disbursement
+Use @ref in planned-disbursement as links
+Update css for budget
+Fix Print-friendly css
+Fix reporting-org line-height
+Refactor css
+Use @aid over @ref in receiver-org and provider-org links in SAVi
+Add graphs for recipient-country
+Remove display for recipient-country spans
+Update all themes with new elements
+Fix padding dimension in result SAVi
+
+
+Development Portal (2017-10-22 shi)
+==============================
+Add collapse buttons to certain SAVi elements
+Add css styles to new spans
+Update all themes with new element
+Fix Print-friendly css
+
+
+Development Portal (2017-10-20 shi)
+==============================
+Add capitalised participating-org @role in SAVi
+Update Print-friendly css
+Display planned-disbursement @type in SAVi
+Update all themes with new elements
+
+
+Development Portal (2017-10-19 shi)
+==============================
+Use @aid over @ref in participating-org links in SAVi
+Fix transaction columns
+Minor css updates
+Display reporting-org@ref as a link to publisher page
+Add more document-link types
+Update all themes with new elements
+
+
+Development Portal (2017-10-17 shi)
+==============================
+Fix layout for result in SAVi
+Group indicator span-title and description
+Add iati_codes json for @org_type and @org_role
+Sort document-link
+
+
+Development Portal (2017-10-16 shi)
+==============================
+Added default and more selector attributes for document-link
+Only display sector graph without sector spans
+Minor css fixes
+Wrap <narrative> around participating-org if absent
+Group participating-org roles
+Update settings css
+Fixed viewport in q.html in activities.xsl
+Removed recipient-country if empty
+Fix timeline for results between dates
+
+
+Development Portal (2017-10-15 shi)
+==============================
+Update layout for results in SAVi
+Update all themes with new layout
+Remove recipient-country div when empty
+Fix SAVi budget layout in Print-Friendly
+Display reference vocab and code in SAVi
+Change position of baseline-year below baseline-value
+
+
+Development Portal (2017-10-13 shi)
+==============================
+Updated document-link section in SAVi
+Move document-link section in SAVi
+Display doc types and icons for document-link
+Updated colours for all themes
+Minor css fixes
+
+
+Development Portal (2017-10-09 shi)
+==============================
+Added search icon to explore section in resulting pages
+Fix padding search icons in dropdown
+Minor css updates to all rgba themes
+Currently supporting a total of 6 themes (rgba)
+Added all themes as dropdown choices in main site
+
+
+Development Portal (2017-09-26 shi)
+==============================
+Add table alert to change years at the bottom of all graphs
+Update minor css for original and Print-Friendly
+Add translations for new table alert
+Update translations
+Update css second title line-height
+
+
+Development Portal (2017-09-22 shi)
+==============================
+Display OpenAg tag in SAVi
+Display Sector vocab 2 in SAVi
+Update new tag element css
+Update Print-Friendly css
+Minor css fixes for activities
+
+
+Development Portal (2017-09-21 shi)
+==============================
+Fixed url encoding for related-activity in SAVi
+
+
+Development Portal (2017-09-19 shi)
+==============================
+Fix specific empty classes to not display
+Fix lists in SAVi to wrap nice when longer
+Update Print-Friendly css
+Fix Print-Friendly images contrast in SAVi
+Fix Print-Friendly title headers in SAVi
+Updated font size of second titles in SAVi
+
+
 Development Portal (2017-09-06 shi)
 ==============================
 Tag element display in SAVi

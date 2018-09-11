@@ -48,11 +48,12 @@ view_dash_quality.calc=function()
 view_dash_quality.ajax=function(args)
 {
 	args=args || {};
-	args.pub=ctrack.hash.pub;
-	args.country=ctrack.hash.country;
+	args.publisher=args.publisher || ctrack.hash.publisher;
+	args.country=args.country || ctrack.hash.country;
 	
-	ctrack.chunk("dash_quality_pub",args.pub || "N/A");
-	ctrack.chunk("dash_quality_pub_name",iati_codes.publisher_names[args.pub] || "N/A");	
+	ctrack.chunk("dash_quality_pub",args.publisher || "N/A");
+	ctrack.chunk("dash_quality_pub_name",iati_codes.publisher_names[args.publisher] || args.publisher || "N/A");	
+	ctrack.chunk("dash_quality_pub_slug",iati_codes.publisher_slugs[args.publisher] || args.publisher || "N/A");
 	
 	view_dash_quality.ajax1(args); // chain
 }
@@ -61,12 +62,11 @@ view_dash_quality.ajax1=function(args)
 {
 	args=args || {};
 	var dat={
-			"country_code":(args.country),
-			"reporting_ref":(args.pub),
 			"select":"stats",
 			"from":"act",
 			"limit":-1
 		};
+	fetch.ajax_dat_fix(dat,args);
 	fetch.ajax(dat,args.callback || function(data)
 	{
 //		console.log("view_dash_quality.ajax1");
@@ -91,12 +91,11 @@ view_dash_quality.ajax2=function(args)
 {
 	args=args || {};
 	var dat={
-			"country_code":(args.country),
-			"reporting_ref":(args.pub),
 			"select":"count",
 			"from":"budget,act",
 			"limit":-1
 		};
+	fetch.ajax_dat_fix(dat,args);
 	fetch.ajax(dat,args.callback || function(data)
 	{
 //		console.log("view_dash_quality.ajax2");
@@ -120,12 +119,11 @@ view_dash_quality.ajax3=function(args)
 {
 	args=args || {};
 	var dat={
-			"country_code":(args.country),
-			"reporting_ref":(args.pub),
 			"select":"count",
 			"from":"trans,act",
 			"limit":-1
 		};
+	fetch.ajax_dat_fix(dat,args);
 	fetch.ajax(dat,args.callback || function(data)
 	{
 //		console.log("view_dash_quality.ajax3");
@@ -149,14 +147,13 @@ view_dash_quality.ajax4=function(args)
 {
 	args=args || {};
 	var dat={
-			"country_code":(args.country),
-			"reporting_ref":(args.pub),
 			"select":"count,country_code",
 			"from":"country,act",
 			"groupby":"country_code",
 			"orderby":"1-",
 			"limit":-1
 		};
+	fetch.ajax_dat_fix(dat,args);
 	fetch.ajax(dat,args.callback || function(data)
 	{
 //		console.log("view_dash_quality.ajax4");
@@ -209,14 +206,13 @@ view_dash_quality.ajax5=function(args)
 {
 	args=args || {};
 	var dat={
-			"country_code":(args.country),
-			"reporting_ref":(args.pub),
 			"select":"count,slug",
 			"from":"act",
 			"groupby":"slug",
 			"orderby":"1-",
 			"limit":-1
 		};
+	fetch.ajax_dat_fix(dat,args);
 	fetch.ajax(dat,args.callback || function(data)
 	{
 //		console.log("view_dash_quality.ajax5");
@@ -252,14 +248,13 @@ view_dash_quality.ajax6=function(args)
 	var today=fetch.get_today();
 	args=args || {};
 	var dat={
-			"country_code":(args.country),
-			"reporting_ref":(args.pub),
 			"select":"count",
 			"from":"act",
 			"limit":-1,
 			"day_end_lt":today,
 			"day_length_not_null":1,
 		};
+	fetch.ajax_dat_fix(dat,args);
 	fetch.ajax(dat,args.callback || function(data)
 	{
 //		console.log(data);
@@ -277,14 +272,13 @@ view_dash_quality.ajax7=function(args)
 	var today=fetch.get_today();
 	args=args || {};
 	var dat={
-			"country_code":(args.country),
-			"reporting_ref":(args.pub),
 			"select":"count",
 			"from":"act",
 			"limit":-1,
 			"day_start_gt":today,
 			"day_length_not_null":1,
 		};
+	fetch.ajax_dat_fix(dat,args);
 	fetch.ajax(dat,args.callback || function(data)
 	{
 //		console.log(data);
@@ -303,8 +297,6 @@ view_dash_quality.ajax8=function(args)
 	var today=fetch.get_today();
 	args=args || {};
 	var dat={
-			"country_code":(args.country),
-			"reporting_ref":(args.pub),
 			"select":"count",
 			"from":"act",
 			"limit":-1,
@@ -312,6 +304,7 @@ view_dash_quality.ajax8=function(args)
 			"day_start_lteq":today,
 			"day_length_not_null":1,
 		};
+	fetch.ajax_dat_fix(dat,args);
 	fetch.ajax(dat,args.callback || function(data)
 	{
 //		console.log(data);
@@ -335,14 +328,13 @@ view_dash_quality.ajax9=function(args)
 	var today=fetch.get_today();
 	args=args || {};
 	var dat={
-			"country_code":(args.country),
-			"reporting_ref":(args.pub),
 			"select":"count",
 			"from":"act",
 			"limit":-1,
 			"day_start_not_null":1,
 			"day_end_null":1,
 		};
+	fetch.ajax_dat_fix(dat,args);
 	fetch.ajax(dat,args.callback || function(data)
 	{
 //		console.log(data);

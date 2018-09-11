@@ -6,10 +6,11 @@ var query = exports;
 var util = require("util");
 var fs = require("fs");
 
-var refry = require("./refry");
-var exs = require("./exs");
-var iati_xml = require("./iati_xml");
-var dstore_db = require("./dstore_db");
+var refry=require('./refry');
+var exs=require('./exs');
+var iati_xml=require('./iati_xml');
+var dstore_db=require("./dstore_db");
+var iati_codes=require("../json/iati_codes.json")
 
 var ls = function(a) {
   console.log(util.inspect(a, { depth: null }));

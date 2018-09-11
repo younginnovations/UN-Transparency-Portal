@@ -3,6 +3,9 @@
 * 					{font-family:sans-serif; word-wrap:break-word;}
 body,html			{background:url('dp_tile.400.png') top center; background-color:#121A31; color:#444; font-family:sans-serif;}
 a 					{text-decoration:none; color:#FFAB5E;}
+
+a:link				{text-decoration:none; color:#FFAB5E;}
+a:visited			{text-decoration:none; color:#FFAB5E;}
 a:hover				{text-decoration:none; color:#FF7A00;}
 
 ok					{display:none;}
@@ -10,6 +13,12 @@ query				{display:none;}
 iati-activity *		{display:none;}
 iati-activity		{display:block; width:960px; margin:50px auto 0;border: solid 2px rgba(0, 103, 177, 0.1);border-radius: 4px;}
 iati-activity:after {content:"Data is sourced from IATI for D-Portal. If you find anything out of place, please contact the development team - support@iatistandard.org"; font-size:14px; color:rgba(51,51,51,0.7); display:block; padding:20px 0; text-align:center;}
+*:before			{line-height:14px;}
+
+
+/*	Play nice with Google Translate font tags
+	============================================= */
+font				{display:inline;}
 
 
 /*	Hacks to display injected elements
@@ -18,14 +27,19 @@ iati-activity span	{display:block;}
 iati-activity a 	{display:block;}
 iati-activity img	{display:block; -webkit-filter:brightness(100%); filter:brightness(100%);}
 
+narrative {display:inline-block;color:inherit;font-family:inherit;word-wrap:inherit;vertical-align: top;}
 
-narrative {display:inline-block; color:inherit; font-family:inherit; word-wrap:inherit;}
+
+/*	Display when humanitarian
+	============================================= */
+iati-activity[humanitarian="1"]:before	{content:"HUMANITARIAN"; padding:10px 40px 7px 40px; font-size:14px; color:#000e20; width:490px; text-align:right; background-color:#ff890c;}
 
 
 /*	Project title
 	============================================= */
 span.span_span-title span-title			{display:block; font-size:32px; width:880px; padding:40px; margin:0 auto; color:#333; line-height:38px;}
 span.span_span-title span-title:before	{content:"PROJECT TITLE"; font-size:14px; color:rgba(51, 51, 51, 0.7); display:block; margin-bottom:5px;}
+span.span_span-title narrative:nth-of-type(n+2)	{display:block; padding:10px 0 0 0; font-style:italic; font-size:34px; line-height:1.25em;}
 
 
 /*	IATI Identifier
@@ -40,6 +54,13 @@ a.a_xml_iati-identifier:hover	{text-decoration:underline;}
 a.a_slug				{display:inline-block; vertical-align:baseline; padding-left:20px;}
 a.a_slug:before			{content:"IATI REGISTRY"; font-size:14px; color:#333; display:inline-block; vertical-align:baseline; padding-right:10px;}
 a.a_slug:hover			{text-decoration:underline;}
+
+a.a_logs				{display:inline-block; vertical-align:baseline; width:33.33%; text-align:center;}
+a.a_logs:before			{content:"VIEW DATASET"; font-size:14px; color:#ccc; display:inline-block; vertical-align:baseline; padding-right:10px;}
+a.a_logs:link			{color:#FFAB5E;}
+a.a_logs:visited		{color:#FFAB5E;}
+a.a_logs:hover			{color:#FF7A00;}
+a.a_logs:active			{color:#FFAB5E;}
 
 
 /*	Recipient countries
@@ -104,7 +125,8 @@ span.span_description description:last-of-type		{padding-bottom:40px;}
 
 /*	Result and description
 	============================================= */
-result						{display:block; padding:20px 0 40px 0;}
+span.span_result			{counter-reset:section;}
+result						{counter-reset:subsection; display:block; padding:20px 0; position:relative;}
 result:nth-child(1)			{padding-top:0;}
 result:nth-child(odd)		{}
 result description			{display:block; padding:10px 40px; line-height:1.25em; white-space:pre-line; unicode-bidi:embed;}
@@ -238,10 +260,36 @@ a.a_document-link document-link span-title		{color:#0067B1; padding:0;}
 a.a_document-link document-link span-title:hover{color:#004373;}
 document-link									{display:inline;}
 document-link span								{font-size:1.0em; display:block; color:#ccc;}
-document-link span-title						{display:inline;}
+document-link span-title						{display:block;}
 document-link span-title:nth-of-type(n+1):before{display:none;}
-document-link span-title:nth-of-type(n+1)		{font-size:18px;}
+document-link span-title:nth-of-type(n+1)		{font-size:16px;}
+document-link span-title:nth-of-type(n+2)		{display:none;}
 document-link span-title narrative				{display:inline;}
+document-link span-title narrative:nth-of-type(2){padding-left:5px; font-style:italic;}
+
+a.a_document-link span-title:after				{content:"LINK"; margin-left:10px; color:#CCC; font-size:12px; vertical-align:top; background-color:rgba(22,24,37,0.6); border-radius:4px; padding:4px 4px 1px 4px;}
+span-narrative.doc-cat,
+span-doc_date									{display:inline-block; margin-top:5px; margin-right:5px; color:#CCC; font-size:13px; vertical-align:top; background-color:rgba(72,79,86,0.6); border-radius:4px; padding:1px 4px 0px 4px; line-height:1.5em;}
+span-doc_date									{background-color:rgba(48,71,103,1);}
+
+/*	Add i to be case-insensitive */
+
+a[href$=".doc" i].a_document-link span-title:after	{content:"DOC";}
+a[href$=".docx" i].a_document-link span-title:after	{content:"DOCX";}
+a[href$=".pdf" i].a_document-link span-title:after	{content:"PDF";}
+a[href$=".pdf " i].a_document-link span-title:after	{content:"PDF";}
+a[href$=".txt" i].a_document-link span-title:after	{content:"TXT";}
+a[href$=".html" i].a_document-link span-title:after	{content:"HTML";}
+a[href$=".odt" i].a_document-link span-title:after	{content:"ODT";}
+a[href$=".xls" i].a_document-link span-title:after	{content:"XLS";}
+a[href$=".xlsx" i].a_document-link span-title:after	{content:"XLSX";}
+a[href$=".jpg" i].a_document-link span-title:after,
+a[href$=".jpeg" i].a_document-link span-title:after,
+a[href$=".png" i].a_document-link span-title:after,
+a[href$=".bmp" i].a_document-link span-title:after,
+a[href$=".gif" i].a_document-link span-title:after,
+a[href$=".svg" i].a_document-link span-title:after,
+a[href$=".tiff" i].a_document-link span-title:after	{content:"IMAGE";}
 
 
 /*	Family Tree list

@@ -69,7 +69,7 @@ view_list_budgets.ajax=function(args)
 		dat["budget_day_start_gteq"]=(parseInt(year)+0)+"-"+ctrack.args.newyear;
 		dat["budget_day_start_lt"]=(parseInt(year)+1)+"-"+ctrack.args.newyear;
 	}
-	fetch.ajax_dat_fix(dat,args);
+	fetch.ajax_dat_fix(dat,args,"budget");
 
 	if(args.output=="count") // just count please
 	{
@@ -122,7 +122,7 @@ view_list_budgets.ajax=function(args)
 				return parseInt(s);
 			}
 			var cc=[];
-			cc[0]=["activity-identifier","title","reporting-org","amount","currency","link"];
+			cc[0]=["iati-identifier","title","reporting-org","total-budget","currency","link"];
 			a.forEach(function(v){
 				cc[cc.length]=[v.aid,v.title,v.reporting,v.amount_num,v.currency,"http://d-portal.org/ctrack.html#view=act&aid="+v.aid];
 			});

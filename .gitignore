@@ -33,3 +33,7 @@ wget-log
 ctrack/package-lock.json
 dportal/package-lock.json
 dstore/package-lock.json
+*.geany
+
+package-lock.json
+
