@@ -88,7 +88,7 @@
 		</tr>
 	</table>
 	<div class="declare stats">{declare_stats_text}</div>
-	<input id="year-select" type="hidden" value={year} >
+	<input id="year-select" type="hidden" value={detailYear}>
 	<script>
 		let currentYear = new Date().getFullYear();
 		$(document).ready(()=>{
@@ -109,11 +109,11 @@
                 var loc = window.location.href;
                 loc += loc.indexOf("?") === -1 ? "?" : "&";
 				loc = loc.substring(0, loc.indexOf("#"));
-				if(loc.indexOf("&year") !== -1){
-					loc = loc.substring(0, loc.indexOf("&year"));
+				if(loc.indexOf("&detailYear") !== -1){
+					loc = loc.substring(0, loc.indexOf("&detailYear"));
 				}
 				
-               ctrack.url(loc + '&year=' + e.target.value);
+               ctrack.url(loc + '&detailYear=' + e.target.value);
 
             });
 		})
@@ -190,10 +190,6 @@
 	</a>
 	<a href="#view=map"><div class="map_info">{publisher_map_info_text}</div></a>
 </div>
-
-
-
-
 
 #main_active
 <div class="main_title_wrap">
@@ -428,6 +424,51 @@
 	}
 </style>
 </div>
+<a onmouseover="$('.peak.sector').css({'border-top':'20px solid #14EE96', 'transition-property':'none'});$('a.ask.sector').css({'background-color':'#14EE96', 'transition-property':'none'});" onmouseout="$('.peak.sector').css({'border-top':'20px solid #00C475', 'transition-property':'none'});$('a.ask.sector').css({'background-color':'#00C475', 'transition-property':'none'});" href="#view=sectors" class="ask sector">
+	<span class="ask_title">{title_sectors_year_text}</span>
+	<span class="main_peak_wrap">
+		<span class="peak sector"></span>
+	</span>
+</a>
+<div style="overflow-y: scroll; height:400px;">
+	<div class="table_wrap view">
+		<table class="money">
+			<tr class="row1">
+				<th class="col2" onclick="ctrack.dosort('sector');" title="{table_sector_tip_title_sector_text}">{table_sector_title_sector_text}</th>
+				<th class="col3" colspan="3" title="{table_sector_tip_title_transaction_text}">
+					<span onclick="ctrack.dosort('trans');">{table_sector_title_transaction_text}</span> 
+					<a href="#view=main&year={year1}" onclick="return donorYearChange('{year1}');" title="Previous Year" class="year prev">&lt;</a>
+				</th>
+				<th class="col4" colspan="2" title="{table_sector_tip_title_budget_text}">
+					<span onclick="ctrack.dosort('budget');">{table_sector_title_budget_text}</span> 
+					<a href="#view=main&year={year3}" onclick="return donorYearChange('{year3}');" title="Next Year" class="year next">&gt;</a></th>
+			</tr>
+			<tr class="row2">
+				<td class="col2" title="{table_sort_text}"	onclick="ctrack.dosort('sector');"	>{table_donor_subtitle_donor_text}</td>
+				<td class="col3" title="{table_sort_text}"  onclick="ctrack.dosort('t1');" 	>{year1}</td>
+				<td class="col4" title="{table_sort_text}"  onclick="ctrack.dosort('t2');" 	>{year2}</td>
+				<td class="col5" title="{table_sort_text}" 	onclick="ctrack.dosort('t3');" 	>{year3}</td>
+				<td class="col6" title="{table_sort_text}"  onclick="ctrack.dosort('b1');"  >{year3}</td>
+				<td class="col7" title="{table_sort_text}"  onclick="ctrack.dosort('b2');"	>{year4}</td>
+			</tr>		
+			{table_sectors_rows}
+		</table>
+	</div>
+</div>
+
+<script>
+	function donorYearChange(selestedYear){
+		var loc = window.location.href;
+		console.log(loc);
+		loc += loc.indexOf("?") === -1 ? "?" : "&";
+		loc = loc.substring(0, loc.indexOf("#"));
+		if(loc.indexOf("&year") !== -1){
+			loc = loc.substring(0, loc.indexOf("&year"));
+		}
+		
+		ctrack.url(loc + '&year=' + selestedYear);
+	}
+</script>
 
 #publisher_countries_graph
 <div class="default">

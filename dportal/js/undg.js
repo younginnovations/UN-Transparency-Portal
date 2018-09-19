@@ -28,6 +28,7 @@ sipac.serialize(function() {
   let budget = {};
   let project = {};
   let expense = {};
+  let sector = {};
   let activeProject = {};
 
   for (let y = year; y >= year - 5; y--) {
@@ -59,6 +60,22 @@ sipac.serialize(function() {
     sipac.get(sql, [y, r], function(err, data) {
       activeProject[y] = data["count_aid"];
       un_agencies_data["active_projects"] = activeProject;
+    });
+
+    //fetch total sector by year
+   sql="SELECT DISTINCT sector_code FROM act JOIN sector USING (aid) WHERE ? BETWEEN cast(strftime('%Y', datetime(day_start * 60 * 60 * 24, 'unixepoch')) as integer) and cast(strftime('%Y', datetime(day_end * 60 * 60 * 24, 'unixepoch')) as integer)";
+   sipac.all(sql, [y], function(err, data){
+      count = 0;
+      for (var i in data) {
+        if (
+          typeof json_iati_codes["sector"][data[i].sector_code] != "undefined"
+        ) {
+          count++;
+        }        
+      }
+      console.log(y,count);
+      sector[y] = count;
+      un_agencies_data['total_sectors'] = sector;
     });
   }
 
@@ -135,7 +152,7 @@ sipac.serialize(function() {
   });
 
   //fetch projects sector_group
-
+  
   sql = "Select Distinct sector_code from sector";
   var sectorGroupList = {};
   sipac.all(sql, function(err, data) {
@@ -147,6 +164,8 @@ sipac.serialize(function() {
           json_iati_codes["sector"][data[i].sector_code];
       }
     }
+    sector['all'] = Object.keys(sectorGroupList).length;
+    un_agencies_data['total_sectors'] = sector;
     un_agencies_data["sectors"] = sectorGroupList;
   });
 });
@@ -252,6 +271,9 @@ setTimeout(function generate() {
   chunkopts["sector"] = JSON.stringify(sec);
   chunkopts["sector_un_operates"] = JSON.stringify(
     Object.keys(un_agencies_data["sectors"]).length
+  );
+  chunkopts["total_sectors"] = JSON.stringify(
+   un_agencies_data["total_sectors"]
   );
   chunkopts["publisher_names_json"] = JSON.stringify(
     json_iati_codes["un_publisher_names"]

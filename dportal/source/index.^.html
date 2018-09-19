@@ -333,10 +333,12 @@
     var total_budget = {total_budget};
     var total_expenditure = {total_expenditure};
     var total_un_agencies = {total_un_agencies};
+
     var un_agencies_in_iati = {un_agencies_in_iati};
     var un_current_trends = {un_current_trends};
     var geojson = {geojson};
     var total_sector = {total_sector};
+    var total_sectors = {total_sectors};
     var sector_un_operates = {sector_un_operates};
     var sectors,reportings;
    
@@ -368,9 +370,6 @@
 
 
     $(function () {
-
-
-       
         var countries;
 
 // default data in page so can display without any ajax
@@ -400,14 +399,14 @@
         $("#display-active-projects").text(numberWithCommas(active_projects[currentYear]));
         $("#display-un-agencies").text(numberWithCommas(un_agencies_in_iati));
         $("#total-un-agencies").text(numberWithCommas(total_un_agencies));
-        $("#display-un-sectors").text(numberWithCommas(sector_un_operates));
+        $("#display-un-sectors").text(numberWithCommas(total_sectors[currentYear]));
         $("#total-sectors").text(numberWithCommas(total_sector));
         $("#total_projects_shown").html(numberWithCommas(total_projects[currentYear]));
         $("#no_of_countries").html(countries.rows.length);
         $("#totalBudget").html("$" + changeToMillions(total_budget[currentYear]));
         $("#totalExpense").html("$" + changeToMillions(total_expenditure[currentYear]));
         $("#un_agencies_in_iati").html(un_agencies_in_iati);
-        $("#total_sectors").html(sector_un_operates);
+        $("#total_sectors").html(total_sectors[currentYear]);
 
         sectors = {rows: []};
         var rows = sectors.rows;
@@ -429,20 +428,22 @@
 
             var name = "" + $("#country_dropmenu select").val();
             if (name && (name != "")) {
-                window.location.href = "/ctrack.html?country=" + name + "&tongue={tongue}"
+                window.location.href = "/ctrack.html?country=" + name + "&tongue={tongue}&detailYear=all"
             }
 
         };
 
 
-
+        /*
+        * Load publishers in dropdown
+        */
         if (iati_un_publishers) {
             let len = Object.keys(iati_un_publishers).length;
             let aa = [];
             aa.push("<select>");
             aa.push("<option value=''></option>");
 
-            Object.keys(iati_un_publishers).map((p,i) =>{
+            Object.keys(iati_un_publishers).map(function(p,i){
                 if (p && iati_un_publishers[p])  // must be real publisher
                 {
                     let name = iati_un_publishers[p];
@@ -462,7 +463,6 @@
                 "placeholder_text_single": "{publisher_dropmenu_text}"
             });
         }
-
 
         /*
         * Load sectors in dropdown
@@ -631,7 +631,7 @@
         }, 5000);
     }());
 
-    $(document).ready(() => {
+    $(document).ready(function(){
 
         for (let y = currentYear; y >= (currentYear - 5); y--) {
 
@@ -645,11 +645,13 @@
         projectProgressBar(currentYear);
       
 
-        $('#select-year').change((e) =>{
+        $('#select-year').change(function(e){
             $("#totalBudget").html("$" + changeToMillions(total_budget[e.target.value]));
             $("#total_projects_shown").html(numberWithCommas(total_projects[e.target.value]));
             $("#totalExpense").html("$" + changeToMillions(total_expenditure[e.target.value]));
             $("#display-active-projects").text(numberWithCommas(active_projects[e.target.value]));
+            $("#display-un-sectors").text(numberWithCommas(total_sectors[e.target.value]));
+            $("#total_sectors").html(total_sectors[e.target.value]);
 
             projectProgressBar(e.target.value);
         });

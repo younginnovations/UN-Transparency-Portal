@@ -36,6 +36,7 @@ view_main.view=function(args)
 	views.stats.chunks.forEach(function(n){ctrack.chunk(n,"{spinner}");});
 	views.donors_top.chunks.forEach(function(n){ctrack.chunk(n,"{spinner}");});
 	views.sectors_top.chunks.forEach(function(n){ctrack.chunk(n,"{spinner}");});
+	// views.sectors.chunks.forEach(function(n){ctrack.chunk(n,"{spinner}");});
 
 
 	ctrack.setcrumb(1);
@@ -54,6 +55,7 @@ view_main.view=function(args)
 
 	views.donors_top.ajax();
 	views.sectors_top.ajax();
+	views.sectors.ajax();
 
 	ctrack.map.pins=undefined;
 	views.map.ajax_heat({limit:200});

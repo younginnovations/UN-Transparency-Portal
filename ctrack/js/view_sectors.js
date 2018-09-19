@@ -57,6 +57,7 @@ view_sectors.ajax = function (args) {
     args = args || {};
 
     var year = args.year || parseInt(ctrack.hash.year) || ctrack.year;
+    year = year === 'all years'? new Date().getFullYear() : year;
     ctrack.year_chunks(year);
     view_sectors.year = year;
 

@@ -23,7 +23,7 @@ view_sector_category.ajax = function(args){
 
     var list = [];
 
-    var year = args.year || parseInt(ctrack.hash.year) || ctrack.year;
+    var year = ctrack.args.chunks.detailYear;;//args.year || parseInt(ctrack.hash.year) || ctrack.year;
     ctrack.year_chunks(year);
 
     var dat = {
@@ -36,7 +36,7 @@ view_sector_category.ajax = function(args){
         "trans_code":"D|E"
     };
 
-    if(year !== 'all years'){      
+    if(year !== 'all'){      
         dat.trans_day_gteq = year + "-" + ctrack.args.newyear;
         dat.trans_day_lt = (parseInt(year) + 1) + "-" + ctrack.args.newyear;        
     }

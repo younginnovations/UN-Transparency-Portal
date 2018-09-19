@@ -28,7 +28,8 @@ view_donors_top.ajax = function (args) {
     args = args || {};
     var limit = args.limit || 5;
 
-    var year = args.year || parseInt(ctrack.hash.year) || ctrack.year;
+    var year = ctrack.args.chunks.detailYear;
+    
     ctrack.year_chunks(year);
    
     var dat = {
@@ -40,7 +41,7 @@ view_donors_top.ajax = function (args) {
         "trans_code": "D|E"
     };
 
-    if(year !== 'all years'){
+    if(year !== 'all'){
         dat.trans_day_gteq = year + "-" + ctrack.args.newyear;
         dat.trans_day_lt = (parseInt(year) + 1) + "-" + ctrack.args.newyear;
     }

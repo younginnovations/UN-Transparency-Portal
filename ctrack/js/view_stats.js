@@ -61,8 +61,8 @@ view_stats.calc = function() {
 //
 view_stats.ajax = function(args) {
   args = args || {};
-  let y = ctrack.args.selected_year; //Date.UTC(ctrack.args.selected_year, 1, 1) / (1000 * 60 * 60 * 24);
-  
+  let y = ctrack.args.chunks.detailYear; //Date.UTC(ctrack.args.selected_year, 1, 1) / (1000 * 60 * 60 * 24);
+
   var dat = {
     select: "sum_budget_value",
     from: "act,budget",

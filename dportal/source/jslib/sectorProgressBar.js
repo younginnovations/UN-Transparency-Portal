@@ -1,7 +1,7 @@
 $(function () {
     var data = {
         "total_sector": total_sector,
-        "sector_un_operates": sector_un_operates
+        "sector_un_operates":  $("#total_sectors").text()
     };
     var mainWidth = $("#sectorProgressBox").width();
     var dataWidth = (data.sector_un_operates / data.total_sector) * mainWidth,
