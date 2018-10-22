@@ -1,3 +1,4 @@
+#set -xe
 cd `dirname $0`
 cd dstore
 
@@ -18,6 +19,7 @@ do
         done
 done
 
+#../node_command.sh
 #make it smarter
-node js/cmd vacuum
-node js/cmd analyze
+#node js/cmd vacuum
+#node js/cmd analyze

@@ -327,7 +327,7 @@ setTimeout(function generate() {
   chunkopts["geojson"] = JSON.stringify(geojson);
 
   generateText(chunkopts);
-}, 20000);
+}, 30000);
 
 function generateText(data) {
   let text = "";
