@@ -3,12 +3,12 @@ cd `dirname $0`
 cd ../ctrack
 rm -rf node_modules
 #~/.nvm/versions/node/v8.9.4/bin/yarn
-yarn
+/home/undg/.nvm/versions/node/v8.3.0/bin/yarn
 
 cd ../dstore
 rm -rf node_modules
 #~/.nvm/versions/node/v8.9.4/bin/yarn
-yarn
+/home/undg/.nvm/versions/node/v8.3.0/bin/yarn
 #CC=gcc-5 CXX=g++-5 npm install
 
 cd ../dportal

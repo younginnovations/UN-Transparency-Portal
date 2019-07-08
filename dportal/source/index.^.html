@@ -322,7 +322,7 @@
 #^jsmenu
 
 <script>
-    const currentYear = (new Date()).getFullYear();
+    var currentYear = (new Date()).getFullYear();
     var publisher_names = {publisher_names_json};
     var iati_un_publishers = {iati_un_publishers};
     var country_names = {country_names_json};
@@ -438,16 +438,16 @@
         * Load publishers in dropdown
         */
         if (iati_un_publishers) {
-            let len = Object.keys(iati_un_publishers).length;
-            let aa = [];
+            var len = Object.keys(iati_un_publishers).length;
+            var aa = [];
             aa.push("<select>");
             aa.push("<option value=''></option>");
 
             Object.keys(iati_un_publishers).map(function(p,i){
                 if (p && iati_un_publishers[p])  // must be real publisher
                 {
-                    let name = iati_un_publishers[p];
-                    let ref = "<option value='" + p + "'>" + name + "</option>";
+                    var name = iati_un_publishers[p];
+                    var ref = "<option value='" + p + "'>" + name + "</option>";
                     aa.push(ref);
                 }
 
@@ -633,7 +633,7 @@
 
     $(document).ready(function(){
 
-        for (let y = currentYear; y >= (currentYear - 5); y--) {
+        for (var y = currentYear; y >= (currentYear - 5); y--) {
 
             if (y === currentYear) {
                 $('#select-year').append($('<option></option>').attr('selected', 'selected').attr("value", y).text(y));
