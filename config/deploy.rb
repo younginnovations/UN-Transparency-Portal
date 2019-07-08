@@ -96,7 +96,7 @@ namespace :dportal do
         task :create_symlink do
             on roles(:all) do
             within release_path do
-#               execute :"ln -s #{shared_path}/cache #{release_path}/dstore/"
+               execute :"ln -s #{shared_path}/undg-data-updater/undg_cron.sh #{release_path}/undg-data-updater/"
                execute :"ln -s #{shared_path}/db #{release_path}/dstore/"
                execute :"ln -s #{shared_path}/ctrack/node_modules #{release_path}/ctrack/"
                execute :"ln -s #{shared_path}/dstore/node_modules #{release_path}/dstore/"
