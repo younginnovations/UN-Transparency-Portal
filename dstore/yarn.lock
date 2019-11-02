@@ -458,8 +458,8 @@ cryptiles@2.x.x:
     boom "2.x.x"
 
 csv-parse@*:
-  version "1.2.2"
-  resolved "https://registry.yarnpkg.com/csv-parse/-/csv-parse-1.2.2.tgz#0ae9fa2d132d8f763dcd8a309cc17b4c5264de29"
+  version "4.4.6"
+  resolved "https://registry.yarnpkg.com/csv-parse/-/csv-parse-4.4.6.tgz#08804dbe86037c46810d49ced77fa0e121f83b4f"
 
 d@1:
   version "1.0.0"
